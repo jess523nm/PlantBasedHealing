@@ -1,0 +1,794 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Plant-Based Reflection Tool — Skeleton</title>
+  <style>
+    :root{
+      --card-bg: rgba(10, 12, 18, 0.72);
+      --card-border: rgba(255,255,255,0.14);
+      --text: rgba(255,255,255,0.92);
+      --muted: rgba(255,255,255,0.72);
+      --btn: rgba(255,255,255,0.10);
+      --btn-hover: rgba(255,255,255,0.16);
+      --focus: rgba(255,255,255,0.25);
+      --green: rgba(72, 187, 120, 0.95);
+      --yellow: rgba(236, 201, 75, 0.95);
+      --red: rgba(245, 101, 101, 0.95);
+    }
+
+    body{
+      margin:0;
+      min-height:100vh;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      color: var(--text);
+
+      /* “dark early sunrise” stripe vibe */
+      background:
+        linear-gradient(180deg,
+          #050611 0%,
+          #0a0b1c 18%,
+          #141233 36%,
+          #241842 52%,
+          #3a1d4b 66%,
+          #4b2555 78%,
+          #5b2f5f 88%,
+          #6a3c68 100%);
+      background-attachment: fixed;
+    }
+
+    .wrap{
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 28px 16px 80px;
+    }
+
+    .topbar{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      margin-bottom: 16px;
+    }
+
+    .brand{
+      font-weight: 650;
+      letter-spacing: 0.2px;
+      opacity: 0.95;
+    }
+
+    .pill{
+      font-size: 12px;
+      padding: 6px 10px;
+      border: 1px solid var(--card-border);
+      border-radius: 999px;
+      background: rgba(255,255,255,0.06);
+      color: var(--muted);
+      user-select:none;
+    }
+
+    .card{
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 18px;
+      padding: 18px 18px 16px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.35);
+      backdrop-filter: blur(8px);
+    }
+
+    h1,h2{
+      margin: 0 0 10px;
+      line-height: 1.2;
+    }
+    h1{ font-size: 22px; }
+    h2{ font-size: 18px; opacity: 0.95; }
+
+    p{
+      margin: 8px 0 0;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    .btnrow{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top: 14px;
+    }
+
+    button{
+      border: 1px solid var(--card-border);
+      background: var(--btn);
+      color: var(--text);
+      padding: 10px 12px;
+      border-radius: 12px;
+      cursor:pointer;
+      font-weight: 600;
+      transition: 0.12s ease;
+    }
+    button:hover{ background: var(--btn-hover); }
+    button:focus{ outline: 2px solid var(--focus); outline-offset: 2px; }
+
+    .btn-green{ background: rgba(72,187,120,0.20); border-color: rgba(72,187,120,0.40); }
+    .btn-yellow{ background: rgba(236,201,75,0.20); border-color: rgba(236,201,75,0.40); }
+    .btn-red{ background: rgba(245,101,101,0.20); border-color: rgba(245,101,101,0.40); }
+
+    .navrow{
+      display:flex;
+      gap:10px;
+      justify-content:space-between;
+      margin-top: 14px;
+      padding-top: 12px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .left, .right{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+
+    .small{
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .checklist{
+      margin-top: 12px;
+      display:grid;
+      gap:10px;
+    }
+
+    label.chk{
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+      padding: 10px 12px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.05);
+      cursor:pointer;
+    }
+
+    input[type="checkbox"], input[type="radio"]{
+      margin-top: 2px;
+      transform: scale(1.12);
+      accent-color: rgba(255,255,255,0.85);
+    }
+
+    .modalback{
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.55);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      padding: 18px;
+      z-index: 50;
+    }
+
+    .modal{
+      max-width: 820px;
+      width: 100%;
+      background: rgba(12, 14, 22, 0.92);
+      border: 1px solid rgba(255,255,255,0.16);
+      border-radius: 18px;
+      padding: 16px;
+      box-shadow: 0 14px 70px rgba(0,0,0,0.55);
+    }
+
+    .modal .scroll{
+      max-height: 48vh;
+      overflow:auto;
+      border: 1px solid rgba(255,255,255,0.10);
+      border-radius: 14px;
+      padding: 12px;
+      background: rgba(255,255,255,0.04);
+    }
+
+    .divider{
+      height: 1px;
+      background: rgba(255,255,255,0.08);
+      margin: 12px 0;
+    }
+
+    .imgbox{
+      margin-top: 12px;
+      border-radius: 16px;
+      border: 1px dashed rgba(255,255,255,0.28);
+      background: rgba(255,255,255,0.04);
+      padding: 14px;
+      color: rgba(255,255,255,0.72);
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="topbar">
+      <div class="brand">Plant-Based Reflection Tool</div>
+      <div class="pill" id="progressPill">Step: —</div>
+    </div>
+
+    <div class="card" id="app"></div>
+  </div>
+
+  <!-- Disclaimer Modal -->
+  <div class="modalback" id="disclaimerModal">
+    <div class="modal">
+      <h2>Disclaimer (placeholder)</h2>
+      <div class="scroll">
+        <p><b>Not medical advice.</b> This tool is for reflection and education only. Always consult qualified professionals for medical, mental health, or religious guidance.</p>
+        <p><b>Do your own research.</b> Sources will be provided later; you should verify independently.</p>
+        <p><b>Not all-or-nothing.</b> This tool supports partial changes and harm reduction approaches.</p>
+        <p class="small">Replace this text later with your finalized disclaimer copy.</p>
+      </div>
+
+      <div class="divider"></div>
+
+      <label class="chk" style="margin:0;">
+        <input id="agreeBox" type="checkbox" />
+        <span><b>I have read this information and agree.</b></span>
+      </label>
+
+      <div class="btnrow">
+        <button id="startBtn">Continue</button>
+      </div>
+      <p class="small">Button is disabled until checkbox is checked (wired in JS).</p>
+    </div>
+  </div>
+
+  <script>
+    /***********************
+     * STATE + ROUTING
+     ***********************/
+    const state = {
+      stepId: "START",
+      history: [],
+
+      dietStatus: null, // "already" | "thinking" | "not"
+      part1: {
+        // store answers if you want later:
+        a: null,
+        b: null,
+        c: null,
+        cxSelected: [] // which of 1CX1-5 they want to explore
+      },
+
+      part2: {
+        blockersSelected: [],     // checklist in Part 2
+        blockersQueue: [],        // queue we walk through
+      },
+
+      // used to alter stakes copy:
+      showSavedSpin: false
+    };
+
+    const STEPS = {
+      START: "START",
+      DIET_STATUS: "DIET_STATUS",
+
+      // Part 1 core
+      P1_1A: "P1_1A",
+      P1_1B: "P1_1B",
+      P1_1BX: "P1_1BX",     // optional “objections” drawer page
+      P1_1C: "P1_1C",
+      P1_1CX_PICK: "P1_1CX_PICK",
+      P1_1CX1: "P1_1CX1",   // intent/purpose
+      P1_1CX2: "P1_1CX2",   // religion
+      P1_1CX3: "P1_1CX3",   // nature
+      P1_1CX4: "P1_1CX4",   // culture
+      P1_1CX5: "P1_1CX5",   // social comfort
+
+      // Part 2
+      P2_INTRO: "P2_INTRO",
+      P2_2A: "P2_2A",               // general “plant-based can be nutritionally sound”
+      P2_BLOCKERS_PICK: "P2_BLOCKERS_PICK",
+      P2_BLOCKER_DETAIL: "P2_BLOCKER_DETAIL",
+
+      // End
+      STAKES: "STAKES"
+    };
+
+    // 1CX options (fixed order)
+    const CX_ORDER = [
+      { id: "1CX1", step: STEPS.P1_1CX1, label: "Intent / Purpose" },
+      { id: "1CX2", step: STEPS.P1_1CX2, label: "Religion" },
+      { id: "1CX3", step: STEPS.P1_1CX3, label: "Natural / Omnivore argument" },
+      { id: "1CX4", step: STEPS.P1_1CX4, label: "Culture / Ancestry" },
+      { id: "1CX5", step: STEPS.P1_1CX5, label: "Social comfort / Agreeability" },
+    ];
+
+    // Part 2 blocker topics (you can rename later)
+    const BLOCKERS = [
+      { id: "env", label: "Environmental impact concerns" },
+      { id: "health", label: "Nutrition & health concerns (including allergies, GI, pregnancy/lactation, ED, sensory, mental health)" },
+      { id: "cost", label: "Cost & availability concerns" },
+      { id: "habit", label: "Habit / taste / change concerns" },
+      { id: "science", label: "I don’t trust science / research (conspiracy, etc.)" }
+    ];
+
+    /***********************
+     * UTIL
+     ***********************/
+    const $app = document.getElementById("app");
+    const $pill = document.getElementById("progressPill");
+
+    function pushHistory(prevStep){
+      state.history.push(prevStep);
+    }
+
+    function go(stepId){
+      if (state.stepId && state.stepId !== stepId) pushHistory(state.stepId);
+      state.stepId = stepId;
+      render();
+    }
+
+    function back(){
+      const prev = state.history.pop();
+      if (!prev) return;
+      state.stepId = prev;
+      render();
+    }
+
+    function setPill(text){
+      $pill.textContent = text;
+    }
+
+    function navButtons({ showBack=true, nextLabel="Next", onNext=null, showNext=true }){
+      return `
+        <div class="navrow">
+          <div class="left">
+            ${showBack ? `<button onclick="window.__back()">Back</button>` : `<span></span>`}
+          </div>
+          <div class="right">
+            ${showNext ? `<button onclick="window.__next()">${nextLabel}</button>` : ``}
+          </div>
+        </div>
+      `;
+    }
+
+    // Expose handlers for inline onclick
+    window.__back = back;
+
+    // __next is set per-render for pages that use Next
+    window.__next = () => {};
+
+    function threeButtons({ onGreen, onYellow, onRed }){
+      return `
+        <div class="btnrow">
+          <button class="btn-green" onclick="(${onGreen})()">🟢 Green</button>
+          <button class="btn-yellow" onclick="(${onYellow})()">🟡 Yellow</button>
+          <button class="btn-red" onclick="(${onRed})()">🔴 Red</button>
+        </div>
+        <p class="small">Wording for these buttons is placeholder; you’ll swap in your exact labels later.</p>
+      `;
+    }
+
+    /***********************
+     * RENDER PAGES
+     ***********************/
+    function render(){
+      switch(state.stepId){
+        case STEPS.START: return renderStart();
+        case STEPS.DIET_STATUS: return renderDietStatus();
+
+        case STEPS.P1_1A: return renderP1_1A();
+        case STEPS.P1_1B: return renderP1_1B();
+        case STEPS.P1_1BX: return renderP1_1BX();
+        case STEPS.P1_1C: return renderP1_1C();
+        case STEPS.P1_1CX_PICK: return renderP1_1CX_PICK();
+        case STEPS.P1_1CX1: return renderP1_1CX(1);
+        case STEPS.P1_1CX2: return renderP1_1CX(2);
+        case STEPS.P1_1CX3: return renderP1_1CX(3);
+        case STEPS.P1_1CX4: return renderP1_1CX(4);
+        case STEPS.P1_1CX5: return renderP1_1CX(5);
+
+        case STEPS.P2_INTRO: return renderP2_Intro();
+        case STEPS.P2_2A: return renderP2_2A();
+        case STEPS.P2_BLOCKERS_PICK: return renderP2_BlockersPick();
+        case STEPS.P2_BLOCKER_DETAIL: return renderP2_BlockerDetail();
+
+        case STEPS.STAKES: return renderStakes();
+
+        default:
+          $app.innerHTML = `<h1>Unknown step: ${state.stepId}</h1>` + navButtons({});
+      }
+    }
+
+    function renderStart(){
+      setPill("Step: Start");
+      $app.innerHTML = `
+        <h1>Welcome (skeleton)</h1>
+        <p>This is the starting screen. On load, we’ll show the disclaimer modal first.</p>
+        ${navButtons({ showBack:false, nextLabel:"Begin", showNext:true })}
+      `;
+
+      window.__next = () => {
+        openDisclaimerThen(() => go(STEPS.DIET_STATUS));
+      };
+
+      // Auto-open disclaimer on first load if not yet agreed:
+      openDisclaimerThen(null, { autoOpen:true });
+    }
+
+    function renderDietStatus(){
+      setPill("Step: Diet status");
+      $app.innerHTML = `
+        <h1>Diet status (placeholder)</h1>
+        <p>Select one:</p>
+
+        <div class="checklist">
+          <label class="chk">
+            <input type="radio" name="diet" value="already" ${state.dietStatus==="already" ? "checked":""}/>
+            <span><b>I already eat a plant-based diet.</b></span>
+          </label>
+
+          <label class="chk">
+            <input type="radio" name="diet" value="thinking" ${state.dietStatus==="thinking" ? "checked":""}/>
+            <span><b>I’m thinking about eating a plant-based diet.</b></span>
+          </label>
+
+          <label class="chk">
+            <input type="radio" name="diet" value="not" ${state.dietStatus==="not" ? "checked":""}/>
+            <span><b>I do not eat a plant-based diet.</b></span>
+          </label>
+        </div>
+
+        ${navButtons({ showBack:true, nextLabel:"Continue" })}
+      `;
+
+      window.__next = () => {
+        const sel = document.querySelector('input[name="diet"]:checked');
+        if(!sel){
+          alert("Choose one option to continue.");
+          return;
+        }
+        state.dietStatus = sel.value;
+
+        if(state.dietStatus === "already"){
+          // You wanted: ask if they want to explore anyway; if no -> stakes (saved spin)
+          state.showSavedSpin = true;
+          go(STEPS.STAKES);
+        } else {
+          state.showSavedSpin = false;
+          go(STEPS.P1_1A);
+        }
+      };
+    }
+
+    function renderP1_1A(){
+      setPill("Part 1 — 1A");
+      $app.innerHTML = `
+        <h1>Part 1 — 1A (placeholder)</h1>
+        <p>Replace this with your exact 1A statement and the red/yellow/green button labels.</p>
+
+        ${threeButtons({
+          onGreen: `() => { state.part1.a="green"; go("${STEPS.P1_1B}"); }`,
+          onYellow: `() => { state.part1.a="yellow"; go("${STEPS.P1_1B}"); }`,
+          onRed: `() => { state.part1.a="red"; go("${STEPS.P1_1B}"); }`
+        })}
+
+        ${navButtons({ showBack:true, showNext:false })}
+      `;
+      window.__next = () => {};
+    }
+
+    function renderP1_1B(){
+      setPill("Part 1 — 1B");
+      $app.innerHTML = `
+        <h1>Part 1 — 1B (placeholder)</h1>
+        <p>This is your “cats/dogs morally wrong if unnecessary” step.</p>
+
+        <div class="btnrow">
+          <button onclick="window.__goBX()">Open 1BX (objections / notes)</button>
+        </div>
+
+        ${threeButtons({
+          onGreen: `() => { state.part1.b="green"; go("${STEPS.P1_1C}"); }`,
+          onYellow: `() => { state.part1.b="yellow"; go("${STEPS.P1_1C}"); }`,
+          onRed: `() => { state.part1.b="red"; go("${STEPS.P1_1C}"); }`
+        })}
+
+        ${navButtons({ showBack:true, showNext:false })}
+      `;
+
+      window.__goBX = () => go(STEPS.P1_1BX);
+      window.__next = () => {};
+    }
+
+    function renderP1_1BX(){
+      setPill("Part 1 — 1BX");
+      $app.innerHTML = `
+        <h1>Part 1 — 1BX (placeholder)</h1>
+        <p>This is the expandable “if you were going to say X…” section. You can keep this as a separate page or later convert it into a collapsible accordion.</p>
+        <p class="small">For now, it’s just a page with a Back button.</p>
+
+        ${navButtons({ showBack:true, showNext:false })}
+      `;
+      window.__next = () => {};
+    }
+
+    function renderP1_1C(){
+      setPill("Part 1 — 1C");
+      $app.innerHTML = `
+        <h1>Part 1 — 1C (placeholder)</h1>
+        <p>This is the “farm animals have comparable morally relevant traits; unnecessary harm is unacceptable” step.</p>
+        ${threeButtons({
+          onGreen: `() => { state.part1.c="green"; go("${STEPS.P1_1CX_PICK}"); }`,
+          onYellow: `() => { state.part1.c="yellow"; go("${STEPS.P1_1CX_PICK}"); }`,
+          onRed: `() => { state.part1.c="red"; go("${STEPS.P1_1CX_PICK}"); }`
+        })}
+        ${navButtons({ showBack:true, showNext:false })}
+      `;
+      window.__next = () => {};
+    }
+
+    function renderP1_1CX_PICK(){
+      setPill("Part 1 — 1CX (pick)");
+      const selected = new Set(state.part1.cxSelected);
+
+      $app.innerHTML = `
+        <h1>Part 1 — 1CX (check what you want to explore)</h1>
+        <p>Check any that apply. You’ll only walk through the ones selected.</p>
+
+        <div class="checklist">
+          ${CX_ORDER.map(item => `
+            <label class="chk">
+              <input type="checkbox" value="${item.id}" ${selected.has(item.id) ? "checked" : ""}/>
+              <span><b>${item.label}</b> <span class="small">(${item.id})</span></span>
+            </label>
+          `).join("")}
+        </div>
+
+        ${navButtons({ showBack:true, nextLabel:"Continue to selected" })}
+      `;
+
+      window.__next = () => {
+        const boxes = Array.from(document.querySelectorAll('input[type="checkbox"]:checked')).map(b => b.value);
+        state.part1.cxSelected = boxes;
+
+        // If none selected, just proceed to Part 2 intro
+        if (boxes.length === 0){
+          go(STEPS.P2_INTRO);
+          return;
+        }
+
+        // route to the first selected CX step in fixed order
+        const first = CX_ORDER.find(x => boxes.includes(x.id));
+        go(first.step);
+      };
+    }
+
+    function renderP1_1CX(n){
+      const item = CX_ORDER[n-1];
+      setPill(`Part 1 — ${item.id}`);
+
+      $app.innerHTML = `
+        <h1>Part 1 — ${item.id} (placeholder)</h1>
+        <p>This is the page for: <b>${item.label}</b></p>
+        <p class="small">Replace with your claim(s), mini examples, and your green/yellow/red buttons or “Next” logic if you prefer.</p>
+
+        ${threeButtons({
+          onGreen: `() => { go(window.__nextCX()); }`,
+          onYellow: `() => { go(window.__nextCX()); }`,
+          onRed: `() => { go(window.__nextCX()); }`
+        })}
+
+        ${navButtons({ showBack:true, showNext:false })}
+      `;
+
+      // After completing this CX page, jump to next selected CX; otherwise Part 2 intro
+      window.__nextCX = () => {
+        const selected = new Set(state.part1.cxSelected);
+        // find current index in CX_ORDER
+        const idx = CX_ORDER.findIndex(x => x.id === item.id);
+        // find next selected after idx
+        for(let i = idx + 1; i < CX_ORDER.length; i++){
+          if (selected.has(CX_ORDER[i].id)) return CX_ORDER[i].step;
+        }
+        return STEPS.P2_INTRO;
+      };
+
+      window.__next = () => {};
+    }
+
+    function renderP2_Intro(){
+      setPill("Part 2 — Intro");
+      $app.innerHTML = `
+        <h1>Part 2 (placeholder intro)</h1>
+        <p>This is where you show your “Part 2 disclaimer” and your “this is only about YOU personally” reminder.</p>
+
+        ${navButtons({ showBack:true, nextLabel:"Continue to 2A" })}
+      `;
+
+      window.__next = () => go(STEPS.P2_2A);
+    }
+
+    function renderP2_2A(){
+      setPill("Part 2 — 2A");
+      $app.innerHTML = `
+        <h1>Part 2 — 2A (placeholder)</h1>
+        <p>General: “A well-planned plant-based diet can be nutritionally adequate for the general population.”</p>
+        <p class="small">You can later attach citations and your essay excerpt here.</p>
+
+        ${navButtons({ showBack:true, nextLabel:"Next (Blockers checklist)" })}
+      `;
+
+      window.__next = () => go(STEPS.P2_BLOCKERS_PICK);
+    }
+
+    function renderP2_BlockersPick(){
+      setPill("Part 2 — What’s holding me back?");
+      const selected = new Set(state.part2.blockersSelected);
+
+      $app.innerHTML = `
+        <h1>What’s holding you back? (check all that apply)</h1>
+        <p>We’ll go through only the boxes you check, one by one, with info and options.</p>
+
+        <div class="checklist">
+          ${BLOCKERS.map(b => `
+            <label class="chk">
+              <input type="checkbox" value="${b.id}" ${selected.has(b.id) ? "checked" : ""}/>
+              <span><b>${b.label}</b></span>
+            </label>
+          `).join("")}
+        </div>
+
+        ${navButtons({ showBack:true, nextLabel:"Continue" })}
+      `;
+
+      window.__next = () => {
+        const boxes = Array.from(document.querySelectorAll('input[type="checkbox"]:checked')).map(b => b.value);
+        state.part2.blockersSelected = boxes;
+
+        // build queue in the order of BLOCKERS definition
+        state.part2.blockersQueue = BLOCKERS
+          .map(b => b.id)
+          .filter(id => boxes.includes(id));
+
+        // If none selected, go directly to stakes
+        if (state.part2.blockersQueue.length === 0){
+          go(STEPS.STAKES);
+          return;
+        }
+
+        go(STEPS.P2_BLOCKER_DETAIL);
+      };
+    }
+
+    function renderP2_BlockerDetail(){
+      setPill("Part 2 — Detail");
+      const queue = state.part2.blockersQueue;
+      const currentId = queue[0];
+
+      const current = BLOCKERS.find(b => b.id === currentId);
+
+      $app.innerHTML = `
+        <h1>Detail: ${current ? current.label : "(unknown)"} </h1>
+        <p class="small">Placeholder content. This is where you’ll put your structured info, suggestions, and (later) links/citations.</p>
+
+        <div class="imgbox">
+          <b>Content bucket:</b> ${currentId}<br/>
+          <span class="small">Swap this for your real copy later.</span>
+        </div>
+
+        ${navButtons({ showBack:true, nextLabel: queue.length > 1 ? "Next topic" : "Continue to Stakes" })}
+      `;
+
+      window.__next = () => {
+        // pop current
+        state.part2.blockersQueue.shift();
+
+        // if more, keep walking; else go to stakes
+        if (state.part2.blockersQueue.length > 0){
+          go(STEPS.P2_BLOCKER_DETAIL);
+        } else {
+          go(STEPS.STAKES);
+        }
+      };
+    }
+
+    function renderStakes(){
+      setPill("Stakes / End screen");
+
+      // Your chosen “annual impact” numbers (placeholder values)
+      const impact = {
+        chickens: 35,
+        turkeys: 1,
+        pigs: 1,     // baby pig (visual)
+        cows: 1,     // baby cow (visual)
+        fish: 27,
+        seafood: 250,
+        maleChicks: 2,
+        bees: 3,
+        wildlife: ["mouse", "chipmunk", "sparrow", "lizard", "butterfly"]
+      };
+
+      const headline = state.showSavedSpin
+        ? "Thank you — estimated animals saved per year (placeholder)"
+        : "Estimated animals affected per year (placeholder)";
+
+      $app.innerHTML = `
+        <h1>${headline}</h1>
+        <p class="small">This is where your visual + links will live. This page is intentionally a placeholder box right now.</p>
+
+        <div class="imgbox">
+          <b>Visual spec (for later image/art):</b><br/>
+          ${impact.chickens} chickens • ${impact.turkeys} turkey • ${impact.pigs} baby pig • ${impact.cows} baby cow<br/>
+          ${impact.fish} fish • ${impact.seafood} mixed seafood<br/>
+          ${impact.maleChicks} male chicks • ${impact.bees} bees<br/>
+          Wildlife icons: ${impact.wildlife.join(", ")}
+        </div>
+
+        <p class="small">Later: embed your “not all-or-nothing” reminder + your external links (stake education sites).</p>
+
+        ${navButtons({ showBack:true, showNext:false })}
+      `;
+
+      window.__next = () => {};
+    }
+
+    /***********************
+     * DISCLAIMER MODAL
+     ***********************/
+    const modal = document.getElementById("disclaimerModal");
+    const agreeBox = document.getElementById("agreeBox");
+    const startBtn = document.getElementById("startBtn");
+
+    let disclaimerAccepted = false;
+
+    startBtn.disabled = true;
+
+    agreeBox.addEventListener("change", () => {
+      startBtn.disabled = !agreeBox.checked;
+    });
+
+    startBtn.addEventListener("click", () => {
+      if (!agreeBox.checked) return;
+      disclaimerAccepted = true;
+      closeModal();
+      if (typeof window.__afterDisclaimer === "function") window.__afterDisclaimer();
+    });
+
+    function openModal(){
+      modal.style.display = "flex";
+    }
+
+    function closeModal(){
+      modal.style.display = "none";
+    }
+
+    /**
+     * openDisclaimerThen(nextFn, {autoOpen})
+     * - If already accepted, runs nextFn immediately (if provided).
+     * - Otherwise opens modal; stores nextFn to run after accept.
+     */
+    function openDisclaimerThen(nextFn, opts = {}){
+      const { autoOpen=false } = opts;
+
+      if (disclaimerAccepted){
+        if (nextFn) nextFn();
+        return;
+      }
+
+      // store callback
+      window.__afterDisclaimer = () => {
+        window.__afterDisclaimer = null;
+        if (nextFn) nextFn();
+      };
+
+      if (autoOpen){
+        openModal();
+      }
+    }
+
+    /***********************
+     * INIT
+     ***********************/
+    // Show START screen
+    go(STEPS.START);
+  </script>
+</body>
+</html>
