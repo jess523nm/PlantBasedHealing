@@ -224,7 +224,7 @@
 <body>
   <div class="wrap">
     <div class="topbar">
-      <div class="brand">Plant-Based Reflection Tool</div>
+      <div class="brand">Plant-Based Reflection Tool v. 1</div>
       <div class="pill" id="progressPill">Step: —</div>
     </div>
 
@@ -593,8 +593,6 @@ case STEPS.P1_1CX5: return renderP1_1CX5();
 
             <p>It’s a structured way to reflect on what <i>you</i> personally feel is right or wrong for you to do — and whether your values feel consistent with your choices.</p>
 
-            <p>There are no correct answers. You can stop at any time.</p>
-
             <img src="welcomescreen.png" alt="Welcome illustration" style="max-width:100%; margin:1.5rem 0; border-radius:12px;" />
 
             ${navButtons({ showBack:false, nextLabel:"Begin", showNext:true })}
@@ -632,7 +630,7 @@ case STEPS.P1_1CX5: return renderP1_1CX5();
               </label>
             </div>
 
-            <img src="welcomescreen2.jpg"
+            <img src="welcomescreen2.png"
                 alt="Diet reflection illustration"
                 style="display:block; width:100%; max-width:100%; margin:1.5rem auto; border-radius:12px;" />
 
@@ -679,7 +677,7 @@ case STEPS.P1_1CX5: return renderP1_1CX5();
 
         <div class="divider"></div>
 
-        <p class="small"><b>🟢 No:</b> “No. Even if I’m not a pet person, I understand that abusing or killing animals for enjoyment is wrong, and I would not do that.”</p>
+        <p class="small"><b>🟢 No:</b> “No. Even if I’m not a pet person, I believe that abusing or killing animals for enjoyment is wrong, and I would not do that.”</p>
         <p class="small"><b>🔴 Yes:</b> “Yes. I am comfortable with harming or killing animals for pleasure.”</p>
         <p class="small"><b>🟡 Unsure / flawed question:</b> “I think this question is logically flawed, incomplete, or unfair.”</p>
 
@@ -853,7 +851,7 @@ case STEPS.P1_1CX5: return renderP1_1CX5();
         </div>
 
         <div class="btnrow" style="margin-top:.75rem;">
-          <button class="btn-red" onclick="__p1bxReject()">🔴 I’ve read the information, but I still reject it because I do not trust science or research in general.</button>
+          <button class="btn-red" onclick="__p1bxReject()">🔴 I’ve read the information, but I still reject it. I do not trust science or research in general, because I believe that all or most scientific research is part of a conspiracy to try to convince us of fake "facts".</button>
         </div>
 
         <div class="btnrow" style="margin-top:.75rem;">
@@ -882,162 +880,146 @@ case STEPS.P1_1CX5: return renderP1_1CX5();
     }
 
 
-  function renderP1_1C(){
-    setPill("Part 1 — 1C");
+    function renderP1_1C(){
+      setPill("Part 1 — 1C");
 
-    $app.innerHTML = `
-      <h1>Part 1 — 1C</h1>
+      $app.innerHTML = `
+        <h1>Part 1 — 1C</h1>
 
-      <h2>Do farm animals share these morally relevant traits?</h2>
+        <h2>Do farm animals share these morally relevant traits?</h2>
 
-      <p>Earlier, you agreed that it is morally wrong to cause unnecessary suffering to cats and dogs simply for pleasure because they have:</p>
-      <ul>
-        <li>the capacity to suffer</li>
-        <li>subjective experience</li>
-        <li>emotional and social bonds</li>
-        <li>intelligence</li>
-        <li>and a desire to avoid harm</li>
-      </ul>
-
-      <p><b>Research shows that cows and pigs possess these same traits — in many cases at comparable or higher levels.</b></p>
-
-      <img src="1C.png" alt="Part 1 — 1C" style="max-width:100%; margin:1.25rem 0; border-radius:12px;" />
-
-      <div class="divider"></div>
-
-      <h3>Evidence highlights (tap to expand)</h3>
-
-      <details class="drop">
-        <summary><b>1) Pain perception</b></summary>
-        <p>“Cows and pigs have pain receptors, nervous systems, and behavioral responses to injury and fear that are structurally and functionally similar to those of dogs and humans.”</p>
-        <p class="small"><b>Supported by:</b></p>
+        <p>Earlier, you agreed that it is morally wrong to cause unnecessary suffering to cats and dogs simply for pleasure because they have:</p>
         <ul>
-          <li>Sneddon et al. — comparative neurobiology of pain across vertebrates</li>
-          <li>Weary et al. — pain behavior and physiological stress responses in cattle</li>
-          <li>Broom — animal welfare & sentience frameworks</li>
+          <li>the capacity to suffer</li>
+          <li>subjective experience</li>
+          <li>emotional and social bonds</li>
+          <li>intelligence</li>
+          <li>and a desire to avoid harm</li>
         </ul>
-      </details>
 
-      <details class="drop">
-        <summary><b>2) Emotional experience</b></summary>
-        <p><b>Pigs:</b> “Studies show pigs experience joy, fear, anxiety, frustration, playfulness.”</p>
-        <ul>
-          <li>Marino & Colvin (2015) — pig cognition and emotion review</li>
-          <li>Held & Špinka — animal play as positive emotional state</li>
-          <li>Boissy et al. — emotions in farm animals</li>
-        </ul>
-        <p><b>Cows:</b> “Cows experience distress when separated from calves or bonded partners, social comfort, and emotional contagion.”</p>
-        <ul>
-          <li>von Keyserlingk et al. — cow–calf separation distress</li>
-          <li>Proctor & Carder — emotional contagion in cattle</li>
-        </ul>
-      </details>
+        <p><b>Research shows that cows and pigs possess these same traits — often at comparable or even higher levels.</b></p>
 
-      <details class="drop">
-        <summary><b>3) Social bonds</b></summary>
-        <p><b>Cows:</b> “Cows form long-term friendships and prefer specific companions.”</p>
-        <ul>
-          <li>Færevik et al. — social preferences in dairy cattle</li>
-          <li>Proctor & Carder — social buffering</li>
-        </ul>
-        <p><b>Pigs:</b> “Pigs recognize individuals, form hierarchies, and remember social encounters.”</p>
-        <ul>
-          <li>Held et al. — social cognition in pigs</li>
-          <li>Marino & Colvin — long-term memory and social learning</li>
-        </ul>
-      </details>
+        <img src="1C.png" alt="Part 1 — 1C" style="max-width:100%; margin:1.25rem 0; border-radius:12px;" />
 
-      <details class="drop">
-        <summary><b>4) Intelligence</b></summary>
-        <p>Multiple sources describe complex learning and social cognition in farm animals.</p>
-        <p class="small"><b>Your essay cites:</b></p>
-        <ul>
-          <li>ABC News (2005)</li>
-          <li>Katsnelson (2022)</li>
-          <li>Irvine (2009)</li>
-        </ul>
-        <p class="small"><b>Additional academic:</b></p>
-        <ul>
-          <li>Marino & Colvin (2015)</li>
-          <li>Nawroth et al. (2019) — cognitive sophistication in cattle</li>
-          <li>Held et al. (2002)</li>
-        </ul>
-      </details>
+        <div class="divider"></div>
 
-      <details class="drop">
-        <summary><b>5) Desire to avoid harm</b></summary>
-        <p>“Farm animals actively attempt to escape pain, confinement, and threat — a core marker of subjective suffering.”</p>
-        <ul>
-          <li>Dawkins — motivation and suffering</li>
-          <li>Weary et al. — avoidance learning</li>
-          <li>Broom — welfare indicators</li>
-        </ul>
-      </details>
+        <h3>Evidence highlights (tap to expand)</h3>
 
-      <details class="drop">
-        <summary><b>Bibliography (APA-style)</b></summary>
+        <details class="drop">
+          <summary><b>1) Pain perception & avoidance</b></summary>
+          <p>Animals do not merely reflexively withdraw from harm — they show behavioral, physiological, and cognitive responses consistent with pain experience.</p>
 
-        <p class="small"><b>Henry, J. (2025).</b> <i>The Choice to Consume Animals.</i> English Composition 2.</p>
+          <p><b>Cows:</b> Reduced feeding, altered posture, and lasting avoidance after painful procedures.</p>
+          <p class="small">Weary et al.; Broom; veterinary welfare research</p>
 
-        <p class="small"><b>Pain & Sentience</b></p>
-        <p class="small">Sneddon, L. U., Elwood, R. W., Adamo, S. A., & Leach, M. C. (2014). Defining and assessing animal pain. <i>Animal Behaviour, 97</i>, 201–212.</p>
-        <p class="small">Weary, D. M., Niel, L., Flower, F. C., & Fraser, D. (2006). Identifying and preventing pain in animals. <i>Applied Animal Behaviour Science, 100</i>(1–2), 64–76.</p>
-        <p class="small">Broom, D. M. (2014). <i>Sentience and animal welfare.</i> CABI.</p>
+          <p><b>Pigs:</b> Avoid locations associated with pain; show distress vocalizations, trembling, reduced play.</p>
+          <p class="small">Marino & Colvin; Applied Animal Behaviour Science</p>
 
-        <p class="small"><b>Emotional Experience</b></p>
-        <p class="small">Boissy, A., et al. (2007). Assessment of positive emotions in animals. <i>Physiology & Behavior, 92</i>(3), 375–397.</p>
-        <p class="small">Held, S. D. E., & Špinka, M. (2011). Animal play and animal welfare. <i>Animal Behaviour, 81</i>(5), 891–899.</p>
-        <p class="small">Marino, L., & Colvin, C. M. (2015). Thinking pigs: A comparative review of cognition, emotion, and personality in <i>Sus domesticus</i>. <i>International Journal of Comparative Psychology, 28</i>, 1–22.</p>
-        <p class="small">Proctor, H. S., & Carder, G. (2014). Can changes in behavior be used to assess emotional states in animals? <i>Animal Welfare, 23</i>(2), 155–164.</p>
+          <p><b>Chickens:</b> Have nociceptors and show prolonged behavior changes after beak trimming.</p>
 
-        <p class="small"><b>Social Bonds</b></p>
-        <p class="small">Færevik, G., Jensen, M. B., & Bøe, K. E. (2006). Dairy cows social preferences. <i>Applied Animal Behaviour Science, 101</i>(3–4), 262–268.</p>
-        <p class="small">von Keyserlingk, M. A. G., et al. (2006). Separation distress in dairy calves. <i>Journal of Dairy Science, 89</i>(6), 1870–1877.</p>
+          <p><b>Fish:</b> Show stress hormones and long-term avoidance learning.</p>
 
-        <p class="small"><b>Intelligence & Cognition</b></p>
-        <p class="small">Nawroth, C., et al. (2019). Farm animal cognition—linking behavior, welfare, and ethics. <i>Frontiers in Veterinary Science, 6</i>, 24.</p>
-        <p class="small">Held, S. D. E., Mendl, M., Devereux, C., & Byrne, R. W. (2002). Social tactics in pigs. <i>Animal Behaviour, 64</i>(1), 1–11.</p>
-        <p class="small">Katsnelson, A. (2022). How do we know what emotions animals feel? <i>Science News.</i></p>
-        <p class="small">ABC News. (2005). Was your meat smarter than your pet?</p>
-        <p class="small">Irvine, L. (2009). <i>Filling the Ark: Animal Welfare in Disasters.</i> Temple University Press.</p>
+          <p class="small"><b>Supported by:</b> Sneddon et al.; Broom; Weary et al.</p>
+        </details>
 
-        <p class="small"><b>Harm Avoidance & Welfare</b></p>
-        <p class="small">Dawkins, M. S. (2006). Through animal eyes: What behavior tells us. <i>Applied Animal Behaviour Science, 100</i>(1–2), 4–10.</p>
-        <p class="small">Fraser, D. (2008). <i>Understanding animal welfare.</i> Wiley-Blackwell.</p>
-      </details>
+        <details class="drop">
+          <summary><b>2) Emotional experience</b></summary>
 
-      <div class="divider"></div>
+          <p><b>Pigs:</b> Experience play, frustration, fear, anxiety, and social pleasure.</p>
+          <p class="small">Marino & Colvin; Held & Špinka</p>
 
-      <p><b>Based on the above information:</b> Do you now agree that causing unnecessary suffering to animals such as cows and pigs is also morally unacceptable?</p>
-      <p class="small">(We will address what counts as “necessary” in the next section.)</p>
+          <p><b>Cows:</b> Show distress when separated from bonded partners and pleasure from grooming.</p>
+          <p class="small">von Keyserlingk et al.; Proctor & Carder</p>
 
-      <div class="btnrow">
-        <button class="btn-green" onclick="__p1cYes()">🟢 Yes — cows and pigs also have these traits.</button>
-        <button class="btn-red" onclick="__p1cNo()">🔴 No — I do not agree for another reason unrelated to the sentience of farm animals.</button>
-        <button class="btn-yellow" onclick="__p1cYellow()">🟡 This comparison is flawed or incomplete.</button>
-      </div>
+          <p><b>Chickens:</b> Display fear responses, curiosity, and comfort-seeking.</p>
 
-      ${navButtons({ showBack:true, showNext:false })}
-    `;
+          <p><b>Sheep:</b> Strong maternal attachment and distress upon separation.</p>
+        </details>
 
-    window.__p1cYes = () => {
-      state.part1.c = "yes";
-      go(STEPS.P1_1CX_PICK);
-    };
+        <details class="drop">
+          <summary><b>3) Social bonds</b></summary>
 
-    window.__p1cYellow = () => {
-      state.part1.c = "yellow";
-      openYellowExit();
-    };
+          <p><b>Cows:</b> Form long-term friendships and prefer specific companions.</p>
+          <p class="small">Færevik et al.; Marino & Allen</p>
 
-    window.__p1cNo = () => {
-      state.part1.c = "no";
-      go(STEPS.P1_1CX_PICK);
-    };
+          <p><b>Pigs:</b> Recognize individuals, form hierarchies, remember social encounters.</p>
+          <p class="small">Held et al.; Marino & Colvin</p>
 
+          <p><b>Chickens & Turkeys:</b> Maintain flock hierarchies and social recognition.</p>
 
-    window.__next = () => {};
-  }
+          <p><b>Sheep:</b> Use olfactory imprinting to bond with lambs.</p>
+        </details>
+
+        <details class="drop">
+          <summary><b>4) Intelligence & learning</b></summary>
+
+          <p><b>Pigs:</b> Use mirrors, learn joystick tasks, solve spatial problems.</p>
+
+          <p><b>Cows:</b> Solve conditional tasks and remember complex environments.</p>
+
+          <p><b>Chickens:</b> Show object permanence and numerical discrimination.</p>
+
+          <p class="small"><b>Sources:</b> Marino & Colvin; Nawroth et al.; Marino (2017)</p>
+        </details>
+
+        <details class="drop">
+          <summary><b>5) Memory & long-term avoidance</b></summary>
+          <p>Animals remember aversive events and modify future choices accordingly.</p>
+
+          <ul>
+            <li>Cows avoid stressful handling locations.</li>
+            <li>Pigs remember pain locations and avoid them.</li>
+            <li>Chickens change pecking after discomfort.</li>
+            <li>Fish avoid previously aversive zones.</li>
+          </ul>
+        </details>
+
+        <details class="drop">
+          <summary><b>Comparative sentience framework</b></summary>
+
+          <p>Average capacity scores (0–10):</p>
+          <ul>
+            <li>Humans — 10.00</li>
+            <li>Pigs — 8.50</li>
+            <li>Dogs — 8.50</li>
+            <li>Cows — 8.17</li>
+            <li>Cats — 8.00</li>
+            <li>Sheep/Goats — 7.50</li>
+            <li>Chickens — 7.00</li>
+            <li>Turkeys — 7.00</li>
+            <li>Fish — 6.50</li>
+          </ul>
+
+          <p class="small">These reflect capability under enriched, nurturing conditions.</p>
+        </details>
+
+        <details class="drop">
+          <summary><b>Bibliography (APA-style)</b></summary>
+
+          <p class="small">Marino, L., & Colvin, C. M. (2015). Thinking pigs. IJCP.</p>
+          <p class="small">Marino, L., & Allen, K. (2017). Psychology of cows. ABC.</p>
+          <p class="small">Nawroth et al. (2019). Farm animal cognition. Frontiers.</p>
+          <p class="small">Marino, L. (2017). Thinking chickens. Frontiers.</p>
+          <p class="small">Sneddon et al. (2014). Animal pain. Animal Behaviour.</p>
+          <p class="small">Broom (2014). Sentience and animal welfare.</p>
+          <p class="small">Weary et al. (2006). Identifying pain. AABS.</p>
+          <p class="small">Proctor & Carder (2014). Emotional states. Animal Welfare.</p>
+          <p class="small">Færevik et al. (2006). Social preferences. AABS.</p>
+        </details>
+
+        <div class="divider"></div>
+
+        <p><b>Therefore:</b> Do you agree that causing unnecessary suffering to animals such as cows and pigs is also morally unacceptable?</p>
+        <p class="small">(We will address what counts as “necessary” in the next section.)</p>
+
+        <div class="btnrow">
+          <button class="btn-green" onclick="__p1cYes()">🟢 Yes — cows and pigs also have these traits.</button>
+          <button class="btn-red" onclick="__p1cNo()">🔴 No — I do not believe cows and pigs have these traits.</button>
+          <button class="btn-yellow" onclick="__p1cYellow()">🟡 This comparison is flawed or incomplete.</button>
+        </div>
+      `;
+    }
+
 
 
       function renderP1_1CX_PICK(){
