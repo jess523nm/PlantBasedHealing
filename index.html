@@ -202,6 +202,23 @@
       padding: 14px;
       color: rgba(255,255,255,0.72);
     }
+
+    /* Dropdown styling for 1BX evidence boxes */
+    details.drop {
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 12px;
+      padding: .75rem .9rem;
+      margin: .6rem 0;
+      background: rgba(255,255,255,.03);
+    }
+    details.drop summary {
+      cursor: pointer;
+    }
+    details.drop p,
+    details.drop ul {
+      margin-top: .6rem;
+    }
+
   </style>
 </head>
 <body>
@@ -217,13 +234,22 @@
   <!-- Disclaimer Modal -->
   <div class="modalback" id="disclaimerModal">
     <div class="modal">
-      <h2>Disclaimer (placeholder)</h2>
-      <div class="scroll">
-        <p><b>Not medical advice.</b> This tool is for reflection and education only. Always consult qualified professionals for medical, mental health, or religious guidance.</p>
-        <p><b>Do your own research.</b> Sources will be provided later; you should verify independently.</p>
-        <p><b>Not all-or-nothing.</b> This tool supports partial changes and harm reduction approaches.</p>
-        <p class="small">Replace this text later with your finalized disclaimer copy.</p>
-      </div>
+      <h2>Welcome - Before you Begin</h2>
+        <div class="scroll">
+          <p><b>This interactive flowchart is not about laws, politics, or what should be legal or illegal.</b></p>
+
+          <p>It is only about your own personal moral decision-making — what you feel is right or wrong for you to do in your own life.</p>
+
+          <p>It is not designed to judge you, persuade you, or tell you what you “should” believe. It is simply a structured way to reflect on your own values and see how they connect to your choices.</p>
+
+          <p>You can stop at any time.</p>
+
+          <div class="divider"></div>
+
+          <p><b>Standard disclaimer:</b> This tool is not a medical, psychological, legal, or nutritional assessment. It does not provide medical or mental health advice.</p>
+
+          <p>If you have health concerns or questions about your wellbeing, please consult a qualified professional.</p>
+        </div>
 
       <div class="divider"></div>
 
@@ -235,11 +261,131 @@
       <div class="btnrow">
         <button id="startBtn">Continue</button>
       </div>
-      <p class="small">Button is disabled until checkbox is checked (wired in JS).</p>
+      <p class="small">To continue, check the box above.</p>
+    </div>
+  </div>
+
+  <!-- Yellow Feedback Modal -->
+  <div class="modalback" id="yellowExitModal" style="display:none;">
+    <div class="modal">
+      <h2>🟡 Feedback</h2>
+      <div class="scroll">
+        <img src="yellow.png" alt="Feedback" style="max-width:100%; border-radius:12px; margin-bottom:1rem;" />
+
+        <p><b>“I think this question is logically flawed, incomplete, or unfair.”</b></p>
+
+        <p>Thank you — this is genuinely helpful.</p>
+
+        <p>This flowchart is a work in progress, and it’s designed to be improved over time. If you believe a question contains a logical fallacy, a false assumption, a misleading framing, or an unfair simplification, please let me know so I can reassess it.</p>
+
+        <p><b>You can email your feedback here:</b><br/>
+        <a href="mailto:Jessica.henry523@gmail.com">Jessica.henry523@gmail.com</a></p>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="btnrow">
+        <button onclick="yellowExitToEmail()">Exit to email</button>
+        <button onclick="closeYellowExit()">Go back — I clicked yellow by mistake</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Red Exit Modal -->
+  <div class="modalback" id="redExitModal" style="display:none;">
+    <div class="modal">
+      <h2 id="redExitTitle">🔴 Exit</h2>
+      <div class="scroll" id="redExitBody">
+        <!-- Filled by JS -->
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="btnrow">
+        <button onclick="redExitNow()">Exit</button>
+        <button onclick="closeRedExit()">Go back — I clicked red by mistake</button>
+      </div>
     </div>
   </div>
 
   <script>
+
+    // ----- Yellow Exit (feedback) modal helpers -----
+    function openYellowExit(){
+      const m = document.getElementById("yellowExitModal");
+      if(m) m.style.display = "flex";
+    }
+    function closeYellowExit(){
+      const m = document.getElementById("yellowExitModal");
+      if(m) m.style.display = "none";
+    }
+    function yellowExitToEmail(){
+      window.location.href = "mailto:Jessica.henry523@gmail.com";
+    }
+
+    // ----- Red Exit modal helpers -----
+    function openRedExit(kind){
+      const m = document.getElementById("redExitModal");
+      const title = document.getElementById("redExitTitle");
+      const body = document.getElementById("redExitBody");
+
+      if(!m || !title || !body) return;
+
+      let t = "🔴 Exit";
+      let html = "";
+
+      if(kind === "psych"){
+        t = "🔴 Exit — Psychological";
+        html = `
+          <img src="psychology.png" alt="Psychological support" style="max-width:100%; border-radius:12px; margin-bottom:1rem;" />
+          <p>Thank you for answering honestly.</p>
+          <p>We strongly recommend that you consider speaking with a licensed mental health professional before returning to this reflection.</p>
+        `;
+      } 
+      else if(kind === "medical"){
+        t = "🔴 Exit — Medical";
+        html = `
+          <img src="doctor.png" alt="Medical support" style="max-width:100%; border-radius:12px; margin-bottom:1rem;" />
+          <p>Based on your responses so far, we think it would be a good idea to speak with a qualified physician or nutrition professional before continuing or returning to this reflection.</p>
+        `;
+      } 
+      else if(kind === "religious"){
+        t = "🔴 Exit — Religious";
+        html = `
+          <img src="religion.png" alt="Religious or spiritual guidance" style="max-width:100%; border-radius:12px; margin-bottom:1rem;" />
+          <p>Based on your responses so far, we think it would be a good idea to speak with a qualified spiritual or religious leader before continuing or returning to this reflection.</p>
+        `;
+      } 
+      else if(kind === "cultural"){
+        t = "🔴 Exit — Cultural";
+        html = `
+          <img src="culture.png" alt="Cultural guidance" style="max-width:100%; border-radius:12px; margin-bottom:1rem;" />
+          <p>Thank you for reflecting on this.</p>
+          <p>We recommend speaking with a respected elder, teacher, or knowledge-holder from your cultural or ancestral tradition to explore how these practices are understood today.</p>
+          <p>Many traditions emphasize respect, restraint, and minimizing harm — and there may be guidance available that aligns both with your values and your heritage.</p>
+          <p>If you choose to continue consuming animal products for cultural reasons, consider ways to reduce harm where possible (such as avoiding industrial sources or supporting practices rooted in respect and sustainability).</p>
+        `;
+      } 
+      else {
+        html = `<p>Thank you for answering honestly.</p>`;
+      }
+
+      title.textContent = t;
+      body.innerHTML = html;
+      m.style.display = "flex";
+    }
+
+
+    function closeRedExit(){
+      const m = document.getElementById("redExitModal");
+      if(m) m.style.display = "none";
+    }
+
+    function redExitNow(){
+      // “Exit” behavior: go to email by default, but you can change later.
+      window.location.href = "mailto:Jessica.henry523@gmail.com";
+    }
+
     /***********************
      * STATE + ROUTING
      ***********************/
@@ -400,10 +546,21 @@
     function renderStart(){
       setPill("Step: Start");
       $app.innerHTML = `
-        <h1>Welcome (skeleton)</h1>
-        <p>This is the starting screen. On load, we’ll show the disclaimer modal first.</p>
-        ${navButtons({ showBack:false, nextLabel:"Begin", showNext:true })}
-      `;
+            <h1>Welcome</h1>
+
+            <p><b>This tool is about your own personal moral reasoning.</b></p>
+
+            <p>It’s not about what is legal, socially expected, or politically debated.</p>
+
+            <p>It’s a structured way to reflect on what <i>you</i> personally feel is right or wrong for you to do — and whether your values feel consistent with your choices.</p>
+
+            <p>There are no correct answers. You can stop at any time.</p>
+
+            <img src="welcomescreen.png" alt="Welcome illustration" style="max-width:100%; margin:1.5rem 0; border-radius:12px;" />
+
+            ${navButtons({ showBack:false, nextLabel:"Begin", showNext:true })}
+          `;
+
 
       window.__next = () => {
         openDisclaimerThen(() => go(STEPS.DIET_STATUS));
@@ -416,28 +573,31 @@
     function renderDietStatus(){
       setPill("Step: Diet status");
       $app.innerHTML = `
-        <h1>Diet status (placeholder)</h1>
-        <p>Select one:</p>
+            <h1>Diet status</h1>
+            <p>Select one:</p>
 
-        <div class="checklist">
-          <label class="chk">
-            <input type="radio" name="diet" value="already" ${state.dietStatus==="already" ? "checked":""}/>
-            <span><b>I already eat a plant-based diet.</b></span>
-          </label>
+            <div class="checklist">
+              <label class="chk">
+                <input type="radio" name="diet" value="already" ${state.dietStatus==="already" ? "checked":""}/>
+                <span><b>I already eat a plant-based diet.</b></span>
+              </label>
 
-          <label class="chk">
-            <input type="radio" name="diet" value="thinking" ${state.dietStatus==="thinking" ? "checked":""}/>
-            <span><b>I’m thinking about eating a plant-based diet.</b></span>
-          </label>
+              <label class="chk">
+                <input type="radio" name="diet" value="thinking" ${state.dietStatus==="thinking" ? "checked":""}/>
+                <span><b>I’m thinking about eating a plant-based diet.</b></span>
+              </label>
 
-          <label class="chk">
-            <input type="radio" name="diet" value="not" ${state.dietStatus==="not" ? "checked":""}/>
-            <span><b>I do not eat a plant-based diet.</b></span>
-          </label>
-        </div>
+              <label class="chk">
+                <input type="radio" name="diet" value="not" ${state.dietStatus==="not" ? "checked":""}/>
+                <span><b>I do not eat a plant-based diet.</b></span>
+              </label>
+            </div>
 
-        ${navButtons({ showBack:true, nextLabel:"Continue" })}
-      `;
+            <img src="welcomescreen2.jpg" alt="Diet reflection illustration" style="max-width:100%; margin:1.5rem 0; border-radius:12px;" />
+
+            ${navButtons({ showBack:true, nextLabel:"Continue" })}
+          `;
+
 
       window.__next = () => {
         const sel = document.querySelector('input[name="diet"]:checked');
@@ -460,106 +620,434 @@
 
     function renderP1_1A(){
       setPill("Part 1 — 1A");
-      $app.innerHTML = `
-        <h1>Part 1 — 1A (placeholder)</h1>
-        <p>Replace this with your exact 1A statement and the red/yellow/green button labels.</p>
 
-        ${threeButtons({
-          onGreen: `() => { state.part1.a="green"; go("${STEPS.P1_1B}"); }`,
-          onYellow: `() => { state.part1.a="yellow"; go("${STEPS.P1_1B}"); }`,
-          onRed: `() => { state.part1.a="red"; go("${STEPS.P1_1B}"); }`
-        })}
+      $app.innerHTML = `
+        <h1>Part 1 — 1A</h1>
+
+        <p><b>For you personally, is it morally acceptable to abuse, torture, or kill cats or dogs — or to pay other people to do that for you — solely for your own pleasure?</b></p>
+
+        <p class="small">(This is not about legality, culture, or what others do. This is only about what you personally feel is morally acceptable for you.)</p>
+
+        <img src="1A.jpg" alt="Part 1 — 1A" style="max-width:100%; margin:1.25rem 0; border-radius:12px;" />
+
+        <div class="btnrow">
+          <button class="btn-green" onclick="__p1aNo()">🟢 No</button>
+          <button class="btn-yellow" onclick="__p1aYellow()">🟡 Unsure / flawed question</button>
+          <button class="btn-red" onclick="__p1aYes()">🔴 Yes</button>
+        </div>
+
+        <div class="divider"></div>
+
+        <p class="small"><b>🟢 No:</b> “No. Even if I’m not a pet person, I understand that abusing or killing animals for enjoyment is wrong, and I would not do that.”</p>
+        <p class="small"><b>🔴 Yes:</b> “Yes. I am comfortable with harming or killing animals for pleasure or profit.”</p>
+        <p class="small"><b>🟡 Unsure / flawed question:</b> “I think this question is logically flawed, incomplete, or unfair.”</p>
 
         ${navButtons({ showBack:true, showNext:false })}
       `;
+
+      // Handlers (avoid inline arrow-function strings so buttons work reliably)
+      window.__p1aNo = () => {
+        state.part1.a = "no";
+        go(STEPS.P1_1B);
+      };
+
+      window.__p1aYes = () => {
+        state.part1.a = "yes";
+        openRedExit("psych"); // psychological exit for this step
+      };
+
+      window.__p1aYellow = () => {
+        state.part1.a = "yellow";
+        openYellowExit();
+      };
+
       window.__next = () => {};
     }
+
 
     function renderP1_1B(){
       setPill("Part 1 — 1B");
+
       $app.innerHTML = `
-        <h1>Part 1 — 1B (placeholder)</h1>
-        <p>This is your “cats/dogs morally wrong if unnecessary” step.</p>
+        <h1>Part 1 — 1B</h1>
+
+        <p><b>The reason I believe it is morally wrong to abuse, torture, or kill cats or dogs for pleasure is because cats and dogs are sentient beings — they can feel pain, suffer, form emotional bonds, and have subjective experiences — which makes their unnecessary suffering morally wrong.</b></p>
+
+        <p><b>Do you agree with this statement?</b></p>
 
         <div class="btnrow">
-          <button onclick="window.__goBX()">Open 1BX (objections / notes)</button>
+          <button class="btn-green" onclick="__p1bYes()">🟢 Yes, I agree</button>
+          <button class="btn-yellow" onclick="__p1bYellow()">🟡 This question is flawed / incomplete</button>
+          <button class="btn-red" onclick="__p1bNo()">🔴 No, I don’t agree</button>
         </div>
 
-        ${threeButtons({
-          onGreen: `() => { state.part1.b="green"; go("${STEPS.P1_1C}"); }`,
-          onYellow: `() => { state.part1.b="yellow"; go("${STEPS.P1_1C}"); }`,
-          onRed: `() => { state.part1.b="red"; go("${STEPS.P1_1C}"); }`
-        })}
+        <img src="1B.png" alt="Part 1 — 1B" style="max-width:100%; margin:1.5rem 0 0; border-radius:12px;" />
 
         ${navButtons({ showBack:true, showNext:false })}
       `;
 
-      window.__goBX = () => go(STEPS.P1_1BX);
+      // Reliable handlers
+      window.__p1bYes = () => {
+        state.part1.b = "yes";
+        go(STEPS.P1_1C);
+      };
+
+      window.__p1bNo = () => {
+        state.part1.b = "no";
+        go(STEPS.P1_1BX);
+      };
+
+      window.__p1bYellow = () => {
+        state.part1.b = "yellow";
+        openYellowExit();
+      };
+
       window.__next = () => {};
     }
+
+
 
     function renderP1_1BX(){
       setPill("Part 1 — 1BX");
-      $app.innerHTML = `
-        <h1>Part 1 — 1BX (placeholder)</h1>
-        <p>This is the expandable “if you were going to say X…” section. You can keep this as a separate page or later convert it into a collapsible accordion.</p>
-        <p class="small">For now, it’s just a page with a Back button.</p>
-
-        ${navButtons({ showBack:true, showNext:false })}
-      `;
-      window.__next = () => {};
-    }
-
-    function renderP1_1C(){
-      setPill("Part 1 — 1C");
-      $app.innerHTML = `
-        <h1>Part 1 — 1C (placeholder)</h1>
-        <p>This is the “farm animals have comparable morally relevant traits; unnecessary harm is unacceptable” step.</p>
-        ${threeButtons({
-          onGreen: `() => { state.part1.c="green"; go("${STEPS.P1_1CX_PICK}"); }`,
-          onYellow: `() => { state.part1.c="yellow"; go("${STEPS.P1_1CX_PICK}"); }`,
-          onRed: `() => { state.part1.c="red"; go("${STEPS.P1_1CX_PICK}"); }`
-        })}
-        ${navButtons({ showBack:true, showNext:false })}
-      `;
-      window.__next = () => {};
-    }
-
-    function renderP1_1CX_PICK(){
-      setPill("Part 1 — 1CX (pick)");
-      const selected = new Set(state.part1.cxSelected);
 
       $app.innerHTML = `
-        <h1>Part 1 — 1CX (check what you want to explore)</h1>
-        <p>Check any that apply. You’ll only walk through the ones selected.</p>
+        <h1>Part 1 — 1BX</h1>
 
-        <div class="checklist">
-          ${CX_ORDER.map(item => `
-            <label class="chk">
-              <input type="checkbox" value="${item.id}" ${selected.has(item.id) ? "checked" : ""}/>
-              <span><b>${item.label}</b> <span class="small">(${item.id})</span></span>
-            </label>
-          `).join("")}
+        <p><b>After reviewing the evidence below regarding the sentience of cats and dogs, choose the option that best fits your view.</b></p>
+
+        <img src="1BX.png" alt="Cats and dogs: sentience evidence" style="max-width:100%; margin:1.25rem 0; border-radius:12px;" />
+
+        <h2 style="margin-top:.25rem;">Do cats and dogs actually have these traits?</h2>
+
+        <p>Scientific research strongly supports the idea that cats and dogs are sentient beings with:</p>
+        <ul>
+          <li>the capacity to feel physical pain</li>
+          <li>emotional experiences such as fear, joy, anxiety, and attachment</li>
+          <li>social bonds with humans and other animals</li>
+          <li>memory, learning, and problem-solving abilities</li>
+          <li>a motivation to avoid harm and seek comfort</li>
+        </ul>
+
+        <div class="divider"></div>
+
+        <h3>Evidence highlights</h3>
+
+        <details class="drop">
+          <summary><b>1) Pain perception</b></summary>
+          <p>Cats and dogs have the same basic biological “hardware” for pain as other mammals: nociceptors (pain receptors), spinal pain pathways, and brain processing that supports the experience of pain.</p>
+          <ul>
+            <li>Veterinary pain guidelines emphasize systematic recognition and treatment of pain in dogs and cats.</li>
+            <li>Pain medicines (analgesics) reduce pain-related behavior and distress in clinical settings — consistent with pain being more than a simple reflex.</li>
+          </ul>
+          <p class="small">
+            Sources: AAHA Pain Management Guidelines (dogs & cats) • WSAVA pain guidelines
+          </p>
+        </details>
+
+        <details class="drop">
+          <summary><b>2) Emotional experience</b></summary>
+          <p>Dogs and cats show emotional states that function like what we call fear/anxiety/comfort-seeking/attachment in humans.</p>
+          <ul>
+            <li>In dogs, behavioral science documents anxiety/fear responses, joy/positive affect, and bonding behaviors.</li>
+            <li>In cats, research suggests many cats form attachment bonds to caregivers (secure-base behavior), similar in structure to infant attachment patterns.</li>
+          </ul>
+          <p class="small">
+            Sources: Vitale et al. (Current Biology, 2019) • Oregon State University summary
+          </p>
+        </details>
+
+        <details class="drop">
+          <summary><b>3) Social bonding</b></summary>
+          <p>Dogs form attachment bonds with humans that show measurable bonding chemistry.</p>
+          <ul>
+            <li>A well-known study found mutual gaze between dogs and owners is associated with increased oxytocin (a bonding hormone) in both — described as a positive feedback “bonding loop.”</li>
+            <li>Cat attachment behaviors can include proximity-seeking, separation distress, and comfort-seeking when stressed.</li>
+          </ul>
+          <p class="small">
+            Sources: Nagasawa et al. (Science, 2015) • Vitale et al. (Current Biology, 2019)
+          </p>
+        </details>
+
+        <details class="drop">
+          <summary><b>4) Learning, memory, and intention</b></summary>
+          <p>Dogs and cats routinely demonstrate learning, memory, and goal-directed behavior:</p>
+          <ul>
+            <li>learning through reinforcement</li>
+            <li>remembering individual humans and routines</li>
+            <li>anticipating future events (e.g., cues that predict what happens next)</li>
+            <li>modifying behavior to achieve goals</li>
+          </ul>
+          <p class="small">These capacities strongly support the idea of subjective experience, not mere mechanical reaction.</p>
+        </details>
+
+        <details class="drop">
+          <summary><b>5) Citation support (quick)</b></summary>
+          <p><b>Your essay already grounds this theme</b> by noting that complex emotions and intelligence are not limited to pets, and by treating sentience as morally relevant.</p>
+          <p><b>External scientific consensus</b> widely recognizes that mammals (including dogs and cats) have the neurological substrates associated with conscious experience.</p>
+          <p class="small">
+            Sources: Cambridge Declaration on Consciousness (2012) • AAHA Pain Guidelines (dogs & cats)
+          </p>
+
+          <p class="small" style="margin-top:.75rem;">
+            Helpful links:
+            <br/>
+            • <a href="https://fcmconference.org/img/CambridgeDeclarationOnConsciousness.pdf" target="_blank" rel="noopener">Cambridge Declaration on Consciousness (PDF)</a>
+            <br/>
+            • <a href="https://www.aaha.org/wp-content/uploads/globalassets/02-guidelines/2022-pain-management/resources/2022-aaha-pain-management-guidelines-for-dog-and-cats_updated_060622.pdf" target="_blank" rel="noopener">AAHA Pain Management Guidelines (PDF)</a>
+            <br/>
+            • <a href="https://www.science.org/doi/10.1126/science.1261022" target="_blank" rel="noopener">Nagasawa et al., Science (2015)</a>
+            <br/>
+            • <a href="https://www.cell.com/current-biology/fulltext/S0960-9822%2819%2931086-3" target="_blank" rel="noopener">Vitale et al., Current Biology (2019)</a>
+          </p>
+        </details>
+
+        <div class="divider"></div>
+
+        <h3>What best fits your view?</h3>
+
+        <div class="btnrow">
+          <button class="btn-green" onclick="__p1bxAgree()">🟢 I’ve read the information, and I now agree that cats and dogs are sentient in the way described.</button>
         </div>
 
-        ${navButtons({ showBack:true, nextLabel:"Continue to selected" })}
+        <div class="btnrow" style="margin-top:.75rem;">
+          <button class="btn-red" onclick="__p1bxReject()">🔴 I’ve read the information, but I still reject it because I do not trust science or research in general.</button>
+        </div>
+
+        <div class="btnrow" style="margin-top:.75rem;">
+          <button class="btn-yellow" onclick="__p1bxFlawed()">🟡 This question / the evidence summary is flawed or incomplete.</button>
+        </div>
+
+        ${navButtons({ showBack:true, showNext:false })}
       `;
 
-      window.__next = () => {
-        const boxes = Array.from(document.querySelectorAll('input[type="checkbox"]:checked')).map(b => b.value);
-        state.part1.cxSelected = boxes;
-
-        // If none selected, just proceed to Part 2 intro
-        if (boxes.length === 0){
-          go(STEPS.P2_INTRO);
-          return;
-        }
-
-        // route to the first selected CX step in fixed order
-        const first = CX_ORDER.find(x => boxes.includes(x.id));
-        go(first.step);
+      window.__p1bxAgree = () => {
+        state.part1.bx = "agree";
+        go(STEPS.P1_1C);
       };
+
+      window.__p1bxReject = () => {
+        state.part1.bx = "reject_science";
+        openRedExit("psych"); // “Professional support recommended” (psych) per your plan
+      };
+
+      window.__p1bxFlawed = () => {
+        state.part1.bx = "yellow";
+        openYellowExit();
+      };
+
+      window.__next = () => {};
     }
+
+
+  function renderP1_1C(){
+    setPill("Part 1 — 1C");
+
+    $app.innerHTML = `
+      <h1>Part 1 — 1C</h1>
+
+      <h2>Do farm animals share these morally relevant traits?</h2>
+
+      <p>Earlier, you agreed that it is morally wrong to cause unnecessary suffering to cats and dogs because they have:</p>
+      <ul>
+        <li>the capacity to suffer</li>
+        <li>subjective experience</li>
+        <li>emotional and social bonds</li>
+        <li>intelligence</li>
+        <li>and a desire to avoid harm</li>
+      </ul>
+
+      <p><b>Research shows that cows and pigs possess these same traits — in many cases at comparable or higher levels.</b></p>
+
+      <img src="1C.png" alt="Part 1 — 1C" style="max-width:100%; margin:1.25rem 0; border-radius:12px;" />
+
+      <div class="divider"></div>
+
+      <h3>Evidence highlights (tap to expand)</h3>
+
+      <details class="drop">
+        <summary><b>1) Pain perception</b></summary>
+        <p>“Cows and pigs have pain receptors, nervous systems, and behavioral responses to injury and fear that are structurally and functionally similar to those of dogs and humans.”</p>
+        <p class="small"><b>Supported by:</b></p>
+        <ul>
+          <li>Sneddon et al. — comparative neurobiology of pain across vertebrates</li>
+          <li>Weary et al. — pain behavior and physiological stress responses in cattle</li>
+          <li>Broom — animal welfare & sentience frameworks</li>
+        </ul>
+      </details>
+
+      <details class="drop">
+        <summary><b>2) Emotional experience</b></summary>
+        <p><b>Pigs:</b> “Studies show pigs experience joy, fear, anxiety, frustration, playfulness.”</p>
+        <ul>
+          <li>Marino & Colvin (2015) — pig cognition and emotion review</li>
+          <li>Held & Špinka — animal play as positive emotional state</li>
+          <li>Boissy et al. — emotions in farm animals</li>
+        </ul>
+        <p><b>Cows:</b> “Cows experience distress when separated from calves or bonded partners, social comfort, and emotional contagion.”</p>
+        <ul>
+          <li>von Keyserlingk et al. — cow–calf separation distress</li>
+          <li>Proctor & Carder — emotional contagion in cattle</li>
+        </ul>
+      </details>
+
+      <details class="drop">
+        <summary><b>3) Social bonds</b></summary>
+        <p><b>Cows:</b> “Cows form long-term friendships and prefer specific companions.”</p>
+        <ul>
+          <li>Færevik et al. — social preferences in dairy cattle</li>
+          <li>Proctor & Carder — social buffering</li>
+        </ul>
+        <p><b>Pigs:</b> “Pigs recognize individuals, form hierarchies, and remember social encounters.”</p>
+        <ul>
+          <li>Held et al. — social cognition in pigs</li>
+          <li>Marino & Colvin — long-term memory and social learning</li>
+        </ul>
+      </details>
+
+      <details class="drop">
+        <summary><b>4) Intelligence</b></summary>
+        <p>Multiple sources describe complex learning and social cognition in farm animals.</p>
+        <p class="small"><b>Your essay cites:</b></p>
+        <ul>
+          <li>ABC News (2005)</li>
+          <li>Katsnelson (2022)</li>
+          <li>Irvine (2009)</li>
+        </ul>
+        <p class="small"><b>Additional academic:</b></p>
+        <ul>
+          <li>Marino & Colvin (2015)</li>
+          <li>Nawroth et al. (2019) — cognitive sophistication in cattle</li>
+          <li>Held et al. (2002)</li>
+        </ul>
+      </details>
+
+      <details class="drop">
+        <summary><b>5) Desire to avoid harm</b></summary>
+        <p>“Farm animals actively attempt to escape pain, confinement, and threat — a core marker of subjective suffering.”</p>
+        <ul>
+          <li>Dawkins — motivation and suffering</li>
+          <li>Weary et al. — avoidance learning</li>
+          <li>Broom — welfare indicators</li>
+        </ul>
+      </details>
+
+      <details class="drop">
+        <summary><b>Bibliography (APA-style)</b></summary>
+
+        <p class="small"><b>Henry, J. (2025).</b> <i>The Choice to Consume Animals.</i> English Composition 2.</p>
+
+        <p class="small"><b>Pain & Sentience</b></p>
+        <p class="small">Sneddon, L. U., Elwood, R. W., Adamo, S. A., & Leach, M. C. (2014). Defining and assessing animal pain. <i>Animal Behaviour, 97</i>, 201–212.</p>
+        <p class="small">Weary, D. M., Niel, L., Flower, F. C., & Fraser, D. (2006). Identifying and preventing pain in animals. <i>Applied Animal Behaviour Science, 100</i>(1–2), 64–76.</p>
+        <p class="small">Broom, D. M. (2014). <i>Sentience and animal welfare.</i> CABI.</p>
+
+        <p class="small"><b>Emotional Experience</b></p>
+        <p class="small">Boissy, A., et al. (2007). Assessment of positive emotions in animals. <i>Physiology & Behavior, 92</i>(3), 375–397.</p>
+        <p class="small">Held, S. D. E., & Špinka, M. (2011). Animal play and animal welfare. <i>Animal Behaviour, 81</i>(5), 891–899.</p>
+        <p class="small">Marino, L., & Colvin, C. M. (2015). Thinking pigs: A comparative review of cognition, emotion, and personality in <i>Sus domesticus</i>. <i>International Journal of Comparative Psychology, 28</i>, 1–22.</p>
+        <p class="small">Proctor, H. S., & Carder, G. (2014). Can changes in behavior be used to assess emotional states in animals? <i>Animal Welfare, 23</i>(2), 155–164.</p>
+
+        <p class="small"><b>Social Bonds</b></p>
+        <p class="small">Færevik, G., Jensen, M. B., & Bøe, K. E. (2006). Dairy cows social preferences. <i>Applied Animal Behaviour Science, 101</i>(3–4), 262–268.</p>
+        <p class="small">von Keyserlingk, M. A. G., et al. (2006). Separation distress in dairy calves. <i>Journal of Dairy Science, 89</i>(6), 1870–1877.</p>
+
+        <p class="small"><b>Intelligence & Cognition</b></p>
+        <p class="small">Nawroth, C., et al. (2019). Farm animal cognition—linking behavior, welfare, and ethics. <i>Frontiers in Veterinary Science, 6</i>, 24.</p>
+        <p class="small">Held, S. D. E., Mendl, M., Devereux, C., & Byrne, R. W. (2002). Social tactics in pigs. <i>Animal Behaviour, 64</i>(1), 1–11.</p>
+        <p class="small">Katsnelson, A. (2022). How do we know what emotions animals feel? <i>Science News.</i></p>
+        <p class="small">ABC News. (2005). Was your meat smarter than your pet?</p>
+        <p class="small">Irvine, L. (2009). <i>Filling the Ark: Animal Welfare in Disasters.</i> Temple University Press.</p>
+
+        <p class="small"><b>Harm Avoidance & Welfare</b></p>
+        <p class="small">Dawkins, M. S. (2006). Through animal eyes: What behavior tells us. <i>Applied Animal Behaviour Science, 100</i>(1–2), 4–10.</p>
+        <p class="small">Fraser, D. (2008). <i>Understanding animal welfare.</i> Wiley-Blackwell.</p>
+      </details>
+
+      <div class="divider"></div>
+
+      <p><b>Therefore:</b> Do you agree that causing unnecessary suffering to animals such as cows and pigs is also morally unacceptable?</p>
+      <p class="small">(We will address what counts as “necessary” in the next section.)</p>
+
+      <div class="btnrow">
+        <button class="btn-green" onclick="__p1cYes()">🟢 Yes — cows and pigs also have these traits.</button>
+        <button class="btn-yellow" onclick="__p1cYellow()">🟡 This comparison is flawed or incomplete.</button>
+        <button class="btn-red" onclick="__p1cNo()">🔴 No — I do not believe cows and pigs have these traits.</button>
+      </div>
+
+      ${navButtons({ showBack:true, showNext:false })}
+    `;
+
+    window.__p1cYes = () => {
+      state.part1.c = "yes";
+      go(STEPS.P1_1CX_PICK);
+    };
+
+    window.__p1cYellow = () => {
+      state.part1.c = "yellow";
+      openYellowExit();
+    };
+
+    window.__p1cNo = () => {
+      state.part1.c = "no";
+      go(STEPS.P1_1CX_PICK);
+    };
+
+
+    window.__next = () => {};
+  }
+
+
+      function renderP1_1CX_PICK(){
+        setPill("Part 1 — 1CX (pick)");
+        const selected = new Set(state.part1.cxSelected);
+
+        $app.innerHTML = `
+          <h1>Part 1 — Moral override reasons</h1>
+
+          <p>According to your logic, even though animals like pigs and cows are sentient and able to suffer at the same level as cats and dogs, you still feel that this is not sufficient to claim that it is morally wrong for you personally to harm or kill them simply for pleasure.</p>
+
+          <p>Please look over the rationales below, and choose all that apply to your reasoning. As always, this is a work in progress, so feel free to email me if your reason is not listed.</p>
+
+          <p class="small"><b>Keep in mind:</b> We will explore reasons why eating animals and animal products may be “necessary” in Part 2. In this section we are only exploring the morality of harm to animals when it is solely for pleasure.</p>
+
+          <div class="divider"></div>
+
+          <h2>“Yes they suffer — but that doesn’t matter / isn’t enough.”</h2>
+
+          <div class="checklist">
+            ${CX_ORDER.map(item => `
+              <label class="chk">
+                <input type="checkbox" value="${item.id}" ${selected.has(item.id) ? "checked" : ""}/>
+                <span><b>${item.label}</b></span>
+              </label>
+            `).join("")}
+          </div>
+
+          <div class="divider"></div>
+
+          <p class="small">If your reason isn’t listed, you can email feedback here:
+            <a href="mailto:Jessica.henry523@gmail.com">Jessica.henry523@gmail.com</a>
+          </p>
+
+          ${navButtons({ showBack:true, nextLabel:"Continue to selected" })}
+        `;
+
+
+        window.__next = () => {
+          const boxes = Array.from(document.querySelectorAll('input[type="checkbox"]:checked')).map(b => b.value);
+          state.part1.cxSelected = boxes;
+
+          // If none selected, just proceed to Part 2 intro
+          if (boxes.length === 0){
+            go(STEPS.P2_INTRO);
+            return;
+          }
+
+          // route to the first selected CX step in fixed order
+          const first = CX_ORDER.find(x => boxes.includes(x.id));
+          go(first.step);
+        };
+      }
 
     function renderP1_1CX(n){
       const item = CX_ORDER[n-1];
