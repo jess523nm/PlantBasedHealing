@@ -240,10 +240,6 @@
 
           <p>It is only about your own personal moral decision-making — what you feel is right or wrong for you to do in your own life.</p>
 
-          <p>It is not designed to judge you, persuade you, or tell you what you “should” believe. It is simply a structured way to reflect on your own values and see how they connect to your choices.</p>
-
-          <p>You can stop at any time.</p>
-
           <div class="divider"></div>
 
           <p><b>Standard disclaimer:</b> This tool is not a medical, psychological, legal, or nutritional assessment. It does not provide medical or mental health advice.</p>
@@ -270,16 +266,18 @@
     <div class="modal">
       <h2>🟡 Feedback</h2>
       <div class="scroll">
-        <img src="yellow.png" alt="Feedback" style="max-width:100%; border-radius:12px; margin-bottom:1rem;" />
-
+        
         <p><b>“I think this question is logically flawed, incomplete, or unfair.”</b></p>
 
-        <p>Thank you — this is genuinely helpful.</p>
+        <p>Thank you — this is genuinely helpful feedback for future development.</p>
 
         <p>This flowchart is a work in progress, and it’s designed to be improved over time. If you believe a question contains a logical fallacy, a false assumption, a misleading framing, or an unfair simplification, please let me know so I can reassess it.</p>
 
         <p><b>You can email your feedback here:</b><br/>
         <a href="mailto:Jessica.henry523@gmail.com">Jessica.henry523@gmail.com</a></p>
+        
+        <img src="yellow.png" alt="Feedback" style="max-width:100%; border-radius:12px; margin-bottom:1rem;" />
+
       </div>
 
       <div class="divider"></div>
@@ -319,9 +317,21 @@
       const m = document.getElementById("yellowExitModal");
       if(m) m.style.display = "none";
     }
+
     function yellowExitToEmail(){
-      window.location.href = "mailto:Jessica.henry523@gmail.com";
+      // 1) open email in a new tab/window (more reliable than location.href)
+      window.open("mailto:Jessica.henry523@gmail.com", "_blank");
+
+      // 2) close modal
+      closeYellowExit();
+
+      // 3) return to start and re-show disclaimer
+      go(STEPS.START);
+      setTimeout(() => {
+        openDisclaimerThen(null, { autoOpen:true });
+      }, 0);
     }
+
 
     // ----- Red Exit modal helpers -----
     function openRedExit(kind){
@@ -337,10 +347,10 @@
       if(kind === "psych"){
         t = "🔴 Exit — Psychological";
         html = `
-          <img src="psychology.png" alt="Psychological support" style="max-width:100%; border-radius:12px; margin-bottom:1rem;" />
           <p>Thank you for answering honestly.</p>
           <p>We strongly recommend that you consider speaking with a licensed mental health professional before returning to this reflection.</p>
-        `;
+          <img src="psychology.png" alt="Psychological support" style="max-width:100%; border-radius:12px; margin-bottom:1rem;" />
+          `;
       } 
       else if(kind === "medical"){
         t = "🔴 Exit — Medical";
@@ -382,9 +392,18 @@
     }
 
     function redExitNow(){
-      // “Exit” behavior: go to email by default, but you can change later.
-      window.location.href = "mailto:Jessica.henry523@gmail.com";
+      // Close the red exit modal
+      closeRedExit();
+
+      // Go back to the start screen
+      go(STEPS.START);
+
+      // Re-open the disclaimer modal after render
+      setTimeout(() => {
+        openDisclaimerThen(null, { autoOpen:true });
+      }, 0);
     }
+
 
     /***********************
      * STATE + ROUTING
@@ -421,11 +440,20 @@
       P1_1BX: "P1_1BX",     // optional “objections” drawer page
       P1_1C: "P1_1C",
       P1_1CX_PICK: "P1_1CX_PICK",
-      P1_1CX1: "P1_1CX1",   // intent/purpose
-      P1_1CX2: "P1_1CX2",   // religion
-      P1_1CX3: "P1_1CX3",   // nature
-      P1_1CX4: "P1_1CX4",   // culture
-      P1_1CX5: "P1_1CX5",   // social comfort
+      P1_1CX1: "P1_1CX1",
+
+      P1_1CX2: "P1_1CX2",
+      P1_1CX2_TRANSITION: "P1_1CX2_TRANSITION",
+      P1_1CX2_BUDDHIST: "P1_1CX2_BUDDHIST",
+      P1_1CX2_CHRISTIAN: "P1_1CX2_CHRISTIAN",
+      P1_1CX2_HINDU: "P1_1CX2_HINDU",
+      P1_1CX2_JEWISH: "P1_1CX2_JEWISH",
+      P1_1CX2_MUSLIM: "P1_1CX2_MUSLIM",
+      P1_1CX2_SIKH: "P1_1CX2_SIKH",
+
+      P1_1CX3: "P1_1CX3",
+      P1_1CX4: "P1_1CX4",
+      P1_1CX5: "P1_1CX5",
 
       // Part 2
       P2_INTRO: "P2_INTRO",
@@ -439,11 +467,11 @@
 
     // 1CX options (fixed order)
     const CX_ORDER = [
-      { id: "1CX1", step: STEPS.P1_1CX1, label: "Intent / Purpose" },
-      { id: "1CX2", step: STEPS.P1_1CX2, label: "Religion" },
-      { id: "1CX3", step: STEPS.P1_1CX3, label: "Natural / Omnivore argument" },
-      { id: "1CX4", step: STEPS.P1_1CX4, label: "Culture / Ancestry" },
-      { id: "1CX5", step: STEPS.P1_1CX5, label: "Social comfort / Agreeability" },
+      { id:"1CX1", label:"1. Purpose-based exemption — “Animals raised for food are different from pets.”", step: STEPS.P1_1CX1 },
+      { id:"1CX2", label:"2. Religious exemption — “God permits or commands us to eat animals.”", step: STEPS.P1_1CX2 },
+      { id:"1CX3", label:"3. Appeal to nature — “Predation is natural, so it’s morally fine.”", step: STEPS.P1_1CX3 },
+      { id:"1CX4", label:"4. Cultural / identity exemption — “This is part of my culture / ancestry / identity.”", step: STEPS.P1_1CX4 },
+      { id:"1CX5", label:"5. Human-centered priority — “Human comfort outweighs animal suffering.”", step: STEPS.P1_1CX5 },
     ];
 
     // Part 2 blocker topics (you can rename later)
@@ -505,12 +533,13 @@
       return `
         <div class="btnrow">
           <button class="btn-green" onclick="(${onGreen})()">🟢 Green</button>
-          <button class="btn-yellow" onclick="(${onYellow})()">🟡 Yellow</button>
           <button class="btn-red" onclick="(${onRed})()">🔴 Red</button>
+          <button class="btn-yellow" onclick="(${onYellow})()">🟡 Yellow</button>
         </div>
         <p class="small">Wording for these buttons is placeholder; you’ll swap in your exact labels later.</p>
       `;
     }
+
 
     /***********************
      * RENDER PAGES
@@ -525,11 +554,21 @@
         case STEPS.P1_1BX: return renderP1_1BX();
         case STEPS.P1_1C: return renderP1_1C();
         case STEPS.P1_1CX_PICK: return renderP1_1CX_PICK();
-        case STEPS.P1_1CX1: return renderP1_1CX(1);
-        case STEPS.P1_1CX2: return renderP1_1CX(2);
-        case STEPS.P1_1CX3: return renderP1_1CX(3);
-        case STEPS.P1_1CX4: return renderP1_1CX(4);
-        case STEPS.P1_1CX5: return renderP1_1CX(5);
+case STEPS.P1_1CX1: return renderP1_1CX1();
+case STEPS.P1_1CX2: return renderP1_1CX2();
+
+case STEPS.P1_1CX2_TRANSITION: return renderP1_1CX2Transition();
+case STEPS.P1_1CX2_BUDDHIST: return renderP1_1CX2Buddhist();
+case STEPS.P1_1CX2_CHRISTIAN: return renderP1_1CX2Christian();
+case STEPS.P1_1CX2_HINDU: return renderP1_1CX2Hindu();
+case STEPS.P1_1CX2_JEWISH: return renderP1_1CX2Jewish();
+case STEPS.P1_1CX2_MUSLIM: return renderP1_1CX2Muslim();
+case STEPS.P1_1CX2_SIKH: return renderP1_1CX2Sikh();
+
+case STEPS.P1_1CX3: return renderP1_1CX3();
+case STEPS.P1_1CX4: return renderP1_1CX4();
+case STEPS.P1_1CX5: return renderP1_1CX5();
+
 
         case STEPS.P2_INTRO: return renderP2_Intro();
         case STEPS.P2_2A: return renderP2_2A();
@@ -593,7 +632,9 @@
               </label>
             </div>
 
-            <img src="welcomescreen2.jpg" alt="Diet reflection illustration" style="max-width:100%; margin:1.5rem 0; border-radius:12px;" />
+            <img src="welcomescreen2.jpg"
+                alt="Diet reflection illustration"
+                style="display:block; width:100%; max-width:100%; margin:1.5rem auto; border-radius:12px;" />
 
             ${navButtons({ showBack:true, nextLabel:"Continue" })}
           `;
@@ -632,14 +673,14 @@
 
         <div class="btnrow">
           <button class="btn-green" onclick="__p1aNo()">🟢 No</button>
-          <button class="btn-yellow" onclick="__p1aYellow()">🟡 Unsure / flawed question</button>
           <button class="btn-red" onclick="__p1aYes()">🔴 Yes</button>
+          <button class="btn-yellow" onclick="__p1aYellow()">🟡 Unsure / flawed question</button>
         </div>
 
         <div class="divider"></div>
 
         <p class="small"><b>🟢 No:</b> “No. Even if I’m not a pet person, I understand that abusing or killing animals for enjoyment is wrong, and I would not do that.”</p>
-        <p class="small"><b>🔴 Yes:</b> “Yes. I am comfortable with harming or killing animals for pleasure or profit.”</p>
+        <p class="small"><b>🔴 Yes:</b> “Yes. I am comfortable with harming or killing animals for pleasure.”</p>
         <p class="small"><b>🟡 Unsure / flawed question:</b> “I think this question is logically flawed, incomplete, or unfair.”</p>
 
         ${navButtons({ showBack:true, showNext:false })}
@@ -677,9 +718,10 @@
 
         <div class="btnrow">
           <button class="btn-green" onclick="__p1bYes()">🟢 Yes, I agree</button>
-          <button class="btn-yellow" onclick="__p1bYellow()">🟡 This question is flawed / incomplete</button>
           <button class="btn-red" onclick="__p1bNo()">🔴 No, I don’t agree</button>
+          <button class="btn-yellow" onclick="__p1bYellow()">🟡 This question is flawed / incomplete</button>
         </div>
+
 
         <img src="1B.png" alt="Part 1 — 1B" style="max-width:100%; margin:1.5rem 0 0; border-radius:12px;" />
 
@@ -781,23 +823,24 @@
         </details>
 
         <details class="drop">
-          <summary><b>5) Citation support (quick)</b></summary>
-          <p><b>Your essay already grounds this theme</b> by noting that complex emotions and intelligence are not limited to pets, and by treating sentience as morally relevant.</p>
-          <p><b>External scientific consensus</b> widely recognizes that mammals (including dogs and cats) have the neurological substrates associated with conscious experience.</p>
-          <p class="small">
-            Sources: Cambridge Declaration on Consciousness (2012) • AAHA Pain Guidelines (dogs & cats)
-          </p>
+          <summary><b>5) Scientific and scholarly support</b></summary>
 
-          <p class="small" style="margin-top:.75rem;">
-            Helpful links:
-            <br/>
-            • <a href="https://fcmconference.org/img/CambridgeDeclarationOnConsciousness.pdf" target="_blank" rel="noopener">Cambridge Declaration on Consciousness (PDF)</a>
-            <br/>
-            • <a href="https://www.aaha.org/wp-content/uploads/globalassets/02-guidelines/2022-pain-management/resources/2022-aaha-pain-management-guidelines-for-dog-and-cats_updated_060622.pdf" target="_blank" rel="noopener">AAHA Pain Management Guidelines (PDF)</a>
-            <br/>
-            • <a href="https://www.science.org/doi/10.1126/science.1261022" target="_blank" rel="noopener">Nagasawa et al., Science (2015)</a>
-            <br/>
-            • <a href="https://www.cell.com/current-biology/fulltext/S0960-9822%2819%2931086-3" target="_blank" rel="noopener">Vitale et al., Current Biology (2019)</a>
+          <p>The following sources reflect the current scientific and scholarly understanding of mammalian sentience, emotional experience, and cognitive capacity.</p>
+
+          <ul>
+            <li><b>Cambridge Declaration on Consciousness (2012)</b> — A group of leading neuroscientists concluded that many non-human animals, including mammals and birds, possess the neurological substrates necessary for conscious experience.</li>
+
+            <li><b>American Animal Hospital Association (AAHA) Pain Management Guidelines</b> — Veterinary research recognizes that dogs and cats experience pain through neurological pathways homologous to those in humans, and that analgesics reduce both behavioral and physiological pain responses.</li>
+
+            <li><b>Irvine (2009)</b> — Reviews evidence of emotional, social, and cognitive capacities in animals, including attachment, grief, fear, and learning, across both companion and farmed species.</li>
+
+            <li><b>Katsnelson (2022)</b> — Summarizes research demonstrating that animals experience emotions such as fear, pleasure, empathy, and distress, and that these states are measurable through behavior and physiology.</li>
+
+            <li><b>ABC News (2005)</b> — Reports findings that some farm animals (including pigs and sheep) demonstrate problem-solving abilities and learning capacities comparable to or exceeding those of many dogs.</li>
+          </ul>
+
+          <p class="small">
+            These findings are consistent across neuroscience, veterinary medicine, and animal behavior research.
           </p>
         </details>
 
@@ -847,7 +890,7 @@
 
       <h2>Do farm animals share these morally relevant traits?</h2>
 
-      <p>Earlier, you agreed that it is morally wrong to cause unnecessary suffering to cats and dogs because they have:</p>
+      <p>Earlier, you agreed that it is morally wrong to cause unnecessary suffering to cats and dogs simply for pleasure because they have:</p>
       <ul>
         <li>the capacity to suffer</li>
         <li>subjective experience</li>
@@ -965,13 +1008,13 @@
 
       <div class="divider"></div>
 
-      <p><b>Therefore:</b> Do you agree that causing unnecessary suffering to animals such as cows and pigs is also morally unacceptable?</p>
+      <p><b>Based on the above information:</b> Do you now agree that causing unnecessary suffering to animals such as cows and pigs is also morally unacceptable?</p>
       <p class="small">(We will address what counts as “necessary” in the next section.)</p>
 
       <div class="btnrow">
         <button class="btn-green" onclick="__p1cYes()">🟢 Yes — cows and pigs also have these traits.</button>
+        <button class="btn-red" onclick="__p1cNo()">🔴 No — I do not agree for another reason unrelated to the sentience of farm animals.</button>
         <button class="btn-yellow" onclick="__p1cYellow()">🟡 This comparison is flawed or incomplete.</button>
-        <button class="btn-red" onclick="__p1cNo()">🔴 No — I do not believe cows and pigs have these traits.</button>
       </div>
 
       ${navButtons({ showBack:true, showNext:false })}
@@ -1004,14 +1047,16 @@
         $app.innerHTML = `
           <h1>Part 1 — Moral override reasons</h1>
 
-          <p>According to your logic, even though animals like pigs and cows are sentient and able to suffer at the same level as cats and dogs, you still feel that this is not sufficient to claim that it is morally wrong for you personally to harm or kill them simply for pleasure.</p>
+          <p>According to your responses, even though you agree that regularly farmed animals like pigs and cows are sentient and able to suffer at the same level as cats and dogs, you still feel that this is not sufficient to claim that it is morally wrong for you personally to harm or kill them simply for pleasure (or for social, cultural or religious conventions that we will explore further in this section).</p>
 
           <p>Please look over the rationales below, and choose all that apply to your reasoning. As always, this is a work in progress, so feel free to email me if your reason is not listed.</p>
 
-          <p class="small"><b>Keep in mind:</b> We will explore reasons why eating animals and animal products may be “necessary” in Part 2. In this section we are only exploring the morality of harm to animals when it is solely for pleasure.</p>
+          <p class="small"><b>Keep in mind:</b> We will explore reasons why eating animals and animal products may be “necessary” in Part 2. In this section we are only exploring the morality of harm to animals when it is solely for pleasure, social conformity, or religious/spiritual beliefs.</p>
 
           <div class="divider"></div>
 
+          <img src="1CX.png" alt="Moral override reasons" style="display:block; width:100%; max-width:100%; margin:1.5rem auto; border-radius:12px;" />
+          
           <h2>“Yes they suffer — but that doesn’t matter / isn’t enough.”</h2>
 
           <div class="checklist">
@@ -1049,38 +1094,251 @@
         };
       }
 
-    function renderP1_1CX(n){
-      const item = CX_ORDER[n-1];
-      setPill(`Part 1 — ${item.id}`);
+      /***********************
+       * PART 1 — 1CX1–1CX5 PAGES
+       ***********************/
 
-      $app.innerHTML = `
-        <h1>Part 1 — ${item.id} (placeholder)</h1>
-        <p>This is the page for: <b>${item.label}</b></p>
-        <p class="small">Replace with your claim(s), mini examples, and your green/yellow/red buttons or “Next” logic if you prefer.</p>
-
-        ${threeButtons({
-          onGreen: `() => { go(window.__nextCX()); }`,
-          onYellow: `() => { go(window.__nextCX()); }`,
-          onRed: `() => { go(window.__nextCX()); }`
-        })}
-
-        ${navButtons({ showBack:true, showNext:false })}
-      `;
-
-      // After completing this CX page, jump to next selected CX; otherwise Part 2 intro
-      window.__nextCX = () => {
-        const selected = new Set(state.part1.cxSelected);
-        // find current index in CX_ORDER
-        const idx = CX_ORDER.findIndex(x => x.id === item.id);
-        // find next selected after idx
+      // Helper: go to next selected CX in order, else Part 2 intro
+      function nextSelectedCX(currentId){
+        const selected = new Set(state.part1.cxSelected || []);
+        const idx = CX_ORDER.findIndex(x => x.id === currentId);
         for(let i = idx + 1; i < CX_ORDER.length; i++){
-          if (selected.has(CX_ORDER[i].id)) return CX_ORDER[i].step;
+          if(selected.has(CX_ORDER[i].id)) return CX_ORDER[i].step;
         }
         return STEPS.P2_INTRO;
-      };
+      }
 
-      window.__next = () => {};
-    }
+      // Reusable “Green / Red / Yellow” row (Green, then Red, then Yellow)
+      function grYButtons({ greenLabel, redLabel, yellowLabel, onGreen, onRed, onYellow }){
+        return `
+          <div class="btnrow">
+            <button class="btn-green" onclick="${onGreen}()">${greenLabel}</button>
+            <button class="btn-red" onclick="${onRed}()">${redLabel}</button>
+            <button class="btn-yellow" onclick="${onYellow}()">${yellowLabel}</button>
+          </div>
+        `;
+      }
+
+      /* ========== 1CX1 — Purpose-based exemption ========== */
+      function renderP1_1CX1(){
+        setPill("Part 1 — 1CX1");
+
+        $app.innerHTML = `
+          <h1>1CX1 — Purpose-based exemption</h1>
+          <img src="1CX1.jpg" alt="Purpose-based exemption" class="page-img"/>
+
+          <p><b>Claim:</b> “Animals raised for food are different from pets.”</p>
+          <p>This rationale says moral status depends on <i>human intention</i>: if humans label an animal “food,” then harming it is morally acceptable even if it can suffer.</p>
+
+          <div class="divider"></div>
+
+          <h2>Part A</h2>
+          <p>If a trait (like sentience or the capacity to suffer) is what makes harming dogs/cats wrong, then a label (“food” vs “pet”) doesn’t change that trait.</p>
+          <img src="1CX1A.png" alt="1CX1 Part A" class="page-img"/>
+
+          <h2>Part B</h2>
+          <p>This step is asking you whether you believe <b>human categories alone</b> can override morally relevant traits.</p>
+          <img src="1CX1B.png" alt="1CX1 Part B" class="page-img"/>
+
+          ${grYButtons({
+            greenLabel: "🟢 I see the inconsistency",
+            redLabel: "🔴 I think the label changes the moral status",
+            yellowLabel: "🟡 This framing is flawed",
+            onGreen: "window.__cx1_green",
+            onRed: "window.__cx1_red",
+            onYellow: "window.__cx1_yellow"
+          })}
+
+          ${navButtons({ showBack:true, showNext:false })}
+        `;
+
+        window.__cx1_green = () => { state.part1.cx1 = "green"; go(nextSelectedCX("1CX1")); };
+        window.__cx1_red   = () => { state.part1.cx1 = "red";   openRedExit("cultural"); }; // you can change kind later if you want
+        window.__cx1_yellow= () => { state.part1.cx1 = "yellow"; openYellowExit(); };
+        window.__next = () => {};
+      }
+
+      /* ========== 1CX2 — Religious exemption (branch) ========== */
+      function renderP1_1CX2(){
+        setPill("Part 1 — 1CX2");
+
+        $app.innerHTML = `
+          <h1>1CX2 — Religious exemption</h1>
+          <img src="1CX2.png" alt="Religious exemption" class="page-img"/>
+
+          <p><b>Claim:</b> “God permits or commands humans to eat animals.”</p>
+          <p>This rationale says moral authority overrides harm-based reasoning.</p>
+
+          <div class="divider"></div>
+
+          <p><b>Which tradition best matches your reasoning?</b></p>
+
+          <div class="checklist">
+            <label class="chk"><input type="radio" name="rel" value="christian" checked/> <span><b>Christian</b></span></label>
+            <label class="chk"><input type="radio" name="rel" value="jewish"/> <span><b>Jewish</b></span></label>
+            <label class="chk"><input type="radio" name="rel" value="muslim"/> <span><b>Muslim</b></span></label>
+            <label class="chk"><input type="radio" name="rel" value="hindu"/> <span><b>Hindu</b></span></label>
+            <label class="chk"><input type="radio" name="rel" value="buddhist"/> <span><b>Buddhist</b></span></label>
+            <label class="chk"><input type="radio" name="rel" value="sikh"/> <span><b>Sikh</b></span></label>
+          </div>
+
+          ${navButtons({ showBack:true, nextLabel:"Continue" })}
+        `;
+
+        window.__next = () => {
+          const sel = document.querySelector('input[name="rel"]:checked');
+          const v = sel ? sel.value : "christian";
+          state.part1.cx2Religion = v;
+          go(STEPS.P1_1CX2_TRANSITION);
+        };
+      }
+
+      function renderP1_1CX2Transition(){
+        setPill("Part 1 — 1CX2");
+
+        $app.innerHTML = `
+          <h1>1CX2 — Religious exemption</h1>
+          <img src="1CX2transition.png" alt="Religious transition" class="page-img"/>
+
+          <p class="small">This page will show a short, respectful summary of how your tradition is commonly interpreted on this issue, and where sincere disagreement exists within the tradition.</p>
+
+          ${navButtons({ showBack:true, nextLabel:"Continue" })}
+        `;
+
+        window.__next = () => {
+          const r = state.part1.cx2Religion;
+          if(r === "buddhist") return go(STEPS.P1_1CX2_BUDDHIST);
+          if(r === "christian") return go(STEPS.P1_1CX2_CHRISTIAN);
+          if(r === "hindu") return go(STEPS.P1_1CX2_HINDU);
+          if(r === "jewish") return go(STEPS.P1_1CX2_JEWISH);
+          if(r === "muslim") return go(STEPS.P1_1CX2_MUSLIM);
+          if(r === "sikh") return go(STEPS.P1_1CX2_SIKH);
+          go(STEPS.P1_1CX2_CHRISTIAN);
+        };
+      }
+
+      function renderReligiousDetail({ title, img, storageKey }){
+        setPill("Part 1 — 1CX2");
+        $app.innerHTML = `
+          <h1>${title}</h1>
+          <img src="${img}" alt="${title}" class="page-img"/>
+
+          <p class="small">
+            Put your tradition-specific language here (your rough draft text),
+            including: what the tradition teaches, how interpretation differs,
+            and what “minimizing harm” looks like within that tradition.
+          </p>
+
+          ${grYButtons({
+            greenLabel: "🟢 I see how harm-minimization fits my values",
+            redLabel: "🔴 My religious authority overrides this concern",
+            yellowLabel: "🟡 This is incomplete / needs nuance",
+            onGreen: "window.__rel_green",
+            onRed: "window.__rel_red",
+            onYellow: "window.__rel_yellow"
+          })}
+
+          ${navButtons({ showBack:true, showNext:false })}
+        `;
+
+        window.__rel_green = () => { state.part1[storageKey] = "green"; go(nextSelectedCX("1CX2")); };
+        window.__rel_red   = () => { state.part1[storageKey] = "red";   openRedExit("religious"); };
+        window.__rel_yellow= () => { state.part1[storageKey] = "yellow"; openYellowExit(); };
+        window.__next = () => {};
+      }
+
+      function renderP1_1CX2Buddhist(){ return renderReligiousDetail({ title:"1CX2 — Buddhist", img:"1CX2Buddhist.png", storageKey:"cx2_buddhist" }); }
+      function renderP1_1CX2Christian(){ return renderReligiousDetail({ title:"1CX2 — Christian", img:"1CX2Christian.png", storageKey:"cx2_christian" }); }
+      function renderP1_1CX2Hindu(){ return renderReligiousDetail({ title:"1CX2 — Hindu", img:"1CX2Hindu.png", storageKey:"cx2_hindu" }); }
+      function renderP1_1CX2Jewish(){ return renderReligiousDetail({ title:"1CX2 — Jewish", img:"1CX2Jewish.png", storageKey:"cx2_jewish" }); }
+      function renderP1_1CX2Muslim(){ return renderReligiousDetail({ title:"1CX2 — Muslim", img:"1CX2Muslim.png", storageKey:"cx2_muslim" }); }
+      function renderP1_1CX2Sikh(){ return renderReligiousDetail({ title:"1CX2 — Sikh", img:"1CX2Sikh.png", storageKey:"cx2_sikh" }); }
+
+
+      /* ========== 1CX3 — Appeal to nature ========== */
+      function renderP1_1CX3(){
+        setPill("Part 1 — 1CX3");
+        $app.innerHTML = `
+          <h1>1CX3 — Appeal to nature</h1>
+          <img src="1CX3.png" alt="Appeal to nature" class="page-img"/>
+
+          <p><b>Claim:</b> “Predation is natural, so it’s morally fine.”</p>
+          <p>This rationale treats “natural” as automatically morally justified.</p>
+
+          ${grYButtons({
+            greenLabel: "🟢 I see why ‘natural’ ≠ ‘morally right’",
+            redLabel: "🔴 I believe naturalness overrides suffering",
+            yellowLabel: "🟡 This needs a better framing",
+            onGreen: "window.__cx3_green",
+            onRed: "window.__cx3_red",
+            onYellow: "window.__cx3_yellow"
+          })}
+
+          ${navButtons({ showBack:true, showNext:false })}
+        `;
+
+        window.__cx3_green = () => { state.part1.cx3 = "green"; go(nextSelectedCX("1CX3")); };
+        window.__cx3_red   = () => { state.part1.cx3 = "red";   openRedExit("cultural"); };
+        window.__cx3_yellow= () => { state.part1.cx3 = "yellow"; openYellowExit(); };
+        window.__next = () => {};
+      }
+
+      /* ========== 1CX4 — Cultural / identity exemption ========== */
+      function renderP1_1CX4(){
+        setPill("Part 1 — 1CX4");
+        $app.innerHTML = `
+          <h1>1CX4 — Cultural / identity exemption</h1>
+          <img src="1CX4.png" alt="Cultural exemption" class="page-img"/>
+
+          <p><b>Claim:</b> “This is part of my culture / ancestry / identity.”</p>
+          <p>This rationale says tradition can override moral symmetry.</p>
+
+          ${grYButtons({
+            greenLabel: "🟢 I want to reduce harm within my tradition",
+            redLabel: "🔴 Tradition overrides this concern",
+            yellowLabel: "🟡 This needs nuance",
+            onGreen: "window.__cx4_green",
+            onRed: "window.__cx4_red",
+            onYellow: "window.__cx4_yellow"
+          })}
+
+          ${navButtons({ showBack:true, showNext:false })}
+        `;
+
+        window.__cx4_green = () => { state.part1.cx4 = "green"; go(nextSelectedCX("1CX4")); };
+        window.__cx4_red   = () => { state.part1.cx4 = "red";   openRedExit("cultural"); };
+        window.__cx4_yellow= () => { state.part1.cx4 = "yellow"; openYellowExit(); };
+        window.__next = () => {};
+      }
+
+      /* ========== 1CX5 — Human-centered priority ========== */
+      function renderP1_1CX5(){
+        setPill("Part 1 — 1CX5");
+        $app.innerHTML = `
+          <h1>1CX5 — Human-centered priority</h1>
+          <img src="1CX5.jpg" alt="Human-centered priority" class="page-img"/>
+
+          <p><b>Claim:</b> “Human comfort, convenience, or social harmony outweighs animal suffering.”</p>
+          <p>This includes the “don’t-rock-the-boat / agreeableness” concern, framed as a moral priority claim.</p>
+
+          ${grYButtons({
+            greenLabel: "🟢 I see why convenience may not justify suffering",
+            redLabel: "🔴 I believe human priorities override",
+            yellowLabel: "🟡 This needs better options",
+            onGreen: "window.__cx5_green",
+            onRed: "window.__cx5_red",
+            onYellow: "window.__cx5_yellow"
+          })}
+
+          ${navButtons({ showBack:true, showNext:false })}
+        `;
+
+        window.__cx5_green = () => { state.part1.cx5 = "green"; go(nextSelectedCX("1CX5")); };
+        window.__cx5_red   = () => { state.part1.cx5 = "red";   openRedExit("psych"); };
+        window.__cx5_yellow= () => { state.part1.cx5 = "yellow"; openYellowExit(); };
+        window.__next = () => {};
+      }
+
 
     function renderP2_Intro(){
       setPill("Part 2 — Intro");
