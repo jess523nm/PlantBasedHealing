@@ -219,12 +219,19 @@
       margin-top: .6rem;
     }
 
+    .page-img{
+      display:block;
+      width:100%;
+      max-width:100%;
+      margin:1.25rem auto;
+      border-radius:12px;
+    }
   </style>
 </head>
 <body>
   <div class="wrap">
     <div class="topbar">
-      <div class="brand">Plant-Based Reflection Tool v. 1</div>
+      <div class="brand">Plant-Based Reflection Tool v. 1.1</div>
       <div class="pill" id="progressPill">Step: —</div>
     </div>
 
@@ -529,17 +536,15 @@
     // __next is set per-render for pages that use Next
     window.__next = () => {};
 
-    function threeButtons({ onGreen, onYellow, onRed }){
+    function threeButtons({ onGreen, onYellow, onRed, labelGreen="🟢 Green", labelRed="🔴 Red", labelYellow="🟡 Yellow" }){
       return `
         <div class="btnrow">
-          <button class="btn-green" onclick="(${onGreen})()">🟢 Green</button>
-          <button class="btn-red" onclick="(${onRed})()">🔴 Red</button>
-          <button class="btn-yellow" onclick="(${onYellow})()">🟡 Yellow</button>
+          <button class="btn-green" onclick="(${onGreen})()">${labelGreen}</button>
+          <button class="btn-red" onclick="(${onRed})()">${labelRed}</button>
+          <button class="btn-yellow" onclick="(${onYellow})()">${labelYellow}</button>
         </div>
-        <p class="small">Wording for these buttons is placeholder; you’ll swap in your exact labels later.</p>
       `;
     }
-
 
     /***********************
      * RENDER PAGES
@@ -883,6 +888,26 @@
       setPill("Part 1 — 1C");
 
       $app.innerHTML = `
+            // 1C handlers (these were missing, so the buttons did nothing)
+            window.__p1cYes = () => {
+              state.part1.c = "yes";
+              // If they agree, continue to Part 2 (or wherever you want next)
+              go(STEPS.P2_INTRO);
+            };
+
+            window.__p1cNo = () => {
+              state.part1.c = "no";
+              // If they disagree, go to 1CX picker (moral override reasons)
+              go(STEPS.P1_1CX_PICK);
+            };
+
+            window.__p1cYellow = () => {
+              state.part1.c = "yellow";
+              openYellowExit();
+            };
+
+            window.__next = () => {};
+
         <h1>Part 1 — 1C</h1>
 
         <h2>Do farm animals share these morally relevant traits?</h2>
@@ -976,18 +1001,166 @@
         <details class="drop">
           <summary><b>Comparative sentience framework</b></summary>
 
-          <p>Average capacity scores (0–10):</p>
-          <ul>
-            <li>Humans — 10.00</li>
-            <li>Pigs — 8.50</li>
-            <li>Dogs — 8.50</li>
-            <li>Cows — 8.17</li>
-            <li>Cats — 8.00</li>
-            <li>Sheep/Goats — 7.50</li>
-            <li>Chickens — 7.00</li>
-            <li>Turkeys — 7.00</li>
-            <li>Fish — 6.50</li>
-          </ul>
+          <p class="small">Average capacity scores (0–10) across cognition, emotional/social complexity, and capacity to suffer.</p>
+
+          <div style="overflow-x:auto;">
+            <table style="width:100%; border-collapse:collapse;">
+              <thead>
+                <tr>
+                  <th style="text-align:left; padding:8px; border-bottom:1px solid rgba(255,255,255,0.12);">Species</th>
+                  <th style="padding:8px; border-bottom:1px solid rgba(255,255,255,0.12);">Cognition</th>
+                  <th style="padding:8px; border-bottom:1px solid rgba(255,255,255,0.12);">Emotional/Social</th>
+                  <th style="padding:8px; border-bottom:1px solid rgba(255,255,255,0.12);">Suffering</th>
+                  <th style="padding:8px; border-bottom:1px solid rgba(255,255,255,0.12);">Average</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <tr>
+                  <td style="padding:8px;">
+                    <img src="animals/humans.png" alt="Humans" style="width:46px; height:46px; object-fit:cover; border-radius:10px; vertical-align:middle; margin-right:10px; border:1px solid rgba(255,255,255,0.12);" />
+                    Humans
+                  </td>
+                  <td style="padding:8px; text-align:center;">10.0</td>
+                  <td style="padding:8px; text-align:center;">10.0</td>
+                  <td style="padding:8px; text-align:center;">10.0</td>
+                  <td style="padding:8px; text-align:center;">10.00</td>
+                </tr>
+
+                <tr>
+                  <td style="padding:8px;">
+                    <img src="animals/pigs.png" alt="Pigs" style="width:46px; height:46px; object-fit:cover; border-radius:10px; vertical-align:middle; margin-right:10px; border:1px solid rgba(255,255,255,0.12);" />
+                    Pigs
+                  </td>
+                  <td style="padding:8px; text-align:center;">8.5</td>
+                  <td style="padding:8px; text-align:center;">8.5</td>
+                  <td style="padding:8px; text-align:center;">8.5</td>
+                  <td style="padding:8px; text-align:center;">8.50</td>
+                </tr>
+
+                <tr>
+                  <td style="padding:8px;">
+                    <img src="animals/dogs.png" alt="Dogs" style="width:46px; height:46px; object-fit:cover; border-radius:10px; vertical-align:middle; margin-right:10px; border:1px solid rgba(255,255,255,0.12);" />
+                    Dogs
+                  </td>
+                  <td style="padding:8px; text-align:center;">8.0</td>
+                  <td style="padding:8px; text-align:center;">9.0</td>
+                  <td style="padding:8px; text-align:center;">8.5</td>
+                  <td style="padding:8px; text-align:center;">8.50</td>
+                </tr>
+
+                <tr>
+                  <td style="padding:8px;">
+                    <img src="animals/cows.png" alt="Cows" style="width:46px; height:46px; object-fit:cover; border-radius:10px; vertical-align:middle; margin-right:10px; border:1px solid rgba(255,255,255,0.12);" />
+                    Cows
+                  </td>
+                  <td style="padding:8px; text-align:center;">8.0</td>
+                  <td style="padding:8px; text-align:center;">8.0</td>
+                  <td style="padding:8px; text-align:center;">8.5</td>
+                  <td style="padding:8px; text-align:center;">8.17</td>
+                </tr>
+
+                <tr>
+                  <td style="padding:8px;">
+                    <img src="animals/cats.png" alt="Cats" style="width:46px; height:46px; object-fit:cover; border-radius:10px; vertical-align:middle; margin-right:10px; border:1px solid rgba(255,255,255,0.12);" />
+                    Cats
+                  </td>
+                  <td style="padding:8px; text-align:center;">7.5</td>
+                  <td style="padding:8px; text-align:center;">8.5</td>
+                  <td style="padding:8px; text-align:center;">8.0</td>
+                  <td style="padding:8px; text-align:center;">8.00</td>
+                </tr>
+
+                <tr>
+                  <td style="padding:8px;">
+                    <img src="animals/octopus.png" alt="Octopus" style="width:46px; height:46px; object-fit:cover; border-radius:10px; vertical-align:middle; margin-right:10px; border:1px solid rgba(255,255,255,0.12);" />
+                    Octopus
+                  </td>
+                  <td style="padding:8px; text-align:center;">9.0</td>
+                  <td style="padding:8px; text-align:center;">6.5</td>
+                  <td style="padding:8px; text-align:center;">7.5</td>
+                  <td style="padding:8px; text-align:center;">7.67</td>
+                </tr>
+
+                <tr>
+                  <td style="padding:8px;">
+                    <img src="animals/sheepgoats.png" alt="Sheep / Goats" style="width:46px; height:46px; object-fit:cover; border-radius:10px; vertical-align:middle; margin-right:10px; border:1px solid rgba(255,255,255,0.12);" />
+                    Sheep / Goats
+                  </td>
+                  <td style="padding:8px; text-align:center;">7.0</td>
+                  <td style="padding:8px; text-align:center;">7.5</td>
+                  <td style="padding:8px; text-align:center;">8.0</td>
+                  <td style="padding:8px; text-align:center;">7.50</td>
+                </tr>
+
+                <tr>
+                  <td style="padding:8px;">
+                    <img src="animals/rabbits.png" alt="Rabbits" style="width:46px; height:46px; object-fit:cover; border-radius:10px; vertical-align:middle; margin-right:10px; border:1px solid rgba(255,255,255,0.12);" />
+                    Rabbits
+                  </td>
+                  <td style="padding:8px; text-align:center;">7.0</td>
+                  <td style="padding:8px; text-align:center;">7.5</td>
+                  <td style="padding:8px; text-align:center;">8.0</td>
+                  <td style="padding:8px; text-align:center;">7.50</td>
+                </tr>
+
+                <tr>
+                  <td style="padding:8px;">
+                    <img src="animals/chickens.png" alt="Chickens" style="width:46px; height:46px; object-fit:cover; border-radius:10px; vertical-align:middle; margin-right:10px; border:1px solid rgba(255,255,255,0.12);" />
+                    Chickens
+                  </td>
+                  <td style="padding:8px; text-align:center;">6.5</td>
+                  <td style="padding:8px; text-align:center;">7.0</td>
+                  <td style="padding:8px; text-align:center;">7.5</td>
+                  <td style="padding:8px; text-align:center;">7.00</td>
+                </tr>
+
+                <tr>
+                  <td style="padding:8px;">
+                    <img src="animals/turkeys.png" alt="Turkeys" style="width:46px; height:46px; object-fit:cover; border-radius:10px; vertical-align:middle; margin-right:10px; border:1px solid rgba(255,255,255,0.12);" />
+                    Turkeys
+                  </td>
+                  <td style="padding:8px; text-align:center;">6.5</td>
+                  <td style="padding:8px; text-align:center;">7.0</td>
+                  <td style="padding:8px; text-align:center;">7.5</td>
+                  <td style="padding:8px; text-align:center;">7.00</td>
+                </tr>
+
+                <tr>
+                  <td style="padding:8px;">
+                    <img src="animals/squid.png" alt="Squid" style="width:46px; height:46px; object-fit:cover; border-radius:10px; vertical-align:middle; margin-right:10px; border:1px solid rgba(255,255,255,0.12);" />
+                    Squid
+                  </td>
+                  <td style="padding:8px; text-align:center;">7.5</td>
+                  <td style="padding:8px; text-align:center;">6.0</td>
+                  <td style="padding:8px; text-align:center;">7.0</td>
+                  <td style="padding:8px; text-align:center;">6.83</td>
+                </tr>
+
+                <tr>
+                  <td style="padding:8px;">
+                    <img src="animals/hamsters.png" alt="Hamsters" style="width:46px; height:46px; object-fit:cover; border-radius:10px; vertical-align:middle; margin-right:10px; border:1px solid rgba(255,255,255,0.12);" />
+                    Hamsters
+                  </td>
+                  <td style="padding:8px; text-align:center;">6.5</td>
+                  <td style="padding:8px; text-align:center;">6.0</td>
+                  <td style="padding:8px; text-align:center;">7.5</td>
+                  <td style="padding:8px; text-align:center;">6.67</td>
+                </tr>
+
+                <tr>
+                  <td style="padding:8px;">
+                    <img src="animals/farmedfish.png" alt="Farmed Fish" style="width:46px; height:46px; object-fit:cover; border-radius:10px; vertical-align:middle; margin-right:10px; border:1px solid rgba(255,255,255,0.12);" />
+                    Farmed Fish
+                  </td>
+                  <td style="padding:8px; text-align:center;">6.0</td>
+                  <td style="padding:8px; text-align:center;">6.5</td>
+                  <td style="padding:8px; text-align:center;">7.0</td>
+                  <td style="padding:8px; text-align:center;">6.50</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
 
           <p class="small">These reflect capability under enriched, nurturing conditions.</p>
         </details>
@@ -1012,10 +1185,18 @@
         <p class="small">(We will address what counts as “necessary” in the next section.)</p>
 
         <div class="btnrow">
-          <button class="btn-green" onclick="__p1cYes()">🟢 Yes — cows and pigs also have these traits.</button>
-          <button class="btn-red" onclick="__p1cNo()">🔴 No — I do not believe cows and pigs have these traits.</button>
-          <button class="btn-yellow" onclick="__p1cYellow()">🟡 This comparison is flawed or incomplete.</button>
-        </div>
+        <button class="btn-green" onclick="__p1cYes()">
+          🟢 Yes, I agree that since farm animals share these same qualities as cats, dogs and other pets, killing or causing them to suffer unnecessarily simply for pleasure is immoral for me personally.
+        </button>
+
+        <button class="btn-red" onclick="__p1cNo()">
+          🔴 No, while I now see that farm animals and pets share many traits, I still have another reason why I believe it is not immoral for me personally to consume them or their products purely for my own pleasure. (Reminder: The question of necessity will be explored in Part 2.)
+        </button>
+
+        <button class="btn-yellow" onclick="__p1cYellow()">
+          🟡 This comparison is flawed or incomplete.
+        </button>
+      </div>
       `;
     }
 
