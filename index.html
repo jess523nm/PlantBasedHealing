@@ -231,7 +231,7 @@
 <body>
   <div class="wrap">
     <div class="topbar">
-      <div class="brand">Plant-Based Reflection Tool v. 1.2</div>
+      <div class="brand">Plant-Based Reflection Tool v. 1.3</div>
       <div class="pill" id="progressPill">Step: —</div>
     </div>
 
@@ -313,6 +313,31 @@
     </div>
   </div>
 
+  <!-- Religious Transition Modal -->
+  <div class="modalback" id="religiousTransitionModal" style="display:none;">
+    <div class="modal">
+      <h2>Before we continue</h2>
+
+      <div class="scroll">
+        <p>Thank you for reflecting on this from a moral and spiritual perspective.</p>
+
+        <p>Many traditions permit eating animals without requiring it.</p>
+
+        <p>That means the remaining question is not whether you are allowed — but whether animal consumption is necessary for you personally.</p>
+
+        <p>In the next section, we’ll look at whether animal products are necessary for your health, nutrition, finances, access, or environmental context — not for everyone in the world, just for you.</p>
+
+        <p>You don’t need to worry about exceptions or edge cases right now — only your own situation.</p>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="btnrow">
+        <button onclick="closeReligiousTransition()">I understand</button>
+      </div>
+    </div>
+  </div>
+
   <script>
 
     // ----- Yellow Exit (feedback) modal helpers -----
@@ -338,6 +363,43 @@
         openDisclaimerThen(null, { autoOpen:true });
       }, 0);
     }
+
+    function openReligiousTransition(){
+        const m = document.getElementById("religiousTransitionModal");
+        if(m) m.style.display = "flex";
+      }
+
+      function closeReligiousTransition(){
+        const m = document.getElementById("religiousTransitionModal");
+        if(m) m.style.display = "none";
+
+        // Preferred: multi-select flow (checkboxes)
+        const list = state.part1.cx2Religions || [];
+        const i = state.part1.cx2RelIndex || 0;
+        const r = list[i];
+
+        if(r){
+          if(r === "buddhist") return go(STEPS.P1_1CX2_BUDDHIST);
+          if(r === "christian") return go(STEPS.P1_1CX2_CHRISTIAN);
+          if(r === "hindu") return go(STEPS.P1_1CX2_HINDU);
+          if(r === "jewish") return go(STEPS.P1_1CX2_JEWISH);
+          if(r === "muslim") return go(STEPS.P1_1CX2_MUSLIM);
+          if(r === "sikh") return go(STEPS.P1_1CX2_SIKH);
+          return go(nextSelectedCX("1CX2"));
+        }
+
+        // Fallback: older single-select flow
+        const single = state.part1.cx2Religion;
+        if(single === "buddhist") return go(STEPS.P1_1CX2_BUDDHIST);
+        if(single === "christian") return go(STEPS.P1_1CX2_CHRISTIAN);
+        if(single === "hindu") return go(STEPS.P1_1CX2_HINDU);
+        if(single === "jewish") return go(STEPS.P1_1CX2_JEWISH);
+        if(single === "muslim") return go(STEPS.P1_1CX2_MUSLIM);
+        if(single === "sikh") return go(STEPS.P1_1CX2_SIKH);
+
+        // Final fallback
+        go(nextSelectedCX("1CX2"));
+      }
 
 
     // ----- Red Exit modal helpers -----
@@ -1047,7 +1109,7 @@
               <tbody>
                 <tr>
                   <td style="padding:8px;">
-                    <img src="animals/humans.png" alt="Humans" style="width:46px; height:46px; object-fit:cover; border-radius:10px; vertical-align:middle; margin-right:10px; border:1px solid rgba(255,255,255,0.12);" />
+                    <img src="animals/humans.png" alt="Humans" style="width:58px; height:58px; object-fit:cover; border-radius:10px; vertical-align:middle; margin-right:10px; border:1px solid rgba(255,255,255,0.12);" />
                     Humans
                   </td>
                   <td style="padding:8px; text-align:center;">10.0</td>
@@ -1058,7 +1120,7 @@
 
                 <tr>
                   <td style="padding:8px;">
-                    <img src="animals/pigs.png" alt="Pigs" style="width:46px; height:46px; object-fit:cover; border-radius:10px; vertical-align:middle; margin-right:10px; border:1px solid rgba(255,255,255,0.12);" />
+                    <img src="animals/pigs.png" alt="Pigs" style="width:58px; height:58px; object-fit:cover; border-radius:10px; vertical-align:middle; margin-right:10px; border:1px solid rgba(255,255,255,0.12);" />
                     Pigs
                   </td>
                   <td style="padding:8px; text-align:center;">8.5</td>
@@ -1069,7 +1131,7 @@
 
                 <tr>
                   <td style="padding:8px;">
-                    <img src="animals/dogs.png" alt="Dogs" style="width:46px; height:46px; object-fit:cover; border-radius:10px; vertical-align:middle; margin-right:10px; border:1px solid rgba(255,255,255,0.12);" />
+                    <img src="animals/dogs.png" alt="Dogs" style="width:58px; height:58px; object-fit:cover; border-radius:10px; vertical-align:middle; margin-right:10px; border:1px solid rgba(255,255,255,0.12);" />
                     Dogs
                   </td>
                   <td style="padding:8px; text-align:center;">8.0</td>
@@ -1080,7 +1142,7 @@
 
                 <tr>
                   <td style="padding:8px;">
-                    <img src="animals/cows.png" alt="Cows" style="width:46px; height:46px; object-fit:cover; border-radius:10px; vertical-align:middle; margin-right:10px; border:1px solid rgba(255,255,255,0.12);" />
+                    <img src="animals/cows.png" alt="Cows" style="width:58px; height:58px; object-fit:cover; border-radius:10px; vertical-align:middle; margin-right:10px; border:1px solid rgba(255,255,255,0.12);" />
                     Cows
                   </td>
                   <td style="padding:8px; text-align:center;">8.0</td>
@@ -1091,7 +1153,7 @@
 
                 <tr>
                   <td style="padding:8px;">
-                    <img src="animals/cats.png" alt="Cats" style="width:46px; height:46px; object-fit:cover; border-radius:10px; vertical-align:middle; margin-right:10px; border:1px solid rgba(255,255,255,0.12);" />
+                    <img src="animals/cats.png" alt="Cats" style="width:58px; height:58px; object-fit:cover; border-radius:10px; vertical-align:middle; margin-right:10px; border:1px solid rgba(255,255,255,0.12);" />
                     Cats
                   </td>
                   <td style="padding:8px; text-align:center;">7.5</td>
@@ -1102,7 +1164,7 @@
 
                 <tr>
                   <td style="padding:8px;">
-                    <img src="animals/octopus.png" alt="Octopus" style="width:46px; height:46px; object-fit:cover; border-radius:10px; vertical-align:middle; margin-right:10px; border:1px solid rgba(255,255,255,0.12);" />
+                    <img src="animals/octopus.png" alt="Octopus" style="width:58px; height:58px; object-fit:cover; border-radius:10px; vertical-align:middle; margin-right:10px; border:1px solid rgba(255,255,255,0.12);" />
                     Octopus
                   </td>
                   <td style="padding:8px; text-align:center;">9.0</td>
@@ -1113,7 +1175,7 @@
 
                 <tr>
                   <td style="padding:8px;">
-                    <img src="animals/sheepgoats.png" alt="Sheep / Goats" style="width:46px; height:46px; object-fit:cover; border-radius:10px; vertical-align:middle; margin-right:10px; border:1px solid rgba(255,255,255,0.12);" />
+                    <img src="animals/sheep.png" alt="Sheep / Goats" style="width:58px; height:58px; object-fit:cover; border-radius:10px; vertical-align:middle; margin-right:10px; border:1px solid rgba(255,255,255,0.12);" />
                     Sheep / Goats
                   </td>
                   <td style="padding:8px; text-align:center;">7.0</td>
@@ -1124,7 +1186,7 @@
 
                 <tr>
                   <td style="padding:8px;">
-                    <img src="animals/rabbits.png" alt="Rabbits" style="width:46px; height:46px; object-fit:cover; border-radius:10px; vertical-align:middle; margin-right:10px; border:1px solid rgba(255,255,255,0.12);" />
+                    <img src="animals/rabbits.png" alt="Rabbits" style="width:58px; height:58px; object-fit:cover; border-radius:10px; vertical-align:middle; margin-right:10px; border:1px solid rgba(255,255,255,0.12);" />
                     Rabbits
                   </td>
                   <td style="padding:8px; text-align:center;">7.0</td>
@@ -1135,7 +1197,7 @@
 
                 <tr>
                   <td style="padding:8px;">
-                    <img src="animals/chickens.png" alt="Chickens" style="width:46px; height:46px; object-fit:cover; border-radius:10px; vertical-align:middle; margin-right:10px; border:1px solid rgba(255,255,255,0.12);" />
+                    <img src="animals/chickens.png" alt="Chickens" style="width:58px; height:58px; object-fit:cover; border-radius:10px; vertical-align:middle; margin-right:10px; border:1px solid rgba(255,255,255,0.12);" />
                     Chickens
                   </td>
                   <td style="padding:8px; text-align:center;">6.5</td>
@@ -1146,7 +1208,7 @@
 
                 <tr>
                   <td style="padding:8px;">
-                    <img src="animals/turkeys.png" alt="Turkeys" style="width:46px; height:46px; object-fit:cover; border-radius:10px; vertical-align:middle; margin-right:10px; border:1px solid rgba(255,255,255,0.12);" />
+                    <img src="animals/turkeys.png" alt="Turkeys" style="width:58px; height:58px; object-fit:cover; border-radius:10px; vertical-align:middle; margin-right:10px; border:1px solid rgba(255,255,255,0.12);" />
                     Turkeys
                   </td>
                   <td style="padding:8px; text-align:center;">6.5</td>
@@ -1157,7 +1219,7 @@
 
                 <tr>
                   <td style="padding:8px;">
-                    <img src="animals/squid.png" alt="Squid" style="width:46px; height:46px; object-fit:cover; border-radius:10px; vertical-align:middle; margin-right:10px; border:1px solid rgba(255,255,255,0.12);" />
+                    <img src="animals/octopus.png" alt="Octopus & Squid" style="width:58px; height:58px; object-fit:cover; border-radius:10px; vertical-align:middle; margin-right:10px; border:1px solid rgba(255,255,255,0.12);" />
                     Squid
                   </td>
                   <td style="padding:8px; text-align:center;">7.5</td>
@@ -1168,7 +1230,7 @@
 
                 <tr>
                   <td style="padding:8px;">
-                    <img src="animals/hamsters.png" alt="Hamsters" style="width:46px; height:46px; object-fit:cover; border-radius:10px; vertical-align:middle; margin-right:10px; border:1px solid rgba(255,255,255,0.12);" />
+                    <img src="animals/hamsters.png" alt="Hamsters" style="width:58px; height:58px; object-fit:cover; border-radius:10px; vertical-align:middle; margin-right:10px; border:1px solid rgba(255,255,255,0.12);" />
                     Hamsters
                   </td>
                   <td style="padding:8px; text-align:center;">6.5</td>
@@ -1179,13 +1241,14 @@
 
                 <tr>
                   <td style="padding:8px;">
-                    <img src="animals/farmedfish.png" alt="Farmed Fish" style="width:46px; height:46px; object-fit:cover; border-radius:10px; vertical-align:middle; margin-right:10px; border:1px solid rgba(255,255,255,0.12);" />
-                    Farmed Fish
+                    <img src="animals/fish.png" alt="Farmed Fish" style="width:58px; height:58px; object-fit:cover; border-radius:10px; vertical-align:middle; margin-right:10px; border:1px solid rgba(255,255,255,0.12);" />
+                    <span style="vertical-align:middle;">Farmed Fish</span>
+                    <div style="font-style:italic; font-size:0.85em; margin-top:4px; opacity:0.85;">
+                      Note: Fish, shrimp, crabs, and lobsters are all fairly similar in regards to these measures of sentience. 
+                      Bivalves, however — like clams, oysters, scallops, and mussels — typically are not, and are sometimes even 
+                      considered acceptable to consume by a minority of vegans.
+                    </div>
                   </td>
-                  <td style="padding:8px; text-align:center;">6.0</td>
-                  <td style="padding:8px; text-align:center;">6.5</td>
-                  <td style="padding:8px; text-align:center;">7.0</td>
-                  <td style="padding:8px; text-align:center;">6.50</td>
                 </tr>
               </tbody>
             </table>
@@ -1229,63 +1292,61 @@
       `;
     }
 
+      function renderP1_1CX_PICK(){
+        setPill("Part 1 — 1CX (pick)");
+        const selected = new Set(state.part1.cxSelected);
 
+        $app.innerHTML = `
+          <h1>Part 1 — Moral override reasons</h1>
 
-    function renderP1_1CX_PICK(){
-      setPill("Part 1 — 1CX (pick)");
-      const selected = new Set(state.part1.cxSelected);
+          <p>According to your logic, even though animals like pigs and cows are sentient and able to suffer at the same level as cats and dogs, you still feel that this is not sufficient to claim that it is morally wrong for you personally to harm or kill them simply for pleasure.</p>
 
-      $app.innerHTML = `
-        <h1>Part 1 — Moral override reasons</h1>
+          <p>Please look over the rationales below, and choose all that apply to your reasoning. As always, this is a work in progress, so feel free to email me if your reason is not listed.</p>
 
-        <p>According to your logic, even though animals like pigs and cows are sentient and able to suffer at the same level as cats and dogs, you still feel that this is not sufficient to claim that it is morally wrong for you personally to harm or kill them simply for pleasure.</p>
+          <p class="small"><b>Keep in mind:</b> We will explore reasons why eating animals and animal products may be “necessary” in Part 2. In this section we are only exploring the morality of harm to animals when it is solely for pleasure.</p>
 
-        <p>Please look over the rationales below, and choose all that apply to your reasoning. As always, this is a work in progress, so feel free to email me if your reason is not listed.</p>
+          <div class="divider"></div>
 
-        <p class="small"><b>Keep in mind:</b> We will explore reasons why eating animals and animal products may be “necessary” in Part 2. In this section we are only exploring the morality of harm to animals when it is solely for pleasure.</p>
+          <img src="1CX.png" alt="Moral override reasons" style="display:block; width:100%; max-width:100%; margin:1.5rem auto; border-radius:12px;" />
 
-        <div class="divider"></div>
+          <h2>“Yes they suffer — but that doesn’t matter / isn’t enough.”</h2>
 
-        <img src="1CX.png" alt="Moral override reasons" style="display:block; width:100%; max-width:100%; margin:1.5rem auto; border-radius:12px;" />
+          <div class="checklist">
+            ${CX_ORDER.map(item => `
+              <label class="chk">
+                <input type="checkbox" value="${item.id}" ${selected.has(item.id) ? "checked" : ""}/>
+                <span>
+                  <b>${item.title}</b><br/>
+                  <span class="small">${item.quote}<br/>${item.note}</span>
+                </span>
+              </label>
+            `).join("")}
+          </div>
 
-        <h2>“Yes they suffer — but that doesn’t matter / isn’t enough.”</h2>
+          <div class="divider"></div>
 
-        <div class="checklist">
-          ${CX_ORDER.map(item => `
-            <label class="chk">
-              <input type="checkbox" value="${item.id}" ${selected.has(item.id) ? "checked" : ""}/>
-              <span>
-                <b>${item.title}</b><br/>
-                <span class="small">${item.quote}<br/>${item.note}</span>
-              </span>
-            </label>
-          `).join("")}
-        </div>
+          <div class="btnrow">
+            <button class="btn-yellow" onclick="openYellowExit()">🟡 My reason is not listed (email)</button>
+          </div>
 
-        <div class="divider"></div>
+          ${navButtons({ showBack:true, nextLabel:"Continue to selected" })}
+        `;
 
-        <div class="btnrow">
-          <button class="btn-yellow" onclick="openYellowExit()">🟡 My reason is not listed (email)</button>
-        </div>
+        window.__next = () => {
+          const boxes = Array.from(document.querySelectorAll('input[type="checkbox"]:checked')).map(b => b.value);
+          state.part1.cxSelected = boxes;
 
-        ${navButtons({ showBack:true, nextLabel:"Continue to selected" })}
-      `;
+          // If none selected, just proceed to Part 2 intro
+          if (boxes.length === 0){
+            go(STEPS.P2_INTRO);
+            return;
+          }
 
-      window.__next = () => {
-        const boxes = Array.from(document.querySelectorAll('input[type="checkbox"]:checked')).map(b => b.value);
-        state.part1.cxSelected = boxes;
-
-        // If none selected, just proceed to Part 2 intro
-        if (boxes.length === 0){
-          go(STEPS.P2_INTRO);
-          return;
-        }
-
-        // route to the first selected CX step in fixed order
-        const first = CX_ORDER.find(x => boxes.includes(x.id));
-        go(first.step);
-      };
-    }
+          // route to the first selected CX step in fixed order
+          const first = CX_ORDER.find(x => boxes.includes(x.id));
+          go(first.step);
+        };
+      }
 
 
       /***********************
@@ -1317,75 +1378,195 @@
       function renderP1_1CX1(){
         setPill("Part 1 — 1CX1");
 
+        // handlers (must be OUTSIDE the HTML string)
+        window.__cx1_green = () => {
+          state.part1.cx1 = "no_purpose_override";
+          // move to next selected CX page (or Part 2) using your existing helper
+          go(window.__nextCX());
+        };
+
+        window.__cx1_red = () => {
+          state.part1.cx1 = "purpose_overrides";
+          // This is a values-based "red" (not psych/medical). Route back to 1CX picker
+          // or keep them moving—your call. For now: send to 1CX picker to choose the real reason.
+          go(STEPS.P1_1CX_PICK);
+        };
+
+        window.__cx1_yellow = () => {
+          state.part1.cx1 = "flawed";
+          openYellowExit();
+        };
+
         $app.innerHTML = `
           <h1>1CX1 — Purpose-based exemption</h1>
           <img src="1CX1.jpg" alt="Purpose-based exemption" class="page-img"/>
 
-          <p><b>Claim:</b> “Animals raised for food are different from pets.”</p>
-          <p>This rationale says moral status depends on <i>human intention</i>: if humans label an animal “food,” then harming it is morally acceptable even if it can suffer.</p>
+          <p><b>Claim:</b> “Animals raised for food are morally different than pets.”</p>
 
           <div class="divider"></div>
 
-          <h2>Part A</h2>
-          <p>If a trait (like sentience or the capacity to suffer) is what makes harming dogs/cats wrong, then a label (“food” vs “pet”) doesn’t change that trait.</p>
+          <h2>Test the principle</h2>
+          <p><b>Does breeding or purpose make harm morally acceptable?</b></p>
+
+          <p class="small">
+            By “purpose,” we mean: the reason humans assign to a being or activity — such as breeding an animal for food,
+            companionship, labor, entertainment, or profit — or the social role humans place that being into.
+          </p>
+
+          <p class="small"><b>Not:</b></p>
+          <ul class="small">
+            <li>legality</li>
+            <li>social norms</li>
+            <li>cultural acceptance</li>
+            <li>majority opinion</li>
+            <li>historical prevalence</li>
+          </ul>
+
+          <p><b>Just this:</b> Does intended use override morally relevant traits?</p>
+          <p class="small">That’s the principle under examination.</p>
+
+          <div class="divider"></div>
+
+          <h2>Two parallels to consider</h2>
+
+          <h3>Parallel A — Dog fighting</h3>
+          <p class="small">
+            Dogs are bred for fighting. They are created with the intent that they will be harmed and cause harm.
+            Yet we still say harming them is morally wrong.
+          </p>
           <img src="1CX1A.png" alt="1CX1 Part A" class="page-img"/>
+          <p><b>This shows:</b> Intent does not morally transmute a being.</p>
 
-          <h2>Part B</h2>
-          <p>This step is asking you whether you believe <b>human categories alone</b> can override morally relevant traits.</p>
+          <h3 style="margin-top:1rem;">Parallel B — Humans bred for exploitation</h3>
+          <p class="small">
+            If humans were deliberately bred for slavery, labor, or exploitation — would that change their moral worth?
+          </p>
+          <p><b>Intuitively, universally, cross-culturally:</b> No.</p>
           <img src="1CX1B.png" alt="1CX1 Part B" class="page-img"/>
+          <p><b>That shows:</b> Creation-purpose does not determine moral status.</p>
 
-          ${grYButtons({
-            greenLabel: "🟢 I see the inconsistency",
-            redLabel: "🔴 I think the label changes the moral status",
-            yellowLabel: "🟡 This framing is flawed",
-            onGreen: "window.__cx1_green",
-            onRed: "window.__cx1_red",
-            onYellow: "window.__cx1_yellow"
-          })}
+          <div class="divider"></div>
+
+          <h2>Do you still think purpose alone changes moral status?</h2>
+
+          <div class="btnrow">
+            <button class="btn-green" onclick="__cx1_green()">
+              🟢 No — I now see that the purpose of someone’s creation does not affect their moral status.
+            </button>
+          </div>
+
+          <div class="btnrow" style="margin-top:.75rem;">
+            <button class="btn-red" onclick="__cx1_red()">
+              🔴 Yes — Animals (and even humans) who were created for subservience deserve to be abused and/or killed.
+            </button>
+          </div>
+
+          <div class="btnrow" style="margin-top:.75rem;">
+            <button class="btn-yellow" onclick="__cx1_yellow()">
+              🟡 This framing is flawed.
+            </button>
+          </div>
 
           ${navButtons({ showBack:true, showNext:false })}
         `;
 
-        window.__cx1_green = () => { state.part1.cx1 = "green"; go(nextSelectedCX("1CX1")); };
-        window.__cx1_red   = () => { state.part1.cx1 = "red";   openRedExit("cultural"); }; // you can change kind later if you want
-        window.__cx1_yellow= () => { state.part1.cx1 = "yellow"; openYellowExit(); };
+        // IMPORTANT: renderP1_1CX(n) sets __nextCX() for the generic pages,
+        // but this is a custom page. We still need the same behavior here.
+        window.__nextCX = () => {
+          const selected = new Set(state.part1.cxSelected || []);
+          const idx = CX_ORDER.findIndex(x => x.id === "1CX1");
+          for(let i = idx + 1; i < CX_ORDER.length; i++){
+            if (selected.has(CX_ORDER[i].id)) return CX_ORDER[i].step;
+          }
+          return STEPS.P2_INTRO;
+        };
+
         window.__next = () => {};
       }
+
 
       /* ========== 1CX2 — Religious exemption (branch) ========== */
       function renderP1_1CX2(){
         setPill("Part 1 — 1CX2");
 
+        // handlers must be OUTSIDE the HTML string
+        window.__cx2_green = () => {
+          state.part1.cx2 = "not_required";
+          // If religion does NOT require them to eat animals, move on to next selected CX
+          go(nextSelectedCX("1CX2"));
+        };
+
+        window.__cx2_yellow = () => {
+          state.part1.cx2 = "not_listed";
+          openYellowExit();
+        };
+
+        window.__cx2_red_continue = () => {
+          const boxes = Array.from(document.querySelectorAll('input[name="cx2_rel"]:checked')).map(b => b.value);
+          if(boxes.length === 0){
+            alert("Please check at least one tradition to continue.");
+            return;
+          }
+          state.part1.cx2Religions = boxes;
+          state.part1.cx2RelIndex = 0;
+          // pop-up “I understand” before moving into religions
+          openRelConfirm();
+        };
+
         $app.innerHTML = `
-          <h1>1CX2 — Religious exemption</h1>
+          <h1>1CX2 — Religious or spiritual reasons</h1>
           <img src="1CX2.png" alt="Religious exemption" class="page-img"/>
 
-          <p><b>Claim:</b> “God permits or commands humans to eat animals.”</p>
-          <p>This rationale says moral authority overrides harm-based reasoning.</p>
+          <p>
+            Some people hold beliefs about animals, humans, and moral obligations that come from their religious or spiritual tradition
+            rather than from philosophical or scientific reasoning.
+          </p>
 
           <div class="divider"></div>
 
-          <p><b>Which tradition best matches your reasoning?</b></p>
+          <p><b>From what you understand, does your religion require, endorse as morally superior, or forbid avoiding eating animals?</b></p>
 
-          <div class="checklist">
-            <label class="chk"><input type="radio" name="rel" value="christian" checked/> <span><b>Christian</b></span></label>
-            <label class="chk"><input type="radio" name="rel" value="jewish"/> <span><b>Jewish</b></span></label>
-            <label class="chk"><input type="radio" name="rel" value="muslim"/> <span><b>Muslim</b></span></label>
-            <label class="chk"><input type="radio" name="rel" value="hindu"/> <span><b>Hindu</b></span></label>
-            <label class="chk"><input type="radio" name="rel" value="buddhist"/> <span><b>Buddhist</b></span></label>
-            <label class="chk"><input type="radio" name="rel" value="sikh"/> <span><b>Sikh</b></span></label>
+          <div class="btnrow">
+            <button class="btn-green" onclick="__cx2_green()">
+              🟢 No — my religion does not require me to eat animal products.
+            </button>
           </div>
 
-          ${navButtons({ showBack:true, nextLabel:"Continue" })}
+          <div class="btnrow" style="margin-top:.75rem;">
+            <button class="btn-red" onclick="document.getElementById('cx2RedPanel').style.display='block';">
+              🔴 Yes — my religion teaches that I must eat animals, that avoiding meat is sinful, or that God commands animal consumption.
+            </button>
+          </div>
+
+          <div id="cx2RedPanel" style="display:none; margin-top:1rem;">
+            <p class="small"><b>Check one or more of the following boxes to continue:</b></p>
+
+            <div class="checklist">
+              <label class="chk"><input type="checkbox" name="cx2_rel" value="christian"/> <span><b>Christianity</b></span></label>
+              <label class="chk"><input type="checkbox" name="cx2_rel" value="muslim"/> <span><b>Islam</b></span></label>
+              <label class="chk"><input type="checkbox" name="cx2_rel" value="jewish"/> <span><b>Judaism</b></span></label>
+              <label class="chk"><input type="checkbox" name="cx2_rel" value="hindu"/> <span><b>Hinduism</b></span></label>
+              <label class="chk"><input type="checkbox" name="cx2_rel" value="buddhist"/> <span><b>Buddhism</b></span></label>
+              <label class="chk"><input type="checkbox" name="cx2_rel" value="sikh"/> <span><b>Sikhism</b></span></label>
+            </div>
+
+            <div class="btnrow" style="margin-top:.75rem;">
+              <button class="btn-red" onclick="__cx2_red_continue()">Continue</button>
+            </div>
+          </div>
+
+          <div class="btnrow" style="margin-top:.75rem;">
+            <button class="btn-yellow" onclick="__cx2_yellow()">
+              🟡 My specific religious beliefs are not listed here, but I believe my tradition forbids a plant-based diet. (email me)
+            </button>
+          </div>
+
+          ${navButtons({ showBack:true, showNext:false })}
         `;
 
-        window.__next = () => {
-          const sel = document.querySelector('input[name="rel"]:checked');
-          const v = sel ? sel.value : "christian";
-          state.part1.cx2Religion = v;
-          go(STEPS.P1_1CX2_TRANSITION);
-        };
+        window.__next = () => {};
       }
+
 
       function renderP1_1CX2Transition(){
         setPill("Part 1 — 1CX2");
@@ -1394,34 +1575,28 @@
           <h1>1CX2 — Religious exemption</h1>
           <img src="1CX2transition.png" alt="Religious transition" class="page-img"/>
 
-          <p class="small">This page will show a short, respectful summary of how your tradition is commonly interpreted on this issue, and where sincere disagreement exists within the tradition.</p>
+          <p>Thank you for reflecting on this from a moral and spiritual perspective.</p>
+          <p>Many traditions permit eating animals without requiring it.</p>
+          <p><b>That means the remaining question is not whether you are allowed — but whether animal consumption is necessary for you personally.</b></p>
+          <p>In the next section, we’ll look at whether animal products are necessary for your health, nutrition, finances, access, or environmental context — not for everyone in the world, just for you.</p>
+          <p class="small">You don’t need to worry about exceptions or edge cases right now — only your own situation.</p>
 
           ${navButtons({ showBack:true, nextLabel:"Continue" })}
         `;
 
         window.__next = () => {
-          const r = state.part1.cx2Religion;
-          if(r === "buddhist") return go(STEPS.P1_1CX2_BUDDHIST);
-          if(r === "christian") return go(STEPS.P1_1CX2_CHRISTIAN);
-          if(r === "hindu") return go(STEPS.P1_1CX2_HINDU);
-          if(r === "jewish") return go(STEPS.P1_1CX2_JEWISH);
-          if(r === "muslim") return go(STEPS.P1_1CX2_MUSLIM);
-          if(r === "sikh") return go(STEPS.P1_1CX2_SIKH);
-          go(STEPS.P1_1CX2_CHRISTIAN);
+          // Show the "I understand" modal first
+          openReligiousTransition();
         };
       }
 
-      function renderReligiousDetail({ title, img, storageKey }){
+      function renderReligiousDetail({ title, img, storageKey, bodyHtml }){
         setPill("Part 1 — 1CX2");
         $app.innerHTML = `
           <h1>${title}</h1>
           <img src="${img}" alt="${title}" class="page-img"/>
 
-          <p class="small">
-            Put your tradition-specific language here (your rough draft text),
-            including: what the tradition teaches, how interpretation differs,
-            and what “minimizing harm” looks like within that tradition.
-          </p>
+          ${bodyHtml || `<p class="small">(Text coming soon.)</p>`}
 
           ${grYButtons({
             greenLabel: "🟢 I see how harm-minimization fits my values",
@@ -1435,47 +1610,637 @@
           ${navButtons({ showBack:true, showNext:false })}
         `;
 
-        window.__rel_green = () => { state.part1[storageKey] = "green"; go(nextSelectedCX("1CX2")); };
+        window.__rel_green = () => {
+        state.part1[storageKey] = "green";
+
+        // advance to next selected religion detail if any
+        const list = state.part1.cx2Religions || [];
+        const i = (state.part1.cx2RelIndex || 0) + 1;
+        state.part1.cx2RelIndex = i;
+
+        if(i < list.length){
+          // go back to transition screen between religion pages
+          go(STEPS.P1_1CX2_TRANSITION);
+        } else {
+          // done with religion pages -> next selected CX (or Part 2)
+          go(nextSelectedCX("1CX2"));
+        }
+      };
         window.__rel_red   = () => { state.part1[storageKey] = "red";   openRedExit("religious"); };
         window.__rel_yellow= () => { state.part1[storageKey] = "yellow"; openYellowExit(); };
         window.__next = () => {};
       }
 
-      function renderP1_1CX2Buddhist(){ return renderReligiousDetail({ title:"1CX2 — Buddhist", img:"1CX2Buddhist.png", storageKey:"cx2_buddhist" }); }
-      function renderP1_1CX2Christian(){ return renderReligiousDetail({ title:"1CX2 — Christian", img:"1CX2Christian.png", storageKey:"cx2_christian" }); }
-      function renderP1_1CX2Hindu(){ return renderReligiousDetail({ title:"1CX2 — Hindu", img:"1CX2Hindu.png", storageKey:"cx2_hindu" }); }
-      function renderP1_1CX2Jewish(){ return renderReligiousDetail({ title:"1CX2 — Jewish", img:"1CX2Jewish.png", storageKey:"cx2_jewish" }); }
-      function renderP1_1CX2Muslim(){ return renderReligiousDetail({ title:"1CX2 — Muslim", img:"1CX2Muslim.png", storageKey:"cx2_muslim" }); }
-      function renderP1_1CX2Sikh(){ return renderReligiousDetail({ title:"1CX2 — Sikh", img:"1CX2Sikh.png", storageKey:"cx2_sikh" }); }
+      function renderP1_1CX2Buddhist(){
+        return renderReligiousDetail({
+          title: "1CX2 — Buddhist",
+          img: "1CX2Buddhist.png",
+          storageKey: "cx2_buddhist",
+          bodyHtml: `
+            <p class="small">Click on the drop down arrow beside each claim to see the explanation.</p>
+
+            <div class="divider"></div>
+
+            <p><b>Buddhism — Step 1: Claims that eating animals is religiously acceptable or justified</b></p>
+            <p class="small"><i>(Again: almost never framed as “morally superior,” but as “permitted,” “unavoidable,” or “not central.”)</i></p>
+
+            <details class="drop">
+              <summary><b>Claim 1 — “The Buddha did not forbid meat, so eating animals must be acceptable.”</b></summary>
+              <p><b>Argument:</b> The Buddha himself ate what was given to him, including meat. Therefore meat-eating is morally neutral or endorsed.</p>
+              <p><b>Refutation direction:</b> The Buddha accepted food to avoid attachment and social disruption, not because meat was ethically ideal. Acceptance ≠ endorsement. The core ethic is non-harm and compassion, not dietary license.</p>
+            </details>
+
+            <details class="drop">
+              <summary><b>Claim 2 — “Monks rely on alms, so they cannot refuse meat.”</b></summary>
+              <p><b>Argument:</b> Because monks depend on laypeople for food, refusing meat would be disrespectful or impractical.</p>
+              <p><b>Refutation direction:</b> This is a pragmatic rule about humility and non-attachment — not a moral statement that killing animals is good. It explains tolerance, not ethical elevation.</p>
+            </details>
+
+            <details class="drop">
+              <summary><b>Claim 3 — “Buddhism teaches that suffering is everywhere, so avoiding harm is futile.”</b></summary>
+              <p><b>Argument:</b> Since farming kills insects and microbes, and existence itself involves suffering, trying to avoid harm is pointless.</p>
+              <p><b>Refutation direction:</b> Buddhism explicitly teaches minimization of suffering, not nihilism about it. The Eightfold Path is about reducing harm, not excusing it.</p>
+            </details>
+
+            <details class="drop">
+              <summary><b>Claim 4 — “Intention matters more than action — and I didn’t kill the animal myself.”</b></summary>
+              <p><b>Argument:</b> If I didn’t personally kill the animal, my karma is unaffected.</p>
+              <p><b>Refutation direction:</b> Right Intention includes knowingly participating in harm. Supporting demand is ethically relevant even if you did not wield the knife.</p>
+            </details>
+
+            <details class="drop">
+              <summary><b>Claim 5 — “Attachment to purity is itself a form of craving.”</b></summary>
+              <p><b>Argument:</b> Being strict about vegetarianism is ego-driven and spiritually counterproductive.</p>
+              <p><b>Refutation direction:</b> Buddhism distinguishes between attachment to self-image and ethical discipline. Compassion-based restraint is not ego if motivated by non-harm.</p>
+            </details>
+
+            <div class="divider"></div>
+
+            <p><b>Buddhism — Step 2: Why many Buddhists see plant-based eating as morally preferable</b></p>
+            <p>This is where Buddhism is extremely clear philosophically.</p>
+
+            <p><b>Core Buddhist principles supporting vegetarianism:</b></p>
+            <ul>
+              <li><b>Ahimsa / Non-harming</b></li>
+              <li><b>Compassion (karuṇā)</b></li>
+              <li><b>Loving-kindness (mettā)</b></li>
+              <li><b>Interdependence (pratītyasamutpāda)</b></li>
+              <li><b>Reduction of craving</b></li>
+            </ul>
+
+            <p><b>Canonical and traditional supports:</b></p>
+            <ul>
+              <li><b>First Precept:</b> “I undertake the training to abstain from killing living beings.”</li>
+              <li>Bodhisattva vows emphasize compassion toward all sentient beings.</li>
+              <li>Mahayana sutras (e.g., <i>Lankavatara Sutra</i>) explicitly discourage meat consumption.</li>
+              <li>Zen, Tibetan, and Theravada traditions increasingly encourage vegetarianism.</li>
+            </ul>
+
+            <div class="divider"></div>
+
+            <p><b>How this fits your flowchart</b></p>
+            <p>If the user selects: <b>Buddhism</b></p>
+            <ul>
+              <li>Buddhism does not teach that eating animals is morally superior or required.</li>
+              <li>It tolerates meat in limited pragmatic contexts but consistently elevates compassion and non-harm as ethically higher.</li>
+            </ul>
+
+            <p class="small"><b>Exit note (Buddhism module):</b> If your specific tradition or teacher frames this differently, consider speaking with a trusted monk/teacher in your lineage for clarification before continuing.</p>
+          `
+        });
+      }
+
+      function renderP1_1CX2Christian(){
+        return renderReligiousDetail({
+          title: "1CX2 — Christian",
+          img: "1CX2Christian.png",
+          storageKey: "cx2_christian",
+          bodyHtml: `
+            <p><b>Framing line for the user</b><br/>
+            Some Christians believe the Bible teaches that eating animals is morally required or spiritually superior. Below are the most common passages people cite for that view, and what those passages are actually saying in context.</p>
+
+            <div class="divider"></div>
+
+            <p><b>Click on the drop down arrow beside each claim to see the explanation:</b></p>
+
+            <details class="drop">
+              <summary><b>Claim 1 — “God gave humans dominion over animals, so we are meant to use and eat them.”</b></summary>
+              <p><b>Passage cited:</b> Genesis 1:26</p>
+              <p><b>What people mean by this:</b> Dominion = ownership = moral permission = intended use.</p>
+              <p><b>Context:</b> The Hebrew word often translated as “dominion” (<i>radah</i>) is commonly understood by many Christians as stewardship and responsibility, not exploitation.</p>
+              <p>This passage does not command killing or eating animals. Just three verses later, plants are described as food for humans and animals (Genesis 1:29).</p>
+            </details>
+
+            <details class="drop">
+              <summary><b>Claim 2 — “God preferred Abel’s animal offering over Cain’s plants, so animal use is spiritually superior.”</b></summary>
+              <p><b>Passage cited:</b> Genesis 4 (Cain and Abel)</p>
+              <p><b>What people mean:</b> God favored Abel because he offered animals, therefore animal sacrifice (and by extension animal use) is morally better.</p>
+              <p><b>Context:</b> The text does not explicitly say God preferred animals as a category; many interpretations emphasize Abel’s heart/intention.</p>
+              <p>Several prophetic passages criticize sacrifice as inherently pleasing to God (for example Hosea 6:6; Isaiah 1:11).</p>
+            </details>
+
+            <details class="drop">
+              <summary><b>Claim 3 — “God explicitly permits eating animals after the Flood, so it must be good or intended.”</b></summary>
+              <p><b>Passage cited:</b> Genesis 9:3</p>
+              <p>This is often read as permission, not a command. It occurs in a post-Flood survival context and does not state that avoiding meat is sinful or spiritually inferior.</p>
+              <p><b>Key distinction:</b> Permission ≠ requirement.</p>
+            </details>
+
+            <details class="drop">
+              <summary><b>Claim 4 — “Jesus fed people fish and ate fish, so Christians should eat animals.”</b></summary>
+              <p><b>Passages cited:</b> feeding narratives (bread/fish), post-resurrection fish breakfast, Passover context</p>
+              <p>These are descriptive narratives of a 1st-century subsistence culture. They do not function as universal commands that Christians must consume animals.</p>
+            </details>
+
+            <details class="drop">
+              <summary><b>Claim 5 — “Paul says vegetarians are weak in faith.”</b></summary>
+              <p><b>Passage cited:</b> Romans 14:2</p>
+              <p>This passage is commonly understood as addressing disputes over ritual practice (including kosher questions and meat associated with idol sacrifice), and the main thrust is “stop judging each other over food.”</p>
+            </details>
+
+            <div class="divider"></div>
+
+            <details class="drop">
+              <summary><b>Bonus — Biblical supports sometimes cited for a plant-based lifestyle</b></summary>
+              <ul>
+                <li><b>Genesis 1:29</b> — plants as the first dietary instruction</li>
+                <li><b>Isaiah 11:6–9</b> — “peaceable kingdom” imagery of non-violence</li>
+                <li><b>Hosea 6:6 / Matthew 9:13</b> — “mercy, not sacrifice”</li>
+                <li><b>Romans 14:21</b> — abstaining from meat can be good</li>
+                <li><b>Proverbs 12:10</b> — righteous care for animals</li>
+              </ul>
+            </details>
+
+            <p class="small"><b>Note:</b> Christians disagree sincerely here. This screen is not claiming “one true reading” — it’s showing that “Christianity requires meat” is not the only mainstream interpretation.</p>
+          `
+        });
+      }
+
+      function renderP1_1CX2Hindu(){
+        return renderReligiousDetail({
+          title: "1CX2 — Hindu",
+          img: "1CX2Hindu.png",
+          storageKey: "cx2_hindu",
+          bodyHtml: `
+            <p><b>Hinduism — Step 0: High-level framing</b></p>
+            <p>There are essentially no mainstream Hindu arguments that eating animals is morally superior or religiously required.</p>
+            <p>In fact, Hinduism is the one major tradition where the default moral gravity often runs the other direction (toward non-violence and vegetarianism), with meat-eating treated as a contextual exception, not a virtue.</p>
+
+            <div class="divider"></div>
+
+            <p><b>Hinduism — Step 1: Claims that meat-eating is religiously acceptable or justified</b></p>
+            <p class="small"><i>Note:</i> These are not usually framed as “morally superior,” but as “permitted,” “necessary in some cases,” or “spiritually neutral.”</p>
+            <p class="small">Click each claim to see the explanation.</p>
+
+            <details class="drop">
+              <summary><b>Claim 1 — “The Vedas include animal sacrifice, so eating animals must be religiously sanctioned.”</b></summary>
+              <p><b>Argument:</b> Some early Vedic rituals (yajñas) included animal offerings, so Hinduism cannot be against killing animals.</p>
+              <p><b>Refutation direction:</b> Later Hindu philosophy (Upanishads, Bhagavad Gita, Dharmaśāstra) increasingly moves away from literal sacrifice toward symbolic, internal, or plant-based offerings. Ahimsa becomes increasingly central.</p>
+            </details>
+
+            <details class="drop">
+              <summary><b>Claim 2 — “The caste system assigns meat-eating to certain groups, so it must be divinely ordered.”</b></summary>
+              <p><b>Argument:</b> Kshatriyas and others traditionally ate meat; therefore eating animals is part of one’s dharma.</p>
+              <p><b>Refutation direction:</b> Dharma in Hinduism is contextual, not universal. What is permitted for survival or social function is not defined as morally ideal. Renunciation and non-harm are consistently framed as spiritually higher.</p>
+            </details>
+
+            <details class="drop">
+              <summary><b>Claim 3 — “The Bhagavad Gita says all food is acceptable if offered properly.”</b></summary>
+              <p><b>Argument:</b> Krishna says food offered with devotion is accepted, so meat is fine if eaten mindfully.</p>
+              <p><b>Refutation direction:</b> The Gita explicitly classifies foods into sattvic (pure), rajasic (stimulating), and tamasic (dulling) — and places meat in the lower categories. Acceptance ≠ moral elevation.</p>
+            </details>
+
+            <details class="drop">
+              <summary><b>Claim 4 — “Everything in nature eats something else, so meat-eating is natural.”</b></summary>
+              <p><b>Argument:</b> Predation is natural; humans are part of nature.</p>
+              <p><b>Refutation direction:</b> Hindu ethics are not grounded in “naturalism” but in conscious restraint. The moral project is to rise above instinct, not mirror it.</p>
+            </details>
+
+            <details class="drop">
+              <summary><b>Claim 5 — “Absolute non-violence is impossible, so vegetarianism is not morally necessary.”</b></summary>
+              <p><b>Argument:</b> Farming kills insects and microbes, so avoiding harm is futile.</p>
+              <p><b>Refutation direction:</b> Hindu ethics are based on minimization of harm, not impossible purity. The fact that zero harm is impossible does not justify avoidable harm.</p>
+            </details>
+
+            <div class="divider"></div>
+
+            <p><b>Hinduism — Step 2: Why many Hindus see plant-based eating as morally preferable</b></p>
+            <p>This is where Hinduism is strongest and most distinctive.</p>
+
+            <p><b>Core Hindu principles that support vegetarianism:</b></p>
+            <ul>
+              <li><b>Ahimsa</b> (non-violence) — central ethical principle</li>
+              <li><b>Karma</b> — harm generates moral consequence</li>
+              <li><b>Sattva guna</b> — purity and clarity support spiritual growth</li>
+              <li><b>Compassion (daya)</b> — moral maturity expressed as mercy</li>
+              <li><b>Renunciation (vairagya)</b> — reducing desire is spiritually elevating</li>
+            </ul>
+
+            <p><b>Commonly cited sources (examples):</b></p>
+            <ul>
+              <li>Mahabharata: “Non-violence is the highest dharma.”</li>
+              <li>Manusmriti: Praises abstention from meat as virtuous</li>
+              <li>Bhagavad Gita 17:8–10: Classifies foods; plant foods are sattvic</li>
+              <li>Yoga Sutras: Ahimsa is the first yama (ethical restraint)</li>
+              <li>Jain influence: Deep cultural reinforcement of non-violence</li>
+            </ul>
+
+            <div class="divider"></div>
+
+            <p class="small"><b>Exit note (Hinduism module):</b> If your specific tradition or community teaches something different, consider speaking with a trusted teacher, priest, or knowledgeable elder in your lineage for guidance.</p>
+          `
+        });
+      }
+
+     function renderP1_1CX2Jewish(){
+      return renderReligiousDetail({
+        title: "1CX2 — Jewish",
+        img: "1CX2Jewish.png",
+        storageKey: "cx2_jewish",
+        bodyHtml: `
+          <p><b>Judaism — “Does my religion require or morally prioritize eating animals?”</b></p>
+          <p>Below are the most common Jewish arguments or textual references people cite to support eating animals as religiously required or spiritually preferable — and what those sources actually say.</p>
+          <p class="small">(Click each claim to see the explanation.)</p>
+
+          <div class="divider"></div>
+
+          <details class="drop">
+            <summary><b>Claim 1 — “God explicitly permitted eating meat after the Flood, so meat is part of God’s plan.”</b></summary>
+            <p><b>Text cited:</b> Genesis 9:3 (“Every moving thing that lives shall be food for you…”)</p>
+            <p><b>What people mean:</b> God intentionally expanded the human diet to include animals — therefore eating animals is divinely endorsed.</p>
+            <p><b>Clarification:</b> This is permission, not command. It occurs in a post-Flood survival context — after massive destruction, displacement, and scarcity.</p>
+            <p>The text does not say:</p>
+            <ul>
+              <li>You must eat animals</li>
+              <li>Avoiding meat is sinful</li>
+              <li>Meat is spiritually superior</li>
+            </ul>
+            <p>In Jewish interpretation, this is often treated as a concession to human need, not an ethical ideal.</p>
+          </details>
+
+          <details class="drop">
+            <summary><b>Claim 2 — “Animal sacrifice is central to the Torah, so animal use is spiritually significant.”</b></summary>
+            <p><b>Texts cited:</b> Leviticus, Numbers, Temple sacrifice laws</p>
+            <p><b>What people mean:</b> Animals were used in worship, therefore animal killing is religiously meaningful or required.</p>
+            <p><b>Clarification:</b> Sacrifice in Judaism was a ritual system for a specific time, place, and social structure — the Temple in Jerusalem.</p>
+            <p>The Hebrew Bible repeatedly emphasizes that God does not actually desire sacrifice itself:</p>
+            <ul>
+              <li>“I desire mercy, not sacrifice.” (Hosea 6:6)</li>
+              <li>“What need have I of all your sacrifices?” (Isaiah 1:11)</li>
+            </ul>
+            <p>After the destruction of the Temple (70 CE), Judaism explicitly shifted away from animal sacrifice toward prayer, ethics, and study.</p>
+            <p>Sacrifice was a ritual mechanism, not a moral endorsement of killing animals.</p>
+          </details>
+
+          <details class="drop">
+            <summary><b>Claim 3 — “Keeping kosher assumes animal consumption, so Judaism is fundamentally meat-based.”</b></summary>
+            <p><b>Texts cited:</b> Leviticus 11 (kosher laws)</p>
+            <p><b>What people mean:</b> Kosher law regulates meat, so meat must be morally important or expected.</p>
+            <p><b>Clarification:</b> Kashrut regulates meat because people eat meat — not because they must.</p>
+            <p>Jewish law also regulates many areas of life (including historically difficult areas such as divorce, slavery, and warfare).</p>
+            <p><b>Key idea:</b> Regulation ≠ endorsement.</p>
+            <p>Kosher law is often framed as minimizing harm, discipline, and ethical awareness — not mandating animal use.</p>
+            <p>A Jew can be fully observant and vegetarian or vegan.</p>
+          </details>
+
+          <details class="drop">
+            <summary><b>Claim 4 — “Eating meat on Shabbat and holidays is a mitzvah (commandment).”</b></summary>
+            <p><b>Texts cited:</b> Talmudic discussions of <i>simchat yom tov</i> (joy on festivals)</p>
+            <p><b>What people mean:</b> Joy on festivals was historically associated with meat and wine, therefore eating meat is religiously encouraged.</p>
+            <p><b>Clarification:</b> The mitzvah is joy — not meat.</p>
+            <p>In ancient times, meat was rare and associated with celebration. Today joy can be fulfilled in many ways.</p>
+            <p>Many modern rabbinic authorities state that if meat causes suffering, discomfort, or ethical distress, it does not fulfill the mitzvah of joy.</p>
+            <p>So meat is culturally contingent, not theologically required.</p>
+          </details>
+
+          <details class="drop">
+            <summary><b>Claim 5 — “Humans are permitted to use animals for their needs, therefore eating them is morally fine.”</b></summary>
+            <p><b>Texts cited:</b> General Torah permissions, dominion language</p>
+            <p><b>What people mean:</b> Since animals are not human, human needs override animal interests.</p>
+            <p><b>Clarification:</b> Judaism contains one of the strongest animal welfare principles of any religious tradition:</p>
+            <p><b>Tza’ar ba’alei chayim</b> — the prohibition against causing unnecessary suffering to animals.</p>
+            <p>This is a formal halakhic principle, so permission to use animals is bounded by the obligation to avoid unnecessary suffering.</p>
+            <p>If animal use is unnecessary, the permission weakens.</p>
+          </details>
+
+          <div class="divider"></div>
+
+          <p><b>Bonus: Six supports for a plant-based lifestyle</b></p>
+          <p class="small">Many Jewish thinkers and communities interpret Jewish law and ethics as encouraging compassion, restraint, and minimizing harm — which can support a vegetarian or plant-based diet.</p>
+          <p class="small">(Click each point to learn more.)</p>
+
+          <details class="drop">
+            <summary><b>Reason 1 — Tza’ar ba’alei chayim (Prohibition of animal suffering)</b></summary>
+            <p><b>Source:</b> Talmud (Bava Metzia 32b and elsewhere)</p>
+            <p>It is forbidden to cause unnecessary suffering to animals. This is not a metaphor — it is treated as a binding halakhic principle.</p>
+            <p>Many Jewish ethicists argue: if animal products are not necessary, then inflicting suffering to obtain them becomes ethically problematic.</p>
+          </details>
+
+          <details class="drop">
+            <summary><b>Reason 2 — Bal Tashchit (Prohibition against waste and destruction)</b></summary>
+            <p><b>Source:</b> Deuteronomy 20:19–20</p>
+            <p>Expanded by the rabbis into a general prohibition against unnecessary destruction or waste.</p>
+            <p>Animal agriculture is resource-intensive (land, water, and feed crops), so many Jewish thinkers argue plant-based diets better fulfill the obligation to avoid waste and destruction.</p>
+          </details>
+
+          <details class="drop">
+            <summary><b>Reason 3 — Pikuach nefesh (Preservation of life overrides other laws)</b></summary>
+            <p><b>Source:</b> Talmud Yoma 85b</p>
+            <p>Preserving human life takes precedence over nearly all commandments.</p>
+            <p>Some Jewish vegan thinkers argue: if a diet reduces risk of disease, environmental collapse, or food scarcity, it supports preservation of life and may be ethically preferable.</p>
+          </details>
+
+          <details class="drop">
+            <summary><b>Reason 4 — Kiddush Hashem (Sanctifying God’s name through ethical behavior)</b></summary>
+            <p><b>Source:</b> Leviticus 22:32 and rabbinic ethics</p>
+            <p>Jews are commanded to sanctify God’s name through righteous conduct.</p>
+            <p>If society increasingly sees animal cruelty, environmental harm, and exploitation as immoral, choosing compassion publicly can be understood as Kiddush Hashem.</p>
+          </details>
+
+          <details class="drop">
+            <summary><b>Reason 5 — The Edenic ideal (Genesis 1:29 revisited)</b></summary>
+            <p>The Torah begins with a plant-based diet for all beings.</p>
+            <p>Many Jewish commentators (including Rabbi Abraham Isaac Kook) taught meat consumption is a temporary concession to human moral weakness, not the ultimate ethical goal.</p>
+            <p>As humanity morally evolves, we are meant to return toward the Edenic ideal of non-violence.</p>
+          </details>
+
+          <details class="drop">
+            <summary><b>Reason 6 — Justice and hunger (tzedek and tzedakah)</b></summary>
+            <p>Judaism emphasizes justice and care for the poor.</p>
+            <p>Since animal agriculture consumes vast amounts of grain that could feed humans, many Jewish vegans argue plant-based diets better align with feeding the hungry, reducing inequality, and global justice.</p>
+          </details>
+
+          <div class="divider"></div>
+
+          <p><b>Exit note (Judaism module)</b></p>
+          <p class="small">If you still believe your specific Jewish tradition requires animal consumption, it may be helpful to speak with a trusted rabbi or Jewish educator about how your tradition understands this question before continuing.</p>
+        `
+      });
+    }
+
+      function renderP1_1CX2Muslim(){
+        return renderReligiousDetail({
+          title: "1CX2 — Muslim",
+          img: "1CX2Muslim.png",
+          storageKey: "cx2_muslim",
+          bodyHtml: `
+            <p><b>Islam — “Does my religion require or morally prioritize eating animals?”</b></p>
+            <p>Below are common arguments or texts that some people interpret as requiring or elevating meat consumption — and the key distinction this module is testing:</p>
+            <p><b>Permissible (halal) does not automatically mean required.</b></p>
+
+            <div class="divider"></div>
+
+            <p><b>Click on the drop-down arrow beside each claim to see the explanation:</b></p>
+
+            <details class="drop">
+              <summary><b>Claim 1 — “The Qur’an says meat is lawful (halal), so eating meat is part of God’s command.”</b></summary>
+              <p><b>What people mean:</b> If the Qur’an lists animals that are lawful to eat, then eating them must be required or morally superior.</p>
+              <p><b>Response:</b> “Lawful / permissible” does not mean “required.” Many Muslims understand halal dietary guidance as allowing meat under certain conditions, not obligating it.</p>
+              <p><b>Conclusion:</b> Permissibility does not equal obligation.</p>
+            </details>
+
+            <details class="drop">
+              <summary><b>Claim 2 — “Sharia lists permissible animals and slaughter methods, so meat must be morally central.”</b></summary>
+              <p><b>What people mean:</b> Because Islam gives detailed rules for halal slaughter, eating meat must be spiritually required or uniquely important.</p>
+              <p><b>Response:</b> Detailed rules can regulate how meat is eaten <i>if</i> it is eaten, without making meat obligatory. Many Muslims interpret these rules as harm-limitation and ethical boundaries, not a mandate to consume animals.</p>
+              <p><b>Conclusion:</b> Regulation ≠ requirement.</p>
+            </details>
+
+            <details class="drop">
+              <summary><b>Claim 3 — “Islam implies omnivory reflects God’s design, so avoiding meat is wrong.”</b></summary>
+              <p><b>What people mean:</b> Because both plants and animals are permitted, humans are “meant” to eat animals, and avoiding meat could be against divine intention.</p>
+              <p><b>Response:</b> Allowing a food category does not necessarily elevate it above other foods or imply moral superiority. Many Muslims understand dietary flexibility as permission, not preference or obligation.</p>
+              <p><b>Conclusion:</b> Dietary flexibility reflects permissibility, not moral priority.</p>
+            </details>
+
+            <details class="drop">
+              <summary><b>Claim 4 — “Meat is part of Islamic celebrations and charity, so it must be spiritually valuable.”</b></summary>
+              <p><b>What people mean:</b> Because meat is often shared in festivals or charity practices, meat must be morally highlighted in Islam.</p>
+              <p><b>Response:</b> Cultural and communal practices may include meat without making meat mandatory in everyday life. Many Muslims interpret Islamic ethics as emphasizing gratitude, generosity, and moderation — not compulsory animal consumption.</p>
+              <p><b>Conclusion:</b> Cultural practice does not equal religious obligation.</p>
+            </details>
+
+            <details class="drop">
+              <summary><b>Claim 5 — “Halal meat is ‘pure and blessed,’ so it is morally prescribed.”</b></summary>
+              <p><b>What people mean:</b> If halal is described as “lawful and good,” then eating halal meat must be morally preferred.</p>
+              <p><b>Response:</b> “Halal and good” is widely understood to include a broad range of foods, including plant foods. A food being permissible and blessed does not automatically mean it is required.</p>
+              <p><b>Conclusion:</b> Blessing/permissibility ≠ requirement.</p>
+            </details>
+
+            <div class="divider"></div>
+
+            <p><b>Bonus: Five Islamic themes some Muslims connect to plant-based eating</b></p>
+
+            <details class="drop">
+              <summary><b>Reason 1 — Compassion toward animals and minimizing suffering</b></summary>
+              <p><b>Core idea:</b> Islamic ethics emphasizes mercy and forbids cruelty.</p>
+              <p><b>Why some Muslims connect this to plant-based eating:</b> If someone believes modern industrial animal agriculture causes routine suffering and violates mercy-based ethics, they may see plant-based choices as more aligned with compassion.</p>
+            </details>
+
+            <details class="drop">
+              <summary><b>Reason 2 — Stewardship of the Earth (khalifah) and avoiding waste</b></summary>
+              <p><b>Core idea:</b> Humans are stewards of creation and accountable for harm and waste.</p>
+              <p><b>Why some Muslims connect this to plant-based eating:</b> If someone views animal agriculture as resource-intensive and environmentally harmful, reducing animal products can feel consistent with stewardship.</p>
+            </details>
+
+            <details class="drop">
+              <summary><b>Reason 3 — Moderation and avoiding excess</b></summary>
+              <p><b>Core idea:</b> Islam repeatedly emphasizes moderation in consumption.</p>
+              <p><b>Why some Muslims connect this to plant-based eating:</b> A plant-centered diet can be framed as restraint, simplicity, and avoiding unnecessary excess.</p>
+            </details>
+
+            <details class="drop">
+              <summary><b>Reason 4 — Historical practice and restraint with meat</b></summary>
+              <p><b>Core idea:</b> Some people interpret early Muslim practice as relatively low-meat and meat-as-occasional rather than constant.</p>
+              <p><b>Why this matters:</b> Even if not doctrinal, this can support a “meat is permitted but not central” framing.</p>
+            </details>
+
+            <details class="drop">
+              <summary><b>Reason 5 — Responding to modern ethical and environmental realities</b></summary>
+              <p><b>Core idea:</b> Some contemporary Muslim thinkers argue industrial systems can conflict with mercy, justice, and stewardship.</p>
+              <p><b>Why some Muslims connect this to plant-based eating:</b> They may choose plant-based eating as harm-reduction while still acknowledging that halal animal products are permitted in principle.</p>
+            </details>
+
+            <div class="divider"></div>
+
+            <p><b>Exit note (Islam module)</b></p>
+            <p class="small">If you still believe your Islamic tradition specifically requires eating animal products, it may be helpful to speak with a trusted imam or knowledgeable scholar within your tradition before deciding.</p>
+          `
+        });
+      }
+      
+      function renderP1_1CX2Sikh(){
+        return renderReligiousDetail({
+          title: "1CX2 — Sikh",
+          img: "1CX2Sikh.png",
+          storageKey: "cx2_sikh",
+          bodyHtml: `
+            <p class="small">Click on the drop down arrow beside each claim to see the explanation.</p>
+
+            <div class="divider"></div>
+
+            <p><b>Sikhism — Step 1: Claims Sikhs might give for eating animal products</b></p>
+            <p>Sikhism almost never frames meat-eating as morally superior — only as religiously irrelevant. The common claims look like this:</p>
+
+            <details class="drop">
+              <summary><b>Claim 1 — “Sikhism rejects ritual purity rules, so diet doesn’t matter.”</b></summary>
+              <p><b>Argument:</b> Sikhism explicitly rejects Hindu caste rules and ritual purity — therefore dietary restrictions (including vegetarianism) are meaningless.</p>
+              <p><b>Refutation direction:</b> Sikhism rejects ritual purity as salvation, not ethical responsibility. This removes food-based spiritual hierarchy, not moral evaluation of harm.</p>
+            </details>
+
+            <details class="drop">
+              <summary><b>Claim 2 — “Guru Nanak taught that arguing about food is foolish.”</b></summary>
+              <p><b>Argument:</b> Guru Nanak criticized debates about food purity as distractions from spiritual practice.</p>
+              <p><b>Refutation direction:</b> He criticized ego-driven purity contests — not compassion-based ethical reflection. Ethical inquiry into harm is not the same as ritual obsession.</p>
+            </details>
+
+            <details class="drop">
+              <summary><b>Claim 3 — “The body is temporary, so food choices are insignificant.”</b></summary>
+              <p><b>Argument:</b> Since Sikhism focuses on devotion, justice, and humility, diet is spiritually secondary.</p>
+              <p><b>Refutation direction:</b> Secondary ≠ irrelevant. Sikhism emphasizes compassion, non-exploitation, and justice — all of which are affected by how food is produced.</p>
+            </details>
+
+            <details class="drop">
+              <summary><b>Claim 4 — “Sikhs historically hunted or ate meat, so it must be acceptable.”</b></summary>
+              <p><b>Argument:</b> Historical Sikhs sometimes hunted or ate meat.</p>
+              <p><b>Refutation direction:</b> Historical behavior ≠ ethical ideal. Sikh Gurus also lived in violent political conditions; necessity does not equal moral elevation.</p>
+            </details>
+
+            <details class="drop">
+              <summary><b>Claim 5 — “Sikhism teaches equality of all foods.”</b></summary>
+              <p><b>Argument:</b> Sikhism rejects labeling foods as pure or impure.</p>
+              <p><b>Refutation direction:</b> Rejecting purity labels does not prevent moral evaluation of harm, suffering, or exploitation.</p>
+            </details>
+
+            <div class="divider"></div>
+
+            <p><b>Sikhism — Step 2: Why Sikhism can support plant-based ethics</b></p>
+            <p>Sikhism emphasizes:</p>
+            <ul>
+              <li><b>Compassion (dayā)</b></li>
+              <li><b>Non-exploitation</b></li>
+              <li><b>Justice and protection of the vulnerable</b></li>
+              <li><b>Humility and reduction of ego</b></li>
+              <li><b>Care for creation</b></li>
+            </ul>
+            <p>These principles strongly support minimizing harm — even if Sikhism does not mandate vegetarianism.</p>
+
+            <div class="divider"></div>
+
+            <p><b>Flowchart summary for Sikhism</b></p>
+            <ul>
+              <li><b>Does Sikhism require eating animals?</b> → No</li>
+              <li><b>Does Sikhism teach it is morally superior?</b> → No</li>
+              <li><b>Does Sikhism allow plant-based ethics?</b> → Yes</li>
+              <li><b>Does Sikhism value compassion and harm reduction?</b> → Yes</li>
+            </ul>
+
+            <p class="small"><b>Exit note (Sikhism module):</b> If your local community teaches a specific rule you want reflected here, email feedback so the flowchart can represent that nuance.</p>
+          `
+        });
+      }
 
 
       /* ========== 1CX3 — Appeal to nature ========== */
       function renderP1_1CX3(){
         setPill("Part 1 — 1CX3");
+
         $app.innerHTML = `
-          <h1>1CX3 — Appeal to nature</h1>
+          <h1>1CX3 — “Predation is natural / humans are omnivores.”</h1>
           <img src="1CX3.png" alt="Appeal to nature" class="page-img"/>
 
-          <p><b>Claim:</b> “Predation is natural, so it’s morally fine.”</p>
-          <p>This rationale treats “natural” as automatically morally justified.</p>
+          <p><b>This is an appeal to nature.</b></p>
 
-          ${grYButtons({
-            greenLabel: "🟢 I see why ‘natural’ ≠ ‘morally right’",
-            redLabel: "🔴 I believe naturalness overrides suffering",
-            yellowLabel: "🟡 This needs a better framing",
-            onGreen: "window.__cx3_green",
-            onRed: "window.__cx3_red",
-            onYellow: "window.__cx3_yellow"
-          })}
+          <p><b>Prompt:</b> Do you believe that because something is natural, it is therefore morally acceptable for humans?</p>
+
+          <div class="divider"></div>
+
+          <h2>1CX3 — “It’s natural” Argument</h2>
+
+          <p><b>Claim:</b> “Predation is natural. Humans are omnivores. Therefore eating animals is morally acceptable or justified because it is natural.”</p>
+
+          <div class="divider"></div>
+
+          <h2>Refutation</h2>
+
+          <p>Being “natural” does not automatically make something morally acceptable.</p>
+
+          <p>Many behaviors are natural in primates and other mammals that humans still consider morally wrong, including:</p>
+
+          <ol>
+            <li><b>Infanticide</b> (killing offspring under certain social or resource conditions)</li>
+            <li><b>Forced mating / lack of consent</b></li>
+            <li><b>Territorial violence and theft</b> (harming others or taking resources by force)</li>
+          </ol>
+
+          <p>These behaviors occur naturally in animal populations, yet humans reject them as morally acceptable.</p>
+
+          <div class="divider"></div>
+
+          <h2>More detailed examples</h2>
+
+          <h3>1) Infanticide</h3>
+          <p>Some primate species kill offspring under certain conditions (resource scarcity, social dominance changes, etc.).</p>
+          <p><b>Natural?</b> Yes.<br/>
+            <b>Morally acceptable for humans?</b> Obviously no.</p>
+
+          <h3>2) Forced mating (lack of consent)</h3>
+          <p>In many animal species, reproduction is not based on consent as humans define it.</p>
+          <p><b>Natural?</b> Yes.<br/>
+            <b>Morally acceptable for humans?</b> Obviously no.</p>
+          <p class="small"><i>(We don’t need to describe it further — the concept alone is enough.)</i></p>
+
+          <h3>3) Territorial violence</h3>
+          <p>Animals regularly harm or kill others to defend territory, mates, or resources.</p>
+          <p><b>Natural?</b> Yes.<br/>
+            <b>Morally acceptable for humans?</b> Not as a moral justification.</p>
+          <p>We restrict violence even though it evolved.</p>
+
+          <div class="divider"></div>
+
+          <h2>Decision question</h2>
+          <p><b>Do you now agree that something being natural does not by itself make it morally acceptable for humans?</b></p>
+
+          <div class="btnrow">
+            <button class="btn-green" onclick="window.__cx3_green()">
+              🟢 Yes — I agree that something being natural does not make it morally acceptable.
+            </button>
+          </div>
+
+          <div class="btnrow" style="margin-top:.75rem;">
+            <button class="btn-red" onclick="window.__cx3_red()">
+              🔴 No — I believe that infanticide, forced mating without consent, and/or violence or theft over resources are morally acceptable for humans because they occur naturally in other mammals.
+            </button>
+          </div>
+
+          <div class="btnrow" style="margin-top:.75rem;">
+            <button class="btn-yellow" onclick="window.__cx3_yellow()">
+              🟡 I think this question is missing something or is logically unsound. I would like to explain my reasoning.
+            </button>
+          </div>
 
           ${navButtons({ showBack:true, showNext:false })}
         `;
 
-        window.__cx3_green = () => { state.part1.cx3 = "green"; go(nextSelectedCX("1CX3")); };
-        window.__cx3_red   = () => { state.part1.cx3 = "red";   openRedExit("cultural"); };
-        window.__cx3_yellow= () => { state.part1.cx3 = "yellow"; openYellowExit(); };
+        window.__cx3_green = () => {
+          state.part1.cx3 = "green";
+          go(nextSelectedCX("1CX3"));
+        };
+
+        window.__cx3_red = () => {
+          state.part1.cx3 = "red";
+          // Per your spec: red here should trigger the professional-support (psych) exit.
+          openRedExit("psych");
+        };
+
+        window.__cx3_yellow = () => {
+          state.part1.cx3 = "yellow";
+          openYellowExit();
+        };
+
         window.__next = () => {};
       }
+
 
       /* ========== 1CX4 — Cultural / identity exemption ========== */
       function renderP1_1CX4(){
@@ -1508,56 +2273,254 @@
       /* ========== 1CX5 — Human-centered priority ========== */
       function renderP1_1CX5(){
         setPill("Part 1 — 1CX5");
+
         $app.innerHTML = `
-          <h1>1CX5 — Human-centered priority</h1>
+          <h1>1CX5 — Social Harmony / Comfort / Inconvenience</h1>
           <img src="1CX5.jpg" alt="Human-centered priority" class="page-img"/>
 
-          <p><b>Claim:</b> “Human comfort, convenience, or social harmony outweighs animal suffering.”</p>
-          <p>This includes the “don’t-rock-the-boat / agreeableness” concern, framed as a moral priority claim.</p>
+          <p><b>Prompt:</b> Do you believe that human comfort or convenience morally outweighs the suffering of other sentient beings?</p>
 
-          ${grYButtons({
-            greenLabel: "🟢 I see why convenience may not justify suffering",
-            redLabel: "🔴 I believe human priorities override",
-            yellowLabel: "🟡 This needs better options",
-            onGreen: "window.__cx5_green",
-            onRed: "window.__cx5_red",
-            onYellow: "window.__cx5_yellow"
-          })}
+          <div class="divider"></div>
+
+          <h2>Claim</h2>
+          <p><b>Claim:</b> “Maintaining social harmony, avoiding discomfort, or not rocking the boat is a good reason to continue practices that cause harm.”</p>
+
+          <p class="small">
+            You’re no longer dealing with sacred identity (religion, culture), or epistemology (science), or biology (nature).
+            You’re dealing with comfort, conformity, and conflict-avoidance.
+          </p>
+
+          <p class="small">
+            So 1CX5 is essentially: <i>“I know this causes harm, but I don’t want to deal with the social cost of opposing it.”</i>
+            That’s a very human reason — and also one that has repeatedly been used to justify harm historically.
+          </p>
+
+          <div class="divider"></div>
+
+          <h2>Reflection</h2>
+          <p>Throughout history, many harmful practices were socially normal and comfortable — and were only changed when people were willing to be disagreeable, disruptive, or uncomfortable.</p>
+
+          <h3>Examples of times where being disagreeable was morally necessary</h3>
+
+          <ol>
+            <li>
+              <b>Abolition of slavery</b><br/>
+              <span class="small">
+                Slavery was once economically normal, culturally normal, religiously defended, and socially enforced.
+                “Not rocking the boat” meant continuing slavery.
+              </span>
+            </li>
+
+            <li>
+              <b>Civil rights / racial equality</b><br/>
+              <span class="small">
+                Segregation was socially comfortable for the majority. Challenging it created discomfort, conflict, backlash,
+                social exclusion, and family arguments — but avoiding conflict meant perpetuating injustice.
+              </span>
+            </li>
+
+            <li>
+              <b>Women’s rights</b> (voting, education, bodily autonomy)<br/>
+              <span class="small">
+                Women asking for equality were told not to be dramatic, not to make others uncomfortable, and not to disrupt social order.
+                Progress only happened when people did make others uncomfortable.
+              </span>
+            </li>
+
+            <li>
+              <b>Child labor reform</b><br/>
+              <span class="small">
+                Children working long hours in dangerous conditions was once normal.
+                Ending it disrupted business interests and economic comfort — but it was still morally necessary.
+              </span>
+            </li>
+
+            <li>
+              <b>Public recognition of abuse</b> (domestic, sexual, institutional)<br/>
+              <span class="small">
+                For decades, victims were told not to talk about it and not to make trouble.
+                Silence preserved “harmony,” but silence protected harm.
+              </span>
+            </li>
+          </ol>
+
+          <div class="divider"></div>
+
+          <h2>The pattern</h2>
+          <ul>
+            <li>The harm was known or visible.</li>
+            <li>The system was socially comfortable.</li>
+            <li>Speaking up was disruptive.</li>
+            <li>Silence benefited those with power.</li>
+            <li>Discomfort was framed as the problem — not the harm.</li>
+          </ul>
+
+          <p class="small">
+            If we only oppose harm when it is socially comfortable to do so, we will almost always oppose it too late.
+          </p>
+
+          <div class="divider"></div>
+
+          <h2>Decision question</h2>
+          <p>
+            <b>Do you now agree that social harmony or avoiding discomfort is not, by itself, a sufficient reason to continue eating animals purely for pleasure?</b>
+          </p>
+          <p class="small">
+            (Keep in mind: we are still only evaluating whether harm is acceptable when it is not necessary.
+            In the next section we will look at nutrition, availability, cost, and environmental impact.)
+          </p>
+
+          <div class="btnrow">
+            <button class="btn-green" onclick="window.__cx5_green()">
+              🟢 Yes — I agree that social harmony alone is not a sufficient reason to continue causing harm.
+            </button>
+          </div>
+
+          <div class="btnrow" style="margin-top:.75rem;">
+            <button class="btn-red" onclick="window.__cx5_red()">
+              🔴 No — I believe that maintaining social harmony outweighs the abolition of slavery, civil rights, women’s rights, child labor reform, and/or public reckoning with abuse.
+            </button>
+          </div>
+
+          <div class="btnrow" style="margin-top:.75rem;">
+            <button class="btn-yellow" onclick="window.__cx5_yellow()">
+              🟡 I think this question is missing something or is logically unsound. I would like to explain.
+            </button>
+          </div>
 
           ${navButtons({ showBack:true, showNext:false })}
         `;
 
-        window.__cx5_green = () => { state.part1.cx5 = "green"; go(nextSelectedCX("1CX5")); };
-        window.__cx5_red   = () => { state.part1.cx5 = "red";   openRedExit("psych"); };
-        window.__cx5_yellow= () => { state.part1.cx5 = "yellow"; openYellowExit(); };
+        window.__cx5_green = () => {
+          state.part1.cx5 = "green";
+          go(nextSelectedCX("1CX5")); // will route to next selected CX; if none left, Part 2 Intro
+        };
+
+        window.__cx5_red = () => {
+          state.part1.cx5 = "red";
+          openRedExit("psych"); // per your spec: professional-support message
+        };
+
+        window.__cx5_yellow = () => {
+          state.part1.cx5 = "yellow";
+          openYellowExit();
+        };
+
         window.__next = () => {};
       }
 
+      function renderP2_Intro(){
+        setPill("Part 2 — Intro");
 
-    function renderP2_Intro(){
-      setPill("Part 2 — Intro");
-      $app.innerHTML = `
-        <h1>Part 2 (placeholder intro)</h1>
-        <p>This is where you show your “Part 2 disclaimer” and your “this is only about YOU personally” reminder.</p>
+        $app.innerHTML = `
+          <h1>Transition Screen — Entering Part 2</h1>
+          <img src="2Transition.png" alt="Nutrition and health" class="page-img"/>
 
-        ${navButtons({ showBack:true, nextLabel:"Continue to 2A" })}
-      `;
+          <p><b>Welcome to Part 2.</b></p>
 
-      window.__next = () => go(STEPS.P2_2A);
-    }
+          <p>
+            In Part 1, you determined that harming or killing animals purely for pleasure — when it is unnecessary for survival
+            or optimal wellbeing — is morally unsound for you personally.
+          </p>
+
+          <p>
+            In this section, we will explore whether consuming animals or animal products is, in fact, necessary for your own health,
+            survival, or optimal wellbeing.
+          </p>
+
+          <div class="divider"></div>
+
+          <p><b>As you go through this section, please remember:</b></p>
+          <ul>
+            <li>We are only evaluating what is necessary for <b>you personally</b>, not for society as a whole or for hypothetical individuals.</li>
+            <li>Other people may have different circumstances than you do.</li>
+            <li>If you know someone whose situation is different from your own, feel free to direct them to this flowchart so they can explore their own answers.</li>
+          </ul>
+
+          <div class="divider"></div>
+
+          <p class="small">
+            There is no right or wrong answer here. Bodies, resources, cultures, and lives are different.
+            Our goal is simply to understand your situation and explore what is realistically possible — even if that means small changes rather than big ones.
+          </p>
+
+          ${navButtons({ showBack:true, nextLabel:"Continue to 2A" })}
+        `;
+
+        window.__next = () => go(STEPS.P2_2A);
+      }
+
 
     function renderP2_2A(){
       setPill("Part 2 — 2A");
-      $app.innerHTML = `
-        <h1>Part 2 — 2A (placeholder)</h1>
-        <p>General: “A well-planned plant-based diet can be nutritionally adequate for the general population.”</p>
-        <p class="small">You can later attach citations and your essay excerpt here.</p>
 
-        ${navButtons({ showBack:true, nextLabel:"Next (Blockers checklist)" })}
+      $app.innerHTML = `
+        <h1>Part 2 — Nutrition / Health</h1>
+        <img src="2A.png" alt="Nutrition and health" class="page-img"/>
+
+        <p><b>2A — “Plant-based diets are nutritionally incomplete or unnatural.”</b></p>
+
+        <p>
+          This is the general-population concern. Common versions include:
+        </p>
+        <ul>
+          <li>“You need supplements (B12, iron, omega-3s, iodine), so it’s unnatural or unsafe.”</li>
+          <li>“You can’t get enough protein on a plant-based diet.”</li>
+          <li>“You can’t get enough iron, calcium, zinc, or DHA.”</li>
+          <li>“Humans evolved to eat meat, so plant-based diets are deficient.”</li>
+        </ul>
+
+        <p>
+          Current medical and nutritional research shows that a properly planned plant-based diet can meet all human nutritional requirements,
+          including protein, iron, calcium, omega-3s, and micronutrients — typically with the addition of vitamin B12 and, in some cases,
+          iodine or vitamin D supplementation.
+        </p>
+
+        <p>
+          Large medical and dietetic organizations agree that well-planned vegetarian and vegan diets are appropriate for all stages of life
+          and may be associated with lower risk of heart disease, type 2 diabetes, and certain cancers.
+        </p>
+
+        <div class="divider"></div>
+
+        <p><b>Decision question:</b></p>
+        <p>
+          Do you agree, based on current medical and nutritional evidence, that a properly planned plant-based diet can be nutritionally adequate for humans?
+        </p>
+
+        ${grYButtons({
+          greenLabel: "🟢 Yes — I agree a properly planned plant-based diet can meet human nutritional needs",
+          redLabel: "🔴 No — I do not believe a plant-based diet can be nutritionally adequate",
+          yellowLabel: "🟡 I’m unsure or I think this is missing something important",
+          onGreen: "window.__p2a_green",
+          onRed: "window.__p2a_red",
+          onYellow: "window.__p2a_yellow"
+        })}
+
+        ${navButtons({ showBack:true, showNext:false })}
       `;
 
-      window.__next = () => go(STEPS.P2_BLOCKERS_PICK);
+      window.__p2a_green = () => {
+        state.part2 = state.part2 || {};
+        state.part2.nutrition = "green";
+        go(STEPS.P2_BLOCKERS_PICK);
+      };
+
+      window.__p2a_red = () => {
+        state.part2 = state.part2 || {};
+        state.part2.nutrition = "red";
+        openRedExit("medical");
+      };
+
+      window.__p2a_yellow = () => {
+        state.part2 = state.part2 || {};
+        state.part2.nutrition = "yellow";
+        openYellowExit();
+      };
+
+      window.__next = () => {};
     }
+
 
     function renderP2_BlockersPick(){
       setPill("Part 2 — What’s holding me back?");
