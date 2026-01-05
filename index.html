@@ -231,7 +231,7 @@
 <body>
   <div class="wrap">
     <div class="topbar">
-      <div class="brand">Plant-Based Reflection Tool v. 1.1</div>
+      <div class="brand">Plant-Based Reflection Tool v. 1.2</div>
       <div class="pill" id="progressPill">Step: —</div>
     </div>
 
@@ -472,14 +472,44 @@
       STAKES: "STAKES"
     };
 
-    // 1CX options (fixed order)
     const CX_ORDER = [
-      { id:"1CX1", label:"1. Purpose-based exemption — “Animals raised for food are different from pets.”", step: STEPS.P1_1CX1 },
-      { id:"1CX2", label:"2. Religious exemption — “God permits or commands us to eat animals.”", step: STEPS.P1_1CX2 },
-      { id:"1CX3", label:"3. Appeal to nature — “Predation is natural, so it’s morally fine.”", step: STEPS.P1_1CX3 },
-      { id:"1CX4", label:"4. Cultural / identity exemption — “This is part of my culture / ancestry / identity.”", step: STEPS.P1_1CX4 },
-      { id:"1CX5", label:"5. Human-centered priority — “Human comfort outweighs animal suffering.”", step: STEPS.P1_1CX5 },
+      {
+        id:"1CX1",
+        step: STEPS.P1_1CX1,
+        title: "1. Purpose-based exemption",
+        quote: "“Animals raised for food are different from pets.”",
+        note: "(Moral status depends on human intention.)"
+      },
+      {
+        id:"1CX2",
+        step: STEPS.P1_1CX2,
+        title: "2. Religious exemption",
+        quote: "“God permits or commands us to eat animals.”",
+        note: "(Moral authority overrides harm considerations.)"
+      },
+      {
+        id:"1CX3",
+        step: STEPS.P1_1CX3,
+        title: "3. Appeal to nature",
+        quote: "“Predation is natural, so it’s morally fine.”",
+        note: "(Naturalness overrides suffering.)"
+      },
+      {
+        id:"1CX4",
+        step: STEPS.P1_1CX4,
+        title: "4. Cultural / identity exemption",
+        quote: "“This is part of my culture / ancestry / identity.”",
+        note: "(Tradition overrides moral symmetry.)"
+      },
+      {
+        id:"1CX5",
+        step: STEPS.P1_1CX5,
+        title: "5. Human-centered priority",
+        quote: "“Human comfort, convenience, or social harmony outweighs animal suffering.”",
+        note: "(Includes agreeableness / don’t-rock-the-boat — framed as a moral claim.)"
+      },
     ];
+
 
     // Part 2 blocker topics (you can rename later)
     const BLOCKERS = [
@@ -887,26 +917,25 @@
     function renderP1_1C(){
       setPill("Part 1 — 1C");
 
+      // 1C handlers (must be OUTSIDE the HTML string)
+      window.__p1cYes = () => {
+        state.part1.c = "yes";
+        go(STEPS.P2_INTRO);
+      };
+
+      window.__p1cNo = () => {
+        state.part1.c = "no";
+        go(STEPS.P1_1CX_PICK);
+      };
+
+      window.__p1cYellow = () => {
+        state.part1.c = "yellow";
+        openYellowExit();
+      };
+
+      window.__next = () => {};
+
       $app.innerHTML = `
-            // 1C handlers (these were missing, so the buttons did nothing)
-            window.__p1cYes = () => {
-              state.part1.c = "yes";
-              // If they agree, continue to Part 2 (or wherever you want next)
-              go(STEPS.P2_INTRO);
-            };
-
-            window.__p1cNo = () => {
-              state.part1.c = "no";
-              // If they disagree, go to 1CX picker (moral override reasons)
-              go(STEPS.P1_1CX_PICK);
-            };
-
-            window.__p1cYellow = () => {
-              state.part1.c = "yellow";
-              openYellowExit();
-            };
-
-            window.__next = () => {};
 
         <h1>Part 1 — 1C</h1>
 
@@ -1202,59 +1231,62 @@
 
 
 
-      function renderP1_1CX_PICK(){
-        setPill("Part 1 — 1CX (pick)");
-        const selected = new Set(state.part1.cxSelected);
+    function renderP1_1CX_PICK(){
+      setPill("Part 1 — 1CX (pick)");
+      const selected = new Set(state.part1.cxSelected);
 
-        $app.innerHTML = `
-          <h1>Part 1 — Moral override reasons</h1>
+      $app.innerHTML = `
+        <h1>Part 1 — Moral override reasons</h1>
 
-          <p>According to your responses, even though you agree that regularly farmed animals like pigs and cows are sentient and able to suffer at the same level as cats and dogs, you still feel that this is not sufficient to claim that it is morally wrong for you personally to harm or kill them simply for pleasure (or for social, cultural or religious conventions that we will explore further in this section).</p>
+        <p>According to your logic, even though animals like pigs and cows are sentient and able to suffer at the same level as cats and dogs, you still feel that this is not sufficient to claim that it is morally wrong for you personally to harm or kill them simply for pleasure.</p>
 
-          <p>Please look over the rationales below, and choose all that apply to your reasoning. As always, this is a work in progress, so feel free to email me if your reason is not listed.</p>
+        <p>Please look over the rationales below, and choose all that apply to your reasoning. As always, this is a work in progress, so feel free to email me if your reason is not listed.</p>
 
-          <p class="small"><b>Keep in mind:</b> We will explore reasons why eating animals and animal products may be “necessary” in Part 2. In this section we are only exploring the morality of harm to animals when it is solely for pleasure, social conformity, or religious/spiritual beliefs.</p>
+        <p class="small"><b>Keep in mind:</b> We will explore reasons why eating animals and animal products may be “necessary” in Part 2. In this section we are only exploring the morality of harm to animals when it is solely for pleasure.</p>
 
-          <div class="divider"></div>
+        <div class="divider"></div>
 
-          <img src="1CX.png" alt="Moral override reasons" style="display:block; width:100%; max-width:100%; margin:1.5rem auto; border-radius:12px;" />
-          
-          <h2>“Yes they suffer — but that doesn’t matter / isn’t enough.”</h2>
+        <img src="1CX.png" alt="Moral override reasons" style="display:block; width:100%; max-width:100%; margin:1.5rem auto; border-radius:12px;" />
 
-          <div class="checklist">
-            ${CX_ORDER.map(item => `
-              <label class="chk">
-                <input type="checkbox" value="${item.id}" ${selected.has(item.id) ? "checked" : ""}/>
-                <span><b>${item.label}</b></span>
-              </label>
-            `).join("")}
-          </div>
+        <h2>“Yes they suffer — but that doesn’t matter / isn’t enough.”</h2>
 
-          <div class="divider"></div>
+        <div class="checklist">
+          ${CX_ORDER.map(item => `
+            <label class="chk">
+              <input type="checkbox" value="${item.id}" ${selected.has(item.id) ? "checked" : ""}/>
+              <span>
+                <b>${item.title}</b><br/>
+                <span class="small">${item.quote}<br/>${item.note}</span>
+              </span>
+            </label>
+          `).join("")}
+        </div>
 
-          <p class="small">If your reason isn’t listed, you can email feedback here:
-            <a href="mailto:Jessica.henry523@gmail.com">Jessica.henry523@gmail.com</a>
-          </p>
+        <div class="divider"></div>
 
-          ${navButtons({ showBack:true, nextLabel:"Continue to selected" })}
-        `;
+        <div class="btnrow">
+          <button class="btn-yellow" onclick="openYellowExit()">🟡 My reason is not listed (email)</button>
+        </div>
 
+        ${navButtons({ showBack:true, nextLabel:"Continue to selected" })}
+      `;
 
-        window.__next = () => {
-          const boxes = Array.from(document.querySelectorAll('input[type="checkbox"]:checked')).map(b => b.value);
-          state.part1.cxSelected = boxes;
+      window.__next = () => {
+        const boxes = Array.from(document.querySelectorAll('input[type="checkbox"]:checked')).map(b => b.value);
+        state.part1.cxSelected = boxes;
 
-          // If none selected, just proceed to Part 2 intro
-          if (boxes.length === 0){
-            go(STEPS.P2_INTRO);
-            return;
-          }
+        // If none selected, just proceed to Part 2 intro
+        if (boxes.length === 0){
+          go(STEPS.P2_INTRO);
+          return;
+        }
 
-          // route to the first selected CX step in fixed order
-          const first = CX_ORDER.find(x => boxes.includes(x.id));
-          go(first.step);
-        };
-      }
+        // route to the first selected CX step in fixed order
+        const first = CX_ORDER.find(x => boxes.includes(x.id));
+        go(first.step);
+      };
+    }
+
 
       /***********************
        * PART 1 — 1CX1–1CX5 PAGES
