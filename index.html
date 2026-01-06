@@ -526,9 +526,12 @@
 
       // Part 2
       P2_INTRO: "P2_INTRO",
-      P2_2A: "P2_2A",               // general “plant-based can be nutritionally sound”
+      P2_2A: "P2_2A",                       // general adequacy question
+      P2_2B: "P2_2B",                       // personal-case exploration (if they answered red on 2A)
+      P2_FINAL_OVERVIEW: "P2_FINAL_OVERVIEW", // “final decision” overview (if they answered green on 2A)
       P2_BLOCKERS_PICK: "P2_BLOCKERS_PICK",
       P2_BLOCKER_DETAIL: "P2_BLOCKER_DETAIL",
+
 
       // End
       STAKES: "STAKES"
@@ -668,6 +671,8 @@
 
         case STEPS.P2_INTRO: return renderP2_Intro();
         case STEPS.P2_2A: return renderP2_2A();
+        case STEPS.P2_2B: return renderP2_2B();
+        case STEPS.P2_FINAL_OVERVIEW: return renderP2_FinalOverview();
         case STEPS.P2_BLOCKERS_PICK: return renderP2_BlockersPick();
         case STEPS.P2_BLOCKER_DETAIL: return renderP2_BlockerDetail();
 
@@ -1003,7 +1008,7 @@
 
         <h2>Do farm animals share these morally relevant traits?</h2>
 
-        <p>Earlier, you agreed that it is morally wrong to cause unnecessary suffering to cats and dogs simply for pleasure because they have:</p>
+        <p>Earlier, you agreed that science is real and that it is morally wrong to cause unnecessary suffering to cats and dogs simply for pleasure because they have:</p>
         <ul>
           <li>the capacity to suffer</li>
           <li>subjective experience</li>
@@ -2246,16 +2251,38 @@
       function renderP1_1CX4(){
         setPill("Part 1 — 1CX4");
         $app.innerHTML = `
-          <h1>1CX4 — Cultural / identity exemption</h1>
+          <h1>1CX4 — “This is part of my culture / ancestry / identity.”</h1>
           <img src="1CX4.png" alt="Cultural exemption" class="page-img"/>
 
-          <p><b>Claim:</b> “This is part of my culture / ancestry / identity.”</p>
-          <p>This rationale says tradition can override moral symmetry.</p>
+          <p><b>Prompt:</b> Do you believe that cultural or ancestral tradition alone can make a practice morally right, even if it causes harm?</p>
+
+          <div class="divider"></div>
+
+          <p><b>Claim:</b> “My cultural, ancestral, or traditional practices justify or require the consumption of animal products.”</p>
+
+          <div class="divider"></div>
+
+          <h2>Reflection (not a “refutation”)</h2>
+          <p>Cultural and ancestral traditions deserve respect and care.</p>
+          <p>They often developed in specific ecological, historical, and survival contexts.</p>
+
+          <p>At the same time:</p>
+          <ul>
+            <li>Cultures are not static — they evolve across generations.</li>
+            <li>Many traditions emphasize relationship, respect, and minimal harm — not industrial-scale suffering.</li>
+            <li>We are not only inheritors of tradition, but also the ancestors of future generations.</li>
+          </ul>
+
+          <p class="small">This step is not asking you to reject your culture — only to reflect on how it applies in your present circumstances.</p>
+
+          <div class="divider"></div>
+
+          <p><b>Decision question:</b> Do you feel that your cultural or ancestral tradition truly requires you, personally, to consume animal products in your current context?</p>
 
           ${grYButtons({
-            greenLabel: "🟢 I want to reduce harm within my tradition",
-            redLabel: "🔴 Tradition overrides this concern",
-            yellowLabel: "🟡 This needs nuance",
+            greenLabel: "🟢 No — my culture does not require me personally, or I feel open to adapting my practice.",
+            redLabel: "🔴 Yes — I believe my tradition genuinely requires me to consume animal products.",
+            yellowLabel: "🟡 I’m not sure / this needs nuance.",
             onGreen: "window.__cx4_green",
             onRed: "window.__cx4_red",
             onYellow: "window.__cx4_yellow"
@@ -2269,6 +2296,7 @@
         window.__cx4_yellow= () => { state.part1.cx4 = "yellow"; openYellowExit(); };
         window.__next = () => {};
       }
+
 
       /* ========== 1CX5 — Human-centered priority ========== */
       function renderP1_1CX5(){
@@ -2451,75 +2479,199 @@
       }
 
 
-    function renderP2_2A(){
-      setPill("Part 2 — 2A");
+      function renderP2_2A(){
+        setPill("Part 2 — 2A");
 
-      $app.innerHTML = `
-        <h1>Part 2 — Nutrition / Health</h1>
-        <img src="2A.png" alt="Nutrition and health" class="page-img"/>
+        $app.innerHTML = `
+          <h1>Part 2 — Nutrition / Health</h1>
+          <img src="2A.png" alt="Nutrition and health" class="page-img"/>
 
-        <p><b>2A — “Plant-based diets are nutritionally incomplete or unnatural.”</b></p>
+          <p><b>2A — “Plant-based diets are nutritionally incomplete or unnatural.”</b></p>
 
-        <p>
-          This is the general-population concern. Common versions include:
-        </p>
-        <ul>
-          <li>“You need supplements (B12, iron, omega-3s, iodine), so it’s unnatural or unsafe.”</li>
-          <li>“You can’t get enough protein on a plant-based diet.”</li>
-          <li>“You can’t get enough iron, calcium, zinc, or DHA.”</li>
-          <li>“Humans evolved to eat meat, so plant-based diets are deficient.”</li>
-        </ul>
+          <p>This is the general-population concern. Common versions include:</p>
+          <ul>
+            <li>“You need supplements (B12, iron, omega-3s, iodine), so it’s unnatural or unsafe.”</li>
+            <li>“You can’t get enough protein on a plant-based diet.”</li>
+            <li>“You can’t get enough iron, calcium, zinc, or DHA.”</li>
+            <li>“Humans evolved to eat meat, so plant-based diets are deficient.”</li>
+          </ul>
 
-        <p>
-          Current medical and nutritional research shows that a properly planned plant-based diet can meet all human nutritional requirements,
-          including protein, iron, calcium, omega-3s, and micronutrients — typically with the addition of vitamin B12 and, in some cases,
-          iodine or vitamin D supplementation.
-        </p>
+          <p>
+            Current medical and nutritional research shows that a properly planned plant-based diet can meet all human nutritional requirements,
+            including protein, iron, calcium, omega-3s, and micronutrients — typically with the addition of vitamin B12 and, in some cases,
+            iodine or vitamin D supplementation.
+          </p>
 
-        <p>
-          Large medical and dietetic organizations agree that well-planned vegetarian and vegan diets are appropriate for all stages of life
-          and may be associated with lower risk of heart disease, type 2 diabetes, and certain cancers.
-        </p>
+          <p>
+            Large medical and dietetic organizations agree that well-planned vegetarian and vegan diets are nutritionally adequate for all stages of life.
+            In many studies, they’re also associated with lower risk of heart disease, type 2 diabetes, and some cancers.
+            <b>See evidence below.</b>
+          </p>
 
-        <div class="divider"></div>
+          <div class="divider"></div>
 
-        <p><b>Decision question:</b></p>
-        <p>
-          Do you agree, based on current medical and nutritional evidence, that a properly planned plant-based diet can be nutritionally adequate for humans?
-        </p>
+          <h2>Evidence (expand)</h2>
 
-        ${grYButtons({
-          greenLabel: "🟢 Yes — I agree a properly planned plant-based diet can meet human nutritional needs",
-          redLabel: "🔴 No — I do not believe a plant-based diet can be nutritionally adequate",
-          yellowLabel: "🟡 I’m unsure or I think this is missing something important",
-          onGreen: "window.__p2a_green",
-          onRed: "window.__p2a_red",
-          onYellow: "window.__p2a_yellow"
-        })}
+          <details class="drop">
+            <summary><b>1) Professional nutrition organizations affirm adequacy</b></summary>
+            <p>
+              The Academy of Nutrition and Dietetics (largest U.S. professional nutrition organization) states that appropriately planned vegetarian and vegan diets
+              can be nutritionally adequate for all life stages and may offer health benefits (including improved cardiometabolic outcomes).
+            </p>
+            <p class="small"><b>Source:</b> EatRightPRO (Academy of Nutrition and Dietetics position statement)</p>
 
-        ${navButtons({ showBack:true, showNext:false })}
-      `;
+            <p>
+              Multiple national health agencies and dietetic organizations also affirm that well-planned plant-based/vegan diets can be appropriate across ages,
+              with attention to specific nutrients (especially B12).
+            </p>
+            <p class="small"><b>Examples:</b> NHS guidance; Dietitians of Canada summaries</p>
+          </details>
 
-      window.__p2a_green = () => {
-        state.part2 = state.part2 || {};
-        state.part2.nutrition = "green";
-        go(STEPS.P2_BLOCKERS_PICK);
-      };
+          <details class="drop">
+            <summary><b>2) Nutrient needs can be met (protein, iron, calcium, omega-3, etc.)</b></summary>
 
-      window.__p2a_red = () => {
-        state.part2 = state.part2 || {};
-        state.part2.nutrition = "red";
-        openRedExit("medical");
-      };
+            <p><b>Protein</b></p>
+            <p>
+              Varied plant foods (legumes, grains, soy, nuts, seeds) can supply all essential amino acids and meet typical protein needs
+              when total calories are adequate.
+            </p>
+            <p class="small"><b>Example source:</b> Harvard Health overview</p>
 
-      window.__p2a_yellow = () => {
-        state.part2 = state.part2 || {};
-        state.part2.nutrition = "yellow";
-        openYellowExit();
-      };
+            <p><b>Vitamin B12</b></p>
+            <p>
+              B12 is not reliably present in unfortified plant foods, so supplementation or fortified foods are recommended for people eating fully plant-based.
+            </p>
+            <p class="small"><b>Example source:</b> peer-reviewed nutrition reviews (PMC)</p>
 
-      window.__next = () => {};
-    }
+            <p><b>Iron / calcium / zinc / omega-3</b></p>
+            <p>
+              These are available from plant sources (legumes, leafy greens, nuts/seeds, fortified foods). Some planning helps,
+              but deficiencies are not “intrinsic” to plant-based diets.
+            </p>
+            <p class="small"><b>Example source:</b> peer-reviewed nutrition reviews (PMC)</p>
+          </details>
+
+          <details class="drop">
+            <summary><b>3) Health outcomes often improve (major chronic disease risk)</b></summary>
+            <p>
+              In large studies and reviews, healthier plant-forward patterns are commonly associated with lower cardiometabolic risk.
+              This doesn’t prove “vegan = perfect,” but it strongly supports that plant-based eating can be nutritionally adequate and, for many people,
+              beneficial long-term.
+            </p>
+            <ul>
+              <li>Heart disease: lower cardiovascular morbidity/mortality associations in plant-forward patterns</li>
+              <li>Type 2 diabetes: lower incidence correlations in plant-heavy patterns</li>
+              <li>Weight management: higher fiber/lower calorie density patterns often support weight outcomes</li>
+              <li>Some cancer outcomes: certain cohorts show lower risk in vegetarian/vegan groups</li>
+            </ul>
+            <p class="small"><b>Example sources:</b> AHA Journals; large cohort reviews; PubMed summaries</p>
+          </details>
+
+          <details class="drop">
+            <summary><b>Optional clarifier: Protein & Omega-3s (practical)</b></summary>
+            <p><b>Protein</b>: Adults often target ~0.8 g/kg/day; varied plant foods can meet this.</p>
+            <p><b>Omega-3</b>: Flax/chia/walnuts provide ALA; some people use algae-derived DHA/EPA supplements if desired.</p>
+          </details>
+
+          <div class="divider"></div>
+
+          <p><b>Decision question:</b></p>
+          <p>
+            Do you agree, based on current medical and nutritional evidence, that a properly planned plant-based diet can be nutritionally adequate for humans?
+          </p>
+
+          ${grYButtons({
+            greenLabel: "🟢 Yes — a properly planned plant-based diet can meet human nutritional needs in my personal case",
+            redLabel: "🔴 No — I don’t believe it’s adequate in my personal case (I want to explore why next)",
+            yellowLabel: "🟡 I’m unsure or I think this is missing something important",
+            onGreen: "window.__p2a_green",
+            onRed: "window.__p2a_red",
+            onYellow: "window.__p2a_yellow"
+          })}
+
+          ${navButtons({ showBack:true, showNext:false })}
+        `;
+
+        window.__p2a_green = () => {
+          state.part2 = state.part2 || {};
+          state.part2.nutrition = "green";
+          go(STEPS.P2_FINAL_OVERVIEW);
+        };
+
+        window.__p2a_red = () => {
+          state.part2 = state.part2 || {};
+          state.part2.nutrition = "red";
+          go(STEPS.P2_2B);
+        };
+
+        window.__p2a_yellow = () => {
+          state.part2 = state.part2 || {};
+          state.part2.nutrition = "yellow";
+          openYellowExit();
+        };
+
+        window.__next = () => {};
+      }
+
+      function renderP2_2B(){
+        setPill("Part 2 — 2B");
+
+        $app.innerHTML = `
+          <h1>Part 2 — 2B (Personal case)</h1>
+          <p class="small">
+            You answered “No” to the general question — meaning: you believe a plant-based diet is <b>not</b> nutritionally adequate in your personal case.
+          </p>
+
+          <p>
+            That might be true for you — and this flowchart is designed to take that seriously.
+            Next, we’ll explore the most common real-world “personal case” reasons people give (medical conditions, allergies, GI issues,
+            pregnancy/lactation, eating disorder history, sensory limitations, access/cost constraints, etc.).
+          </p>
+
+          <p><b>Next:</b> choose which blockers apply to you so we can walk through them one by one.</p>
+
+          ${navButtons({ showBack:true, nextLabel:"Continue to blockers checklist" })}
+        `;
+
+        window.__next = () => go(STEPS.P2_BLOCKERS_PICK);
+      }
+
+      function renderP2_FinalOverview(){
+        setPill("Part 2 — Final overview");
+
+        $app.innerHTML = `
+          <h1>Part 2 — Where this puts you (overview)</h1>
+
+          <p>
+            You selected:
+            <b>“Yes — a properly planned plant-based diet can meet human nutritional needs in my personal case.”</b>
+          </p>
+
+          <div class="divider"></div>
+
+          <p>
+            In the logic of this tool, that means the remaining question is no longer “Is it possible?”
+            It becomes: <b>“If it’s possible for me personally, what am I going to do with that?”</b>
+          </p>
+
+          <p class="small">
+            This is the point where many people realize: if animal products are not necessary for them personally,
+            then continuing purely for taste / habit / convenience functions as a choice to accept preventable harm.
+          </p>
+
+          <div class="divider"></div>
+
+          <p><b>What happens next?</b></p>
+          <p>
+            We’re still going to check for real blockers (health, cost, access, environment, life context) — because “possible in theory”
+            is not the same as “realistic in my life.”
+          </p>
+
+          ${navButtons({ showBack:true, nextLabel:"Continue to blockers checklist" })}
+        `;
+
+        window.__next = () => go(STEPS.P2_BLOCKERS_PICK);
+      }
 
 
     function renderP2_BlockersPick(){
