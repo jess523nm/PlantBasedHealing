@@ -991,19 +991,66 @@ access: `
         <p><b>Prompt:</b> Are there environmental or geographic realities that affect what’s possible for you personally?</p>
 
         <details class="acc">
-          <summary>Bivalves and environmental impact (optional)</summary>
-          <p>Farmed bivalves (oysters, mussels, clams) are often described as unusually low-impact and can improve local water quality.</p>
+          <summary>Why plant-based diets generally have lower environmental impact</summary>
+
+          <p class="small">
+            A plant-based diet reduces environmental harm because it uses far fewer resources per calorie and places less pressure on ecosystems.
+            The difference is not philosophical — it is physical and ecological.
+          </p>
+
+          <p class="small"><b>Key mechanisms:</b></p>
           <ul>
-            <li>Filter water; can reduce excess nitrogen/phosphorus</li>
-            <li>No feed, no fertilizer, no freshwater, no land (in many systems)</li>
+            <li><b>Land use:</b> Animal agriculture requires large areas for grazing and feed crops, driving deforestation, habitat loss, and species displacement.</li>
+            <li><b>Greenhouse gases:</b> Livestock produces methane, nitrous oxide, and CO₂, significantly increasing climate impact.</li>
+            <li><b>Pollution:</b> Manure runoff contaminates rivers, lakes, and groundwater with nutrients, hormones, and pathogens.</li>
+            <li><b>Antibiotic resistance:</b> Routine antibiotic use in livestock accelerates resistant bacteria that threaten public health.</li>
+            <li><b>Energy efficiency:</b> Feeding plants to animals and then eating animals is energetically inefficient compared to direct plant consumption.</li>
+            <li><b>Wildlife protection:</b> Lower land use and pollution indirectly preserve habitats and reduce ecosystem collapse.</li>
           </ul>
-          <div class="btnrow" style="margin-top:.5rem;">
-            <button class="btn ghost" onclick="openBivalvesNote()">
-              Pop-up: A note about bivalves (optional harm-reduction bridge)
-            </button>
-          </div>
+
+          <p class="small">
+            In simple terms: fewer animals farmed means less land conversion, less climate pollution, less waste, and less pressure on wild ecosystems.
+          </p>
+        </details>
+
+        <details class="acc">
+          <summary>Bivalves and environmental impact (optional)</summary>
+
+          <p class="small">
+            Farmed bivalves (oysters, mussels, clams) are often described as unusually low-impact and in some systems can improve local water quality.
+          </p>
+
+          <ul>
+            <li>They filter water and can reduce excess nitrogen and phosphorus.</li>
+            <li>They require no feed, no fertilizer, no freshwater input, and little or no land in many aquaculture systems.</li>
+            <li>They produce no manure lagoons or agricultural runoff.</li>
+          </ul>
+
+          <p class="small">
+            This makes bivalves environmentally distinct from most animal agriculture and sometimes described as "net beneficial" to local aquatic ecosystems.
+            That said, impacts still depend on farming practices, location, and scale.
+          </p>
+
+          <p class="small">
+            In this flowchart, bivalves are presented only as an optional harm-reduction or access-bridge in specific contexts — not as a general recommendation.
+          </p>
+        </details>
+
+        <details class="acc">
+          <summary>Citations & evidence (optional)</summary>
+
+          <ul class="small">
+            <li>IPCC — Agriculture, Forestry and Other Land Use contribute ~23% of global greenhouse gas emissions.</li>
+            <li>Poore & Nemecek (2018, Science) — Animal products have far higher land, water, and emissions footprints than plant foods.</li>
+            <li>FAO — Livestock contributes significantly to methane and nitrous oxide emissions.</li>
+            <li>Steinfeld et al. — Livestock’s Long Shadow (FAO): links livestock to deforestation, pollution, and climate change.</li>
+            <li>CDC / WHO — Antibiotic use in livestock accelerates antimicrobial resistance.</li>
+            <li>Shumway et al. (2003) — Bivalves improve water quality via nutrient filtration.</li>
+            <li>van der Schatte Olivier et al. (2020) — Bivalve aquaculture can mitigate eutrophication in coastal waters.</li>
+          </ul>
         </details>
       `,
+
 
       extreme: `
         <h2>2B5 — Extreme physical needs</h2>
@@ -3498,11 +3545,10 @@ access: `
       window.__next = () => advance();
     }
 
-
     function renderStakes(){
       setPill("Stakes / End screen");
 
-      // 2C — Your chosen “annual impact” numbers (placeholder values)
+      // 2C — Annual impact numbers (your chosen placeholders)
       const impact = {
         chickens: 37,
         turkeys: 1,
@@ -3510,34 +3556,10 @@ access: `
         cows: 1,     // baby cow (visual)
 
         wildlife: {
-          insects: {
-            butterflies: 17,
-            bees: 12,
-            beetles: 3,
-            grasshoppersCrickets: 2,
-            total: 34
-          },
-          smallMammals: {
-            fieldMice: 7,
-            chipmunks: 3,
-            rabbits: 2,
-            voles: 2,
-            skunk: 1,
-            raccoon: 1,
-            total: 16
-          },
-          birds: {
-            groundNesting: 7,
-            nestlingsEggs: 3,
-            total: 10
-          },
-          reptilesAmphibians: {
-            lizards: 3,
-            turtle: 1,
-            snake: 1,
-            frogToad: 1,
-            total: 6
-          },
+          insects: { butterflies: 17, bees: 12, beetles: 3, grasshoppersCrickets: 2, total: 34 },
+          smallMammals: { fieldMice: 7, chipmunks: 3, rabbits: 2, voles: 2, skunk: 1, raccoon: 1, total: 16 },
+          birds: { groundNesting: 7, nestlingsEggs: 3, total: 10 },
+          reptilesAmphibians: { lizards: 3, turtle: 1, snake: 1, frogToad: 1, total: 6 },
           total: 66
         },
 
@@ -3563,13 +3585,20 @@ access: `
           This illustration is for scale and reflection — not precise accounting.
         </p>
 
-        <details class="acc" open>
-          <summary>Farmed animals (visual model)</summary>
+        <!-- Farmed animals -->
+        <section class="acc">
+          <h3>Farmed animals (visual model)</h3>
 
           <div class="imgbox">
-            <b>Art placeholder (swap later):</b><br/>
-            <span class="small">Insert image:</span> <code>farmanimals.png</code><br/>
-            <span class="small">Art source note (later): clipart-library.org</span>
+            <img
+              src="farmanimals.png"
+              alt="Farmed animals visual model"
+              style="width:100%; height:auto; display:block; border-radius:12px;"
+              loading="lazy"
+            />
+            <p class="small" style="margin-top:8px;">
+              Art source: clipart-library.org
+            </p>
           </div>
 
           <ul>
@@ -3578,14 +3607,19 @@ access: `
             <li>🐖 <b>${impact.pigs}</b> baby pig</li>
             <li>🐄 <b>${impact.cows}</b> baby cow</li>
           </ul>
-        </details>
+        </section>
 
-        <details class="acc">
-          <summary>Wildlife likely spared (hypothetical breakdown)</summary>
+        <!-- Wildlife -->
+        <section class="acc">
+          <h3>Wildlife likely spared (hypothetical breakdown)</h3>
 
           <div class="imgbox">
-            <b>Art placeholder (swap later):</b><br/>
-            <span class="small">Insert image:</span> <code>wildlife.png</code>
+            <img
+              src="wildlife.png"
+              alt="Wildlife spared visual model"
+              style="width:100%; height:auto; display:block; border-radius:12px;"
+              loading="lazy"
+            />
           </div>
 
           <p class="small">
@@ -3630,44 +3664,62 @@ access: `
             </li>
           </ul>
 
-          <details class="acc">
-            <summary>🌳 What “deforestation for grazing land” actually affects</summary>
-            <p class="small">When forests or native ecosystems are cleared for animal agriculture, many things happen:</p>
-            <ul>
-              <li><b>Direct wildlife deaths during clearing</b> — bulldozers, fire, and chain saws can kill animals on site.</li>
-              <li><b>Habitat loss and fragmentation</b> — animals lose habitat and food sources and can die from starvation, predation, or displacement.</li>
-              <li><b>Long-term species decline</b> — local populations can crash or be extirpated.</li>
-              <li><b>Downstream impacts</b> — soil erosion, water pollution, disrupted nutrient cycles, degraded ecosystems → secondary deaths.</li>
-            </ul>
-            <p class="small">
-              So “how many die” is not just a number of bodies counted; it’s also population decline over time.
-            </p>
-            <p class="small">
-              👉 <b>~50–125</b> small wild animals per person per year (very conservative classroom estimate from deforestation/habitat loss).<br/>
-              <span class="small">This excludes many longer-term impacts (food web effects, runoff, fragmentation edge effects, etc.).</span>
-            </p>
+          <!-- Deforestation explanation (NO DROPDOWN) -->
+          <div class="divider"></div>
 
-            <p class="small"><b>Land savings overview (placeholder phrasing for later citation polish):</b></p>
-            <ul>
-              <li>~<b>2.3 acres saved per person per year</b> by going fully vegan (grazing, cropland, deforestation context)</li>
-            </ul>
+          <h4>🌳 What “deforestation for grazing land” actually affects</h4>
 
-            <details class="acc">
-              <summary>Citations (links)</summary>
-              <ul>
-                <li><a href="https://online.ucpress.edu/elementa/article/4/1/000116/112949/Carrying-capacity-of-U-S-agricultural-land-Ten" target="_blank" rel="noopener">Peters et al. (2016) — Elementa: “Carrying capacity of U.S. agricultural land: Ten diet scenarios”</a></li>
-                <li><a href="https://ourworldindata.org/how-many-animals-are-factory-farmed" target="_blank" rel="noopener">Our World in Data — “How many animals are factory-farmed?”</a></li>
-              </ul>
-            </details>
-          </details>
-        </details>
+          <p class="small">When forests or native ecosystems are cleared for animal agriculture, many things happen:</p>
+          <ul>
+            <li><b>Direct wildlife deaths during clearing</b> — bulldozers, fire, and chain saws can kill animals on site.</li>
+            <li><b>Habitat loss and fragmentation</b> — animals lose habitat and food sources and can die from starvation, predation, or displacement.</li>
+            <li><b>Long-term species decline</b> — local populations can crash or be extirpated.</li>
+            <li><b>Downstream impacts</b> — soil erosion, water pollution, disrupted nutrient cycles, degraded ecosystems → secondary deaths.</li>
+          </ul>
 
-        <details class="acc">
-          <summary>Aquatic animals spared (visual model)</summary>
+          <p class="small">
+            So “how many die” is not just a number of bodies counted; it’s also population decline over time.
+          </p>
+
+          <p class="small">
+            👉 <b>~50–125</b> small wild animals per person per year (very conservative classroom estimate from deforestation/habitat loss).<br/>
+            <span class="small">This excludes many longer-term impacts (food web effects, runoff, fragmentation edge effects, etc.).</span>
+          </p>
+
+          <p class="small"><b>Land savings overview:</b></p>
+          <ul>
+            <li>~<b>2.3 acres saved per person per year</b> by going fully vegan (grazing, cropland, deforestation context)</li>
+          </ul>
+
+          <!-- Citations as a simple list (NO DROPDOWN) -->
+          <p class="small"><b>Citations (links):</b></p>
+          <ul>
+            <li>
+              <a href="https://online.ucpress.edu/elementa/article/4/1/000116/112949/Carrying-capacity-of-U-S-agricultural-land-Ten"
+                target="_blank" rel="noopener">
+                Peters et al. (2016) — Elementa: “Carrying capacity of U.S. agricultural land: Ten diet scenarios”
+              </a>
+            </li>
+            <li>
+              <a href="https://ourworldindata.org/how-many-animals-are-factory-farmed"
+                target="_blank" rel="noopener">
+                Our World in Data — “How many animals are factory-farmed?”
+              </a>
+            </li>
+          </ul>
+        </section>
+
+        <!-- Aquatic -->
+        <section class="acc">
+          <h3>Aquatic animals spared (visual model)</h3>
 
           <div class="imgbox">
-            <b>Art placeholder (swap later):</b><br/>
-            <span class="small">Insert image:</span> <code>aquaticanimals.png</code>
+            <img
+              src="aquaticanimals.png"
+              alt="Aquatic animals visual model"
+              style="width:100%; height:auto; display:block; border-radius:12px;"
+              loading="lazy"
+            />
           </div>
 
           <ul>
@@ -3682,10 +3734,11 @@ access: `
             These animals are a visual model, not a literal list. Bycatch species vary by region and fishing method.
             In many trawl fisheries, bycatch/discards are dominated by small fish and invertebrates; larger animals (like rays or small sharks) occur less often but still occur.
           </p>
-        </details>
+        </section>
 
-        <details class="acc">
-          <summary>More info: industry suffering & welfare structure (links)</summary>
+        <!-- Links -->
+        <section class="acc">
+          <h3>More info: industry suffering & welfare structure (links)</h3>
           <ul>
             <li><a href="https://www.aspca.org/protecting-farm-animals/animals-factory-farms" target="_blank" rel="noopener">ASPCA — Animals on Factory Farms</a></li>
             <li><a href="https://awionline.org/content/inhumane-practices-factory-farms" target="_blank" rel="noopener">Animal Welfare Institute — Inhumane Practices on Factory Farms</a></li>
@@ -3695,21 +3748,18 @@ access: `
           </ul>
 
           <p class="small">
-            Note: Some links are advocacy orgs. You can later add 1–2 academic/neutral overviews alongside these so it feels balanced.
+            And it’s not just about saving these animals. It’s about your own healing too.
+            As you’ve seen in the previous pages, a plant-based diet is often healing for our bodies, minds and spirits.
+            The next page will share some additional resources if you’re ready to take the next step in your plant-based healing journey.
           </p>
-        </details>
+        </section>
 
-        <p class="small">
-          And it’s not just about saving these animals. It’s about your own healing too.
-          As you’ve seen in the previous pages, a plant-based diet is often healing for our bodies, minds and spirits.
-          The next page will share some additional resources if you’re ready to take the next step in your plant-based healing journey.
-        </p>
-
-        ${navButtons({ showBack:true, showNext:false })}
+        ${navButtons({ showBack:true, showNext:true, nextLabel:"Continue to 2.4" })}
       `;
 
-      window.__next = () => {};
+      window.__next = () => go(STEPS.renderTransition); // <-- change TRANSITION if your 2.4 step name is different
     }
+
 
     function renderTransition(){
       setPill("Transition");
