@@ -675,7 +675,8 @@
 
 
       // End
-      STAKES: "STAKES"
+      STAKES: "STAKES",
+      TRANSITION: "TRANSITION"
     };
 
     const CX_ORDER = [
@@ -1439,7 +1440,7 @@ access: `
         case STEPS.P2_BLOCKER_DETAIL: return renderP2_BlockerDetail();
 
         case STEPS.STAKES: return renderStakes();
-        case STEPS.STAKES: return renderTransition();
+        case STEPS.TRANSITION: return renderTransition();
 
         default:
           $app.innerHTML = `<h1>Unknown step: ${state.stepId}</h1>` + navButtons({});
@@ -3757,7 +3758,7 @@ access: `
         ${navButtons({ showBack:true, showNext:true, nextLabel:"Continue to 2.4" })}
       `;
 
-      window.__next = () => go(STEPS.renderTransition); // <-- change TRANSITION if your 2.4 step name is different
+      window.__next = () => go(STEPS.P2_TRANSITION);
     }
 
 
