@@ -235,7 +235,7 @@
 <body>
   <div class="wrap">
     <div class="topbar">
-      <div class="brand">Plant-Based Reflection Tool v. 1.4</div>
+      <div class="brand">Plant-Based Reflection Tool v. 1.5</div>
       <div class="pill" id="progressPill">Step: —</div>
     </div>
 
@@ -342,118 +342,121 @@
     </div>
   </div>
 
-  <div id="bivalvesModal" class="modal hidden">
-    <div class="modal-card">
+  <!-- Bivalves Popup Modal (hidden by default) -->
+  <div class="modalback" id="bivalvesModal" style="display:none;">
+    <div class="modal">
       <h2>Pop-up: A note about bivalves</h2>
 
-      <p>
-        <b>Where bivalves fit in the necessity discussion:</b>
-        Some people consider <b>bivalves</b> (oysters, clams, mussels, scallops) a lower-sentience “bridge” option in situations where a fully plant-based diet is difficult
-        due to medical constraints, severe allergies/food intolerances, access barriers, or recovery needs.
-      </p>
-
-      <p class="small">
-        <b>Reminder:</b> This is not medical advice. Always consult your physician or a registered dietitian if you have medical conditions, are pregnant/lactating,
-        take medications, or are responsible for others’ health.
-      </p>
-
-      <div class="divider"></div>
-
-      <details class="acc" open>
-        <summary>🌿 What bivalves are nutritionally</summary>
-        <ul>
-          <li>High in easily digestible protein</li>
-          <li>Rich in vitamin B12</li>
-          <li>High in iron (<b>heme iron</b> — more bioavailable)</li>
-          <li>Contain zinc and selenium</li>
-          <li>Relatively low in saturated fat</li>
-          <li>Less “muscle mass” than vertebrate meat (often easier to digest)</li>
-        </ul>
-
-        <p class="small">
-          Because of these traits, bivalves are sometimes considered a “bridge” food for people transitioning or for those with higher nutrient needs.
+      <div class="scroll">
+        <p>
+          <b>Where bivalves fit in the necessity discussion:</b>
+          Some people consider <b>bivalves</b> (oysters, clams, mussels, scallops) a lower-sentience “bridge” option in situations where a fully plant-based diet is difficult
+          due to medical constraints, severe allergies/food intolerances, access barriers, or recovery needs.
         </p>
 
         <p class="small">
-          They are also often framed as <b>less ethically fraught</b> than vertebrate animals (e.g., cows, pigs, chickens) because they are generally considered lower on
-          sentience-related measures.
-        </p>
-      </details>
-
-      <details class="acc">
-        <summary>🧠 What science generally says about bivalve sentience</summary>
-        <ul>
-          <li>Bivalves (oysters, clams, mussels) do not have centralized brains similar to vertebrates.</li>
-          <li>Their nervous systems are more decentralized and primitive.</li>
-          <li>They do not show behavioral complexity or responses consistent with vertebrate-style pain perception.</li>
-        </ul>
-
-        <p class="small">
-          This is why some people who follow ethical diets — including a minority of vegans — make an exception for bivalves.
-          If you want literature citations, this flowchart can provide them in a later evidence section.
-        </p>
-      </details>
-
-      <details class="acc">
-        <summary>🍽️ How bivalves can fit in challenging medical situations</summary>
-
-        <p><b>1) Crohn’s disease / Ulcerative colitis</b></p>
-        <p class="small">
-          During flares, high-fiber foods (legumes, cruciferous vegetables) can trigger symptoms. Many clinicians recommend low-residue (lower-fiber) phases and easily digestible protein.
-          Bivalves may function as a temporary bridge because they can provide protein, B12, and iron without fiber.
+          <b>Reminder:</b> This is not medical advice. Always consult your physician or a registered dietitian if you have medical conditions, are pregnant/lactating,
+          take medications, or are responsible for others’ health.
         </p>
 
-        <p><b>2) Severe food allergies / intolerances</b></p>
-        <p class="small">
-          If someone cannot eat soy, legumes, nuts, seeds, and/or gluten, plant-protein options shrink dramatically. If they are <i>not</i> allergic to shellfish,
-          bivalves may be one of the few dense protein options that avoids those triggers.
-        </p>
+        <div class="divider"></div>
 
-        <p><b>3) Iron-deficiency anemia</b></p>
-        <p class="small">
-          Plant iron (non-heme) can be harder to absorb, and some people struggle to resolve deficiency even with careful planning. Bivalves contain heme iron,
-          which is more bioavailable and can be a clinically rational step before jumping to higher-sentience vertebrate meats.
-        </p>
+        <details class="acc" open>
+          <summary>🌿 What bivalves are nutritionally</summary>
+          <ul>
+            <li>High in easily digestible protein</li>
+            <li>Rich in vitamin B12</li>
+            <li>High in iron (<b>heme iron</b> — more bioavailable)</li>
+            <li>Contain zinc and selenium</li>
+            <li>Relatively low in saturated fat</li>
+            <li>Less “muscle mass” than vertebrate meat (often easier to digest)</li>
+          </ul>
 
-        <p><b>4) Elderly / reduced appetite / sarcopenia</b></p>
-        <p class="small">
-          Older adults may need dense protein and B12 with less volume and effort. Bivalves can be nutrient-dense, easy to eat, and (for some ethical frameworks) less morally fraught.
-        </p>
-      </details>
+          <p class="small">
+            Because of these traits, bivalves are sometimes considered a “bridge” food for people transitioning or for those with higher nutrient needs.
+          </p>
 
-      <details class="acc">
-        <summary>📌 How to reflect this in your flowchart logic (harm reduction)</summary>
-        <p class="small">
-          If someone needs an animal-derived nutrient source for medical reasons, a harm-reduction note can include:
-        </p>
-        <ul>
-          <li>GI conditions where high fiber is a problem</li>
-          <li>Iron deficiency not responding to plant strategies</li>
-          <li>Protein needs difficult to meet with available plant foods</li>
-          <li>Reduced appetite / chewing issues / elderly needs</li>
-        </ul>
+          <p class="small">
+            They are also often framed as <b>less ethically fraught</b> than vertebrate animals (e.g., cows, pigs, chickens) because they are generally considered lower on
+            sentience-related measures.
+          </p>
+        </details>
 
-        <p class="small">
-          Possible wording:
-          <i>
-            “If you need an animal-derived nutrient source for medical reasons, lower-sentience options (e.g., bivalves) may be considered with your clinician’s guidance.
-            You don’t have to force all-or-nothing.”
-          </i>
-        </p>
-      </details>
+        <details class="acc">
+          <summary>🧠 What science generally says about bivalve sentience</summary>
+          <ul>
+            <li>Bivalves (oysters, clams, mussels) do not have centralized brains similar to vertebrates.</li>
+            <li>Their nervous systems are more decentralized and primitive.</li>
+            <li>They do not show behavioral complexity or responses consistent with vertebrate-style pain perception.</li>
+          </ul>
 
-      <details class="acc">
-        <summary>⚖️ Ethical framing (fits the flowchart’s approach)</summary>
-        <ol class="small">
-          <li><b>Capacity to feel harm matters:</b> bivalves have far simpler nervous systems than vertebrates.</li>
-          <li><b>Harm reduction is real:</b> choosing bivalves instead of cows/chickens/pigs reduces suffering dramatically.</li>
-          <li><b>Partial progress is still progress:</b> if someone can’t be fully plant-based for medical reasons, reducing higher-sentience animal consumption still matters.</li>
-        </ol>
+          <p class="small">
+            This is why some people who follow ethical diets — including a minority of vegans — make an exception for bivalves.
+            If you want literature citations, this flowchart can provide them in a later evidence section.
+          </p>
+        </details>
 
-        <p class="small">
-          <i>“We are not evaluating what other people should do — only what is necessary for you personally.”</i>
-        </p>
-      </details>
+        <details class="acc">
+          <summary>🍽️ How bivalves can fit in challenging medical situations</summary>
+
+          <p><b>1) Crohn’s disease / Ulcerative colitis</b></p>
+          <p class="small">
+            During flares, high-fiber foods (legumes, cruciferous vegetables) can trigger symptoms. Many clinicians recommend low-residue (lower-fiber) phases and easily digestible protein.
+            Bivalves may function as a temporary bridge because they can provide protein, B12, and iron without fiber.
+          </p>
+
+          <p><b>2) Severe food allergies / intolerances</b></p>
+          <p class="small">
+            If someone cannot eat soy, legumes, nuts, seeds, and/or gluten, plant-protein options shrink dramatically. If they are <i>not</i> allergic to shellfish,
+            bivalves may be one of the few dense protein options that avoids those triggers.
+          </p>
+
+          <p><b>3) Iron-deficiency anemia</b></p>
+          <p class="small">
+            Plant iron (non-heme) can be harder to absorb, and some people struggle to resolve deficiency even with careful planning. Bivalves contain heme iron,
+            which is more bioavailable and can be a clinically rational step before jumping to higher-sentience vertebrate meats.
+          </p>
+
+          <p><b>4) Elderly / reduced appetite / sarcopenia</b></p>
+          <p class="small">
+            Older adults may need dense protein and B12 with less volume and effort. Bivalves can be nutrient-dense, easy to eat, and (for some ethical frameworks) less morally fraught.
+          </p>
+        </details>
+
+        <details class="acc">
+          <summary>📌 How to reflect this in your flowchart logic (harm reduction)</summary>
+          <p class="small">
+            If someone needs an animal-derived nutrient source for medical reasons, a harm-reduction note can include:
+          </p>
+          <ul>
+            <li>GI conditions where high fiber is a problem</li>
+            <li>Iron deficiency not responding to plant strategies</li>
+            <li>Protein needs difficult to meet with available plant foods</li>
+            <li>Reduced appetite / chewing issues / elderly needs</li>
+          </ul>
+
+          <p class="small">
+            Possible wording:
+            <i>
+              “If you need an animal-derived nutrient source for medical reasons, lower-sentience options (e.g., bivalves) may be considered with your clinician’s guidance.
+              You don’t have to force all-or-nothing.”
+            </i>
+          </p>
+        </details>
+
+        <details class="acc">
+          <summary>⚖️ Ethical framing (fits the flowchart’s approach)</summary>
+          <ol class="small">
+            <li><b>Capacity to feel harm matters:</b> bivalves have far simpler nervous systems than vertebrates.</li>
+            <li><b>Harm reduction is real:</b> choosing bivalves instead of cows/chickens/pigs reduces suffering dramatically.</li>
+            <li><b>Partial progress is still progress:</b> if someone can’t be fully plant-based for medical reasons, reducing higher-sentience animal consumption still matters.</li>
+          </ol>
+
+          <p class="small">
+            <i>“We are not evaluating what other people should do — only what is necessary for you personally.”</i>
+          </p>
+        </details>
+      </div>
 
       <div class="divider"></div>
 
@@ -462,6 +465,7 @@
       </div>
     </div>
   </div>
+
 
   <script>
 
@@ -993,7 +997,11 @@ access: `
             <li>Filter water; can reduce excess nitrogen/phosphorus</li>
             <li>No feed, no fertilizer, no freshwater, no land (in many systems)</li>
           </ul>
-          <p class="small">TODO: Paste your environmental “bivalves are net beneficial” block here (with your final cautionary wording).</p>
+          <div class="btnrow" style="margin-top:.5rem;">
+            <button class="btn ghost" onclick="openBivalvesNote()">
+              Pop-up: A note about bivalves (optional harm-reduction bridge)
+            </button>
+          </div>
         </details>
       `,
 
@@ -1384,6 +1392,7 @@ access: `
         case STEPS.P2_BLOCKER_DETAIL: return renderP2_BlockerDetail();
 
         case STEPS.STAKES: return renderStakes();
+        case STEPS.STAKES: return renderTransition();
 
         default:
           $app.innerHTML = `<h1>Unknown step: ${state.stepId}</h1>` + navButtons({});
@@ -3493,42 +3502,460 @@ access: `
     function renderStakes(){
       setPill("Stakes / End screen");
 
-      // Your chosen “annual impact” numbers (placeholder values)
+      // 2C — Your chosen “annual impact” numbers (placeholder values)
       const impact = {
-        chickens: 35,
+        chickens: 37,
         turkeys: 1,
         pigs: 1,     // baby pig (visual)
         cows: 1,     // baby cow (visual)
-        fish: 27,
-        seafood: 250,
-        maleChicks: 2,
-        bees: 3,
-        wildlife: ["mouse", "chipmunk", "sparrow", "lizard", "butterfly"]
+
+        wildlife: {
+          insects: {
+            butterflies: 17,
+            bees: 12,
+            beetles: 3,
+            grasshoppersCrickets: 2,
+            total: 34
+          },
+          smallMammals: {
+            fieldMice: 7,
+            chipmunks: 3,
+            rabbits: 2,
+            voles: 2,
+            skunk: 1,
+            raccoon: 1,
+            total: 16
+          },
+          birds: {
+            groundNesting: 7,
+            nestlingsEggs: 3,
+            total: 10
+          },
+          reptilesAmphibians: {
+            lizards: 3,
+            turtle: 1,
+            snake: 1,
+            frogToad: 1,
+            total: 6
+          },
+          total: 66
+        },
+
+        aquatic: {
+          fish: 27,
+          shrimp: 100,
+          otherShellfishCephalopodsCombined: 10,
+          crab: 1,
+          squid: 1
+        }
       };
 
       const headline = state.showSavedSpin
-        ? "Thank you — estimated animals saved per year (placeholder)"
-        : "Estimated animals affected per year (placeholder)";
+        ? "The Stakes — approximate animals spared per year (placeholder)"
+        : "The Stakes — approximate animals affected per year (placeholder)";
 
       $app.innerHTML = `
         <h1>${headline}</h1>
-        <p class="small">This is where your visual + links will live. This page is intentionally a placeholder box right now.</p>
 
-        <div class="imgbox">
-          <b>Visual spec (for later image/art):</b><br/>
-          ${impact.chickens} chickens • ${impact.turkeys} turkey • ${impact.pigs} baby pig • ${impact.cows} baby cow<br/>
-          ${impact.fish} fish • ${impact.seafood} mixed seafood<br/>
-          ${impact.maleChicks} male chicks • ${impact.bees} bees<br/>
-          Wildlife icons: ${impact.wildlife.join(", ")}
-        </div>
+        <p class="small">
+          This is an approximate visual of the number and types of animals affected each year by a typical U.S. animal-inclusive diet.
+          Numbers are based on national consumption averages and production patterns. Actual impact varies by individual and region.
+          This illustration is for scale and reflection — not precise accounting.
+        </p>
 
-        <p class="small">Later: embed your “not all-or-nothing” reminder + your external links (stake education sites).</p>
+        <details class="acc" open>
+          <summary>Farmed animals (visual model)</summary>
+
+          <div class="imgbox">
+            <b>Art placeholder (swap later):</b><br/>
+            <span class="small">Insert image:</span> <code>farmanimals.png</code><br/>
+            <span class="small">Art source note (later): clipart-library.org</span>
+          </div>
+
+          <ul>
+            <li>🐔 <b>${impact.chickens}</b> chickens and chicks</li>
+            <li>🦃 <b>${impact.turkeys}</b> turkey</li>
+            <li>🐖 <b>${impact.pigs}</b> baby pig</li>
+            <li>🐄 <b>${impact.cows}</b> baby cow</li>
+          </ul>
+        </details>
+
+        <details class="acc">
+          <summary>Wildlife likely spared (hypothetical breakdown)</summary>
+
+          <div class="imgbox">
+            <b>Art placeholder (swap later):</b><br/>
+            <span class="small">Insert image:</span> <code>wildlife.png</code>
+          </div>
+
+          <p class="small">
+            A hypothetical breakdown of wildlife that would likely be spared annually by switching from a standard American diet to a fully plant-based diet.
+          </p>
+
+          <ul>
+            <li><b>Insects / invertebrates (${impact.wildlife.insects.total})</b>
+              <ul>
+                <li>🦋 Butterflies (${impact.wildlife.insects.butterflies})</li>
+                <li>🐝 Native bees (${impact.wildlife.insects.bees})</li>
+                <li>🐞 Beetles (${impact.wildlife.insects.beetles})</li>
+                <li>🦗 Grasshoppers/crickets (${impact.wildlife.insects.grasshoppersCrickets})</li>
+              </ul>
+            </li>
+
+            <li><b>Small mammals (${impact.wildlife.smallMammals.total})</b>
+              <ul>
+                <li>🐁 Field mice (${impact.wildlife.smallMammals.fieldMice})</li>
+                <li>🐿️ Chipmunks (${impact.wildlife.smallMammals.chipmunks})</li>
+                <li>🐇 Rabbits (${impact.wildlife.smallMammals.rabbits})</li>
+                <li>🐀 Voles (${impact.wildlife.smallMammals.voles})</li>
+                <li>🦨 Skunk (${impact.wildlife.smallMammals.skunk})</li>
+                <li>🦝 Raccoon (${impact.wildlife.smallMammals.raccoon})</li>
+              </ul>
+            </li>
+
+            <li><b>Birds (${impact.wildlife.birds.total})</b>
+              <ul>
+                <li>🐦 Ground-nesting/grassland birds (${impact.wildlife.birds.groundNesting})</li>
+                <li>🐣 Nestlings/eggs (${impact.wildlife.birds.nestlingsEggs})</li>
+              </ul>
+            </li>
+
+            <li><b>Reptiles + amphibians (${impact.wildlife.reptilesAmphibians.total})</b>
+              <ul>
+                <li>🦎 Lizards (${impact.wildlife.reptilesAmphibians.lizards})</li>
+                <li>🐢 Turtle (${impact.wildlife.reptilesAmphibians.turtle})</li>
+                <li>🐍 Snake (${impact.wildlife.reptilesAmphibians.snake})</li>
+                <li>🐸 Frog/toad (${impact.wildlife.reptilesAmphibians.frogToad})</li>
+              </ul>
+            </li>
+          </ul>
+
+          <details class="acc">
+            <summary>🌳 What “deforestation for grazing land” actually affects</summary>
+            <p class="small">When forests or native ecosystems are cleared for animal agriculture, many things happen:</p>
+            <ul>
+              <li><b>Direct wildlife deaths during clearing</b> — bulldozers, fire, and chain saws can kill animals on site.</li>
+              <li><b>Habitat loss and fragmentation</b> — animals lose habitat and food sources and can die from starvation, predation, or displacement.</li>
+              <li><b>Long-term species decline</b> — local populations can crash or be extirpated.</li>
+              <li><b>Downstream impacts</b> — soil erosion, water pollution, disrupted nutrient cycles, degraded ecosystems → secondary deaths.</li>
+            </ul>
+            <p class="small">
+              So “how many die” is not just a number of bodies counted; it’s also population decline over time.
+            </p>
+            <p class="small">
+              👉 <b>~50–125</b> small wild animals per person per year (very conservative classroom estimate from deforestation/habitat loss).<br/>
+              <span class="small">This excludes many longer-term impacts (food web effects, runoff, fragmentation edge effects, etc.).</span>
+            </p>
+
+            <p class="small"><b>Land savings overview (placeholder phrasing for later citation polish):</b></p>
+            <ul>
+              <li>~<b>2.3 acres saved per person per year</b> by going fully vegan (grazing, cropland, deforestation context)</li>
+            </ul>
+
+            <details class="acc">
+              <summary>Citations (links)</summary>
+              <ul>
+                <li><a href="https://online.ucpress.edu/elementa/article/4/1/000116/112949/Carrying-capacity-of-U-S-agricultural-land-Ten" target="_blank" rel="noopener">Peters et al. (2016) — Elementa: “Carrying capacity of U.S. agricultural land: Ten diet scenarios”</a></li>
+                <li><a href="https://ourworldindata.org/how-many-animals-are-factory-farmed" target="_blank" rel="noopener">Our World in Data — “How many animals are factory-farmed?”</a></li>
+              </ul>
+            </details>
+          </details>
+        </details>
+
+        <details class="acc">
+          <summary>Aquatic animals spared (visual model)</summary>
+
+          <div class="imgbox">
+            <b>Art placeholder (swap later):</b><br/>
+            <span class="small">Insert image:</span> <code>aquaticanimals.png</code>
+          </div>
+
+          <ul>
+            <li>🐟 <b>${impact.aquatic.fish}</b> fish</li>
+            <li>🍤 <b>${impact.aquatic.shrimp}</b> shrimp</li>
+            <li><b>Other shellfish & cephalopods</b> (combined ~${impact.aquatic.otherShellfishCephalopodsCombined} animals total)</li>
+            <li>🦀 Crab — <b>${impact.aquatic.crab}</b></li>
+            <li>🦑 Squid — <b>${impact.aquatic.squid}</b></li>
+          </ul>
+
+          <p class="small">
+            These animals are a visual model, not a literal list. Bycatch species vary by region and fishing method.
+            In many trawl fisheries, bycatch/discards are dominated by small fish and invertebrates; larger animals (like rays or small sharks) occur less often but still occur.
+          </p>
+        </details>
+
+        <details class="acc">
+          <summary>More info: industry suffering & welfare structure (links)</summary>
+          <ul>
+            <li><a href="https://www.aspca.org/protecting-farm-animals/animals-factory-farms" target="_blank" rel="noopener">ASPCA — Animals on Factory Farms</a></li>
+            <li><a href="https://awionline.org/content/inhumane-practices-factory-farms" target="_blank" rel="noopener">Animal Welfare Institute — Inhumane Practices on Factory Farms</a></li>
+            <li><a href="https://www.farmforward.com/issues/animal-welfare/animal-welfare-issues/" target="_blank" rel="noopener">Farm Forward — Farmed animal welfare issues</a></li>
+            <li><a href="https://aldf.org/focus_area/farmed-animals/" target="_blank" rel="noopener">Animal Legal Defense Fund — Farmed Animals (legal coverage)</a></li>
+            <li><a href="https://ourworldindata.org/how-many-animals-are-factory-farmed" target="_blank" rel="noopener">Our World in Data — Global scale context</a></li>
+          </ul>
+
+          <p class="small">
+            Note: Some links are advocacy orgs. You can later add 1–2 academic/neutral overviews alongside these so it feels balanced.
+          </p>
+        </details>
+
+        <p class="small">
+          And it’s not just about saving these animals. It’s about your own healing too.
+          As you’ve seen in the previous pages, a plant-based diet is often healing for our bodies, minds and spirits.
+          The next page will share some additional resources if you’re ready to take the next step in your plant-based healing journey.
+        </p>
 
         ${navButtons({ showBack:true, showNext:false })}
       `;
 
       window.__next = () => {};
     }
+
+    function renderTransition(){
+      setPill("Transition");
+
+      $app.innerHTML = `
+        <h1>🌱 Making the Transition</h1>
+        <div class="transition-hero">
+          <img src="transition.png" alt="Making the transition" />
+        </div>
+
+        <p class="small">
+          Changing how you eat is not just a nutritional shift — it’s an emotional, cultural, social, and psychological one.
+          So if you feel conflicted, scared, resistant, or overwhelmed… that doesn’t mean you’re failing. It means you’re human.
+          This page is here to help you move from ethical clarity (“this matters”) into practical transition (“how do I actually live this?”) — gently, realistically, and without shame.
+        </p>
+
+        <details class="acc" open>
+          <summary>Bottom line (harm reduction & realism)</summary>
+
+          <p class="small"><b>This is not about being perfect.</b> It’s about reducing harm in a way you can sustain.</p>
+
+          <div class="imgbox">
+            Someone once said:<br/>
+            “I could never go vegan — I could never give up cheese.”<br/>
+            And the response was:<br/>
+            <b>“Then go vegan except for cheese.”</b><br/>
+            <span class="small">That’s not a joke. That’s wisdom.</span>
+          </div>
+
+          <p class="small">
+            If someone goes plant-based 90% of the time but still eats pizza, cheese, or bacon occasionally, they are still:
+          </p>
+          <ul>
+            <li>reducing demand</li>
+            <li>reducing animal suffering</li>
+            <li>reducing environmental damage</li>
+            <li>reducing health risk</li>
+          </ul>
+
+          <p class="small">
+            From a systems perspective: <b>10 people reducing animal consumption by 50%</b> does more good than <b>1 person being “perfect.”</b><br/>
+            Hardline purity pushes people away. Pragmatism pulls people in.<br/>
+            Morality isn’t invalidated by imperfection — it’s strengthened by participation.
+          </p>
+        </details>
+
+        <details class="acc">
+          <summary>Why change feels hard (even when you agree)</summary>
+          <img src="heart.png" alt="Emotional healing illustration" class="summary-img" />
+
+          <p class="small">
+            Change can threaten: belonging, identity, emotional regulation, familiar routines, and sources of comfort and pleasure.
+            So resistance is rarely about ignorance or selfishness — it’s often about fear:
+          </p>
+          <ul>
+            <li>fear of loss</li>
+            <li>fear of social disruption</li>
+            <li>fear of becoming “different”</li>
+            <li>fear of letting go of something that has soothed you</li>
+          </ul>
+          <p class="small">
+            Understanding this doesn’t excuse harm — but it does allow us to approach ourselves and others with compassion rather than judgment.
+          </p>
+        </details>
+
+        <details class="acc">
+          <summary>Processed meat & health (yes, the data is alarming)</summary>
+          <ul>
+            <li><b>Processed meats</b> (bacon, sausage, hot dogs) are classified by the WHO as <b>Group 1 carcinogens</b> (same category as tobacco smoke).</li>
+            <li><b>Red meat cooked at high heat</b> (grilling, charring) produces compounds linked to cancer and inflammation.</li>
+          </ul>
+          <p class="small">
+            So often, the ethical swap is also the healthier swap.
+          </p>
+        </details>
+
+        <details class="acc">
+          <summary>Starting with “vegan junk food”</summary>
+          <img src="junkfood.png" alt="Vegan comfort food" class="summary-img" />
+
+          <p class="small">
+            For many people:
+          </p>
+          <ul>
+            <li>highly palatable vegan comfort foods help keep the transition emotionally safe</li>
+            <li>taste receptors often recalibrate over time</li>
+            <li>people begin craving lighter, fresher foods naturally</li>
+          </ul>
+          <p class="small">
+            This isn’t mystical detox — it’s neuroadaptation + gut microbiome shifts.
+            It doesn’t happen for everyone, and that’s okay. A good system allows multiple on-ramps.
+          </p>
+        </details>
+
+        <details class="acc">
+          <summary>The four dimensions that actually matter</summary>
+          <p class="small">You named the right ones:</p>
+          <ol class="small">
+            <li>Time / effort</li>
+            <li>Cost</li>
+            <li>Taste / satisfaction</li>
+            <li><b>Social friction</b> (this one is huge)</li>
+          </ol>
+          <p class="small">
+            A swap that’s cheap and tasty but makes someone feel isolated socially often fails.
+            A swap that preserves belonging often succeeds.
+          </p>
+        </details>
+
+        <details class="acc">
+          <summary>A practical framework: Easy → Medium → Hard swaps</summary>
+
+          <div class="imgbox">
+            <b>🟢 Easy swaps</b><br/>
+            Low effort, low risk, high similarity.
+          </div>
+          <ul>
+            <li>Mayo → vegan mayo</li>
+            <li>Butter → plant butter</li>
+            <li>Milk → oat/soy milk</li>
+            <li>Parmesan → vegan parm</li>
+            <li>Bacon bits → coconut or tempeh bacon</li>
+            <li>Breakfast sausage → vegan sausage</li>
+          </ul>
+          <p class="small"><b>These are the “why wouldn’t you?” swaps.</b></p>
+
+          <div class="imgbox">
+            <b>🟡 Mid-level swaps</b><br/>
+            Different, but manageable.
+          </div>
+          <ul>
+            <li>Tacos → lentil/bean crumble</li>
+            <li>Burgers → plant burgers</li>
+            <li>Chili → bean chili</li>
+            <li>Stir-fry → tofu/tempeh</li>
+            <li>Ice cream → oat/cashew ice cream</li>
+            <li>Pizza → half vegan / half dairy, or vegan at home</li>
+          </ul>
+          <p class="small">These are where people start thinking, “I could actually do this.”</p>
+
+          <div class="imgbox">
+            <b>🔴 Hard swaps</b><br/>
+            Emotionally loaded, culturally meaningful.
+          </div>
+          <ul>
+            <li>Aged cheese</li>
+            <li>Holiday meals</li>
+            <li>Barbecue</li>
+            <li>Steak and ribs</li>
+            <li>Family traditions</li>
+          </ul>
+          <p class="small">
+            This is where forcing change backfires. This is where “pizza exception” philosophy shines:
+            <b>Keep the hard thing. Change everything else.</b> That alone dramatically reduces harm.
+          </p>
+        </details>
+
+        <details class="acc">
+          <summary>Can you switch overnight?</summary>
+          <img src="heal.png" alt="Body adjusting to change" class="summary-img" />
+
+          <p class="small"><b>Yes</b> — but it depends on your body.</p>
+          <p class="small">What can happen:</p>
+          <ul>
+            <li>gas, bloating, loose stools for a week or two</li>
+            <li>because your gut bacteria are adapting to more fiber</li>
+          </ul>
+
+          <p class="small"><b>Typical timeline (approx.):</b></p>
+          <ul>
+            <li>immediate changes: 1–3 days</li>
+            <li>microbiome adjusting: 2–6 weeks</li>
+            <li>taste shifts: 2–8 weeks</li>
+          </ul>
+
+          <p class="small">
+            It’s safe for most people if calories, protein, fluids, and electrolytes are adequate.
+          </p>
+        </details>
+
+        <details class="acc">
+          <summary>What this system accomplishes</summary>
+          <ul>
+            <li>meets people where they are</li>
+            <li>preserves pleasure</li>
+            <li>reduces fear</li>
+            <li>avoids shame</li>
+            <li>allows partial success</li>
+            <li>keeps people engaged</li>
+          </ul>
+          <p class="small">
+            A diet someone can sustain imperfectly saves more lives than a perfect diet nobody adopts.
+          </p>
+        </details>
+
+        <details class="acc">
+          <summary>Social friction: nuance, not avoidance</summary>
+          <img src="blooming.png" alt="Social change and growth" class="summary-img" />
+
+          <p class="small">
+            Speaking your values calmly is good. Social discomfort is not inherently bad — it can open meaningful dialogue.
+            The goal isn’t to avoid friction at all costs. It’s to avoid shame, judgment, and moral grandstanding.
+          </p>
+          <p class="small">
+            You can be clear and kind. You can pull the thread without attacking the person.
+          </p>
+        </details>
+
+        <details class="acc">
+          <summary>Final thought</summary>
+          <p class="small">
+            When people react strongly, it’s usually because their identity feels threatened, not because you’re wrong.
+            Diet touches masculinity, culture, family, pleasure, belonging.
+            So when you pull one thread, it shakes more than a plate — it shakes “Who am I if this isn’t okay?”
+          </p>
+          <p class="small">
+            That fear isn’t yours to carry. You’re allowed to live your values with clarity and compassion.
+          </p>
+        </details>
+
+        <details class="acc">
+          <summary>Bonus: practical benefits (non-moral context)</summary>
+          <ul>
+            <li>Health benefits</li>
+            <li>Environmental protection</li>
+            <li>Resource efficiency</li>
+            <li>Reduced antibiotic and pandemic risk</li>
+            <li>Climate stability</li>
+          </ul>
+        </details>
+
+        <div class="imgbox">
+          <b>🌿 In short</b><br/>
+          You don’t have to be perfect to be ethical.<br/>
+          You don’t have to suffer to reduce suffering.<br/>
+          You don’t have to abandon joy to live with integrity.<br/>
+          <b>You just have to start.</b><br/>
+          <span class="small">And starting — imperfectly — is enough.</span>
+        </div>
+
+        ${navButtons({ showBack:true, showNext:false })}
+      `;
+
+      window.__next = () => {};
+    }
+
 
     /***********************
      * DISCLAIMER MODAL
