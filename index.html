@@ -235,7 +235,7 @@
 <body>
   <div class="wrap">
     <div class="topbar">
-      <div class="brand">Plant-Based Reflection Tool v. 1.5</div>
+      <div class="brand">Plant-Based Reflection Tool v. 1.7</div>
       <div class="pill" id="progressPill">Step: —</div>
     </div>
 
@@ -3382,6 +3382,7 @@ access: `
 
         $app.innerHTML = `
           <h1>Part 2 — 2B (Personal case)</h1>
+          <img src="blockers1.png" alt="Personal case" class="page-img"/>
           <p class="small">
             You answered “No” to the general question — meaning: you believe a plant-based diet is <b>not</b> nutritionally adequate in your personal case.
           </p>
@@ -3405,7 +3406,7 @@ access: `
 
         $app.innerHTML = `
           <h1>Part 2 — Where this puts you (overview)</h1>
-
+          <img src="realization.png" alt="Where this puts you" class="page-img"/>
           <p>
             You selected:
             <b>“Yes — a properly planned plant-based diet can meet human nutritional needs in my personal case.”</b>
@@ -3444,6 +3445,7 @@ access: `
 
       $app.innerHTML = `
         <h1>What’s holding you back? (check all that apply)</h1>
+        <img src="blockers2.png" alt="Holding you back" class="page-img"/>
         <p>We’ll go through only the boxes you check, one by one, with info and options.</p>
 
         <div class="checklist">
@@ -3758,7 +3760,7 @@ access: `
         ${navButtons({ showBack:true, showNext:true, nextLabel:"Continue to 2.4" })}
       `;
 
-      window.__next = () => go(STEPS.P2_TRANSITION);
+      window.__next = () => go(STEPS.TRANSITION);
     }
 
 
