@@ -346,6 +346,8 @@
   <div class="modalback" id="bivalvesModal" style="display:none;">
     <div class="modal">
       <h2>Pop-up: A note about bivalves</h2>
+      
+    <img class="page-img" src="assets/bivalves.png" alt="Bivalves illustration">
 
       <div class="scroll">
         <p>
@@ -990,7 +992,7 @@ access: `
       env: `
         <h2>2B4 — Environmental context</h2>
         <p><b>Prompt:</b> Are there environmental or geographic realities that affect what’s possible for you personally?</p>
-
+        
         <details class="acc">
           <summary>Why plant-based diets generally have lower environmental impact</summary>
 
@@ -3737,6 +3739,58 @@ access: `
             These animals are a visual model, not a literal list. Bycatch species vary by region and fishing method.
             In many trawl fisheries, bycatch/discards are dominated by small fish and invertebrates; larger animals (like rays or small sharks) occur less often but still occur.
           </p>
+
+          <div class="divider"></div>
+
+          <p><b>Aquatic animals spared per year by switching to a plant-based diet</b></p>
+
+          <p class="small">
+          These numbers include small finfish and small invertebrates that commonly appear in bycatch streams (especially shrimp trawls and mixed trawls),
+          as well as aquatic wildlife affected indirectly by factory farm pollution and runoff.
+          </p>
+
+          <ul class="small">
+            <li><b>🐟 27 fish</b></li>
+            <ul>
+              <li>Salmon (fillets) — ~1 fish</li>
+              <li>Cod — ~1 fish</li>
+              <li>Tilapia — ~1 fish</li>
+              <li>Baby tuna (steaks/cans) — ~1 tuna</li>
+            </ul>
+
+            <li><b>🍤 100 shrimp</b></li>
+            <li><b>🦀 Crab — 1</b></li>
+            <li><b>🦑 Squid — 1</b></li>
+          </ul>
+
+          <p class="small"><b>Other aquatic animals affected by bycatch and pollution:</b></p>
+
+          <ol class="small">
+            <li>Juvenile Atlantic croaker (small drum fish)</li>
+            <li>Juvenile spot (small drum fish)</li>
+            <li>Juvenile sand seatrout</li>
+            <li>Small menhaden / forage fish</li>
+            <li>Small pinfish / reef-associated baitfish</li>
+            <li>Juvenile flounder / flatfish</li>
+            <li>Small crab (juvenile blue crab–type bycatch)</li>
+            <li>Small squid (young/small cephalopod)</li>
+          </ol>
+
+          <p class="small">
+          These are typically small-bodied animals (often under ~100g / 3.5oz), which matches discard composition in many trawl fisheries.
+          </p>
+
+          <p class="small"><b>Low-frequency, high-salience bycatch:</b></p>
+
+          <ol start="9" class="small">
+            <li>Small ray or skate</li>
+            <li>Small shark (dogfish-type)</li>
+          </ol>
+
+          <p class="small">
+          These occur less often numerically, but they are ecologically and emotionally salient because of their size, lifespan, and visibility.
+          </p>
+
         </section>
 
         <!-- Links -->
@@ -3756,8 +3810,9 @@ access: `
             The next page will share some additional resources if you’re ready to take the next step in your plant-based healing journey.
           </p>
         </section>
+        <img class="page-img" src="assets/renewal.png" alt="Renewal illustration">
 
-        ${navButtons({ showBack:true, showNext:true, nextLabel:"Continue to 2.4" })}
+        ${navButtons({ showBack:true, showNext:true, nextLabel:"Continue to Making the Transition" })}
       `;
 
       window.__next = () => go(STEPS.TRANSITION);
@@ -3811,7 +3866,7 @@ access: `
 
         <details class="acc">
           <summary>Why change feels hard (even when you agree)</summary>
-          <img src="heart.png" alt="Emotional healing illustration" class="summary-img" />
+          <img src="heart.webp" alt="Emotional healing illustration" class="summary-img" />
 
           <p class="small">
             Change can threaten: belonging, identity, emotional regulation, familiar routines, and sources of comfort and pleasure.
