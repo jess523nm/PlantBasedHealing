@@ -246,7 +246,11 @@
   <div class="modalback" id="disclaimerModal">
     <div class="modal">
       <h2>Welcome - Before you Begin</h2>
-        <div class="scroll">
+
+      <img class="page-img" src="assets/nightbeach.png" alt="Night beach illustration">
+
+      <div class="scroll">
+
           <p><b>This interactive flowchart is not about laws, politics, or what should be legal or illegal.</b></p>
 
           <p>It is only about your own personal moral decision-making — what you feel is right or wrong for you to do in your own life.</p>
@@ -269,6 +273,40 @@
         <button id="startBtn">Continue</button>
       </div>
       <p class="small">To continue, check the box above.</p>
+    </div>
+  </div>
+
+    <!-- Medical Disclaimer Modal (non-exit) -->
+  <div class="modalback" id="medicalDisclaimerModal" style="display:none;">
+    <div class="modal">
+      <h2>Medical note (not all-or-nothing)</h2>
+
+      <img class="page-img" src="assets/doctor.png" alt="Medical support illustration">
+
+      <div class="scroll">
+        <p><b>Important:</b> This tool is not medical advice.</p>
+
+        <p>
+          If you have medical conditions, a history of eating disorders/ARFID, severe allergies/intolerances,
+          pregnancy/lactation needs, GI disorders, or you’re feeding someone with high medical needs,
+          consider discussing dietary changes with a qualified clinician (physician and/or registered dietitian).
+        </p>
+
+        <div class="divider"></div>
+
+        <p><b>Not all-or-nothing:</b> If a fully plant-based diet isn’t safe or realistic right now, even reducing animal products can still meaningfully reduce harm and environmental impact.</p>
+
+        <p>
+          If you choose to consult a professional, we’ll still continue through the rest of the topics you checked
+          so you can bring the <b>full set of concerns and reflections</b> into that conversation (instead of only one piece).
+        </p>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="btnrow">
+        <button class="btn-green" onclick="closeMedicalDisclaimerAndContinue()">I understand — continue</button>
+      </div>
     </div>
   </div>
 
@@ -616,6 +654,23 @@
       m.style.display = "none";
     }
 
+    // ----- Medical disclaimer (non-exit) modal helpers -----
+    let __medicalContinue = null;
+
+    function openMedicalDisclaimerThen(onContinue){
+      __medicalContinue = typeof onContinue === "function" ? onContinue : null;
+      const m = document.getElementById("medicalDisclaimerModal");
+      if(m) m.style.display = "flex";
+    }
+
+    function closeMedicalDisclaimerAndContinue(){
+      const m = document.getElementById("medicalDisclaimerModal");
+      if(m) m.style.display = "none";
+      const cb = __medicalContinue;
+      __medicalContinue = null;
+      if(cb) cb();
+    }
+
 
     /***********************
      * STATE + ROUTING
@@ -742,6 +797,7 @@
       <div class="divider"></div>
 
       <h2>2B1 — Medical</h2>
+      <img class="page-img" src="assets/medical.png" alt="Medical illustration">
 
       <p><b>What this includes:</b></p>
       <ul>
@@ -758,162 +814,332 @@
       <p><b>Prompt:</b> Do you have a medical, psychological, or physiological condition — for yourself or someone you care for —
       that makes a fully plant-based diet unsafe, unrealistic, or harmful <i>without</i> professional supervision?</p>
 
-      <details class="acc">
-        <summary>Commonly cited — but usually not true medical “necessities”</summary>
-        <p class="small">
-          These are common beliefs, but mainstream medical consensus does not typically treat them as requiring animal products.
-          (They are usually “monitoring + planning” issues — which is what 2A covered.)
-        </p>
-        <ul>
-          <li>Pregnancy & breastfeeding — well-planned plant-based diets are considered safe by major dietetic associations</li>
-          <li>Childhood & adolescence — safe when properly planned</li>
-          <li>Older age — no inherent need for animal products; protein and B12 monitoring matter</li>
-          <li>Iron deficiency — often manageable plant-based with absorption strategies</li>
-          <li>Osteoporosis — calcium/vitamin D/protein can be obtained plant-based (monitoring matters)</li>
-          <li>Diabetes — plant-based patterns often improve insulin sensitivity</li>
-          <li>Heart disease — plant-based patterns are often protective</li>
-        </ul>
-      </details>
+<details class="acc">
+  <summary>Category 1 — Plant-based patterns are often beneficial and protective</summary>
 
-      <details class="acc">
-        <summary>Edge cases — where fully plant-based can be genuinely challenging (and may require specialized management)</summary>
+  <p class="small">
+    In these situations, plant-centered eating is not only possible — it is often associated with better outcomes than
+    animal-heavy patterns (especially when it emphasizes whole foods and limits ultra-processed foods).
+  </p>
 
-        <p><b>A) Gastrointestinal disorders</b></p>
-        <ul>
-          <li>Crohn’s / ulcerative colitis — fiber intolerance during flares</li>
-          <li>IBS (especially low-FODMAP IBS) — many plant foods can trigger symptoms</li>
-          <li>Gastroparesis — high-fiber foods can slow digestion further</li>
-        </ul>
-        <p class="small">
-          These do not necessarily “require” animal foods in principle, but they may require temporary low-fiber phases,
-          carefully selected foods, and dietetic supervision. Some people find animal foods easier during flares — a pragmatic reality,
-          not a moral failure.
-        </p>
+  <ul>
+    <li><b>Type 2 diabetes</b> — plant-forward patterns often improve insulin sensitivity and glycemic control (monitor meds with a clinician)</li>
+    <li><b>Heart disease / cardiometabolic risk</b> — plant-centered patterns are often protective; some intensive programs show regression in some cases</li>
+    <li><b>Obesity / weight management</b> — whole plant foods tend to be higher fiber/lower calorie density, supporting satiety and weight stability</li>
+    <li><b>Metabolic syndrome</b> — often improves alongside weight, blood pressure, lipids, and blood sugar on plant-forward patterns</li>
+    <li><b>Cancer risk reduction patterns</b> (esp. colorectal) — higher fiber/plant intake is associated with lower risk in population studies (not a guarantee)</li>
+    <li><b>Hormone-related/metabolic fertility issues</b> (e.g., PCOS) — plant-forward patterns can support insulin resistance and inflammation, which can help</li>
+    <li><b>Estrogen-sensitive conditions</b> (e.g., fibroids) — plant-forward weight/metabolic improvements may support risk reduction for some people</li>
+  </ul>
 
-        <p><b>B) Severe food allergies</b></p>
-        <ul>
-          <li>Soy allergy (removes a major plant protein)</li>
-          <li>Legume allergy (removes beans, lentils, peas)</li>
-          <li>Nut/seed allergy (removes calorie-dense plant options)</li>
-          <li>Gluten intolerance + legume allergy combo (can shrink options dramatically)</li>
-        </ul>
-        <p class="small">Not impossible — but harder, especially for calorie and protein sufficiency.</p>
+  <p class="small">
+    <b>Note:</b> This is not a promise of “reversal” for any individual. The point is that these conditions are not medical reasons
+    that require animal products, and plant-forward eating is often a strong supportive strategy.
+  </p>
+</details>
 
-        <p><b>C) Eating disorders / ARFID / severe sensory restriction</b></p>
-        <ul>
-          <li>Active anorexia / orthorexia / ARFID — restriction patterns can worsen</li>
-          <li>Severe sensory aversions (including autism/ARFID overlap) — can sharply limit plant options</li>
-        </ul>
-        <p class="small">
-          Ethically, mental health stabilization always takes priority over dietary ideals.
-          Plant-based eating can feel freeing for some people and restrictive for others — it depends on whether it functions as nourishment or control.
-          If you have eating disorder history, consider discussing this with a clinician who understands your patterns.
-        </p>
+    <details class="acc">
+      <summary>Commonly cited — but usually not true medical “necessities”</summary>
+      <p class="small">
+        These are common beliefs, but mainstream medical consensus does not typically treat them as requiring animal products.
+        (They are usually “monitoring + planning” issues — which is what 2A covered.)
+      </p>
+      <ul>
+        <li>Pregnancy & breastfeeding — well-planned plant-based diets are considered safe by major dietetic associations</li>
+        <li>Childhood & adolescence — safe when properly planned</li>
+        <li>Older age — no inherent need for animal products; protein and B12 monitoring matter</li>
+        <li>Iron deficiency — often manageable plant-based with absorption strategies</li>
+        <li>Osteoporosis — calcium/vitamin D/protein can be obtained plant-based (monitoring matters)</li>
+      </ul>
+      <p class="small">
+        (Diabetes, heart disease, and obesity are listed above because plant-forward patterns are often <i>beneficial</i>, not just “possible.”)
+      </p>
+    </details>
 
-        <p><b>D) High recovery / metabolic demands</b></p>
-        <ul>
-          <li>Elite endurance or strength athletes — very high calorie/protein needs</li>
-          <li>Post-surgical recovery — low appetite + high protein needs</li>
-          <li>Chronic underweight — calorie density can be harder plant-based</li>
-        </ul>
-        <p class="small">Often doable — but sometimes not realistic in the short term without support.</p>
-      </details>
+    <details class="acc">
+      <summary>Category 2 — Edge cases: plant-based is still possible, but may be challenging (personalization + support)</summary>
 
-      <details class="acc">
-        <summary>When partial accommodation can be reasonable (non-binary reality)</summary>
-        <ul>
-          <li>GI flares → temporary low-fiber / easily digestible foods</li>
-          <li>Allergies → limited options may require pragmatic choices</li>
-          <li>Recovery or illness → short-term nutrition stabilization may matter most</li>
-          <li>Food insecurity → affordability and access can limit choices</li>
-        </ul>
-        <p class="small">
-          Ethical framing: do what you reasonably can, given your body, health, and life circumstances.
-        </p>
-      </details>
+      <p><b>A) Gastrointestinal disorders</b></p>
+      <ul>
+        <li>Crohn’s / ulcerative colitis — fiber intolerance during flares</li>
+        <li>IBS (especially low-FODMAP IBS) — many plant foods can trigger symptoms</li>
+        <li>Gastroparesis — high-fiber foods can slow digestion further</li>
+      </ul>
+      <p class="small">
+        These do not necessarily “require” animal foods in principle, but they may require temporary low-fiber phases,
+        carefully selected foods, and dietetic supervision. Some people find animal foods easier during flares — a pragmatic reality,
+        not a moral failure.
+      </p>
 
-      <div class="divider"></div>
+      <p><b>B) Severe food allergies / intolerances</b></p>
+      <ul>
+        <li>Soy allergy (removes a major plant protein)</li>
+        <li>Legume allergy (removes beans, lentils, peas)</li>
+        <li>Nut/seed allergy (removes calorie-dense plant options)</li>
+        <li>Gluten intolerance + legume allergy combo (can shrink options dramatically)</li>
+      </ul>
+      <p class="small">Not impossible — but harder, especially for calorie and protein sufficiency.</p>
 
-      <button class="btn ghost" onclick="openBivalvesNote()">
-        Pop-up: A note about bivalves (optional harm-reduction bridge)
-      </button>
+      <p><b>C) Eating disorders / ARFID / severe sensory restriction</b></p>
+      <ul>
+        <li>Active anorexia / orthorexia / ARFID — restriction patterns can worsen</li>
+        <li>Severe sensory aversions (including autism/ARFID overlap) — can sharply limit plant options</li>
+      </ul>
+      <p class="small">
+        Ethically, mental health stabilization always takes priority over dietary ideals.
+        Plant-based eating can feel freeing for some people and restrictive for others — it depends on whether it functions as nourishment or control.
+        If you have eating disorder history, consider discussing this with a clinician who understands your patterns.
+      </p>
+
+      <p><b>D) Mental health conditions (mixed evidence, highly individual)</b></p>
+      <ul>
+        <li>Depression/anxiety — some people feel better on plant-forward eating; others need careful planning to avoid under-eating or nutrient gaps</li>
+        <li>Bipolar disorder, severe depression, complex psychiatric meds — stability and consistent nutrition come first; discuss major diet shifts with your clinician</li>
+      </ul>
+      <p class="small">
+        Mental health outcomes vary widely by person. The safest framing is: nourishment + stability first, and avoid dietary restriction that worsens symptoms.
+      </p>
+
+      <p><b>E) High recovery / metabolic demands</b></p>
+      <ul>
+        <li>Elite endurance or strength athletes — very high calorie/protein needs</li>
+        <li>Post-surgical recovery — low appetite + high protein needs</li>
+        <li>Chronic underweight — calorie density can be harder plant-based</li>
+      </ul>
+      <p class="small">Often doable — but sometimes not realistic in the short term without support.</p>
+    </details>
+
+    <details class="acc">
+      <summary>Category 3 — More serious cases where fully plant-based can be very difficult without medical supervision (or may require accommodation)</summary>
+
+      <p class="small">
+        These situations can involve major absorption issues, severe wasting, or highly specific metabolic requirements.
+        The goal here is clinical stability and adequate nutrition.
+      </p>
+
+      <p><b>A) Severe malabsorption syndromes</b></p>
+      <ul>
+        <li>Short bowel syndrome</li>
+        <li>Severe chronic pancreatitis with exocrine insufficiency</li>
+        <li>Persistent malabsorption after bariatric surgery</li>
+        <li>Advanced/complex celiac or other malabsorption states</li>
+      </ul>
+      <p class="small">
+        High-fiber foods can worsen symptoms, and absorption can be too limited to maintain weight/micronutrients without specialized planning.
+      </p>
+
+      <p><b>B) Severe cachexia or end-stage illness</b></p>
+      <ul>
+        <li>Cancer cachexia</li>
+        <li>Advanced HIV/AIDS</li>
+        <li>End-stage organ failure</li>
+      </ul>
+      <p class="small">
+        Appetite is often poor and energy needs are high. The most reliable, digestible nutrition approach may take priority over dietary labels.
+      </p>
+
+      <p><b>C) Rare inherited metabolic disorders</b></p>
+      <ul>
+        <li>PKU and other amino-acid metabolism disorders</li>
+        <li>Other rare metabolic diet conditions managed by specialist protocols</li>
+      </ul>
+      <p class="small">
+        These require specialist medical nutrition therapy. Plant-based patterns may be possible, but only under expert guidance.
+      </p>
+    </details>
+
+    <details class="acc">
+      <summary>When partial accommodation can be reasonable (non-binary reality)</summary>
+      <ul>
+        <li>GI flares → temporary low-fiber / easily digestible foods</li>
+        <li>Allergies → limited options may require pragmatic choices</li>
+        <li>Recovery or illness → short-term nutrition stabilization may matter most</li>
+        <li>Food insecurity → affordability and access can limit choices</li>
+      </ul>
+      <p class="small">
+        Ethical framing: do what you reasonably can, given your body, health, and life circumstances.
+      </p>
+    </details>
+
+    <div class="divider"></div>
+
+    <button class="btn ghost" onclick="openBivalvesNote()">
+      Pop-up: A note about bivalves (optional harm-reduction bridge)
+    </button>
     `,
 
 
 kids: `
   <h2>2B2 — Child development / safety</h2>
+  <img class="page-img" src="assets/kids.png" alt="Kids illustration">
   <p><b>Prompt:</b> Are you concerned that feeding children plant-based could be unsafe or sub-optimal for growth or development?</p>
 
   <details class="acc">
-    <summary>Common concerns</summary>
+    <summary>The worry parents have (real + common)</summary>
     <p class="small">
-      “I feed children and I’m concerned this isn’t healthy for growth.”
-      <br>This is a separate and very real concern:
+      “I feed kids, and I’m worried a plant-based diet isn’t healthy for growth.”
+      <br>Most parents’ fears cluster around:
     </p>
     <ul>
       <li>Protein for growth</li>
-      <li>Iron and B12 for development</li>
-      <li>DHA / omega-3 for brain development</li>
-      <li>General fear of malnutrition in kids</li>
+      <li>Iron + B12 for brain/blood development</li>
+      <li>DHA / omega-3 for brain/eye development</li>
+      <li>“What if my child becomes malnourished?”</li>
     </ul>
+    <p class="small">
+      This concern is real — and it’s made worse by social pressure. The goal here is not perfection or labels.
+      The goal is <b>adequate nutrition and steady growth</b>.
+    </p>
   </details>
 
   <details class="acc">
-    <summary>What the evidence actually says</summary>
+    <summary>Claims vs Reality (with citations)</summary>
+
+    <p><b>Claim 1:</b> “Kids need meat/dairy to grow.”</p>
     <p class="small">
-      Major medical and dietetic organizations (not industry groups) agree on this core point:
-      <br><b>Well-planned vegan diets are nutritionally adequate for all stages of life, including infancy and childhood.</b>
+      <b>Reality:</b> Major professional dietetics guidance states that <b>appropriately planned vegetarian (including vegan) diets can be nutritionally adequate
+      for all stages of life</b>, including infancy, childhood, and adolescence. <a href="https://pubmed.ncbi.nlm.nih.gov/27886704/" target="_blank" rel="noopener">[1]</a>
     </p>
-    <p class="small">That statement comes with conditions, which matter.</p>
+    <p class="small">
+      <b>What that actually means:</b> It’s not “kids can eat fries and fruit snacks and be fine.”
+      It means: with <b>adequate calories + key nutrients</b>, growth can be normal.
+    </p>
+
+    <div class="divider"></div>
+
+    <p><b>Claim 2:</b> “A vegan child will be protein-deficient.”</p>
+    <p class="small">
+      <b>Reality:</b> The main concern is usually not “plant protein is inferior.” It’s that some vegetarian/vegan patterns can be
+      <b>too low in total calories and protein if not planned</b> (especially with picky eating). Pediatric guidance highlights the need to plan for
+      <b>adequate energy + protein</b>, plus nutrients like iron, zinc, calcium, vitamin D, and B12. 
+      <a href="https://www.healthychildren.org/English/healthy-living/nutrition/Pages/Plant-Based-Diets.aspx" target="_blank" rel="noopener">[2]</a>
+      <a href="https://publications.aap.org/pediatricsinreview/article/30/1/e1/33409/Vegetarian-Diets-in-Children-and-Adolescents" target="_blank" rel="noopener">[3]</a>
+    </p>
+    <p class="small">
+      <b>Reassurance that helps parents:</b> Most kids who are eating enough total food and regularly eating
+      <b>legumes/soy (if tolerated)</b>, <b>nut/seed butters (if safe)</b>, <b>whole grains</b>, and/or <b>fortified foods</b> are not “mysteriously protein-starving.”
+    </p>
+
+    <div class="divider"></div>
+
+    <p><b>Claim 3:</b> “B12 deficiency is proof veganism is unsafe.”</p>
+    <p class="small">
+      <b>Reality:</b> <b>B12 is the non-negotiable for vegan kids.</b> The American Academy of Pediatrics’ parent guidance explicitly includes B12 planning
+      (fortified foods and/or supplements). <a href="https://www.healthychildren.org/English/healthy-living/nutrition/Pages/Plant-Based-Diets.aspx" target="_blank" rel="noopener">[2]</a>
+      Pediatric review guidance also emphasizes reliable B12 sources (fortified foods and supplements). <a href="https://publications.aap.org/pediatricsinreview/article/30/1/e1/33409/Vegetarian-Diets-in-Children-and-Adolescents" target="_blank" rel="noopener">[3]</a>
+    </p>
+    <p class="small"><b>The real truth:</b> When vegan kids are harmed, it’s overwhelmingly due to:</p>
+    <ul>
+      <li>B12 not provided (or inconsistent)</li>
+      <li>Calorie insufficiency</li>
+      <li>Iron deficiency</li>
+      <li>Extreme dietary restriction / unsafe diets (orthorexia by proxy)</li>
+    </ul>
+    <p class="small">Not from “veganism itself.” It’s almost always <b>planning + adequacy</b>.</p>
+
+    <div class="divider"></div>
+
+    <p><b>Claim 4:</b> “Iron from plants doesn’t work.”</p>
+    <p class="small">
+      <b>Reality:</b> Plant iron (non-heme) is real iron, but <b>absorption strategy matters</b>. Pediatric guidance flags iron as a nutrient needing attention in vegetarian patterns.
+      <a href="https://publications.aap.org/pediatricsinreview/article/30/1/e1/33409/Vegetarian-Diets-in-Children-and-Adolescents" target="_blank" rel="noopener">[3]</a>
+    </p>
+    <p class="small"><b>Practical truth parents can use:</b></p>
+    <ul>
+      <li>Pair iron foods with <b>vitamin C</b> (fruit, bell pepper, citrus).</li>
+      <li>Don’t panic — just plan, and ask your pediatrician if labs are needed.</li>
+    </ul>
+
+    <div class="divider"></div>
+
+    <p><b>Claim 5:</b> “Vegan kids can’t get DHA for brain development.”</p>
+    <p class="small">
+      <b>Reality:</b> DHA is a reasonable planning concern. Some pediatric guidance emphasizes attention to nutrients like
+      B12, vitamin D, iron, calcium, and omega-3s in plant-based children. 
+      <a href="https://www.healthychildren.org/English/healthy-living/nutrition/Pages/Plant-Based-Diets.aspx" target="_blank" rel="noopener">[2]</a>
+    </p>
+    <p class="small">
+      <b>Parent-friendly framing:</b> This is not an argument for meat. It’s an argument for <b>intentional omega-3 planning</b>
+      (often via an algae-based DHA supplement, especially if fish is not used).
+    </p>
+
+    <div class="divider"></div>
+
+    <p><b>Claim 6:</b> “Cow’s milk is biologically required.”</p>
+    <p class="small">
+      <b>Reality:</b> Humans do not universally tolerate cow’s milk. A large global analysis estimates lactose malabsorption prevalence around
+      <b>~68% worldwide</b> (varies widely by region). <a href="https://pubmed.ncbi.nlm.nih.gov/28690131/" target="_blank" rel="noopener">[4]</a>
+      So “dairy is required” is not biologically universal — it’s often cultural and practical.
+    </p>
+
   </details>
 
   <details class="acc">
     <summary>What kids actually need (plant-based or not)</summary>
-    <ul>
-      <li>Adequate calories</li>
-      <li>Protein from diverse sources</li>
-      <li>Iron (bioavailability matters)</li>
-      <li>Zinc</li>
-      <li>Iodine</li>
-      <li>Calcium</li>
-      <li>Vitamin D</li>
-      <li><b>Vitamin B12 (this one is non-negotiable)</b></li>
-    </ul>
     <p class="small">
-      The real risk is not “no animal products.”
-      <br><b>The real risk is poor planning.</b>
+      Pediatric guidance emphasizes that vegetarian/vegan eating for kids needs to be planned for adequacy — especially for energy and a few key nutrients.
+      <a href="https://www.healthychildren.org/English/healthy-living/nutrition/Pages/Plant-Based-Diets.aspx" target="_blank" rel="noopener">[2]</a>
+      <a href="https://publications.aap.org/pediatricsinreview/article/30/1/e1/33409/Vegetarian-Diets-in-Children-and-Adolescents" target="_blank" rel="noopener">[3]</a>
+    </p>
+    <ul>
+      <li><b>Calories (energy)</b></li>
+      <li><b>Protein</b> from diverse sources</li>
+      <li><b>Iron</b> (bioavailability strategy matters)</li>
+      <li><b>Zinc</b></li>
+      <li><b>Iodine</b></li>
+      <li><b>Calcium</b></li>
+      <li><b>Vitamin D</b></li>
+      <li><b>Vitamin B12</b> (non-negotiable for vegan kids)</li>
+      <li><i>Optional but commonly wise:</i> DHA via algae-based supplement if fish is not used</li>
+    </ul>
+
+    <p class="small">
+      <b>The risk is not “no animal products.”</b><br>
+      <b>The risk is poor planning — especially low calories and missing B12.</b>
     </p>
   </details>
 
   <details class="acc">
-    <summary>What typically causes harm (when harm happens)</summary>
-    <p class="small">
-      Children raised vegan who experience harm almost always suffer from:
-    </p>
+    <summary>A short “calm the parent down” checklist</summary>
+    <p class="small">If a child is:</p>
     <ul>
-      <li>Calorie insufficiency</li>
-      <li>B12 deficiency</li>
-      <li>Iron deficiency</li>
-      <li>Extreme dietary restriction (orthorexia by proxy)</li>
+      <li>growing steadily on their growth curve,</li>
+      <li>eating enough total food,</li>
+      <li>getting reliable <b>B12</b> (and usually vitamin D),</li>
+      <li>and you’re mindful about iron/zinc/calcium/iodine…</li>
     </ul>
     <p class="small">
-      Not from veganism itself.
+      …then the situation is usually “planned diet,” not “danger.”
     </p>
   </details>
 
   <details class="acc">
-    <summary>Also: cow’s milk is not biologically required</summary>
-    <ul>
-      <li>Most humans globally are lactose intolerant</li>
-      <li>Human milk ≠ cow’s milk</li>
-      <li>Dairy necessity is cultural + industrial, not physiological</li>
-    </ul>
+    <summary>Sources (clickable)</summary>
+    <ol class="small">
+      <li>
+        Academy of Nutrition and Dietetics position paper (2016): “appropriately planned vegetarian, including vegan, diets… appropriate for all stages of the life cycle.”
+        <a href="https://pubmed.ncbi.nlm.nih.gov/27886704/" target="_blank" rel="noopener">[PubMed]</a>
+      </li>
+      <li>
+        American Academy of Pediatrics (HealthyChildren.org): Plant-Based Diets for kids (includes B12/iron/zinc/vit D planning).
+        <a href="https://www.healthychildren.org/English/healthy-living/nutrition/Pages/Plant-Based-Diets.aspx" target="_blank" rel="noopener">[AAP]</a>
+      </li>
+      <li>
+        AAP Pediatrics in Review (2009): Vegetarian diets in children/adolescents (emphasizes B12 sources, planning).
+        <a href="https://publications.aap.org/pediatricsinreview/article/30/1/e1/33409/Vegetarian-Diets-in-Children-and-Adolescents" target="_blank" rel="noopener">[AAP Review]</a>
+      </li>
+      <li>
+        Global lactose malabsorption prevalence estimate (2017): ~68% worldwide (varies by region).
+        <a href="https://pubmed.ncbi.nlm.nih.gov/28690131/" target="_blank" rel="noopener">[PubMed]</a>
+      </li>
+    </ol>
   </details>
 `,
 
 
 access: `
         <h2>2B3 — Access / cost</h2>
+        <img class="page-img" src="assets/access.png" alt="Access illustration">
         <p><b>Prompt:</b> Are access, affordability, transportation, time, disability, caregiving load, or local availability limiting what you can realistically eat?</p>
 
         <details class="acc" data-card="lowcost-staples">
@@ -991,6 +1217,7 @@ access: `
 
       env: `
         <h2>2B4 — Environmental context</h2>
+        <img class="page-img" src="assets/env.png" alt="Env illustration">
         <p><b>Prompt:</b> Are there environmental or geographic realities that affect what’s possible for you personally?</p>
         
         <details class="acc">
@@ -1057,6 +1284,7 @@ access: `
 
       extreme: `
         <h2>2B5 — Extreme physical needs</h2>
+        <img class="page-img" src="assets/extreme.png" alt="Extreme illustration">
         <p><b>Prompt:</b> Do your energy levels, work demands, recovery needs, or athletic training make plant-based eating feel incompatible right now?</p>
 
         <details class="acc">
@@ -1128,7 +1356,7 @@ access: `
 
       habit: `
         <h2>Habit / taste / change</h2>
-
+        <img class="page-img" src="assets/habit.png" alt="Habit illustration">
         <details class="acc">
           <summary>Transitioning to a new eating pattern: what to expect</summary>
 
@@ -1249,7 +1477,7 @@ access: `
 
       fear: `
         <h2>fear / emotional distress</h2>
-
+        <img class="page-img" src="assets/fear.png" alt="Fear illustration">
         <h3>Fear of Change & Emotional Comfort</h3>
         <p>
           Even when people “know something is wrong,” change can feel threatening — not because someone lacks care or logic,
@@ -3518,20 +3746,20 @@ access: `
 
         <div class="divider"></div>
 
-        <p><b>Does this apply to you right now?</b></p>
+        <div class="navrow">
+          <div class="left">
+            <button class="btn-red" onclick="window.__back()">🔴 Back</button>
+          </div>
 
-        <div class="btnrow">
-          <button class="btn" onclick="window.__blk_set('yes')">Yes, this applies</button>
-          <button class="btn" onclick="window.__blk_set('no')">No, not for me</button>
-          <button class="btn ghost" onclick="window.__blk_set('unsure')">Not sure</button>
+          <div class="right">
+            <button class="btn" onclick="window.__stillApplies()">Yes — this still applies to me / I still have concerns</button>
+            <button class="btn-green" onclick="window.__nextTopic()">🟢 Next topic</button>
+          </div>
         </div>
-
-        <div class="divider"></div>
-
-        ${navButtons({ showBack:true, nextLabel: queue.length > 1 ? "Next topic" : "Continue" })}
       `;
 
-      // Save answer + move forward through the queue.
+
+      // Advance through the queue (optionally after medical disclaimer)
       function advance(){
         state.part2.blockersQueue.shift();
         if (state.part2.blockersQueue.length > 0){
@@ -3540,14 +3768,29 @@ access: `
           go(STEPS.STAKES);
         }
       }
-      
-      window.__blk_set = (val) => {
-        // store: "yes" | "no" | "unsure"
-        state.part2.blockers[currentId] = val;
-        advance();
+
+      // “Yes — still applies”:
+      // - record that this blocker is still relevant
+      // - if it's "medical", show medical disclaimer first (then advance)
+      window.__stillApplies = () => {
+        state.part2.blockers[currentId] = "yes";
+
+        if (currentId === "medical"){
+          // You must have openMedicalDisclaimerThen() already added earlier
+          return openMedicalDisclaimerThen(() => advance());
+        }
+
+        return advance();
       };
 
-      window.__next = () => advance();
+      // “Next topic”:
+      // - do NOT record anything (or leave previous value if already set)
+      // - just advance
+      window.__nextTopic = () => advance();
+
+      // Keep Next inert so navButtons doesn’t matter (we removed it anyway)
+      window.__next = () => {};
+
     }
 
     function renderStakes(){
