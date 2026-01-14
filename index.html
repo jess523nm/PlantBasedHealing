@@ -235,7 +235,7 @@
 <body>
   <div class="wrap">
     <div class="topbar">
-      <div class="brand">Plant-Based Reflection Tool v. 1.7</div>
+      <div class="brand">Plant-Based Reflection Tool v. 1.8</div>
       <div class="pill" id="progressPill">Step: —</div>
     </div>
 
@@ -1143,9 +1143,16 @@ access: `
         <p><b>Prompt:</b> Are access, affordability, transportation, time, disability, caregiving load, or local availability limiting what you can realistically eat?</p>
 
         <details class="acc" data-card="lowcost-staples">
-          <summary>Card 1 — Low-cost plant-based staples (if accessible)</summary>
+          <summary>Low-cost plant-based staples (if accessible)</summary>
 
-          <p><b>Low-cost plant-based staples</b></p>
+          <p class="small">
+            When available, these foods tend to be among the lowest-cost <b>calorie</b>, <b>protein</b>, and <b>nutrient</b> sources in many food systems.
+            Not “cheap” in a demeaning way — “low-cost” or “accessible” is a more respectful frame.
+            <a href="https://www.fns.usda.gov/research/cnpp/usda-food-plans" target="_blank" rel="noopener">[1]</a>
+            <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC7970354/" target="_blank" rel="noopener">[2]</a>
+            <a href="https://www.worldbank.org/en/programs/icp/brief/foodpricesfornutrition" target="_blank" rel="noopener">[3]</a>
+          </p>
+
           <ul>
             <li>Beans (dry or canned)</li>
             <li>Lentils</li>
@@ -1156,31 +1163,47 @@ access: `
             <li>Peanut butter / nut butters</li>
             <li>Pasta</li>
             <li>Tofu (if affordable locally)</li>
-            <li><b>Also:</b> Many grocery stores carry <b>canned bivalves</b> (often inexpensive).</li>
           </ul>
 
           <p class="small">
-            When available, these foods tend to be among the lowest-cost calorie and protein sources in most food systems.
-            Not “cheap” as in demeaning — “low-cost” or “affordable.”
+            <b>Why these show up in “budget food” lists so often:</b>
+            Pantry staples like beans, lentils, rice, oats, and frozen vegetables can deliver calories, fiber, and protein at a low price point,
+            especially when bought in bulk or shelf-stable form. Research comparing retail food prices finds that <b>starchy staples tend to have the lowest cost per calorie</b>
+            compared with many other food groups, while animal-sourced foods are often among the most expensive groups in healthy-diet baskets.
+            <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC7970354/" target="_blank" rel="noopener">[2]</a>
+            <a href="https://www.worldbank.org/en/programs/icp/brief/foodpricesfornutrition" target="_blank" rel="noopener">[3]</a>
           </p>
 
           <p class="small">
-            <!-- BIVALVES_TRIGGER -->
+            The USDA’s Thrifty Food Plan is designed as a <b>nutritious, practical, cost-effective</b> diet on a limited budget — and it leans heavily on
+            budget staples and basic ingredients prepared at home.
+            <a href="https://www.fns.usda.gov/research/cnpp/usda-food-plans" target="_blank" rel="noopener">[1]</a>
+          </p>
+
+          <p class="small">
+            <i>Implementation note:</i> You can choose to only show this section if the user answered “Yes” or “Somewhat,” or show it but visually de-emphasize it if “No.”
           </p>
         </details>
 
         <details class="acc">
-          <summary>Card 2 — If access is limited</summary>
+          <summary>If access is limited</summary>
 
-          <p>
-            Many people live in:
+          <p class="small">
+            Many people live in environments where access to affordable, nutritious food is constrained by structural factors — not personal choice:
           </p>
           <ul>
-            <li>food deserts</li>
-            <li>rural areas with limited stores</li>
-            <li>neighborhoods without full grocery options</li>
-            <li>or situations where time, transportation, disability, caregiving, or money makes food choice narrow</li>
+            <li>Food deserts / low-access areas (places lacking easy proximity to full grocery stores)</li>
+            <li>Rural areas with few stores stocking fresh produce or plant staples</li>
+            <li>Neighborhoods without full grocery options</li>
+            <li>Situations where time, transportation, disability, caregiving, or money make food choice narrow</li>
           </ul>
+
+          <p class="small">
+            Research and public health reporting show that limited access to supermarkets and healthy food sources is linked with <b>poorer diet quality</b>
+            and greater reliance on small stores with fewer nutritious options.
+            <a href="https://www.cdc.gov/pcd/issues/2009/jul/pdf/08_0163.pdf" target="_blank" rel="noopener">[4]</a>
+            <a href="https://www.ers.usda.gov/data-products/food-access-research-atlas/" target="_blank" rel="noopener">[5]</a>
+          </p>
 
           <p class="small">
             If this is you, your current food pattern may reflect what’s available, not what you value.
@@ -1190,56 +1213,227 @@ access: `
         </details>
 
         <details class="acc">
-          <summary>Card 3 — If access is limited, small shifts still count</summary>
+          <summary>If access is limited, small shifts still count</summary>
 
           <p class="small">
-            If plant-based eating isn’t fully accessible right now, some people choose harm-reduction approaches such as:
+            If fully plant-based eating isn’t accessible right now, people sometimes choose harm-reduction strategies like:
           </p>
           <ul>
             <li>Reducing meat portions rather than eliminating them</li>
             <li>Choosing plant foods when convenient or affordable</li>
-            <li>Replacing some animal products with plant versions when available</li>
+            <li>Swapping some animal products for plant-based versions when available</li>
             <li>Prioritizing less resource-intensive or less harmful options when possible</li>
-            <li>Supporting food justice efforts or local access when able</li>
+            <li>Supporting food justice efforts or local access work when able</li>
           </ul>
 
-        <p class="small"><b>None of these are requirements.</b> They are options, not obligations.</p>
+          <p class="small">
+            This acknowledges a real-world pattern: people under access and cost constraints often eat what is <b>available and affordable first</b>.
+            Small shifts can reduce harm and improve nutrition without requiring perfection.
+          </p>
 
-        <div class="btnrow" style="margin-top:.5rem;">
-          <button class="btn ghost" onclick="openBivalvesNote()">
-            Pop-up: A note about bivalves (optional harm-reduction bridge)
-          </button>
-        </div>
+          <p class="small"><b>None of these are requirements.</b> They are options — not obligations.</p>
 
+          <div class="btnrow" style="margin-top:.5rem;">
+            <button class="btn ghost" onclick="openBivalvesNote()">
+              Pop-up: A note about bivalves (optional harm-reduction bridge)
+            </button>
+          </div>
+        </details>
+
+        <details class="acc">
+          <summary>Optional: nutrient-dense options when plant access is constrained</summary>
+
+          <p class="small">
+            Some people — especially when cost, access, time, or local availability makes nutrient-rich plant planning hard — choose <b>bivalves</b>
+            (mussels, clams, oysters) as a pragmatic option. This is offered as a <b>bridge</b> for nutrient sufficiency, not as a moral requirement.
+          </p>
+
+          <table class="small">
+            <tr>
+              <th>Nutrient</th>
+              <th>Why it matters</th>
+            </tr>
+            <tr>
+              <td>Vitamin B12</td>
+              <td>Nervous system, red blood cells</td>
+            </tr>
+            <tr>
+              <td>Iron (heme)</td>
+              <td>Oxygen transport, energy</td>
+            </tr>
+            <tr>
+              <td>Zinc</td>
+              <td>Immune function, hormones</td>
+            </tr>
+            <tr>
+              <td>Selenium</td>
+              <td>Antioxidant systems, thyroid</td>
+            </tr>
+            <tr>
+              <td>Protein</td>
+              <td>Tissue repair, satiety</td>
+            </tr>
+            <tr>
+              <td>Omega-3s (EPA &amp; DHA)</td>
+              <td>Brain &amp; heart health</td>
+            </tr>
+          </table>
+
+          <p class="small">
+            EPA and DHA are the long-chain omega-3 fatty acids people often worry are low on plant-only diets because plants mostly provide ALA,
+            which converts inefficiently in many individuals. Bivalves provide EPA/DHA directly, along with bioavailable iron and B12.
+          </p>
+
+          <p class="small">
+            Again: this is a pragmatic option for people struggling with access or nutrient sufficiency — <b>not</b> a prescriptive rule.
+          </p>
+        </details>
+
+        <details class="acc">
+          <summary>Sources (clickable)</summary>
+          <ol class="small">
+            <li>
+              USDA Food Plans (Thrifty Food Plan): “nutritious, practical, cost-effective diet” framework.
+              <a href="https://www.fns.usda.gov/research/cnpp/usda-food-plans" target="_blank" rel="noopener">[USDA]</a>
+            </li>
+            <li>
+              Bai et al. (2021) cost &amp; affordability: confirms lowest cost-per-calorie for starchy staples and higher costs for nutrient-dense groups.
+              <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC7970354/" target="_blank" rel="noopener">[PMC]</a>
+            </li>
+            <li>
+              World Bank food prices for nutrition: animal-sourced foods often the most expensive group in healthy-diet baskets (global analysis).
+              <a href="https://www.worldbank.org/en/programs/icp/brief/foodpricesfornutrition" target="_blank" rel="noopener">[World Bank]</a>
+            </li>
+            <li>
+              CDC Preventing Chronic Disease (2009) systematic review: food deserts / limited healthy retail access associated with poorer diet patterns and limited healthy options.
+              <a href="https://www.cdc.gov/pcd/issues/2009/jul/pdf/08_0163.pdf" target="_blank" rel="noopener">[CDC PDF]</a>
+            </li>
+            <li>
+              USDA ERS Food Access Research Atlas: official indicators and mapping for low-income/low-access communities.
+              <a href="https://www.ers.usda.gov/data-products/food-access-research-atlas/" target="_blank" rel="noopener">[USDA ERS]</a>
+            </li>
+          </ol>
         </details>
       `,
+
 
 
       env: `
         <h2>2B4 — Environmental context</h2>
         <img class="page-img" src="assets/env.png" alt="Env illustration">
         <p><b>Prompt:</b> Are there environmental or geographic realities that affect what’s possible for you personally?</p>
-        
+
         <details class="acc">
-          <summary>Why plant-based diets generally have lower environmental impact</summary>
+          <summary>🌱 Why a Plant-Based Diet Has a Lower Environmental Impact</summary>
 
+          <p><b>1) Land use and habitat destruction</b></p>
           <p class="small">
-            A plant-based diet reduces environmental harm because it uses far fewer resources per calorie and places less pressure on ecosystems.
-            The difference is not philosophical — it is physical and ecological.
+            Animal agriculture requires much more land than plant agriculture because animals must be fed and raised over time — and they need space both
+            for grazing and for growing their feed (such as corn, soy, and other crops). In many regions, this increases pressure for deforestation,
+            grassland conversion, and loss of wild habitat, which displaces wildlife and contributes to extinction risk.
+            <br><br>
+            Large global analyses estimate that shifting to plant-based diets could reduce global agricultural land use by <b>over 70%</b> (often cited around
+            <b>~75%</b>), freeing up billions of hectares that could revert to natural ecosystems.
+            <span class="refs">
+              (<a href="https://www.science.org/doi/10.1126/science.aaq0216" target="_blank" rel="noopener">Poore &amp; Nemecek, 2018 (Science)</a>)
+            </span>
           </p>
+          <p class="small"><b>Key mechanism:</b> → Less land needed for agriculture → less deforestation, less habitat loss, fewer species displaced.</p>
 
-          <p class="small"><b>Key mechanisms:</b></p>
+          <div class="divider"></div>
+
+          <p><b>2) Greenhouse gas emissions</b></p>
+          <p class="small">
+            Agriculture and land use change together contribute a significant share of human-induced greenhouse gas (GHG) emissions. The IPCC estimates that
+            Agriculture, Forestry and Other Land Use (AFOLU) contributed about <b>23%</b> of net anthropogenic GHG emissions in 2007–2016.
+            Within that, animal agriculture contributes through methane from ruminant digestion (e.g., cattle), nitrous oxide from manure and fertilized fields,
+            and CO<sub>2</sub> from land clearing and farm operations.
+            <span class="refs">
+              (<a href="https://www.ipcc.ch/srccl/chapter/summary-for-policymakers/" target="_blank" rel="noopener">IPCC SRCCL SPM</a>)
+            </span>
+            <br><br>
+            Multiple life-cycle and dietary scenario studies show that plant-based diets can dramatically lower diet-related emissions compared with diets high
+            in animal foods. Some modeling scenarios report large reductions (often around “half” or more) depending on baseline diet and assumptions.
+            <span class="refs">
+              (<a href="https://www.science.org/doi/10.1126/science.aaq0216" target="_blank" rel="noopener">Poore &amp; Nemecek, 2018</a>)
+            </span>
+          </p>
+          <p class="small"><b>Key mechanism:</b> → Fewer animals → less methane and manure emissions → lower climate impact.</p>
+
+          <div class="divider"></div>
+
+          <p><b>3) Pollution and water contamination</b></p>
+          <p class="small">
+            Large-scale animal farming generates huge quantities of waste (manure, slurry) — often more than local ecosystems can safely absorb.
+            When this waste runs off into rivers, lakes, and groundwater, it can introduce excess nitrogen and phosphorus (and other contaminants),
+            contributing to harmful algal blooms, oxygen-depleted “dead zones,” and unsafe water.
+            <span class="refs">
+              (<a href="https://19january2021snapshot.epa.gov/nutrientpollution/sources-and-solutions-agriculture_.html" target="_blank" rel="noopener">U.S. EPA: Agriculture &amp; nutrient pollution</a>)
+            </span>
+            <br><br>
+            Food-system analyses also find that animal products generally drive much higher eutrophication impacts than most plant foods.
+            <span class="refs">
+              (<a href="https://www.science.org/doi/10.1126/science.aaq0216" target="_blank" rel="noopener">Poore &amp; Nemecek, 2018</a>)
+            </span>
+          </p>
+          <p class="small"><b>Key mechanism:</b> → Less animal waste → fewer nutrient runoff problems → healthier aquatic ecosystems.</p>
+
+          <div class="divider"></div>
+
+          <p><b>4) Antibiotic resistance</b></p>
+          <p class="small">
+            Antibiotics are widely used in conventional livestock systems for disease management and (in many places historically) routine use across herds.
+            Major health bodies warn that widespread antimicrobial use in food-producing animals contributes to antimicrobial resistance, a major global public
+            health threat. Plant agriculture does not require antibiotics at this scale.
+            <span class="refs">
+              (<a href="https://www.who.int/publications/i/item/9789241550130" target="_blank" rel="noopener">WHO guidelines on antimicrobial use in food-producing animals (2017)</a>)
+            </span>
+          </p>
+          <p class="small"><b>Key mechanism:</b> → Fewer livestock → less antibiotic use → reduced public health risk.</p>
+
+          <div class="divider"></div>
+
+          <p><b>5) Energy and resource efficiency</b></p>
+          <p class="small">
+            Producing food by feeding crops to animals and then eating the animals is inherently less efficient than eating crops directly. At each trophic step
+            (plants → animals → humans), energy and nutrients are “lost” to metabolism, so more land and resources are needed to produce the same edible calories
+            or protein through animal food chains.
+            <br><br>
+            Research on crop use shows large shares of crop calories and protein go to animal feed rather than directly nourishing humans.
+            <span class="refs">
+              (<a href="https://www.pnas.org/doi/10.1073/pnas.1313490111" target="_blank" rel="noopener">Cassidy et al., 2013 (PNAS)</a>)
+            </span>
+          </p>
+          <p class="small"><b>Key mechanism:</b> → Fewer intermediate steps → fewer resources per calorie/protein → lower environmental footprint.</p>
+
+          <div class="divider"></div>
+
+          <p><b>6) Reduced pressure on wild species</b></p>
+          <p class="small">
+            By lowering land conversion and reducing pollution and climate stress, plant-based patterns indirectly protect wildlife. Large global assessments
+            identify land-use change (including habitat conversion for agriculture) as a major driver of biodiversity loss. Reducing overall land conversion is one
+            of the most effective ways to support biodiversity.
+            <span class="refs">
+              (<a href="https://www.ipbes.net/global-assessment" target="_blank" rel="noopener">IPBES Global Assessment</a>)
+            </span>
+          </p>
+          <p class="small"><b>Key mechanism:</b> → Less habitat conversion + less pollution + less climate stress → healthier ecosystems and wildlife.</p>
+
+          <div class="divider"></div>
+
+          <p><b>Summary — Website-friendly</b></p>
           <ul>
-            <li><b>Land use:</b> Animal agriculture requires large areas for grazing and feed crops, driving deforestation, habitat loss, and species displacement.</li>
-            <li><b>Greenhouse gases:</b> Livestock produces methane, nitrous oxide, and CO₂, significantly increasing climate impact.</li>
-            <li><b>Pollution:</b> Manure runoff contaminates rivers, lakes, and groundwater with nutrients, hormones, and pathogens.</li>
-            <li><b>Antibiotic resistance:</b> Routine antibiotic use in livestock accelerates resistant bacteria that threaten public health.</li>
-            <li><b>Energy efficiency:</b> Feeding plants to animals and then eating animals is energetically inefficient compared to direct plant consumption.</li>
-            <li><b>Wildlife protection:</b> Lower land use and pollution indirectly preserve habitats and reduce ecosystem collapse.</li>
+            <li>Uses far less land than animal-heavy diets → less deforestation and habitat loss</li>
+            <li>Produces fewer GHG emissions → helps mitigate climate change</li>
+            <li>Generates less water pollution tied to concentrated animal waste</li>
+            <li>Reduces pressure for agricultural antibiotic use at scale</li>
+            <li>Is more resource-efficient (more nutrition per input)</li>
+            <li>Reduces pressure on wild species by sparing land and limiting ecosystem stress</li>
           </ul>
 
           <p class="small">
-            In simple terms: fewer animals farmed means less land conversion, less climate pollution, less waste, and less pressure on wild ecosystems.
+            <b>Bottom line:</b> By consuming plants directly rather than feeding them to animals first, humans can meet nutritional needs while minimizing
+            deforestation, biodiversity loss, climate impacts, and water pollution.
           </p>
         </details>
 
@@ -1247,112 +1441,148 @@ access: `
           <summary>Bivalves and environmental impact (optional)</summary>
 
           <p class="small">
-            Farmed bivalves (oysters, mussels, clams) are often described as unusually low-impact and in some systems can improve local water quality.
+            Farmed bivalves (oysters, mussels, clams) are often described as unusually low-impact compared with most animal foods, and some analyses emphasize
+            potential ecosystem services like nutrient removal (context-dependent and not universal).
+            <span class="refs">
+              (<a href="https://onlinelibrary.wiley.com/doi/10.1111/raq.12301" target="_blank" rel="noopener">van der Schatte Olivier et al., 2020</a>;
+               <a href="https://www.sciencedirect.com/science/article/pii/S2212041621001546" target="_blank" rel="noopener">Barrett et al., 2022</a>)
+            </span>
           </p>
 
           <ul>
-            <li>They filter water and can reduce excess nitrogen and phosphorus.</li>
-            <li>They require no feed, no fertilizer, no freshwater input, and little or no land in many aquaculture systems.</li>
-            <li>They produce no manure lagoons or agricultural runoff.</li>
+            <li>They are filter feeders and generally do not require feed inputs like corn/soy.</li>
+            <li>They can be part of “non-fed aquaculture” systems (impacts vary by site and scale).</li>
+            <li>This section is presented as optional harm-reduction context — not as a universal recommendation.</li>
           </ul>
-
-          <p class="small">
-            This makes bivalves environmentally distinct from most animal agriculture and sometimes described as "net beneficial" to local aquatic ecosystems.
-            That said, impacts still depend on farming practices, location, and scale.
-          </p>
-
-          <p class="small">
-            In this flowchart, bivalves are presented only as an optional harm-reduction or access-bridge in specific contexts — not as a general recommendation.
-          </p>
         </details>
 
         <details class="acc">
-          <summary>Citations & evidence (optional)</summary>
-
+          <summary>References (clickable)</summary>
           <ul class="small">
-            <li>IPCC — Agriculture, Forestry and Other Land Use contribute ~23% of global greenhouse gas emissions.</li>
-            <li>Poore & Nemecek (2018, Science) — Animal products have far higher land, water, and emissions footprints than plant foods.</li>
-            <li>FAO — Livestock contributes significantly to methane and nitrous oxide emissions.</li>
-            <li>Steinfeld et al. — Livestock’s Long Shadow (FAO): links livestock to deforestation, pollution, and climate change.</li>
-            <li>CDC / WHO — Antibiotic use in livestock accelerates antimicrobial resistance.</li>
-            <li>Shumway et al. (2003) — Bivalves improve water quality via nutrient filtration.</li>
-            <li>van der Schatte Olivier et al. (2020) — Bivalve aquaculture can mitigate eutrophication in coastal waters.</li>
+            <li><a href="https://www.science.org/doi/10.1126/science.aaq0216" target="_blank" rel="noopener">Poore &amp; Nemecek (2018), Science — environmental impacts of food</a></li>
+            <li><a href="https://www.ipcc.ch/srccl/chapter/summary-for-policymakers/" target="_blank" rel="noopener">IPCC SRCCL SPM — AFOLU emissions (~23%)</a></li>
+            <li><a href="https://19january2021snapshot.epa.gov/nutrientpollution/sources-and-solutions-agriculture_.html" target="_blank" rel="noopener">U.S. EPA — agriculture and nutrient pollution</a></li>
+            <li><a href="https://www.who.int/publications/i/item/9789241550130" target="_blank" rel="noopener">WHO (2017) — antimicrobial use in food-producing animals</a></li>
+            <li><a href="https://www.pnas.org/doi/10.1073/pnas.1313490111" target="_blank" rel="noopener">Cassidy et al. (2013), PNAS — crops used for feed vs humans</a></li>
+            <li><a href="https://www.ipbes.net/global-assessment" target="_blank" rel="noopener">IPBES — Global Assessment on biodiversity drivers</a></li>
+            <li><a href="https://onlinelibrary.wiley.com/doi/10.1111/raq.12301" target="_blank" rel="noopener">van der Schatte Olivier et al. (2020) — bivalve aquaculture ecosystem services</a></li>
+            <li><a href="https://www.sciencedirect.com/science/article/pii/S2212041621001546" target="_blank" rel="noopener">Barrett et al. (2022) — non-fed aquaculture and nutrient removal</a></li>
           </ul>
         </details>
+
+        <div class="divider"></div>
+
+        <!-- Insert infographic at the bottom (before the buttons) -->
+        <img class="page-img" src="assets/EnvInfographic.png" alt="Environmental infographic">
       `,
 
 
-      extreme: `
-        <h2>2B5 — Extreme physical needs</h2>
-        <img class="page-img" src="assets/extreme.png" alt="Extreme illustration">
-        <p><b>Prompt:</b> Do your energy levels, work demands, recovery needs, or athletic training make plant-based eating feel incompatible right now?</p>
+  extreme: `
+    <h2>2B5 — Extreme physical needs</h2>
+    <img class="page-img" src="assets/extreme.png" alt="Extreme illustration">
 
-        <details class="acc">
-          <summary>Why it can feel difficult</summary>
-          <p class="small">
-            “My energy levels, work demands, or physical needs feel incompatible with this.”
-            <br>That concern is real — and it often comes down to logistics, appetite, and protein planning.
-          </p>
-          <p class="small"><b>Examples:</b></p>
-          <ul>
-            <li>Very high physical-labor jobs</li>
-            <li>Elite athletic training / high-volume recovery demands</li>
-            <li>Long hours with limited meal access</li>
-            <li>Perceived or real fatigue on plant-based diets</li>
-            <li>High calorie/protein needs with low appetite (post-surgery / recovery)</li>
-            <li>Underweight or trouble maintaining weight</li>
-            <li>Meal timing constraints / limited food access during work</li>
-          </ul>
+    <p><b>Prompt:</b> Do your energy levels, work demands, recovery needs, or athletic training make plant-based eating feel incompatible right now?</p>
 
-          <p class="small">
-            <b>Key framing:</b> If this feels hard, it is not a moral failure.
-            <br>It usually means the current plan is not meeting the body’s requirements <i>or</i> it’s not workable inside your daily constraints.
-          </p>
-        </details>
+    <details class="acc">
+      <summary>Why it can feel difficult</summary>
 
-        <details class="acc">
-          <summary>What the evidence actually supports</summary>
-          <p class="small">
-            <b>Plant-based diets can fully support muscle building and strength gains</b> when total protein intake is sufficient and well-planned.
-            <br>This applies to recreational training and many competitive contexts.
-          </p>
+      <p class="small">
+        “My energy levels, work demands, or physical needs feel incompatible with this.”
+        <br/>That concern is real — and it often comes down to logistics, appetite, and protein planning.
+      </p>
 
-          <p class="small">
-            Plant-based strength nutrition typically requires more attention to:
-          </p>
-          <ul>
-            <li><b>Total protein quantity</b> (hitting your daily target)</li>
-            <li><b>Leucine content</b> (helps trigger muscle protein synthesis)</li>
-            <li><b>Digestibility / protein quality</b> (some plant sources are slightly less digestible)</li>
-          </ul>
+      <p class="small"><b>Examples:</b></p>
+      <ul>
+        <li>Very high physical-labor jobs</li>
+        <li>Elite athletic training / high-volume recovery demands</li>
+        <li>Long hours with limited meal access</li>
+        <li>Perceived or real fatigue on plant-based diets</li>
+        <li>High calorie/protein needs with low appetite (post-surgery / recovery)</li>
+        <li>Underweight or trouble maintaining weight</li>
+        <li>Meal timing constraints / limited food access during work</li>
+      </ul>
 
-          <p class="small">
-            <b>Better phrasing than “it’s just not as good”:</b>
-            <br>“Some people find it more challenging — or less convenient — to meet very high protein and recovery needs on a fully plant-based diet, especially at elite or extreme training levels. This is often due to leucine density, digestibility, food volume, and scheduling constraints — not because plant-based diets are inherently incapable.”
-          </p>
+      <p class="small">
+        <b>Key framing:</b> If this feels hard, it is not a moral failure.
+        <br/>It usually means the current plan is not meeting the body’s requirements <i>or</i> it’s not workable inside your daily constraints.
+      </p>
+    </details>
 
-          <p class="small">
-            <b>Reality check:</b> Some elite athletes prefer animal protein for convenience or habit (easy leucine/EAA hits in small volumes), not necessity.
-          </p>
-        </details>
+    <details class="acc">
+      <summary>What the evidence actually supports</summary>
 
-        <details class="acc">
-          <summary>Evidence summary (optional panel)</summary>
-          <p class="small"><b>Core claim:</b> Plant-based diets can support muscle building when protein is sufficient and planned.</p>
+      <p class="small">
+        <b>Plant-based diets can fully support muscle building and strength gains</b> when total protein intake is sufficient and well-planned.
+        <br/>This applies to recreational training and many competitive contexts.
+      </p>
 
-          <ul>
-            <li><b>Muscle protein synthesis:</b> Plant protein isolates fortified with leucine can stimulate MPS similarly to whey. <span class="small">(PubMed)</span></li>
-            <li><b>Strength/hypertrophy outcomes:</b> Reviews report comparable gains when total protein is matched. <span class="small">(SpringerLink)</span></li>
-            <li><b>Why it can be trickier:</b> Some plant proteins are lower in leucine and/or less digestible, which can require more planning or higher total intake. <span class="small">(MDPI / OUP Academic)</span></li>
-            <li><b>High-protein modeling:</b> Plant-based diets scaled for resistance training (e.g., ~1.8 g/kg/day) can meet protein + leucine needs with thoughtful structure. <span class="small">(MDPI)</span></li>
-            <li><b>Practical differences:</b> Some contexts show easier lean-mass gains with animal protein due to convenience/food volume, but the gap shrinks when protein is matched. <span class="small">(PMC / ScienceDirect)</span></li>
-          </ul>
+      <p class="small">Plant-based strength nutrition typically requires more attention to:</p>
+      <ul>
+        <li><b>Total protein quantity</b> (hitting your daily target)</li>
+        <li><b>Leucine content</b> (helps trigger muscle protein synthesis)</li>
+        <li><b>Digestibility / protein quality</b> (some plant sources are slightly less digestible)</li>
+      </ul>
 
-          <p class="small">
-            <b>TODO:</b> Replace the placeholders above with your actual links (PubMed / MDPI / SpringerLink / OUP / PMC / ScienceDirect).
-          </p>
-        </details>
-      `,
+      <p class="small">
+        <b>Better phrasing than “it’s just not as good”:</b>
+        <br/>“Some people find it more challenging — or less convenient — to meet very high protein and recovery needs on a fully plant-based diet, especially at elite or extreme training levels.
+        This is often due to leucine density, digestibility, food volume, and scheduling constraints — not because plant-based diets are inherently incapable.”
+      </p>
+
+      <p class="small">
+        <b>Reality check:</b> Some elite athletes prefer animal protein for convenience or habit (easy leucine/EAA hits in small volumes), not necessity.
+      </p>
+    </details>
+
+    <details class="acc">
+      <summary>Plant-Based Diets & Muscle Building — Evidence Summary (optional)</summary>
+
+      <p class="small"><b>Core claim:</b> Plant-based diets can fully support muscle building and strength gains — as long as total protein intake is sufficient and well-planned.</p>
+
+      <p class="small">
+        This is true for recreational and competitive weight training, although plant proteins typically require more attention to total protein amount,
+        leucine content, and digestibility compared with typical animal proteins.
+      </p>
+
+      <div class="divider"></div>
+
+      <p class="small"><b>1) Muscle growth on plant-based diets is possible</b></p>
+      <ul class="small">
+        <li>A clinical study found that plant-based protein isolates fortified with leucine stimulated muscle protein synthesis (MPS) similarly to whey in young adults. <span class="small">(PubMed)</span></li>
+        <li>Reviews report comparable strength/hypertrophy gains when total protein is matched. <span class="small">(SpringerLink)</span></li>
+      </ul>
+
+      <p class="small"><b>2) Why some people see challenges (leucine + digestibility)</b></p>
+      <ul class="small">
+        <li>Some plant proteins have lower leucine density, which can make MPS targets more planning-intensive. <span class="small">(MDPI)</span></li>
+        <li>Whole plant proteins can be less digestible because of fiber/structure, which can push total required intake higher. <span class="small">(OUP Academic)</span></li>
+        <li>When total protein is sufficient and sources are varied or fortified, gaps shrink substantially. <span class="small">(PMC)</span></li>
+      </ul>
+
+      <p class="small"><b>3) High-protein plant-based diets can meet strength/hypertrophy needs</b></p>
+      <ul class="small">
+        <li>Modeling suggests plant-based diets scaled for resistance training (e.g., ~1.8 g/kg/day) can meet protein + leucine needs with thoughtful structure. <span class="small">(MDPI)</span></li>
+      </ul>
+
+      <p class="small"><b>4) Why elite athletes sometimes prefer animal protein</b></p>
+      <ul class="small">
+        <li>Often convenience/food volume: easier leucine/EAA hits in small portions, plus habit and access. <span class="small">(PMC / ScienceDirect)</span></li>
+        <li>When protein totals are matched, outcome differences tend to shrink. <span class="small">(SpringerLink)</span></li>
+      </ul>
+
+      <div class="divider"></div>
+
+      <p class="small"><b>Suggested neutral wording:</b></p>
+      <p class="small">
+        💪 “Some people find it more challenging — or less convenient — to meet high protein and amino acid needs on a fully plant-based diet,
+        especially at elite or extreme training levels. This is because many plant proteins have lower leucine content and slightly lower digestibility than typical animal proteins.
+        However, when total protein intake is sufficient and combined strategically (e.g., varied sources or leucine-rich foods), plant-based diets can support muscle growth, strength development, and recovery just as effectively.”
+      </p>
+
+      <p class="small"><b>TODO:</b> Replace the evidence placeholders above with your exact links (PubMed / MDPI / SpringerLink / OUP / PMC / ScienceDirect).</p>
+    </details>
+  `,
+
 
       habit: `
         <h2>Habit / taste / change</h2>
