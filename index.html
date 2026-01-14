@@ -235,7 +235,7 @@
 <body>
   <div class="wrap">
     <div class="topbar">
-      <div class="brand">Plant-Based Reflection Tool v. 1.8</div>
+      <div class="brand">Plant-Based Reflection Tool v. 1.9</div>
       <div class="pill" id="progressPill">Step: —</div>
     </div>
 
@@ -247,7 +247,7 @@
     <div class="modal">
       <h2>Welcome - Before you Begin</h2>
 
-      <img class="page-img" src="assets/nightbeach.png" alt="Night beach illustration">
+      <img class="page-img" src="nightbeach.png" alt="Night beach illustration">
 
       <div class="scroll">
 
@@ -281,7 +281,7 @@
     <div class="modal">
       <h2>Medical note (not all-or-nothing)</h2>
 
-      <img class="page-img" src="assets/doctor.png" alt="Medical support illustration">
+      <img class="page-img" src="doctor.png" alt="Medical support illustration">
 
       <div class="scroll">
         <p><b>Important:</b> This tool is not medical advice.</p>
@@ -385,7 +385,7 @@
     <div class="modal">
       <h2>Pop-up: A note about bivalves</h2>
       
-    <img class="page-img" src="assets/bivalves.png" alt="Bivalves illustration">
+    <img class="page-img" src="bivalves.png" alt="Bivalves illustration">
 
       <div class="scroll">
         <p>
@@ -789,7 +789,7 @@
     // Content skeletons for each blocker topic.
     // You can paste your long text into the <details> sections later, one topic at a time.
     const BLOCKER_PAGES = {
-      medical: `
+   medical: ` 
       <p class="small"><b>Note:</b> I am not a medical professional. This flowchart is not medical advice.
       Always consult with your physician or a registered dietitian before making changes to your diet, especially if you have medical conditions,
       take medications, or are responsible for others’ health.</p>
@@ -799,179 +799,144 @@
       <h2>2B1 — Medical</h2>
       <img class="page-img" src="assets/medical.png" alt="Medical illustration">
 
-      <p><b>What this includes:</b></p>
-      <ul>
-        <li>Digestive disorders (IBS, Crohn’s, ulcerative colitis, gastroparesis, etc.)</li>
-        <li>Metabolic disorders</li>
-        <li>Eating disorder history / ARFID / severe sensory restriction</li>
-        <li>Mental health history</li>
-        <li>Pregnancy / lactation</li>
-        <li>Chronic illness / recovery needs</li>
-        <li>Severe food allergies or intolerances</li>
-        <li>Very high medical needs (for you or someone you feed)</li>
-      </ul>
-
       <p><b>Prompt:</b> Do you have a medical, psychological, or physiological condition — for yourself or someone you care for —
       that makes a fully plant-based diet unsafe, unrealistic, or harmful <i>without</i> professional supervision?</p>
 
-<details class="acc">
-  <summary>Category 1 — Plant-based patterns are often beneficial and protective</summary>
-
-  <p class="small">
-    In these situations, plant-centered eating is not only possible — it is often associated with better outcomes than
-    animal-heavy patterns (especially when it emphasizes whole foods and limits ultra-processed foods).
-  </p>
-
-  <ul>
-    <li><b>Type 2 diabetes</b> — plant-forward patterns often improve insulin sensitivity and glycemic control (monitor meds with a clinician)</li>
-    <li><b>Heart disease / cardiometabolic risk</b> — plant-centered patterns are often protective; some intensive programs show regression in some cases</li>
-    <li><b>Obesity / weight management</b> — whole plant foods tend to be higher fiber/lower calorie density, supporting satiety and weight stability</li>
-    <li><b>Metabolic syndrome</b> — often improves alongside weight, blood pressure, lipids, and blood sugar on plant-forward patterns</li>
-    <li><b>Cancer risk reduction patterns</b> (esp. colorectal) — higher fiber/plant intake is associated with lower risk in population studies (not a guarantee)</li>
-    <li><b>Hormone-related/metabolic fertility issues</b> (e.g., PCOS) — plant-forward patterns can support insulin resistance and inflammation, which can help</li>
-    <li><b>Estrogen-sensitive conditions</b> (e.g., fibroids) — plant-forward weight/metabolic improvements may support risk reduction for some people</li>
-  </ul>
-
-  <p class="small">
-    <b>Note:</b> This is not a promise of “reversal” for any individual. The point is that these conditions are not medical reasons
-    that require animal products, and plant-forward eating is often a strong supportive strategy.
-  </p>
-</details>
-
-    <details class="acc">
-      <summary>Commonly cited — but usually not true medical “necessities”</summary>
       <p class="small">
-        These are common beliefs, but mainstream medical consensus does not typically treat them as requiring animal products.
-        (They are usually “monitoring + planning” issues — which is what 2A covered.)
-      </p>
-      <ul>
-        <li>Pregnancy & breastfeeding — well-planned plant-based diets are considered safe by major dietetic associations</li>
-        <li>Childhood & adolescence — safe when properly planned</li>
-        <li>Older age — no inherent need for animal products; protein and B12 monitoring matter</li>
-        <li>Iron deficiency — often manageable plant-based with absorption strategies</li>
-        <li>Osteoporosis — calcium/vitamin D/protein can be obtained plant-based (monitoring matters)</li>
-      </ul>
-      <p class="small">
-        (Diabetes, heart disease, and obesity are listed above because plant-forward patterns are often <i>beneficial</i>, not just “possible.”)
-      </p>
-    </details>
-
-    <details class="acc">
-      <summary>Category 2 — Edge cases: plant-based is still possible, but may be challenging (personalization + support)</summary>
-
-      <p><b>A) Gastrointestinal disorders</b></p>
-      <ul>
-        <li>Crohn’s / ulcerative colitis — fiber intolerance during flares</li>
-        <li>IBS (especially low-FODMAP IBS) — many plant foods can trigger symptoms</li>
-        <li>Gastroparesis — high-fiber foods can slow digestion further</li>
-      </ul>
-      <p class="small">
-        These do not necessarily “require” animal foods in principle, but they may require temporary low-fiber phases,
-        carefully selected foods, and dietetic supervision. Some people find animal foods easier during flares — a pragmatic reality,
-        not a moral failure.
+        For many chronic conditions — including diabetes, heart disease, obesity, and even risks associated with some cancers and hormone-related conditions —
+        research shows that well-planned, plant-centered eating patterns are often beneficial compared with typical Western diets. In many cases, shifting toward
+        plants can help reduce risk, support metabolic health, and improve disease markers. This doesn’t mean animal products are universally harmful or that
+        everyone must go strictly vegan — but it does mean prioritizing whole plant foods can be a powerful, evidence-backed part of managing and preventing
+        chronic illness.
       </p>
 
-      <p><b>B) Severe food allergies / intolerances</b></p>
-      <ul>
-        <li>Soy allergy (removes a major plant protein)</li>
-        <li>Legume allergy (removes beans, lentils, peas)</li>
-        <li>Nut/seed allergy (removes calorie-dense plant options)</li>
-        <li>Gluten intolerance + legume allergy combo (can shrink options dramatically)</li>
-      </ul>
-      <p class="small">Not impossible — but harder, especially for calorie and protein sufficiency.</p>
+      <details class="acc">
+        <summary>Category 1 — Plant-based patterns are often beneficial and protective</summary>
 
-      <p><b>C) Eating disorders / ARFID / severe sensory restriction</b></p>
-      <ul>
-        <li>Active anorexia / orthorexia / ARFID — restriction patterns can worsen</li>
-        <li>Severe sensory aversions (including autism/ARFID overlap) — can sharply limit plant options</li>
-      </ul>
-      <p class="small">
-        Ethically, mental health stabilization always takes priority over dietary ideals.
-        Plant-based eating can feel freeing for some people and restrictive for others — it depends on whether it functions as nourishment or control.
-        If you have eating disorder history, consider discussing this with a clinician who understands your patterns.
-      </p>
+        <p class="small">
+          In these situations, plant-centered eating is not only possible — it is often associated with better outcomes than
+          animal-heavy patterns (especially when it emphasizes whole foods and limits ultra-processed foods).
+        </p>
 
-      <p><b>D) Mental health conditions (mixed evidence, highly individual)</b></p>
-      <ul>
-        <li>Depression/anxiety — some people feel better on plant-forward eating; others need careful planning to avoid under-eating or nutrient gaps</li>
-        <li>Bipolar disorder, severe depression, complex psychiatric meds — stability and consistent nutrition come first; discuss major diet shifts with your clinician</li>
-      </ul>
-      <p class="small">
-        Mental health outcomes vary widely by person. The safest framing is: nourishment + stability first, and avoid dietary restriction that worsens symptoms.
-      </p>
+        <ul>
+          <li><b>Type 2 diabetes</b> — plant-forward patterns often improve insulin sensitivity and glycemic control (monitor meds with a clinician)</li>
+          <li><b>Heart disease / cardiometabolic risk</b> — plant-centered patterns are often protective; some intensive programs show regression in some cases</li>
+          <li><b>Obesity / weight management</b> — whole plant foods tend to be higher fiber/lower calorie density, supporting satiety and weight stability</li>
+          <li><b>Metabolic syndrome</b> — often improves alongside weight, blood pressure, lipids, and blood sugar on plant-forward patterns</li>
+          <li><b>Cancer risk reduction patterns</b> (esp. colorectal) — higher fiber/plant intake is associated with lower risk in population studies (not a guarantee)</li>
+          <li><b>Hormone-related/metabolic fertility issues</b> (e.g., PCOS) — plant-forward patterns can support insulin resistance and inflammation, which can help</li>
+          <li><b>Estrogen-sensitive conditions</b> (e.g., fibroids) — plant-forward weight/metabolic improvements may support risk reduction for some people</li>
+        </ul>
 
-      <p><b>E) High recovery / metabolic demands</b></p>
-      <ul>
-        <li>Elite endurance or strength athletes — very high calorie/protein needs</li>
-        <li>Post-surgical recovery — low appetite + high protein needs</li>
-        <li>Chronic underweight — calorie density can be harder plant-based</li>
-      </ul>
-      <p class="small">Often doable — but sometimes not realistic in the short term without support.</p>
-    </details>
+        <p class="small">
+          <b>Note:</b> This is not a promise of “reversal” for any individual. The point is that these conditions are not medical reasons
+          that require animal products, and plant-forward eating is often a strong supportive strategy.
+        </p>
+      </details>
 
-    <details class="acc">
-      <summary>Category 3 — More serious cases where fully plant-based can be very difficult without medical supervision (or may require accommodation)</summary>
+      <details class="acc">
+        <summary>Category 2 — Edge cases: plant-based is still possible, but may be challenging (personalization + support)</summary>
 
-      <p class="small">
-        These situations can involve major absorption issues, severe wasting, or highly specific metabolic requirements.
-        The goal here is clinical stability and adequate nutrition.
-      </p>
+        <p><b>A) Gastrointestinal disorders</b></p>
+        <ul>
+          <li>Crohn’s / ulcerative colitis — fiber intolerance during flares</li>
+          <li>IBS (especially low-FODMAP IBS) — many plant foods can trigger symptoms</li>
+          <li>Gastroparesis — high-fiber foods can slow digestion further</li>
+        </ul>
+        <p class="small">
+          These do not necessarily “require” animal foods in principle, but they may require temporary low-fiber phases,
+          carefully selected foods, and dietetic supervision. Some people find animal foods easier during flares — a pragmatic reality,
+          not a moral failure.
+        </p>
 
-      <p><b>A) Severe malabsorption syndromes</b></p>
-      <ul>
-        <li>Short bowel syndrome</li>
-        <li>Severe chronic pancreatitis with exocrine insufficiency</li>
-        <li>Persistent malabsorption after bariatric surgery</li>
-        <li>Advanced/complex celiac or other malabsorption states</li>
-      </ul>
-      <p class="small">
-        High-fiber foods can worsen symptoms, and absorption can be too limited to maintain weight/micronutrients without specialized planning.
-      </p>
+        <p><b>B) Severe food allergies / intolerances</b></p>
+        <ul>
+          <li>Soy allergy (removes a major plant protein)</li>
+          <li>Legume allergy (removes beans, lentils, peas)</li>
+          <li>Nut/seed allergy (removes calorie-dense plant options)</li>
+          <li>Gluten intolerance + legume allergy combo (can shrink options dramatically)</li>
+        </ul>
+        <p class="small">Not impossible — but harder, especially for calorie and protein sufficiency.</p>
 
-      <p><b>B) Severe cachexia or end-stage illness</b></p>
-      <ul>
-        <li>Cancer cachexia</li>
-        <li>Advanced HIV/AIDS</li>
-        <li>End-stage organ failure</li>
-      </ul>
-      <p class="small">
-        Appetite is often poor and energy needs are high. The most reliable, digestible nutrition approach may take priority over dietary labels.
-      </p>
+        <p><b>C) Eating disorders / ARFID / severe sensory restriction</b></p>
+        <ul>
+          <li>Active anorexia / orthorexia / ARFID — restriction patterns can worsen</li>
+          <li>Severe sensory aversions (including autism/ARFID overlap) — can sharply limit plant options</li>
+        </ul>
+        <p class="small">
+          Ethically, mental health stabilization always takes priority over dietary ideals.
+          Plant-based eating can feel freeing for some people and restrictive for others — it depends on whether it functions as nourishment or control.
+          If you have eating disorder history, consider discussing this with a clinician who understands your patterns.
+        </p>
 
-      <p><b>C) Rare inherited metabolic disorders</b></p>
-      <ul>
-        <li>PKU and other amino-acid metabolism disorders</li>
-        <li>Other rare metabolic diet conditions managed by specialist protocols</li>
-      </ul>
-      <p class="small">
-        These require specialist medical nutrition therapy. Plant-based patterns may be possible, but only under expert guidance.
-      </p>
-    </details>
+        <p><b>D) Mental health conditions (mixed evidence, highly individual)</b></p>
+        <ul>
+          <li>Depression/anxiety — some people feel better on plant-forward eating; others need careful planning to avoid under-eating or nutrient gaps</li>
+          <li>Bipolar disorder, severe depression, complex psychiatric meds — stability and consistent nutrition come first; discuss major diet shifts with your clinician</li>
+        </ul>
+        <p class="small">
+          Mental health outcomes vary widely by person. The safest framing is: nourishment + stability first, and avoid dietary restriction that worsens symptoms.
+        </p>
 
-    <details class="acc">
-      <summary>When partial accommodation can be reasonable (non-binary reality)</summary>
-      <ul>
-        <li>GI flares → temporary low-fiber / easily digestible foods</li>
-        <li>Allergies → limited options may require pragmatic choices</li>
-        <li>Recovery or illness → short-term nutrition stabilization may matter most</li>
-        <li>Food insecurity → affordability and access can limit choices</li>
-      </ul>
-      <p class="small">
-        Ethical framing: do what you reasonably can, given your body, health, and life circumstances.
-      </p>
-    </details>
+        <p><b>E) High recovery / metabolic demands</b></p>
+        <ul>
+          <li>Elite endurance or strength athletes — very high calorie/protein needs</li>
+          <li>Post-surgical recovery — low appetite + high protein needs</li>
+          <li>Chronic underweight — calorie density can be harder plant-based</li>
+        </ul>
+        <p class="small">Often doable — but sometimes not realistic in the short term without support.</p>
+      </details>
 
-    <div class="divider"></div>
+      <details class="acc">
+        <summary>Category 3 — More serious cases where fully plant-based can be very difficult without medical supervision (or may require accommodation)</summary>
 
-    <button class="btn ghost" onclick="openBivalvesNote()">
-      Pop-up: A note about bivalves (optional harm-reduction bridge)
-    </button>
+        <p class="small">
+          These situations can involve major absorption issues, severe wasting, or highly specific metabolic requirements.
+          The goal here is clinical stability and adequate nutrition.
+        </p>
+
+        <p><b>A) Severe malabsorption syndromes</b></p>
+        <ul>
+          <li>Short bowel syndrome</li>
+          <li>Severe chronic pancreatitis with exocrine insufficiency</li>
+          <li>Persistent malabsorption after bariatric surgery</li>
+          <li>Advanced/complex celiac or other malabsorption states</li>
+        </ul>
+        <p class="small">
+          High-fiber foods can worsen symptoms, and absorption can be too limited to maintain weight/micronutrients without specialized planning.
+        </p>
+
+        <p><b>B) Severe cachexia or end-stage illness</b></p>
+        <ul>
+          <li>Cancer cachexia</li>
+          <li>Advanced HIV/AIDS</li>
+          <li>End-stage organ failure</li>
+        </ul>
+        <p class="small">
+          Appetite is often poor and energy needs are high. The most reliable, digestible nutrition approach may take priority over dietary labels.
+        </p>
+
+        <p><b>C) Rare inherited metabolic disorders</b></p>
+        <ul>
+          <li>PKU and other amino-acid metabolism disorders</li>
+          <li>Other rare metabolic diet conditions managed by specialist protocols</li>
+        </ul>
+        <p class="small">
+          These require specialist medical nutrition therapy. Plant-based patterns may be possible, but only under expert guidance.
+        </p>
+      </details>
+
+      <div class="divider"></div>
+
+      <button class="btn ghost" onclick="openBivalvesNote()">
+        Pop-up: A note about bivalves (optional harm-reduction bridge)
+      </button>
     `,
 
 
 kids: `
   <h2>2B2 — Child development / safety</h2>
-  <img class="page-img" src="assets/kids.png" alt="Kids illustration">
+  <img class="page-img" src="kids.png" alt="Kids illustration">
   <p><b>Prompt:</b> Are you concerned that feeding children plant-based could be unsafe or sub-optimal for growth or development?</p>
 
   <details class="acc">
@@ -1139,7 +1104,7 @@ kids: `
 
 access: `
         <h2>2B3 — Access / cost</h2>
-        <img class="page-img" src="assets/access.png" alt="Access illustration">
+        <img class="page-img" src="access.png" alt="Access illustration">
         <p><b>Prompt:</b> Are access, affordability, transportation, time, disability, caregiving load, or local availability limiting what you can realistically eat?</p>
 
         <details class="acc" data-card="lowcost-staples">
@@ -1320,7 +1285,7 @@ access: `
 
       env: `
         <h2>2B4 — Environmental context</h2>
-        <img class="page-img" src="assets/env.png" alt="Env illustration">
+        <img class="page-img" src="env.png" alt="Env illustration">
         <p><b>Prompt:</b> Are there environmental or geographic realities that affect what’s possible for you personally?</p>
 
         <details class="acc">
@@ -1473,13 +1438,13 @@ access: `
         <div class="divider"></div>
 
         <!-- Insert infographic at the bottom (before the buttons) -->
-        <img class="page-img" src="assets/EnvInfographic.png" alt="Environmental infographic">
+        <img class="page-img" src="EnvInfographic.png" alt="Environmental infographic">
       `,
 
 
   extreme: `
     <h2>2B5 — Extreme physical needs</h2>
-    <img class="page-img" src="assets/extreme.png" alt="Extreme illustration">
+    <img class="page-img" src="extreme.png" alt="Extreme illustration">
 
     <p><b>Prompt:</b> Do your energy levels, work demands, recovery needs, or athletic training make plant-based eating feel incompatible right now?</p>
 
@@ -1586,7 +1551,7 @@ access: `
 
       habit: `
         <h2>Habit / taste / change</h2>
-        <img class="page-img" src="assets/habit.png" alt="Habit illustration">
+        <img class="page-img" src="habit.png" alt="Habit illustration">
         <details class="acc">
           <summary>Transitioning to a new eating pattern: what to expect</summary>
 
@@ -1707,7 +1672,7 @@ access: `
 
       fear: `
         <h2>fear / emotional distress</h2>
-        <img class="page-img" src="assets/fear.png" alt="Fear illustration">
+        <img class="page-img" src="fear.png" alt="Fear illustration">
         <h3>Fear of Change & Emotional Comfort</h3>
         <p>
           Even when people “know something is wrong,” change can feel threatening — not because someone lacks care or logic,
@@ -4283,7 +4248,7 @@ access: `
             The next page will share some additional resources if you’re ready to take the next step in your plant-based healing journey.
           </p>
         </section>
-        <img class="page-img" src="assets/renewal.png" alt="Renewal illustration">
+        <img class="page-img" src="renewal.png" alt="Renewal illustration">
 
         ${navButtons({ showBack:true, showNext:true, nextLabel:"Continue to Making the Transition" })}
       `;
