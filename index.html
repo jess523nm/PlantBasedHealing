@@ -196,17 +196,15 @@
     }
 
     .modal .scroll{
-      /* IMPORTANT: this is what makes scrolling actually work in a flex column */
       flex: 1;
       min-height: 0;
 
       overflow-y: auto;
       -webkit-overflow-scrolling: touch;
 
-      /* Comfortable padding for long content */
-      padding: 0 1rem 1rem;
+      /* Give the scroll area padding INCLUDING top so the image and first paragraph breathe */
+      padding: 1rem;
     }
-
 
     .divider{
       height: 1px;
@@ -267,9 +265,8 @@
     <div class="modal">
       <h2>Welcome - Before you Begin</h2>
 
-      <img class="page-img" src="nightbeach.png" alt="Night beach illustration">
-
       <div class="scroll">
+          <img class="page-img" src="nightbeach.png" alt="Night beach illustration">
 
           <p><b>This interactive flowchart is not about laws, politics, or what should be legal or illegal.</b></p>
 
@@ -296,13 +293,13 @@
     </div>
   </div>
 
-    <!-- Medical Disclaimer Modal (non-exit) -->
-    <div class="modalback" id="medicalDisclaimerModal" style="display:none;">
+  <!-- Medical Disclaimer Modal (non-exit) -->
+  <div class="modalback" id="medicalDisclaimerModal" style="display:none;">
     <div class="modal">
       <h2>Medical note (not all-or-nothing)</h2>
 
-      <div class="scroll"></div>
-      <img class="page-img" src="doctor.png" alt="Medical support illustration">
+      <div class="scroll">
+        <img class="page-img" src="doctor.png" alt="Medical support illustration">
 
         <p><b>Important:</b> This tool is not medical advice.</p>
 
