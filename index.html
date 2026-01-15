@@ -165,25 +165,41 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      overflow: hidden;          /* prevents background page scroll issues */
-      padding: 1rem;             /* breathing room on small screens */
-      z-index: 9999;             /* ensure it sits above everything */
+
+      /* NEW: dark overlay so the page behind isn't distracting */
+      background: rgba(0,0,0,0.62);
+
+      overflow: hidden;
+      padding: 1rem;
+      z-index: 9999;
     }
+
 
     .modal{
       width: min(920px, 96vw);
-      max-height: 92vh;          /* critical: constrain modal to viewport */
-      overflow: hidden;          /* keeps header/footer fixed while inner scrolls */
+      max-height: 92vh;
+      overflow: hidden;
       display: flex;
-      flex-direction: column;    /* allows scroll area to take remaining space */
+      flex-direction: column;
+
+      /* NEW: make the modal itself look like your cards (not transparent) */
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 18px;
+      box-shadow: 0 18px 60px rgba(0,0,0,0.55);
+      backdrop-filter: blur(10px);
     }
 
+
     .modal .scroll{
-      overflow-y: auto;          /* critical: makes inner content scroll */
+      overflow-y: auto;
       -webkit-overflow-scrolling: touch;
-      max-height: 100%;          /* scroll area uses remaining modal height */
-      padding-right: .25rem;     /* avoids scrollbar overlaying text */
+      max-height: 100%;
+
+      /* NEW: comfortable padding for long content */
+      padding: 0 1rem 1rem;
     }
+
 
     .divider{
       height: 1px;
@@ -232,7 +248,7 @@
 <body>
   <div class="wrap">
     <div class="topbar">
-      <div class="brand">Plant-Based Reflection Tool v. 1.9</div>
+      <div class="brand">Plant-Based Reflection Tool v. 1.10</div>
       <div class="pill" id="progressPill">Step: —</div>
     </div>
 
@@ -792,7 +808,7 @@
     // You can paste your long text into the <details> sections later, one topic at a time.
     const BLOCKER_PAGES = {
    medical: ` 
-      <p class="small"><b>Note:</b> I am not a medical professional. This flowchart is not medical advice.
+      <p><b>Note:</b> I am not a medical professional. This flowchart is not medical advice.
       Always consult with your physician or a registered dietitian before making changes to your diet, especially if you have medical conditions,
       take medications, or are responsible for others’ health.</p>
 
@@ -804,7 +820,7 @@
       <p><b>Prompt:</b> Do you have a medical, psychological, or physiological condition — for yourself or someone you care for —
       that makes a fully plant-based diet unsafe, unrealistic, or harmful <i>without</i> professional supervision?</p>
 
-      <p class="small">
+      <p>
         For many chronic conditions — including diabetes, heart disease, obesity, and even risks associated with some cancers and hormone-related conditions —
         research shows that well-planned, plant-centered eating patterns are often beneficial compared with typical Western diets. In many cases, shifting toward
         plants can help reduce risk, support metabolic health, and improve disease markers. This doesn’t mean animal products are universally harmful or that
@@ -813,28 +829,141 @@
       </p>
 
       <details class="acc">
-        <summary>Category 1 — Plant-based patterns are often beneficial and protective</summary>
+        <summary>Category 1 — Conditions where plant-based patterns are often beneficial and protective (not a medical necessity for animal foods)</summary>
 
-        <p class="small">
-          In these situations, plant-centered eating is not only possible — it is often associated with better outcomes than
-          animal-heavy patterns (especially when it emphasizes whole foods and limits ultra-processed foods).
-        </p>
+        <p>These are conditions where evidence suggests that plant-forward eating is often helpful for prevention, management, and sometimes improvement and where avoiding or minimizing animal products is not only safe but often beneficial. This category is distinct from “diet may be possible with planning”; it’s where plant-based patterns have protective/therapeutic evidence.</p>
 
-        <ul>
-          <li><b>Type 2 diabetes</b> — plant-forward patterns often improve insulin sensitivity and glycemic control (monitor meds with a clinician)</li>
-          <li><b>Heart disease / cardiometabolic risk</b> — plant-centered patterns are often protective; some intensive programs show regression in some cases</li>
-          <li><b>Obesity / weight management</b> — whole plant foods tend to be higher fiber/lower calorie density, supporting satiety and weight stability</li>
-          <li><b>Metabolic syndrome</b> — often improves alongside weight, blood pressure, lipids, and blood sugar on plant-forward patterns</li>
-          <li><b>Cancer risk reduction patterns</b> (esp. colorectal) — higher fiber/plant intake is associated with lower risk in population studies (not a guarantee)</li>
-          <li><b>Hormone-related/metabolic fertility issues</b> (e.g., PCOS) — plant-forward patterns can support insulin resistance and inflammation, which can help</li>
-          <li><b>Estrogen-sensitive conditions</b> (e.g., fibroids) — plant-forward weight/metabolic improvements may support risk reduction for some people</li>
-        </ul>
+        <p>These are common beliefs, but mainstream nutrition guidance does not generally treat them as requiring animal products. In many cases, shifting toward a well-planned plant-forward diet is not merely “possible,” but often protective or therapeutic compared with more animal-heavy patterns—especially when it increases whole plant foods and reduces saturated fat/ultra-processed foods.</p>
 
-        <p class="small">
-          <b>Note:</b> This is not a promise of “reversal” for any individual. The point is that these conditions are not medical reasons
-          that require animal products, and plant-forward eating is often a strong supportive strategy.
-        </p>
+        <p>A key baseline: the Academy of Nutrition and Dietetics’ long-standing position is that appropriately planned vegetarian (including vegan) diets are nutritionally adequate and appropriate for all life stages, including pregnancy, lactation, infancy/childhood/adolescence, older adulthood, and athletes.</p>
+
+        <p><b>1) Pregnancy &amp; breastfeeding</b></p>
+        <p>Claim: “You need animal products for pregnancy/lactation.”<br>
+        Reality: A well-planned plant-based diet can be safe and adequate, and may have some benefits (e.g., healthier gestational weight gain), but it requires intentional supplementation/monitoring.</p>
+
+        <p>What the evidence actually says (honest version):<br>
+        • Major dietetics guidance supports safety when well planned (this is the “mainstream consensus” piece).<br>
+        • Some recent reviews/meta-analyses find that strict vegan/strict vegetarian pregnancy patterns, especially when poorly supplemented, can be associated with lower birth weight / higher SGA risk—which points to “planning quality,” not “animal foods required.”</p>
+
+        <p>Plant-based can be beneficial vs animal-heavy patterns because it tends to:<br>
+        • Increase fiber, potassium, folate, phytochemicals; often reduces saturated fat—supporting cardiometabolic health (relevant because gestational diabetes and hypertensive disorders are major risks). (Mechanism/heart-health dietary pattern framing)</p>
+
+        <p>Feasibility (without animal products): High, if you treat a few nutrients as “non-negotiables” (typically B12, iodine, DHA/EPA source, iron strategy, vitamin D, calcium, adequate protein/energy). The key is not moral perfection—it’s planning + labs when indicated.</p>
+
+        <p>________________________________________</p>
+
+        <p><b>2) C. Obesity / Weight Management</b></p>
+        <p>Plant-based diets are consistently associated with lower rates of overweight/obesity, greater spontaneous weight loss, and better weight maintenance over time — largely because whole plant foods tend to be lower in calories and higher in fiber, helping with satiety and metabolic health.</p>
+
+        <p>________________________________________</p>
+
+        <p><b>3) Older age</b></p>
+        <p>Claim: “Elderly people need animal protein.”<br>
+        Reality: There’s no inherent requirement for animal products. The real issue is protein adequacy, B12, and sometimes appetite/energy density—things that can be handled plant-based with planning.</p>
+
+        <p>Plant-based can be beneficial vs animal-heavy patterns because:<br>
+        • Heart-healthy guidance consistently emphasizes patterns built mostly from plants to reduce cardiovascular risk—highly relevant because CVD risk rises with age.</p>
+
+        <p>Feasibility (without animal products): High, with the practical focus on:<br>
+        • Protein distribution across meals, energy density, resistance exercise when possible, and B12 reliability.</p>
+
+        <p>________________________________________</p>
+
+        <p><b>4) Iron deficiency</b></p>
+        <p>Claim: “Iron deficiency means you must eat red meat.”<br>
+        Reality: Iron deficiency is often manageable on a plant-based diet, but you must understand non-heme iron absorption and use absorption strategies (and sometimes supplements). Non-heme iron is absorbed less efficiently on average, so the “strategy” part matters.</p>
+
+        <p>Plant-based can still be beneficial overall because you can treat iron as a targeted issue while keeping the broader cardiometabolic benefits of plant-forward eating.</p>
+
+        <p>Feasibility (without animal products): Moderate-to-high, depending on severity and cause.<br>
+        • Many people do fine with: iron-rich plant foods + vitamin C pairing + avoiding inhibitors around iron doses + supplementation when prescribed.<br>
+        • If someone has persistent deficiency (heavy bleeding, malabsorption, etc.), this becomes a medical workup issue—not an “eat animals” issue.</p>
+
+        <p>________________________________________</p>
+
+        <p><b>5) Osteoporosis / bone health</b></p>
+        <p>Claim: “You need dairy (or animal foods) for bones.”<br>
+        Reality: Bone health is about a package: calcium, vitamin D, adequate protein, resistance/impact activity, and overall nutrition status. Some meta-analyses show vegans may have lower BMD/higher fracture risk on average, especially if calcium/protein/vitamin D are low—again: planning quality.</p>
+
+        <p>Plant-based can be beneficial vs animal-heavy patterns because it can improve cardiometabolic health while still meeting bone nutrients (fortified foods, calcium-set tofu, beans/greens where appropriate, supplements when needed). The point is: bones don’t require dairy; they require nutrients.</p>
+
+        <p>Feasibility (without animal products): Moderate-to-high with explicit planning:<br>
+        • Hit calcium + vitamin D targets, ensure protein adequacy, consider vitamin K sources, and use clinician-guided supplementation when needed.</p>
+
+        <p>________________________________________</p>
+
+        <p><b>6) Diabetes (especially type 2)</b></p>
+        <p><b>Type 2 Diabetes</b><br>
+        Plant-based and whole-food plant-forward dietary patterns are consistently shown to improve glycemic control, insulin sensitivity, and body weight, and reduce risk of developing type 2 diabetes compared with typical omnivorous patterns. This includes evidence in major diabetes guidance acknowledging plant-forward eating as a valid therapeutic option.</p>
+
+        <p>Claim: “Diabetes makes plant-based eating dangerous or unrealistic.”<br>
+        Reality: For type 2 diabetes, plant-based patterns are often therapeutic—improving insulin sensitivity and cardiometabolic risk factors, and sometimes producing large clinical improvements (especially when weight loss and reduced liver/muscle fat occur). Randomized trials show low-fat vegan/plant-based interventions can improve glycemic control and cardiometabolic markers, sometimes more than conventional comparison diets.</p>
+
+        <p>Mainstream guidance backing (important for your “consensus” framing):<br>
+        • ADA materials explicitly include vegetarian/vegan patterns as valid options for improving A1C, weight, and lipids.<br>
+        • Reviews note major diabetes organizations include vegetarian/vegan patterns among those shown to improve glycemic control and cardiovascular risk factors.</p>
+
+        <p>Feasibility (without animal products): High for many people with type 2 diabetes, with two cautions:<br>
+        1. Medication adjustments may be needed as glucose improves (clinical supervision).<br>
+        2. Quality matters: “plant-based” built on refined carbs/sugary foods is not the same as whole-food plant-forward eating.</p>
+
+        <p>________________________________________</p>
+
+        <p><b>7) Heart disease</b></p>
+        <p><b>Heart Disease / Cardiometabolic Risk</b><br>
+        Numerous studies associate diets higher in plant foods and lower in animal foods with reduced cardiovascular risk factors — lower LDL cholesterol, lower blood pressure, and lower overall risk of heart disease — versus typical animal-heavy Western patterns. Some clinical trials suggest plant-based whole-food patterns may even halt or regress coronary artery disease. Claim: “Heart disease requires animal foods for protein/strength.”</p>
+
+        <p>Reality: Heart-healthy dietary guidance strongly emphasizes patterns centered on plants, and multiple lines of evidence associate plant-forward diets with lower cardiovascular morbidity/mortality.</p>
+
+        <p>About ‘reversal’ (be precise in the app):<br>
+        • Intensive lifestyle programs that include very low-fat vegetarian/plant-forward dietary patterns have shown regression of coronary atherosclerosis in clinical trials.<br>
+        • A larger, real-world counseling cohort reported CAD event outcomes consistent with arrest/reversal in adherent participants, though it’s not an RCT (so phrase as “evidence suggests,” not a guarantee).</p>
+
+        <p>Feasibility (without animal products): High for most people—often easier to meet heart targets (lower saturated fat, higher fiber) with a plant-centered pattern.</p>
+
+        <p>________________________________________</p>
+
+        <p><b>8) Certain Types of Cancer Risk (especially colorectal, breast)</b></p>
+        <p>Dietary patterns high in whole plant foods — rich in fiber, antioxidants, and phytochemicals — are associated in epidemiologic studies with lower risk of several cancers (particularly colorectal cancer). A major Europe-wide cohort (EPIC) and other research suggest that dietary patterns higher in fiber and plant foods correlate with reduced bowel cancer risk — though no diet alone guarantees prevention.</p>
+
+        <p>Why it fits here:<br>
+        • High-fiber, plant-rich eating is linked with lower inflammation, healthier gut microbiota, and lower circulating growth-promoting factors — all mechanisms plausibly protective.<br>
+        • While diet alone doesn’t “cure” cancer, strong plant emphasis is one component of evidence-based cancer risk reduction guidance.</p>
+
+        <p>________________________________________</p>
+
+        <p><b>9) Infertility / Hormone-Related Conditions (e.g., PCOS)</b></p>
+        <p>There is emerging evidence that plant-based and plant-emphasized diets can improve fertility-related metabolic markers (e.g., insulin resistance, weight balance) particularly in conditions like PCOS. While individual fertility problems have many causes beyond diet, improvements in metabolic health and inflammation are plausibly beneficial for ovulatory and hormonal balance.</p>
+
+        <p>Why it fits here:<br>
+        • Diets emphasizing whole plant foods may indirectly support fertility by improving body composition, insulin sensitivity, and systemic inflammation — all factors in reproductive endocrinology.<br>
+        • This is not a universal requirement to avoid animal foods, but evidence supports plant-forward eating as beneficial for metabolic contributors to infertility in many cases.</p>
+
+        <p>________________________________________</p>
+
+        <p><b>10) Uterine Fibroids and Estrogen-Sensitive Conditions</b></p>
+        <p>Some observational evidence suggests diets rich in fiber, fruits, and vegetables are associated with lower risk of fibroids and may influence estrogen metabolism beneficially. Obesity increases estrogen via aromatization in adipose tissue, which in turn can promote fibroid growth; plant-forward diets often support healthier body weight and fat distribution, reducing that risk factor.</p>
+
+        <p>Why it fits here:<br>
+        • While not a universal clinical prescription, eating plants instead of excess animal fat/refined foods may reduce estrogen-driven proliferative risks.</p>
+
+        <p>________________________________________</p>
+
+        <p><b>11) Multimorbidity Risk (aggregate chronic disease burden)</b></p>
+        <p>Large observational research finds that higher quality plant-based dietary patterns are associated with a reduced risk of developing multiple chronic diseases simultaneously — e.g., combinations of heart disease, diabetes, and some cancers — compared with lower plant quality diets.</p>
+
+        <p>Why it fits here:<br>
+        • This reinforces that plant-forward patterns act on shared pathways (inflammation, insulin resistance, adiposity) that underlie many chronic conditions.</p>
+
+        <p>________________________________________</p>
+
+        <p><b>12) Metabolic Syndrome and Inflammation-Related Conditions</b></p>
+        <p>Plant-centered diets are shown in cohort and intervention studies to reduce markers of systemic inflammation and improve components of metabolic syndrome (central obesity, high triglycerides, low HDL, high blood pressure, high fasting glucose).</p>
+
+        <p>Why it fits here:<br>
+        • Metabolic syndrome is a cluster of risk states that precede type 2 diabetes and heart disease; shifting toward plants tends to improve all the components.</p>
       </details>
+
 
       <details class="acc">
         <summary>Category 2 — Edge cases: plant-based is still possible, but may be challenging (personalization + support)</summary>
@@ -858,14 +987,14 @@
           <li>Nut/seed allergy (removes calorie-dense plant options)</li>
           <li>Gluten intolerance + legume allergy combo (can shrink options dramatically)</li>
         </ul>
-        <p class="small">Not impossible — but harder, especially for calorie and protein sufficiency.</p>
+        <p>Not impossible — but harder, especially for calorie and protein sufficiency.</p>
 
         <p><b>C) Eating disorders / ARFID / severe sensory restriction</b></p>
         <ul>
           <li>Active anorexia / orthorexia / ARFID — restriction patterns can worsen</li>
           <li>Severe sensory aversions (including autism/ARFID overlap) — can sharply limit plant options</li>
         </ul>
-        <p class="small">
+        <p>
           Ethically, mental health stabilization always takes priority over dietary ideals.
           Plant-based eating can feel freeing for some people and restrictive for others — it depends on whether it functions as nourishment or control.
           If you have eating disorder history, consider discussing this with a clinician who understands your patterns.
@@ -876,7 +1005,7 @@
           <li>Depression/anxiety — some people feel better on plant-forward eating; others need careful planning to avoid under-eating or nutrient gaps</li>
           <li>Bipolar disorder, severe depression, complex psychiatric meds — stability and consistent nutrition come first; discuss major diet shifts with your clinician</li>
         </ul>
-        <p class="small">
+        <p>
           Mental health outcomes vary widely by person. The safest framing is: nourishment + stability first, and avoid dietary restriction that worsens symptoms.
         </p>
 
@@ -886,13 +1015,13 @@
           <li>Post-surgical recovery — low appetite + high protein needs</li>
           <li>Chronic underweight — calorie density can be harder plant-based</li>
         </ul>
-        <p class="small">Often doable — but sometimes not realistic in the short term without support.</p>
+        <p>Often doable — but sometimes not realistic in the short term without support.</p>
       </details>
 
       <details class="acc">
         <summary>Category 3 — More serious cases where fully plant-based can be very difficult without medical supervision (or may require accommodation)</summary>
 
-        <p class="small">
+        <p>
           These situations can involve major absorption issues, severe wasting, or highly specific metabolic requirements.
           The goal here is clinical stability and adequate nutrition.
         </p>
@@ -3663,7 +3792,7 @@ access: `
             Our goal is simply to understand your situation and explore what is realistically possible — even if that means small changes rather than big ones.
           </p>
 
-          ${navButtons({ showBack:true, nextLabel:"Continue to 2A" })}
+          ${navButtons({ showBack:true, nextLabel:"Continue to Nutrition and Blockers" })}
         `;
 
         window.__next = () => go(STEPS.P2_2A);
@@ -3810,17 +3939,15 @@ access: `
         $app.innerHTML = `
           <h1>Part 2 — 2B (Personal case)</h1>
           <img src="blockers1.png" alt="Personal case" class="page-img"/>
-          <p class="small">
+          <p>
             You answered “No” to the general question — meaning: you believe a plant-based diet is <b>not</b> nutritionally adequate in your personal case.
           </p>
 
           <p>
             That might be true for you — and this flowchart is designed to take that seriously.
             Next, we’ll explore the most common real-world “personal case” reasons people give (medical conditions, allergies, GI issues,
-            pregnancy/lactation, eating disorder history, sensory limitations, access/cost constraints, etc.).
-          </p>
-
-          <p><b>Next:</b> choose which blockers apply to you so we can walk through them one by one.</p>
+            pregnancy/lactation, eating disorder history, sensory limitations, access/cost constraints, etc.) so that you can explore 
+            which blockers might apply to you one by one.</p>
 
           ${navButtons({ showBack:true, nextLabel:"Continue to blockers checklist" })}
         `;
@@ -3846,17 +3973,20 @@ access: `
             It becomes: <b>“If it’s possible for me personally, what am I going to do with that?”</b>
           </p>
 
-          <p class="small">
+          <p>
             This is the point where many people realize: if animal products are not necessary for them personally,
-            then continuing purely for taste / habit / convenience functions as a choice to accept preventable harm.
+            then continuing purely for taste / habit / convenience functions as a choice they are then making to 
+            allow animals to be harmed purely for their own convenience or pleasure. Thus, in order to live one's
+            authentic life, they must then either live in cognitive dissionance of knowing their values don't match
+            their choices or they must make a change to their lives.
           </p>
 
           <div class="divider"></div>
 
           <p><b>What happens next?</b></p>
           <p>
-            We’re still going to check for real blockers (health, cost, access, environment, life context) — because “possible in theory”
-            is not the same as “realistic in my life.”
+            We’re still going to double check for real blockers (health, cost, access, environment, life context) — because “possible in theory”
+            is not the same as “realistic in my life," and sometimes harm minimization is the most that an individual will be able to acheive.
           </p>
 
           ${navButtons({ showBack:true, nextLabel:"Continue to blockers checklist" })}
