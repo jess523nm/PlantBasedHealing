@@ -288,7 +288,7 @@
 <body>
   <div class="wrap">
     <div class="topbar">
-      <div class="brand">Plant-Based Reflection Tool v. 1.12</div>
+      <div class="brand">Plant-Based Reflection Tool v. 1.13</div>
       <div class="pill" id="progressPill">Step: —</div>
     </div>
 
@@ -811,7 +811,7 @@
       "1CX5": STEPS.P1_1CX5,
 
       "2I":   STEPS.P2_INTRO,
-      "2BP":  STEPS.P2_BLOCKERS_PICK
+      "2BP":  STEPS.P2_BLOCKERS_PICK,
       "2A":   STEPS.P2_2A,
       "2B":   STEPS.P2_2B,
 
@@ -2426,6 +2426,7 @@ access: `
     function renderStart(){
       setPill("Step: Start");
       $app.innerHTML = `
+      ${renderStepBar()}
             <h1>Welcome</h1>
 
             <p><b>This tool is about your own personal moral reasoning.</b></p>
@@ -2451,6 +2452,7 @@ access: `
     function renderDietStatus(){
       setPill("Step: Diet status");
       $app.innerHTML = `
+      ${renderStepBar()}
             <h1>Diet status</h1>
             <p>Select one:</p>
 
@@ -3353,6 +3355,7 @@ access: `
       function renderReligiousDetail({ title, img, storageKey, bodyHtml }){
         setPill("Part 1 — 1CX2");
         $app.innerHTML = `
+      ${renderStepBar()}
           <h1>${title}</h1>
           <img src="${img}" alt="${title}" class="page-img"/>
 
@@ -4399,6 +4402,7 @@ access: `
         setPill("Part 2 — Final overview");
 
         $app.innerHTML = `
+      ${renderStepBar()}
           <h1>Part 2 — Where this puts you (overview)</h1>
           <img src="realization.png" alt="Where this puts you" class="page-img"/>
           <p>
@@ -4491,6 +4495,7 @@ access: `
       // Fallback if something goes wrong
       if (!currentId || !current){
         $app.innerHTML = `
+      ${renderStepBar()}
           <h1>Part 2 — Blockers</h1>
           <p class="small">No blocker topic was found. (Queue is empty or unknown ID.)</p>
           ${navButtons({ showBack:true, nextLabel:"Continue" })}
@@ -4504,6 +4509,7 @@ access: `
       `;
 
       $app.innerHTML = `
+      ${renderStepBar()}
         <h1>${current.label}</h1>
 
         <p class="small">This section helps you reflect on practical constraints. There is no “shame” path here. We’re just mapping reality.</p>
