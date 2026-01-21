@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Plant-Based Reflection Tool — Skeleton</title>
+  <title>Plant-Based Reflection Tool</title>
   <style>
     :root{
       --card-bg: rgba(10, 12, 18, 0.72);
@@ -248,6 +248,41 @@
       margin:1.25rem auto;
       border-radius:12px;
     }
+      /* ===== Step jump bar (top navigator) ===== */
+      .stepbar{
+        display:flex;
+        flex-wrap:wrap;
+        gap:8px;
+        padding: 10px 10px;
+        margin: 0 0 14px;
+        border: 1px solid rgba(255,255,255,0.10);
+        border-radius: 14px;
+        background: rgba(255,255,255,0.04);
+      }
+
+      .stepchip{
+        border: 1px solid rgba(255,255,255,0.14);
+        background: rgba(255,255,255,0.06);
+        color: rgba(255,255,255,0.92);
+        padding: 7px 10px;
+        border-radius: 999px;
+        cursor: pointer;
+        font-size: 12px;
+        font-weight: 650;
+        line-height: 1;
+        user-select: none;
+        transition: 0.12s ease;
+      }
+
+      .stepchip:hover{
+        background: rgba(255,255,255,0.12);
+      }
+
+      .stepchip.active{
+        background: rgba(255,255,255,0.16);
+        border-color: rgba(255,255,255,0.22);
+      }
+
   </style>
 </head>
 <body>
@@ -270,7 +305,7 @@
 
           <p><b>This interactive flowchart is not about laws, politics, or what should be legal or illegal.</b></p>
 
-          <p>It is only about your own personal moral decision-making — what you feel is right or wrong for you to do in your own life.</p>
+          <p>It is only about your own personal moral decision-making, what you feel is right or wrong for you to do in your own life.</p>
 
           <div class="divider"></div>
 
@@ -335,7 +370,7 @@
         
         <p><b>“I think this question is logically flawed, incomplete, or unfair.”</b></p>
 
-        <p>Thank you — this is genuinely helpful feedback for future development.</p>
+        <p>Thank you. This is genuinely helpful feedback for future development.</p>
 
         <p>This flowchart is a work in progress, and it’s designed to be improved over time. If you believe a question contains a logical fallacy, a false assumption, a misleading framing, or an unfair simplification, please let me know so I can reassess it.</p>
 
@@ -382,11 +417,11 @@
 
         <p>Many traditions permit eating animals without requiring it.</p>
 
-        <p>That means the remaining question is not whether you are allowed — but whether animal consumption is necessary for you personally.</p>
+        <p>That means the remaining question is not whether you are allowed but whether animal consumption is necessary for you personally.</p>
 
-        <p>In the next section, we’ll look at whether animal products are necessary for your health, nutrition, finances, access, or environmental context — not for everyone in the world, just for you.</p>
+        <p>In the next section, we’ll look at whether animal products are necessary for your health, nutrition, finances, access, or environmental context, not for everyone in the world, just for you.</p>
 
-        <p>You don’t need to worry about exceptions or edge cases right now — only your own situation.</p>
+        <p>You don’t need to worry about exceptions or edge cases right now, only your own situation.</p>
       </div>
 
       <div class="divider"></div>
@@ -448,7 +483,7 @@
           </ul>
 
           <p class="small">
-            This is why some people who follow ethical diets — including a minority of vegans — make an exception for bivalves.
+            This is why some people who follow ethical diets, including a minority of vegans who make an exception for bivalves.
             If you want literature citations, this flowchart can provide them in a later evidence section.
           </p>
         </details>
@@ -510,7 +545,7 @@
           </ol>
 
           <p class="small">
-            <i>“We are not evaluating what other people should do — only what is necessary for you personally.”</i>
+            <i>“We are not evaluating what other people should do, only what is necessary for you personally.”</i>
           </p>
         </details>
       </div>
@@ -627,8 +662,8 @@
           <img src="culture.png" alt="Cultural guidance" style="max-width:100%; border-radius:12px; margin-bottom:1rem;" />
           <p>Thank you for reflecting on this.</p>
           <p>We recommend speaking with a respected elder, teacher, or knowledge-holder from your cultural or ancestral tradition to explore how these practices are understood today.</p>
-          <p>Many traditions emphasize respect, restraint, and minimizing harm — and there may be guidance available that aligns both with your values and your heritage.</p>
-          <p>If you choose to continue consuming animal products for cultural reasons, consider ways to reduce harm where possible (such as avoiding industrial sources or supporting practices rooted in respect and sustainability).</p>
+          <p>Many traditions emphasize respect, restraint, and minimizing harm; and there may be guidance available that aligns both with your values and your heritage.</p>
+          <p>If you choose to continue consuming animal products for cultural reasons, consider ways to reduce harm where possible (such as avoiding industrial sources or supporting practices rooted in respect and sustainability). Click "Go back" if you'd still like to explore the remainder of this philosophical exercise in the meantime.</p>
         `;
       } 
       else {
@@ -758,6 +793,76 @@
       TRANSITION: "TRANSITION"
     };
 
+        // ===== Top navigator bar labels (what you want displayed) =====
+    const STEP_BAR = ["1A","1B","1BX","1C","1CXP","1CX1","1CX2","1CX3","1CX4","1CX5","2I","2A","2B","2BP","2C","2D"];
+
+    // ===== Map bar labels -> actual internal step IDs =====
+    // NOTE: Adjust any of these if your actual step IDs differ.
+    const STEP_BAR_MAP = {
+      "1A":   STEPS.P1_1A,
+      "1B":   STEPS.P1_1B,
+      "1BX":  STEPS.P1_1BX,
+      "1C":   STEPS.P1_1C,
+      "1CXP": STEPS.P1_1CX_PICK,
+      "1CX1": STEPS.P1_1CX1,
+      "1CX2": STEPS.P1_1CX2,
+      "1CX3": STEPS.P1_1CX3,
+      "1CX4": STEPS.P1_1CX4,
+      "1CX5": STEPS.P1_1CX5,
+
+      "2I":   STEPS.P2_INTRO,
+      "2BP":  STEPS.P2_BLOCKERS_PICK
+      "2A":   STEPS.P2_2A,
+      "2B":   STEPS.P2_2B,
+
+      // You said:
+      // 2C = Stakes
+      // 2D = Transition pages
+      "2C":   STEPS.STAKES,
+      "2D":   STEPS.TRANSITION
+    };
+
+    function renderStepBar(){
+      const current = state.stepId;
+
+      const chips = STEP_BAR.map(label => {
+        const target = STEP_BAR_MAP[label];
+        const isActive = (target === current);
+
+        // If the target doesn't exist yet, show it disabled-looking (still clickable if you want later)
+        const missing = !target;
+
+        return `
+          <button
+            class="stepchip ${isActive ? "active" : ""}"
+            ${missing ? "disabled" : ""}
+            onclick="jumpToStep('${label}')"
+            title="${missing ? "Not wired yet" : "Jump to " + label}"
+            type="button"
+          >${label}</button>
+        `;
+      }).join("");
+
+      return `<div class="stepbar">${chips}</div>`;
+    }
+
+    function jumpToStep(label){
+      const target = STEP_BAR_MAP[label];
+      if(!target) return;
+
+      // Close any open modals so the jump is visible
+      closeYellowExit();
+      closeRedExit();
+      closeBivalvesNote();
+      // medicalDisclaimerModal and religiousTransitionModal are sometimes open too:
+      const md = document.getElementById("medicalDisclaimerModal");
+      if(md) md.style.display = "none";
+      const rt = document.getElementById("religiousTransitionModal");
+      if(rt) rt.style.display = "none";
+
+      go(target);
+    }
+
     const CX_ORDER = [
       {
         id:"1CX1",
@@ -770,8 +875,8 @@
         id:"1CX2",
         step: STEPS.P1_1CX2,
         title: "2. Religious exemption",
-        quote: "“God permits or commands us to eat animals.”",
-        note: "(Moral authority overrides harm considerations.)"
+        quote: "“God commands us to eat animals.”",
+        note: "(Moral authority overrides harm considerations or it is morally superior.)"
       },
       {
         id:"1CX3",
@@ -804,8 +909,8 @@
       { id: "access",  label: "2B3 — Access / cost / availability constraints" },
       { id: "env",     label: "2B4 — Environmental context (what’s realistic where you live)" },
       { id: "extreme", label: "2B5 — Extreme physical needs / energy demands" },
-      { id: "habit",   label: "2B6 - Habit / taste / change concerns" },
-      { id: "fear", label: "2B7 - Fear of change/Emotional struggle" }
+      { id: "habit",   label: "2B6 — Habit / taste / change concerns" },
+      { id: "fear", label: "2B7 — Fear of change/Emotional struggle" }
     ];
 
     // Content skeletons for each blocker topic.
@@ -821,14 +926,14 @@
       <h2>2B1 — Medical</h2>
       <img class="page-img" src="medical.png" alt="Medical illustration">
 
-      <p><b>Prompt:</b> Do you have a medical, psychological, or physiological condition — for yourself or someone you care for —
+      <p><b>Prompt:</b> Do you have a medical, psychological, or physiological condition for yourself or someone you care for —
       that makes a fully plant-based diet unsafe, unrealistic, or harmful <i>without</i> professional supervision?</p>
 
       <p>
-        For many chronic conditions — including diabetes, heart disease, obesity, and even risks associated with some cancers and hormone-related conditions —
+        For many chronic conditions including diabetes, heart disease, obesity, and even risks associated with some cancers and hormone-related conditions —
         research shows that well-planned, plant-centered eating patterns are often beneficial compared with typical Western diets. In many cases, shifting toward
         plants can help reduce risk, support metabolic health, and improve disease markers. This doesn’t mean animal products are universally harmful or that
-        everyone must go strictly vegan — but it does mean prioritizing whole plant foods can be a powerful, evidence-backed part of managing and preventing
+        everyone must go strictly vegan, but it does mean prioritizing whole plant foods can be a powerful, evidence-backed part of managing and preventing
         chronic illness.
       </p>
 
@@ -857,7 +962,7 @@
         <p>________________________________________</p>
 
         <p><b>2) C. Obesity / Weight Management</b></p>
-        <p>Plant-based diets are consistently associated with lower rates of overweight/obesity, greater spontaneous weight loss, and better weight maintenance over time — largely because whole plant foods tend to be lower in calories and higher in fiber, helping with satiety and metabolic health.</p>
+        <p>Plant-based diets are consistently associated with lower rates of overweight/obesity, greater spontaneous weight loss, and better weight maintenance over time, largely because whole plant foods tend to be lower in calories and higher in fiber, helping with satiety and metabolic health.</p>
 
         <p>________________________________________</p>
 
@@ -915,7 +1020,7 @@
 
         <p><b>7) Heart disease</b></p>
         <p><b>Heart Disease / Cardiometabolic Risk</b><br>
-        Numerous studies associate diets higher in plant foods and lower in animal foods with reduced cardiovascular risk factors — lower LDL cholesterol, lower blood pressure, and lower overall risk of heart disease — versus typical animal-heavy Western patterns. Some clinical trials suggest plant-based whole-food patterns may even halt or regress coronary artery disease. Claim: “Heart disease requires animal foods for protein/strength.”</p>
+        Numerous studies associate diets higher in plant foods and lower in animal foods with reduced cardiovascular risk factors like lower LDL cholesterol, lower blood pressure, and lower overall risk of heart disease versus typical animal-heavy Western patterns. Some clinical trials suggest plant-based whole-food patterns may even halt or regress coronary artery disease. Claim: “Heart disease requires animal foods for protein/strength.”</p>
 
         <p>Reality: Heart-healthy dietary guidance strongly emphasizes patterns centered on plants, and multiple lines of evidence associate plant-forward diets with lower cardiovascular morbidity/mortality.</p>
 
@@ -928,10 +1033,10 @@
         <p>________________________________________</p>
 
         <p><b>8) Certain Types of Cancer Risk (especially colorectal, breast)</b></p>
-        <p>Dietary patterns high in whole plant foods — rich in fiber, antioxidants, and phytochemicals — are associated in epidemiologic studies with lower risk of several cancers (particularly colorectal cancer). A major Europe-wide cohort (EPIC) and other research suggest that dietary patterns higher in fiber and plant foods correlate with reduced bowel cancer risk — though no diet alone guarantees prevention.</p>
+        <p>Dietary patterns high in whole plant foods rich in fiber, antioxidants, and phytochemicals are associated in epidemiologic studies with lower risk of several cancers (particularly colorectal cancer). A major Europe-wide cohort (EPIC) and other research suggest that dietary patterns higher in fiber and plant foods correlate with reduced bowel cancer risk, though no diet alone guarantees prevention.</p>
 
         <p>Why it fits here:<br>
-        • High-fiber, plant-rich eating is linked with lower inflammation, healthier gut microbiota, and lower circulating growth-promoting factors — all mechanisms plausibly protective.<br>
+        • High-fiber, plant-rich eating is linked with lower inflammation, healthier gut microbiota, and lower circulating growth-promoting factors, all mechanisms plausibly protective.<br>
         • While diet alone doesn’t “cure” cancer, strong plant emphasis is one component of evidence-based cancer risk reduction guidance.</p>
 
         <p>________________________________________</p>
@@ -940,7 +1045,7 @@
         <p>There is emerging evidence that plant-based and plant-emphasized diets can improve fertility-related metabolic markers (e.g., insulin resistance, weight balance) particularly in conditions like PCOS. While individual fertility problems have many causes beyond diet, improvements in metabolic health and inflammation are plausibly beneficial for ovulatory and hormonal balance.</p>
 
         <p>Why it fits here:<br>
-        • Diets emphasizing whole plant foods may indirectly support fertility by improving body composition, insulin sensitivity, and systemic inflammation — all factors in reproductive endocrinology.<br>
+        • Diets emphasizing whole plant foods may indirectly support fertility by improving body composition, insulin sensitivity, and systemic inflammation, all factors in reproductive endocrinology.<br>
         • This is not a universal requirement to avoid animal foods, but evidence supports plant-forward eating as beneficial for metabolic contributors to infertility in many cases.</p>
 
         <p>________________________________________</p>
@@ -954,7 +1059,7 @@
         <p>________________________________________</p>
 
         <p><b>11) Multimorbidity Risk (aggregate chronic disease burden)</b></p>
-        <p>Large observational research finds that higher quality plant-based dietary patterns are associated with a reduced risk of developing multiple chronic diseases simultaneously — e.g., combinations of heart disease, diabetes, and some cancers — compared with lower plant quality diets.</p>
+        <p>Large observational research finds that higher quality plant-based dietary patterns are associated with a reduced risk of developing multiple chronic diseases simultaneously, e.g., combinations of heart disease, diabetes, and some cancers compared with lower plant quality diets.</p>
 
         <p>Why it fits here:<br>
         • This reinforces that plant-forward patterns act on shared pathways (inflammation, insulin resistance, adiposity) that underlie many chronic conditions.</p>
@@ -971,9 +1076,9 @@
       <details class="acc">
         <summary>Category 2 — “Some pros, some cons, plant-based eating can be possible but may require personalization &amp; support”</summary>
 
-        <p>These are conditions where a well-planned plant-based diet is often possible — and sometimes beneficial — but it may require specialized planning, symptom-trigger awareness, and clinical support. In some cases, plant foods themselves can be challenging due to symptoms, nutrient needs, or individual differences.</p>
+        <p>These are conditions where a well-planned plant-based diet is often possible, and sometimes beneficial, but it may require specialized planning, symptom-trigger awareness, and clinical support. In some cases, plant foods themselves can be challenging due to symptoms, nutrient needs, or individual differences.</p>
 
-        <p>“In some situations — from gut disorders to sensory aversions to high recovery needs — plant-based eating can still be possible and beneficial, but it often requires extra planning, personalization, and sometimes professional support. For some people, animal foods may be pragmatically helpful during flares or recovery phases — and that’s okay. The goal is nourishment, not perfection.”</p>
+        <p>“In some situations, from gut disorders to sensory aversions to high recovery needs, plant-based eating can still be possible and beneficial, but it often requires extra planning, personalization, and sometimes professional support. For some people, animal foods may be pragmatically helpful during flares or recovery phases, and that’s okay. The goal is nourishment, not perfection.”</p>
 
         <p>________________________________________</p>
 
@@ -982,7 +1087,7 @@
         Some GI conditions change how your digestive tract handles fiber, sugars, and complex plant structures. That doesn’t mean plant-based eating is impossible, but it may need careful adaptation.</p>
 
         <p>• <b>Inflammatory Bowel Disease (Crohn’s / Ulcerative Colitis)</b><br>
-        During flares, high-fiber plant foods can cause discomfort. Some people tolerate low-fiber cooked vegetables, peeled fruits, and simple carbohydrates better during active flares. Many IBD patients find they need a phased approach — more restrictive during flares, then reintroducing tolerable plant foods as inflammation calms.</p>
+        During flares, high-fiber plant foods can cause discomfort. Some people tolerate low-fiber cooked vegetables, peeled fruits, and simple carbohydrates better during active flares. Many IBD patients find they need a phased approach, more restrictive during flares, then reintroducing tolerable plant foods as inflammation calms.</p>
 
         <p>• <b>Irritable Bowel Syndrome (IBS), especially low-FODMAP IBS</b><br>
         Some plant foods (onions, garlic, wheat, legumes, certain fruits) are high in FODMAP carbohydrates that trigger symptoms for many people with IBS. A low-FODMAP plant approach can still be predominantly plant-based, but it excludes some staples and requires pattern management, not elimination of all plant foods long term.</p>
@@ -999,7 +1104,7 @@
         • Requires knowledgeable dietetic support and symptom tracking.</p>
 
         <p><b>Research context:</b><br>
-        There is no general requirement for animal products in these conditions — it’s about symptom tolerance and gut management, which can often be met with a modified plant strategy. (Clinical GI and low-FODMAP dietary guidance support this approach.)</p>
+        There is no general requirement for animal products in these conditions. It’s about symptom tolerance and gut management, which can often be met with a modified plant strategy. (Clinical GI and low-FODMAP dietary guidance support this approach.)</p>
 
         <p>(Note: FODMAP = fermentable oligo-, di-, mono-saccharides and polyols; these are common carbohydrate triggers in IBS management models.)</p>
 
@@ -1010,7 +1115,7 @@
         Some people have multiple allergies that cut out major plant food families that are normally core to a plant-based diet:</p>
 
         <p>• Soy allergy removes one of the most common plant proteins<br>
-        • Legume allergy removes beans, lentils, peas — major protein and fiber sources<br>
+        • Legume allergy removes beans, lentils, peas, major protein and fiber sources<br>
         • Nut/seed allergy removes calorie-dense foods that help energy balance<br>
         • Combined gluten + legume + nut allergy can drastically reduce diverse plant options</p>
 
@@ -1023,7 +1128,7 @@
         • May require supplementation (B12, D, omega-3, iron, zinc) sooner rather than later, and close monitoring.</p>
 
         <p><b>Research context:</b><br>
-        Allergy management revolves around avoidance and nutrient adequacy. There’s no evidence that animal foods are strictly necessary — it’s about building alternative sources around comfort and tolerance.</p>
+        Allergy management revolves around avoidance and nutrient adequacy. There’s no evidence that animal foods are strictly necessary. It’s about building alternative sources around comfort and tolerance.</p>
 
         <p>________________________________________</p>
 
@@ -1032,7 +1137,7 @@
         For some people, how a diet feels matters just as much as what’s in it.</p>
 
         <p><b>Important nuance:</b><br>
-        • The same diet can be healing for one person and triggering for another. The key isn’t the diet itself — it’s relationship to food, psychological safety, and nourishment.</p>
+        • The same diet can be healing for one person and triggering for another. The key isn’t the diet itself. It’s relationship to food, psychological safety, and nourishment.</p>
 
         <p><b>Clinical guidance:</b><br>
         Mental health stabilization and medical nutrition therapy take priority over any dietary ideal. Collaborating with clinicians who understand both mental health and nutrition is critical.</p>
@@ -1054,12 +1159,12 @@
         • In practice, hitting very high calorie + protein + micronutrient targets is harder without fortification and support.</p>
 
         <p><b>Research context:</b><br>
-        Studies of plant-based athletes show performance parity when needs are met — but they underscore the importance of deliberate planning.</p>
+        Studies of plant-based athletes show performance parity when needs are met, but they underscore the importance of deliberate planning.</p>
 
         <p>________________________________________</p>
 
         <p><b>Shared Practical Reality in Category 2</b></p>
-        <p>These are all places where a plant-based diet can be possible and even beneficial — but it’s not necessarily easy or straightforward.</p>
+        <p>These are all places where a plant-based diet can be possible and even beneficial, but it’s not necessarily easy or straightforward.</p>
 
         <p>What helps in these cases is:</p>
         <p>• Professional supervision<br>
@@ -1072,7 +1177,7 @@
         <summary>Category 3 — “More serious or specific health situations where fully plant-based eating may be very challenging or not feasible without animal accommodation”</summary>
 
         <p>
-          These are conditions where avoiding animal products entirely may not be realistic for meeting medical needs or symptom management — especially in the short term.
+          These are conditions where avoiding animal products entirely may not be realistic for meeting medical needs or symptom management, especially in the short term.
           If any of these rare cases do apply to you, animal foods are often pragmatic tools for stable nutrition.
         </p>
 
@@ -1102,8 +1207,8 @@
         </p>
 
         <p><b>In summary:</b><br>
-          When your body simply can’t absorb enough nutrients from food — animal or plant — sometimes the most digestible and absorbable sources are needed.
-          This isn’t a failure — it’s a therapeutic adaptation.
+          When your body simply can’t absorb enough nutrients from food, animal or plant, sometimes the most digestible and absorbable sources are needed.
+          This isn’t a failure. It’s a therapeutic adaptation.
           Even in these situations, decreased the overall amount of animal products with the guidance of a physician and/or nutritionist can sometimes be possible if this is a path you choose to follow.
         </p>
 
@@ -1133,7 +1238,7 @@
 
         <p><b>In summary:</b><br>
           “When the body is in a state of severe catabolism or chronic wasting, the immediate goal is nourishment and stabilization.
-          This may mean temporarily using the most digestible, energy-dense foods available — whether plant or animal — to preserve strength and quality of life.”
+          This may mean temporarily using the most digestible, energy-dense foods available, whether plant or animal, to preserve strength and quality of life.”
         </p>
 
         <div class="divider"></div>
@@ -1156,7 +1261,7 @@
 
         <p><b>In summary:</b><br>
           “For some rare, genetically defined metabolic conditions, dietary needs are highly specific and best managed by medical specialists and metabolic dietitians.
-          Plant-based patterns may still be used — but only under expert guidance.”
+          Plant-based patterns may still be used, but only under expert guidance.”
         </p>
       </details>
 
@@ -1270,7 +1375,7 @@ kids: `
       <li>“What if my child becomes malnourished?”</li>
     </ul>
     <p class="small">
-      This concern is real — and it’s made worse by social pressure. The goal here is not perfection or labels.
+      This concern is real, and it’s made worse by social pressure. The goal here is not perfection or labels.
       The goal is <b>adequate nutrition and steady growth</b>.
     </p>
   </details>
@@ -1330,7 +1435,7 @@ kids: `
     <p class="small"><b>Practical truth parents can use:</b></p>
     <ul>
       <li>Pair iron foods with <b>vitamin C</b> (fruit, bell pepper, citrus).</li>
-      <li>Don’t panic — just plan, and ask your pediatrician if labs are needed.</li>
+      <li>Don’t panic. Just plan, and ask your pediatrician if labs are needed.</li>
     </ul>
 
     <div class="divider"></div>
@@ -1352,7 +1457,7 @@ kids: `
     <p class="small">
       <b>Reality:</b> Humans do not universally tolerate cow’s milk. A large global analysis estimates lactose malabsorption prevalence around
       <b>~68% worldwide</b> (varies widely by region). <a href="https://pubmed.ncbi.nlm.nih.gov/28690131/" target="_blank" rel="noopener">[4]</a>
-      So “dairy is required” is not biologically universal — it’s often cultural and practical.
+      So “dairy is required” is not biologically universal. It’s often cultural and practical.
     </p>
 
   </details>
@@ -1360,7 +1465,7 @@ kids: `
   <details class="acc">
     <summary>What kids actually need (plant-based or not)</summary>
     <p class="small">
-      Pediatric guidance emphasizes that vegetarian/vegan eating for kids needs to be planned for adequacy — especially for energy and a few key nutrients.
+      Pediatric guidance emphasizes that vegetarian/vegan eating for kids needs to be planned for adequacy, especially for energy and a few key nutrients.
       <a href="https://www.healthychildren.org/English/healthy-living/nutrition/Pages/Plant-Based-Diets.aspx" target="_blank" rel="noopener">[2]</a>
       <a href="https://publications.aap.org/pediatricsinreview/article/30/1/e1/33409/Vegetarian-Diets-in-Children-and-Adolescents" target="_blank" rel="noopener">[3]</a>
     </p>
@@ -1378,7 +1483,7 @@ kids: `
 
     <p class="small">
       <b>The risk is not “no animal products.”</b><br>
-      <b>The risk is poor planning — especially low calories and missing B12.</b>
+      <b>The risk is poor planning, especially low calories and missing B12.</b>
     </p>
   </details>
 
@@ -1430,7 +1535,7 @@ access: `
 
           <p class="small">
             When available, these foods tend to be among the lowest-cost <b>calorie</b>, <b>protein</b>, and <b>nutrient</b> sources in many food systems.
-            Not “cheap” in a demeaning way — “low-cost” or “accessible” is a more respectful frame.
+            Not “cheap” in a demeaning way, “low-cost” or “accessible” is a more respectful frame.
             <a href="https://www.fns.usda.gov/research/cnpp/usda-food-plans" target="_blank" rel="noopener">[1]</a>
             <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC7970354/" target="_blank" rel="noopener">[2]</a>
             <a href="https://www.worldbank.org/en/programs/icp/brief/foodpricesfornutrition" target="_blank" rel="noopener">[3]</a>
@@ -1458,7 +1563,7 @@ access: `
           </p>
 
           <p class="small">
-            The USDA’s Thrifty Food Plan is designed as a <b>nutritious, practical, cost-effective</b> diet on a limited budget — and it leans heavily on
+            The USDA’s Thrifty Food Plan is designed as a <b>nutritious, practical, cost-effective</b> diet on a limited budget, and it leans heavily on
             budget staples and basic ingredients prepared at home.
             <a href="https://www.fns.usda.gov/research/cnpp/usda-food-plans" target="_blank" rel="noopener">[1]</a>
           </p>
@@ -1472,7 +1577,7 @@ access: `
           <summary>If access is limited</summary>
 
           <p class="small">
-            Many people live in environments where access to affordable, nutritious food is constrained by structural factors — not personal choice:
+            Many people live in environments where access to affordable, nutritious food is constrained by structural factors, not personal choice:
           </p>
           <ul>
             <li>Food deserts / low-access areas (places lacking easy proximity to full grocery stores)</li>
@@ -1514,7 +1619,7 @@ access: `
             Small shifts can reduce harm and improve nutrition without requiring perfection.
           </p>
 
-          <p class="small"><b>None of these are requirements.</b> They are options — not obligations.</p>
+          <p class="small"><b>None of these are requirements.</b> They are options, not obligations.</p>
 
           <div class="btnrow" style="margin-top:.5rem;">
             <button class="btn ghost" onclick="openBivalvesNote()">
@@ -1527,7 +1632,7 @@ access: `
           <summary>Optional: nutrient-dense options when plant access is constrained</summary>
 
           <p class="small">
-            Some people — especially when cost, access, time, or local availability makes nutrient-rich plant planning hard — choose <b>bivalves</b>
+            Some people, especially when cost, access, time, or local availability makes nutrient-rich plant planning hard, choose <b>bivalves</b>
             (mussels, clams, oysters) as a pragmatic option. This is offered as a <b>bridge</b> for nutrient sufficiency, not as a moral requirement.
           </p>
 
@@ -1568,7 +1673,7 @@ access: `
           </p>
 
           <p class="small">
-            Again: this is a pragmatic option for people struggling with access or nutrient sufficiency — <b>not</b> a prescriptive rule.
+            Again: this is a pragmatic option for people struggling with access or nutrient sufficiency, <b>not</b> a prescriptive rule.
           </p>
         </details>
 
@@ -1611,7 +1716,7 @@ access: `
 
           <p><b>1) Land use and habitat destruction</b></p>
           <p class="small">
-            Animal agriculture requires much more land than plant agriculture because animals must be fed and raised over time — and they need space both
+            Animal agriculture requires much more land than plant agriculture because animals must be fed and raised over time, and they need space both
             for grazing and for growing their feed (such as corn, soy, and other crops). In many regions, this increases pressure for deforestation,
             grassland conversion, and loss of wild habitat, which displaces wildlife and contributes to extinction risk.
             <br><br>
@@ -1647,7 +1752,7 @@ access: `
 
           <p><b>3) Pollution and water contamination</b></p>
           <p class="small">
-            Large-scale animal farming generates huge quantities of waste (manure, slurry) — often more than local ecosystems can safely absorb.
+            Large-scale animal farming generates huge quantities of waste (manure, slurry), often more than local ecosystems can safely absorb.
             When this waste runs off into rivers, lakes, and groundwater, it can introduce excess nitrogen and phosphorus (and other contaminants),
             contributing to harmful algal blooms, oxygen-depleted “dead zones,” and unsafe water.
             <span class="refs">
@@ -1735,7 +1840,7 @@ access: `
           <ul>
             <li>They are filter feeders and generally do not require feed inputs like corn/soy.</li>
             <li>They can be part of “non-fed aquaculture” systems (impacts vary by site and scale).</li>
-            <li>This section is presented as optional harm-reduction context — not as a universal recommendation.</li>
+            <li>This section is presented as optional harm-reduction context, not as a universal recommendation.</li>
           </ul>
         </details>
 
@@ -1771,7 +1876,7 @@ access: `
 
       <p class="small">
         “My energy levels, work demands, or physical needs feel incompatible with this.”
-        <br/>That concern is real — and it often comes down to logistics, appetite, and protein planning.
+        <br/>That concern is real, and it often comes down to logistics, appetite, and protein planning.
       </p>
 
       <p class="small"><b>Examples:</b></p>
@@ -1808,8 +1913,8 @@ access: `
 
       <p class="small">
         <b>Better phrasing than “it’s just not as good”:</b>
-        <br/>“Some people find it more challenging — or less convenient — to meet very high protein and recovery needs on a fully plant-based diet, especially at elite or extreme training levels.
-        This is often due to leucine density, digestibility, food volume, and scheduling constraints — not because plant-based diets are inherently incapable.”
+        <br/>“Some people find it more challenging, or less convenient, to meet very high protein and recovery needs on a fully plant-based diet, especially at elite or extreme training levels.
+        This is often due to leucine density, digestibility, food volume, and scheduling constraints, not because plant-based diets are inherently incapable.”
       </p>
 
       <p class="small">
@@ -1857,7 +1962,7 @@ access: `
 
       <p class="small"><b>Suggested neutral wording:</b></p>
       <p class="small">
-        💪 “Some people find it more challenging — or less convenient — to meet high protein and amino acid needs on a fully plant-based diet,
+        💪 “Some people find it more challenging, or less convenient, to meet high protein and amino acid needs on a fully plant-based diet,
         especially at elite or extreme training levels. This is because many plant proteins have lower leucine content and slightly lower digestibility than typical animal proteins.
         However, when total protein intake is sufficient and combined strategically (e.g., varied sources or leucine-rich foods), plant-based diets can support muscle growth, strength development, and recovery just as effectively.”
       </p>
@@ -1936,11 +2041,11 @@ access: `
           </p>
 
           <p class="small">
-            But knowing what’s right and actually making the change are two different processes — and that’s normal. The period between “I understand this” and “I don’t just understand it, I live it” is where humans experience the most discomfort, uncertainty, and internal conflict.
+            But knowing what’s right and actually making the change are two different processes, and that’s normal. The period between “I understand this” and “I don’t just understand it, I live it” is where humans experience the most discomfort, uncertainty, and internal conflict.
           </p>
 
           <p class="small">
-            This section walks through what that transition looks like, why it can feel hard, and how long it typically takes — both emotionally and behaviorally.
+            This section walks through what that transition looks like, why it can feel hard, and how long it typically takes, both emotionally and behaviorally.
           </p>
 
           <div class="divider"></div>
@@ -1960,7 +2065,7 @@ access: `
             </ul>
 
             <p class="small">
-              But actual behavior change — especially around something as fundamental as food — isn’t just a logical decision. It involves:
+              But actual behavior change, especially around something as fundamental as food, isn’t just a logical decision. It involves:
             </p>
 
             <p class="small"><b>Psychological barriers that are real and measurable</b></p>
@@ -1974,7 +2079,7 @@ access: `
             </ul>
 
             <p class="small">
-              This is what people mean when they say the “tension” isn’t about logic — it’s about nervous systems and emotional architecture.
+              This is what people mean when they say the “tension” isn’t about logic. It’s about nervous systems and emotional architecture.
             </p>
           </details>
 
@@ -2020,7 +2125,7 @@ access: `
             </ul>
 
             <p class="small">
-              This aligns with research showing that identity shift — where you start to think of yourself as “someone who eats this way” — consolidates around the 3–6 month mark for many people.
+              This aligns with research showing that identity shift, where you start to think of yourself as “someone who eats this way”, consolidates around the 3–6 month mark for many people.
             </p>
           </details>
 
@@ -2029,7 +2134,7 @@ access: `
 
             <p class="small"><b>💛 1. Emotional dissonance</b></p>
             <p class="small">
-              Knowing something is right but doing it feels uncomfortable — that’s cognitive dissonance, and it’s a common psychological experience when values and behavior don’t align.
+              Knowing something is right but doing it feels uncomfortable. That’s cognitive dissonance, and it’s a common psychological experience when values and behavior don’t align.
             </p>
             <p class="small">You may notice:</p>
             <ul class="small">
@@ -2038,14 +2143,14 @@ access: `
               <li>Slip ups that feel discouraging</li>
             </ul>
             <p class="small">
-              These aren’t signs of weakness — they’re signs that your brain is adjusting to a new regulation strategy.
+              These aren’t signs of weakness. They’re signs that your brain is adjusting to a new regulation strategy.
             </p>
 
             <div class="divider"></div>
 
             <p class="small"><b>💛 2. Social context and belonging</b></p>
             <p class="small">
-              Change shakes up routines that keep anxiety regulated. It’s not just food — it’s:
+              Change shakes up routines that keep anxiety regulated. It’s not just food. It’s:
             </p>
             <ul class="small">
               <li>Family holiday meals</li>
@@ -2061,7 +2166,7 @@ access: `
 
             <p class="small"><b>💛 3. Identity risk and narrative</b></p>
             <p class="small">
-              Eating isn’t just biology — it’s a story you tell about yourself.
+              Eating isn’t just biology. It’s a story you tell about yourself.
             </p>
             <p class="small">
               When you say, silently or aloud, “I am a plant-eater,” your brain has to rewrite old scripts such as:
@@ -2092,7 +2197,7 @@ access: `
             </ul>
 
             <p class="small">
-              These build confidence — which is the antidote to fear.
+              These build confidence, which is the antidote to fear.
             </p>
           </details>
 
@@ -2121,9 +2226,9 @@ access: `
         <img class="page-img" src="fear.png" alt="Fear illustration">
         <h3>Fear of Change & Emotional Comfort</h3>
         <p>
-          Even when people “know something is wrong,” change can feel threatening — not because someone lacks care or logic,
+          Even when people “know something is wrong,” change can feel threatening, not because someone lacks care or logic,
           but because the status quo feels safe, familiar, and emotionally regulated. Human psychology clearly shows that
-          people don’t just act on information alone — we act based on what feels possible, comfortable, and identity-affirming.
+          people don’t just act on information alone. We act based on what feels possible, comfortable, and identity-affirming.
         </p>
 
         <p>For many people:</p>
@@ -2134,7 +2239,7 @@ access: `
         </ul>
 
         <p>
-          That doesn’t mean someone is evil or uncaring — it means change often feels like loss, uncertainty, or vulnerability.
+          That doesn’t mean someone is evil or uncaring. It means change often feels like loss, uncertainty, or vulnerability.
           And it’s normal to resist that kind of emotional shift.
         </p>
 
@@ -2162,7 +2267,7 @@ access: `
 
         <h4>B) Making a positive difference boosts well-being</h4>
         <p>
-          Psychological research shows that prosocial behavior and a sense of impact — knowing that one’s actions help others —
+          Psychological research shows that prosocial behavior and a sense of impact, knowing that one’s actions help others —
           is associated with:
         </p>
         <ul>
@@ -2172,7 +2277,7 @@ access: `
           <li>a stronger sense of meaning and purpose in life</li>
         </ul>
         <p>
-          This doesn’t require grand gestures — even everyday choices that align with one’s values can enhance self-esteem and
+          This doesn’t require grand gestures, even everyday choices that align with one’s values can enhance self-esteem and
           psychological flourishing.
         </p>
         <p>
@@ -2182,8 +2287,8 @@ access: `
 
         <h4>C) Physical health changes help emotional resilience</h4>
         <p>
-          Physical and mental health are deeply intertwined. Research consistently shows that healthier diets — especially those rich
-          in fruits, vegetables, whole grains, legumes, and nuts — are associated with:
+          Physical and mental health are deeply intertwined. Research consistently shows that healthier diets, especially those rich
+          in fruits, vegetables, whole grains, legumes, and nuts, are associated with:
         </p>
         <ul>
           <li>reduced inflammation</li>
@@ -2199,7 +2304,7 @@ access: `
 
         <h3>A Gentle Reality Check</h3>
         <p>
-          Fear of change is real, and it’s not a sign of weakness — it’s part of how people preserve psychological stability.
+          Fear of change is real, and it’s not a sign of weakness. It’s part of how people preserve psychological stability.
           Changing long-standing habits touches identity, social relationships, and emotional comfort.
         </p>
         <p>
@@ -2327,7 +2432,7 @@ access: `
 
             <p>It’s not about what is legal, socially expected, or politically debated.</p>
 
-            <p>It’s a structured way to reflect on what <i>you</i> personally feel is right or wrong for you to do — and whether your values feel consistent with your choices.</p>
+            <p>It’s a structured way to reflect on what <i>you</i> personally feel is right or wrong for you to do, and whether your values feel consistent with your choices.</p>
 
             <img src="welcomescreen.png" alt="Welcome illustration" style="max-width:100%; margin:1.5rem 0; border-radius:12px;" />
 
@@ -2397,13 +2502,14 @@ access: `
       setPill("Part 1 — 1A");
 
       $app.innerHTML = `
+      ${renderStepBar()}
         <h1>Part 1 — 1A</h1>
 
-        <p><b>For you personally, is it morally acceptable to abuse, torture, or kill cats or dogs — or to pay other people to do that for you — solely for your own pleasure?</b></p>
+        <p><b>For you personally, is it morally acceptable to abuse, torture, or kill cats or dogs — or to pay other people to do that for you, solely for your own pleasure?</b></p>
 
         <p class="small">(This is not about legality, culture, or what others do. This is only about what you personally feel is morally acceptable for you.)</p>
 
-        <img src="1A.jpg" alt="Part 1 — 1A" style="max-width:100%; margin:1.25rem 0; border-radius:12px;" />
+        <img src="1A.jpg" alt="Part 1, 1A" style="max-width:100%; margin:1.25rem 0; border-radius:12px;" />
 
         <div class="btnrow">
           <button class="btn-green" onclick="__p1aNo()">🟢 No</button>
@@ -2413,8 +2519,8 @@ access: `
 
         <div class="divider"></div>
 
-        <p class="small"><b>🟢 No:</b> “No. Even if I’m not a pet person, I believe that abusing or killing animals for enjoyment is wrong, and I would not do that.”</p>
-        <p class="small"><b>🔴 Yes:</b> “Yes. I am comfortable with harming or killing animals for pleasure.”</p>
+        <p class="small"><b>🟢 No:</b> “No. Even if I’m not a pet person, I believe that abusing or killing cats and dogs for enjoyment is wrong, and I would not do that.”</p>
+        <p class="small"><b>🔴 Yes:</b> “Yes. I am comfortable with harming or killing cats and dogs for pleasure.”</p>
         <p class="small"><b>🟡 Unsure / flawed question:</b> “I think this question is logically flawed, incomplete, or unfair.”</p>
 
         ${navButtons({ showBack:true, showNext:false })}
@@ -2444,9 +2550,10 @@ access: `
       setPill("Part 1 — 1B");
 
       $app.innerHTML = `
+      ${renderStepBar()}
         <h1>Part 1 — 1B</h1>
 
-        <p><b>The reason I believe it is morally wrong to abuse, torture, or kill cats or dogs for pleasure is because cats and dogs are sentient beings — they can feel pain, suffer, form emotional bonds, and have subjective experiences — which makes their unnecessary suffering morally wrong.</b></p>
+        <p><b>The reason I believe it is morally wrong to abuse, torture, or kill cats or dogs for pleasure is because cats and dogs are sentient beings. They can feel pain, suffer, form emotional bonds, and have subjective experiences, which makes their unnecessary suffering morally wrong.</b></p>
 
         <p><b>Do you agree with this statement?</b></p>
 
@@ -2487,6 +2594,7 @@ access: `
       setPill("Part 1 — 1BX");
 
       $app.innerHTML = `
+      ${renderStepBar()}
         <h1>Part 1 — 1BX</h1>
 
         <p><b>After reviewing the evidence below regarding the sentience of cats and dogs, choose the option that best fits your view.</b></p>
@@ -2513,7 +2621,7 @@ access: `
           <p>Cats and dogs have the same basic biological “hardware” for pain as other mammals: nociceptors (pain receptors), spinal pain pathways, and brain processing that supports the experience of pain.</p>
           <ul>
             <li>Veterinary pain guidelines emphasize systematic recognition and treatment of pain in dogs and cats.</li>
-            <li>Pain medicines (analgesics) reduce pain-related behavior and distress in clinical settings — consistent with pain being more than a simple reflex.</li>
+            <li>Pain medicines (analgesics) reduce pain-related behavior and distress in clinical settings consistent with pain being more than a simple reflex.</li>
           </ul>
           <p class="small">
             Sources: AAHA Pain Management Guidelines (dogs & cats) • WSAVA pain guidelines
@@ -2536,7 +2644,7 @@ access: `
           <summary><b>3) Social bonding</b></summary>
           <p>Dogs form attachment bonds with humans that show measurable bonding chemistry.</p>
           <ul>
-            <li>A well-known study found mutual gaze between dogs and owners is associated with increased oxytocin (a bonding hormone) in both — described as a positive feedback “bonding loop.”</li>
+            <li>A well-known study found mutual gaze between dogs and owners is associated with increased oxytocin (a bonding hormone) in both, described as a positive feedback “bonding loop.”</li>
             <li>Cat attachment behaviors can include proximity-seeking, separation distress, and comfort-seeking when stressed.</li>
           </ul>
           <p class="small">
@@ -2591,7 +2699,7 @@ access: `
         </div>
 
         <div class="btnrow" style="margin-top:.75rem;">
-          <button class="btn-yellow" onclick="__p1bxFlawed()">🟡 This question / the evidence summary is flawed or incomplete.</button>
+          <button class="btn-yellow" onclick="__p1bxFlawed()">🟡 This question / the evidence summary is flawed or incomplete. Or, there's another reason why killing them is wrong that's unrelated to their sentience or ability to suffer that I'd like to explain by e-mail.</button>
         </div>
 
         ${navButtons({ showBack:true, showNext:false })}
@@ -2638,6 +2746,7 @@ access: `
       window.__next = () => {};
 
       $app.innerHTML = `
+      ${renderStepBar()}
 
         <h1>Part 1 — 1C</h1>
 
@@ -2652,7 +2761,7 @@ access: `
           <li>and a desire to avoid harm</li>
         </ul>
 
-        <p><b>Research shows that cows and pigs possess these same traits — often at comparable or even higher levels.</b></p>
+        <p><b>Research shows that farm animals such as cows and pigs possess these same traits, often at comparable or even higher levels.</b></p>
 
         <img src="1C.png" alt="Part 1 — 1C" style="max-width:100%; margin:1.25rem 0; border-radius:12px;" />
 
@@ -2662,7 +2771,7 @@ access: `
 
         <details class="drop">
           <summary><b>1) Pain perception & avoidance</b></summary>
-          <p>Animals do not merely reflexively withdraw from harm — they show behavioral, physiological, and cognitive responses consistent with pain experience.</p>
+          <p>Animals do not merely reflexively withdraw from harm. They show behavioral, physiological, and cognitive responses consistent with pain experience.</p>
 
           <p><b>Cows:</b> Reduced feeding, altered posture, and lasting avoidance after painful procedures.</p>
           <p class="small">Weary et al.; Broom; veterinary welfare research</p>
@@ -2732,7 +2841,7 @@ access: `
         <details class="drop">
           <summary><b>Comparative sentience framework</b></summary>
 
-          <p class="small">Average capacity scores (0–10) across cognition, emotional/social complexity, and capacity to suffer.</p>
+          <p class="small">Below is a breakdown of the average capacity scores (0–10) of various animals, both farmed and domestic, across cognition, emotional/social complexity, and capacity to suffer.</p>
 
           <div style="overflow-x:auto;">
             <table style="width:100%; border-collapse:collapse;">
@@ -2741,8 +2850,8 @@ access: `
                   <th style="text-align:left; padding:8px; border-bottom:1px solid rgba(255,255,255,0.12);">Species</th>
                   <th style="padding:8px; border-bottom:1px solid rgba(255,255,255,0.12);">Cognition</th>
                   <th style="padding:8px; border-bottom:1px solid rgba(255,255,255,0.12);">Emotional/Social</th>
-                  <th style="padding:8px; border-bottom:1px solid rgba(255,255,255,0.12);">Suffering</th>
-                  <th style="padding:8px; border-bottom:1px solid rgba(255,255,255,0.12);">Average</th>
+                  <th style="padding:8px; border-bottom:1px solid rgba(255,255,255,0.12);">Suffering Capacity</th>
+                  <th style="padding:8px; border-bottom:1px solid rgba(255,255,255,0.12);">Average Score</th>
                 </tr>
               </thead>
 
@@ -2881,18 +2990,25 @@ access: `
 
                 <tr>
                   <td style="padding:8px;">
-                    <img src="animals/fish.png" alt="Farmed Fish" style="width:58px; height:58px; object-fit:cover; border-radius:10px; vertical-align:middle; margin-right:10px; border:1px solid rgba(255,255,255,0.12);" />
-                    <span style="vertical-align:middle;">Farmed Fish</span>
-                    <div style="font-style:italic; font-size:0.85em; margin-top:4px; opacity:0.85;">
-                      Note: Fish, shrimp, crabs, and lobsters are all fairly similar in regards to these measures of sentience. 
-                      Bivalves, however — like clams, oysters, scallops, and mussels — typically are not, and are sometimes even 
-                      considered acceptable to consume by a minority of vegans.
-                    </div>
+                    <img src="seafood.png" alt="Seafood" style="width:58px; height:58px; object-fit:cover; border-radius:10px; vertical-align:middle; margin-right:10px; border:1px solid rgba(255,255,255,0.12);" />
+                    <span style="vertical-align:middle;">Seafood*</span>
                   </td>
+                  <td style="padding:8px; text-align:center;">6.0</td>
+                  <td style="padding:8px; text-align:center;">6.0</td>
+                  <td style="padding:8px; text-align:center;">7.0</td>
+                  <td style="padding:8px; text-align:center;">6.33</td>
                 </tr>
+
               </tbody>
             </table>
           </div>
+          <p class="small" style="margin-top:.75rem;">
+            <i>
+              *Note: Fish, shrimp, crabs, and lobsters are all fairly similar in regards to these measures of sentience.
+              Bivalves, however, like clams, oysters, scallops, and mussels, typically are not, and are sometimes even
+              considered acceptable to consume by a minority of vegans.
+            </i>
+          </p>
 
           <p class="small">These reflect capability under enriched, nurturing conditions.</p>
         </details>
@@ -2937,6 +3053,7 @@ access: `
         const selected = new Set(state.part1.cxSelected);
 
         $app.innerHTML = `
+        ${renderStepBar()}
           <h1>Part 1 — Moral override reasons</h1>
 
           <p>According to your logic, even though animals like pigs and cows are sentient and able to suffer at the same level as cats and dogs, you still feel that this is not sufficient to claim that it is morally wrong for you personally to harm or kill them simply for pleasure.</p>
@@ -2949,7 +3066,7 @@ access: `
 
           <img src="1CX.png" alt="Moral override reasons" style="display:block; width:100%; max-width:100%; margin:1.5rem auto; border-radius:12px;" />
 
-          <h2>“Yes they suffer — but that doesn’t matter / isn’t enough.”</h2>
+          <h2>“Yes they suffer, but that doesn’t matter / isn’t enough.”</h2>
 
           <div class="checklist">
             ${CX_ORDER.map(item => `
@@ -3038,6 +3155,7 @@ access: `
         };
 
         $app.innerHTML = `
+        ${renderStepBar()}
           <h1>1CX1 — Purpose-based exemption</h1>
           <img src="1CX1.jpg" alt="Purpose-based exemption" class="page-img"/>
 
@@ -3049,8 +3167,8 @@ access: `
           <p><b>Does breeding or purpose make harm morally acceptable?</b></p>
 
           <p class="small">
-            By “purpose,” we mean: the reason humans assign to a being or activity — such as breeding an animal for food,
-            companionship, labor, entertainment, or profit — or the social role humans place that being into.
+            By “purpose,” we mean: the reason humans assign to a being or activity, such as breeding an animal for food,
+            companionship, labor, entertainment, or profit, or the social role humans place that being into.
           </p>
 
           <p class="small"><b>Not:</b></p>
@@ -3072,14 +3190,14 @@ access: `
           <h3>Parallel A — Dog fighting</h3>
           <p class="small">
             Dogs are bred for fighting. They are created with the intent that they will be harmed and cause harm.
-            Yet we still say harming them is morally wrong.
+            Yet we still say harming them is morally wrong regardless of the intent behind their conception.
           </p>
           <img src="1CX1A.png" alt="1CX1 Part A" class="page-img"/>
           <p><b>This shows:</b> Intent does not morally transmute a being.</p>
 
           <h3 style="margin-top:1rem;">Parallel B — Humans bred for exploitation</h3>
           <p class="small">
-            If humans were deliberately bred for slavery, labor, or exploitation — would that change their moral worth?
+            If humans were deliberately bred for slavery, labor, or exploitation, would that change their moral worth?
           </p>
           <p><b>Intuitively, universally, cross-culturally:</b> No.</p>
           <img src="1CX1B.png" alt="1CX1 Part B" class="page-img"/>
@@ -3154,6 +3272,7 @@ access: `
         };
 
         $app.innerHTML = `
+        ${renderStepBar()}
           <h1>1CX2 — Religious or spiritual reasons</h1>
           <img src="1CX2.png" alt="Religious exemption" class="page-img"/>
 
@@ -3168,7 +3287,7 @@ access: `
 
           <div class="btnrow">
             <button class="btn-green" onclick="__cx2_green()">
-              🟢 No — my religion does not require me to eat animal products.
+              🟢 No — my religion does not require me to eat animal products and thus does not negate any previous logical conditions.
             </button>
           </div>
 
@@ -3212,14 +3331,15 @@ access: `
         setPill("Part 1 — 1CX2");
 
         $app.innerHTML = `
+        ${renderStepBar()}
           <h1>1CX2 — Religious exemption</h1>
           <img src="1CX2transition.png" alt="Religious transition" class="page-img"/>
 
           <p>Thank you for reflecting on this from a moral and spiritual perspective.</p>
           <p>Many traditions permit eating animals without requiring it.</p>
-          <p><b>That means the remaining question is not whether you are allowed — but whether animal consumption is necessary for you personally.</b></p>
-          <p>In the next section, we’ll look at whether animal products are necessary for your health, nutrition, finances, access, or environmental context — not for everyone in the world, just for you.</p>
-          <p class="small">You don’t need to worry about exceptions or edge cases right now — only your own situation.</p>
+          <p><b>That means the remaining question is not whether you are allowed, but whether animal consumption is necessary for you personally.</b></p>
+          <p>In the next section, we’ll look at whether animal products are necessary for your health, nutrition, finances, access, or environmental context, not for everyone in the world, just for you.</p>
+          <p class="small">You don’t need to worry about exceptions or edge cases right now, only your own situation.</p>
 
           ${navButtons({ showBack:true, nextLabel:"Continue" })}
         `;
@@ -3239,8 +3359,8 @@ access: `
           ${bodyHtml || `<p class="small">(Text coming soon.)</p>`}
 
           ${grYButtons({
-            greenLabel: "🟢 I see how harm-minimization fits my values",
-            redLabel: "🔴 My religious authority overrides this concern",
+            greenLabel: "🟢 I now see how harm-minimization still fits with my religious values",
+            redLabel: "🔴 I'm still not convinced that harming animals for pleasure alone is not supported by my religion.",
             yellowLabel: "🟡 This is incomplete / needs nuance",
             onGreen: "window.__rel_green",
             onRed: "window.__rel_red",
@@ -3293,7 +3413,7 @@ access: `
             <details class="drop">
               <summary><b>Claim 2 — “Monks rely on alms, so they cannot refuse meat.”</b></summary>
               <p><b>Argument:</b> Because monks depend on laypeople for food, refusing meat would be disrespectful or impractical.</p>
-              <p><b>Refutation direction:</b> This is a pragmatic rule about humility and non-attachment — not a moral statement that killing animals is good. It explains tolerance, not ethical elevation.</p>
+              <p><b>Refutation direction:</b> This is a pragmatic rule about humility and non-attachment, not a moral statement that killing animals is good. It explains tolerance, not ethical elevation.</p>
             </details>
 
             <details class="drop">
@@ -3303,7 +3423,7 @@ access: `
             </details>
 
             <details class="drop">
-              <summary><b>Claim 4 — “Intention matters more than action — and I didn’t kill the animal myself.”</b></summary>
+              <summary><b>Claim 4 — “Intention matters more than action, and I didn’t kill the animal myself.”</b></summary>
               <p><b>Argument:</b> If I didn’t personally kill the animal, my karma is unaffected.</p>
               <p><b>Refutation direction:</b> Right Intention includes knowingly participating in harm. Supporting demand is ethically relevant even if you did not wield the knife.</p>
             </details>
@@ -3411,7 +3531,7 @@ access: `
               </ul>
             </details>
 
-            <p class="small"><b>Note:</b> Christians disagree sincerely here. This screen is not claiming “one true reading” — it’s showing that “Christianity requires meat” is not the only mainstream interpretation.</p>
+            <p class="small"><b>Note:</b> Christians disagree sincerely here. This screen is not claiming “one true reading”. It’s showing that “Christianity requires meat” is not the only mainstream interpretation.</p>
           `
         });
       }
@@ -3447,7 +3567,7 @@ access: `
             <details class="drop">
               <summary><b>Claim 3 — “The Bhagavad Gita says all food is acceptable if offered properly.”</b></summary>
               <p><b>Argument:</b> Krishna says food offered with devotion is accepted, so meat is fine if eaten mindfully.</p>
-              <p><b>Refutation direction:</b> The Gita explicitly classifies foods into sattvic (pure), rajasic (stimulating), and tamasic (dulling) — and places meat in the lower categories. Acceptance ≠ moral elevation.</p>
+              <p><b>Refutation direction:</b> The Gita explicitly classifies foods into sattvic (pure), rajasic (stimulating), and tamasic (dulling), and places meat in the lower categories. Acceptance ≠ moral elevation.</p>
             </details>
 
             <details class="drop">
@@ -3499,7 +3619,7 @@ access: `
         storageKey: "cx2_jewish",
         bodyHtml: `
           <p><b>Judaism — “Does my religion require or morally prioritize eating animals?”</b></p>
-          <p>Below are the most common Jewish arguments or textual references people cite to support eating animals as religiously required or spiritually preferable — and what those sources actually say.</p>
+          <p>Below are the most common Jewish arguments or textual references people cite to support eating animals as religiously required or spiritually preferable, and what those sources actually say.</p>
           <p class="small">(Click each claim to see the explanation.)</p>
 
           <div class="divider"></div>
@@ -3507,8 +3627,8 @@ access: `
           <details class="drop">
             <summary><b>Claim 1 — “God explicitly permitted eating meat after the Flood, so meat is part of God’s plan.”</b></summary>
             <p><b>Text cited:</b> Genesis 9:3 (“Every moving thing that lives shall be food for you…”)</p>
-            <p><b>What people mean:</b> God intentionally expanded the human diet to include animals — therefore eating animals is divinely endorsed.</p>
-            <p><b>Clarification:</b> This is permission, not command. It occurs in a post-Flood survival context — after massive destruction, displacement, and scarcity.</p>
+            <p><b>What people mean:</b> God intentionally expanded the human diet to include animals. Therefore, eating animals is divinely endorsed.</p>
+            <p><b>Clarification:</b> This is permission, not command. It occurs in a post-Flood survival context, after massive destruction, displacement, and scarcity.</p>
             <p>The text does not say:</p>
             <ul>
               <li>You must eat animals</li>
@@ -3522,7 +3642,7 @@ access: `
             <summary><b>Claim 2 — “Animal sacrifice is central to the Torah, so animal use is spiritually significant.”</b></summary>
             <p><b>Texts cited:</b> Leviticus, Numbers, Temple sacrifice laws</p>
             <p><b>What people mean:</b> Animals were used in worship, therefore animal killing is religiously meaningful or required.</p>
-            <p><b>Clarification:</b> Sacrifice in Judaism was a ritual system for a specific time, place, and social structure — the Temple in Jerusalem.</p>
+            <p><b>Clarification:</b> Sacrifice in Judaism was a ritual system for a specific time, place, and social structure, the Temple in Jerusalem.</p>
             <p>The Hebrew Bible repeatedly emphasizes that God does not actually desire sacrifice itself:</p>
             <ul>
               <li>“I desire mercy, not sacrifice.” (Hosea 6:6)</li>
@@ -3536,10 +3656,10 @@ access: `
             <summary><b>Claim 3 — “Keeping kosher assumes animal consumption, so Judaism is fundamentally meat-based.”</b></summary>
             <p><b>Texts cited:</b> Leviticus 11 (kosher laws)</p>
             <p><b>What people mean:</b> Kosher law regulates meat, so meat must be morally important or expected.</p>
-            <p><b>Clarification:</b> Kashrut regulates meat because people eat meat — not because they must.</p>
+            <p><b>Clarification:</b> Kashrut regulates meat because people eat meat, not because they must.</p>
             <p>Jewish law also regulates many areas of life (including historically difficult areas such as divorce, slavery, and warfare).</p>
             <p><b>Key idea:</b> Regulation ≠ endorsement.</p>
-            <p>Kosher law is often framed as minimizing harm, discipline, and ethical awareness — not mandating animal use.</p>
+            <p>Kosher law is often framed as minimizing harm, discipline, and ethical awareness, not mandating animal use.</p>
             <p>A Jew can be fully observant and vegetarian or vegan.</p>
           </details>
 
@@ -3547,7 +3667,7 @@ access: `
             <summary><b>Claim 4 — “Eating meat on Shabbat and holidays is a mitzvah (commandment).”</b></summary>
             <p><b>Texts cited:</b> Talmudic discussions of <i>simchat yom tov</i> (joy on festivals)</p>
             <p><b>What people mean:</b> Joy on festivals was historically associated with meat and wine, therefore eating meat is religiously encouraged.</p>
-            <p><b>Clarification:</b> The mitzvah is joy — not meat.</p>
+            <p><b>Clarification:</b> The mitzvah is joy, not meat.</p>
             <p>In ancient times, meat was rare and associated with celebration. Today joy can be fulfilled in many ways.</p>
             <p>Many modern rabbinic authorities state that if meat causes suffering, discomfort, or ethical distress, it does not fulfill the mitzvah of joy.</p>
             <p>So meat is culturally contingent, not theologically required.</p>
@@ -3566,13 +3686,13 @@ access: `
           <div class="divider"></div>
 
           <p><b>Bonus: Six supports for a plant-based lifestyle</b></p>
-          <p class="small">Many Jewish thinkers and communities interpret Jewish law and ethics as encouraging compassion, restraint, and minimizing harm — which can support a vegetarian or plant-based diet.</p>
+          <p class="small">Many Jewish thinkers and communities interpret Jewish law and ethics as encouraging compassion, restraint, and minimizing harm, which can support a vegetarian or plant-based diet.</p>
           <p class="small">(Click each point to learn more.)</p>
 
           <details class="drop">
             <summary><b>Reason 1 — Tza’ar ba’alei chayim (Prohibition of animal suffering)</b></summary>
             <p><b>Source:</b> Talmud (Bava Metzia 32b and elsewhere)</p>
-            <p>It is forbidden to cause unnecessary suffering to animals. This is not a metaphor — it is treated as a binding halakhic principle.</p>
+            <p>It is forbidden to cause unnecessary suffering to animals. This is not a metaphor. It is treated as a binding halakhic principle.</p>
             <p>Many Jewish ethicists argue: if animal products are not necessary, then inflicting suffering to obtain them becomes ethically problematic.</p>
           </details>
 
@@ -3625,7 +3745,7 @@ access: `
           storageKey: "cx2_muslim",
           bodyHtml: `
             <p><b>Islam — “Does my religion require or morally prioritize eating animals?”</b></p>
-            <p>Below are common arguments or texts that some people interpret as requiring or elevating meat consumption — and the key distinction this module is testing:</p>
+            <p>Below are common arguments or texts that some people interpret as requiring or elevating meat consumption, and the key distinction this module is testing:</p>
             <p><b>Permissible (halal) does not automatically mean required.</b></p>
 
             <div class="divider"></div>
@@ -3656,7 +3776,7 @@ access: `
             <details class="drop">
               <summary><b>Claim 4 — “Meat is part of Islamic celebrations and charity, so it must be spiritually valuable.”</b></summary>
               <p><b>What people mean:</b> Because meat is often shared in festivals or charity practices, meat must be morally highlighted in Islam.</p>
-              <p><b>Response:</b> Cultural and communal practices may include meat without making meat mandatory in everyday life. Many Muslims interpret Islamic ethics as emphasizing gratitude, generosity, and moderation — not compulsory animal consumption.</p>
+              <p><b>Response:</b> Cultural and communal practices may include meat without making meat mandatory in everyday life. Many Muslims interpret Islamic ethics as emphasizing gratitude, generosity, and moderation, not compulsory animal consumption.</p>
               <p><b>Conclusion:</b> Cultural practice does not equal religious obligation.</p>
             </details>
 
@@ -3720,24 +3840,24 @@ access: `
             <div class="divider"></div>
 
             <p><b>Sikhism — Step 1: Claims Sikhs might give for eating animal products</b></p>
-            <p>Sikhism almost never frames meat-eating as morally superior — only as religiously irrelevant. The common claims look like this:</p>
+            <p>Sikhism almost never frames meat-eating as morally superior, only as religiously irrelevant. The common claims look like this:</p>
 
             <details class="drop">
               <summary><b>Claim 1 — “Sikhism rejects ritual purity rules, so diet doesn’t matter.”</b></summary>
-              <p><b>Argument:</b> Sikhism explicitly rejects Hindu caste rules and ritual purity — therefore dietary restrictions (including vegetarianism) are meaningless.</p>
+              <p><b>Argument:</b> Sikhism explicitly rejects Hindu caste rules and ritual purity. Therefore, dietary restrictions (including vegetarianism) are meaningless.</p>
               <p><b>Refutation direction:</b> Sikhism rejects ritual purity as salvation, not ethical responsibility. This removes food-based spiritual hierarchy, not moral evaluation of harm.</p>
             </details>
 
             <details class="drop">
               <summary><b>Claim 2 — “Guru Nanak taught that arguing about food is foolish.”</b></summary>
               <p><b>Argument:</b> Guru Nanak criticized debates about food purity as distractions from spiritual practice.</p>
-              <p><b>Refutation direction:</b> He criticized ego-driven purity contests — not compassion-based ethical reflection. Ethical inquiry into harm is not the same as ritual obsession.</p>
+              <p><b>Refutation direction:</b> He criticized ego-driven purity contests, not compassion-based ethical reflection. Ethical inquiry into harm is not the same as ritual obsession.</p>
             </details>
 
             <details class="drop">
               <summary><b>Claim 3 — “The body is temporary, so food choices are insignificant.”</b></summary>
               <p><b>Argument:</b> Since Sikhism focuses on devotion, justice, and humility, diet is spiritually secondary.</p>
-              <p><b>Refutation direction:</b> Secondary ≠ irrelevant. Sikhism emphasizes compassion, non-exploitation, and justice — all of which are affected by how food is produced.</p>
+              <p><b>Refutation direction:</b> Secondary ≠ irrelevant. Sikhism emphasizes compassion, non-exploitation, and justice, all of which are affected by how food is produced.</p>
             </details>
 
             <details class="drop">
@@ -3763,7 +3883,7 @@ access: `
               <li><b>Humility and reduction of ego</b></li>
               <li><b>Care for creation</b></li>
             </ul>
-            <p>These principles strongly support minimizing harm — even if Sikhism does not mandate vegetarianism.</p>
+            <p>These principles strongly support minimizing harm, even if Sikhism does not mandate vegetarianism.</p>
 
             <div class="divider"></div>
 
@@ -3786,6 +3906,7 @@ access: `
         setPill("Part 1 — 1CX3");
 
         $app.innerHTML = `
+        ${renderStepBar()}
           <h1>1CX3 — “Predation is natural / humans are omnivores.”</h1>
           <img src="1CX3.png" alt="Appeal to nature" class="page-img"/>
 
@@ -3828,7 +3949,6 @@ access: `
           <p>In many animal species, reproduction is not based on consent as humans define it.</p>
           <p><b>Natural?</b> Yes.<br/>
             <b>Morally acceptable for humans?</b> Obviously no.</p>
-          <p class="small"><i>(We don’t need to describe it further — the concept alone is enough.)</i></p>
 
           <h3>3) Territorial violence</h3>
           <p>Animals regularly harm or kill others to defend territory, mates, or resources.</p>
@@ -3886,6 +4006,7 @@ access: `
       function renderP1_1CX4(){
         setPill("Part 1 — 1CX4");
         $app.innerHTML = `
+        ${renderStepBar()}
           <h1>1CX4 — “This is part of my culture / ancestry / identity.”</h1>
           <img src="1CX4.png" alt="Cultural exemption" class="page-img"/>
 
@@ -3903,12 +4024,12 @@ access: `
 
           <p>At the same time:</p>
           <ul>
-            <li>Cultures are not static — they evolve across generations.</li>
-            <li>Many traditions emphasize relationship, respect, and minimal harm — not industrial-scale suffering.</li>
+            <li>Cultures are not static. They evolve across generations.</li>
+            <li>Many traditions emphasize relationship, respect, and minimal harm, not industrial-scale suffering.</li>
             <li>We are not only inheritors of tradition, but also the ancestors of future generations.</li>
           </ul>
 
-          <p class="small">This step is not asking you to reject your culture — only to reflect on how it applies in your present circumstances.</p>
+          <p class="small">This step is not asking you to reject your culture, only to reflect on how it applies in your present circumstances.</p>
 
           <div class="divider"></div>
 
@@ -3938,6 +4059,7 @@ access: `
         setPill("Part 1 — 1CX5");
 
         $app.innerHTML = `
+        ${renderStepBar()}
           <h1>1CX5 — Social Harmony / Comfort / Inconvenience</h1>
           <img src="1CX5.jpg" alt="Human-centered priority" class="page-img"/>
 
@@ -3955,13 +4077,13 @@ access: `
 
           <p class="small">
             So 1CX5 is essentially: <i>“I know this causes harm, but I don’t want to deal with the social cost of opposing it.”</i>
-            That’s a very human reason — and also one that has repeatedly been used to justify harm historically.
+            That’s a very human reason, and also one that has repeatedly been used to justify harm historically.
           </p>
 
           <div class="divider"></div>
 
           <h2>Reflection</h2>
-          <p>Throughout history, many harmful practices were socially normal and comfortable — and were only changed when people were willing to be disagreeable, disruptive, or uncomfortable.</p>
+          <p>Throughout history, many harmful practices were socially normal and comfortable, and were only changed when people were willing to be disagreeable, disruptive, or uncomfortable.</p>
 
           <h3>Examples of times where being disagreeable was morally necessary</h3>
 
@@ -3978,7 +4100,7 @@ access: `
               <b>Civil rights / racial equality</b><br/>
               <span class="small">
                 Segregation was socially comfortable for the majority. Challenging it created discomfort, conflict, backlash,
-                social exclusion, and family arguments — but avoiding conflict meant perpetuating injustice.
+                social exclusion, and family arguments, but avoiding conflict meant perpetuating injustice.
               </span>
             </li>
 
@@ -3994,7 +4116,7 @@ access: `
               <b>Child labor reform</b><br/>
               <span class="small">
                 Children working long hours in dangerous conditions was once normal.
-                Ending it disrupted business interests and economic comfort — but it was still morally necessary.
+                Ending it disrupted business interests and economic comfort, but it was still morally necessary.
               </span>
             </li>
 
@@ -4015,7 +4137,7 @@ access: `
             <li>The system was socially comfortable.</li>
             <li>Speaking up was disruptive.</li>
             <li>Silence benefited those with power.</li>
-            <li>Discomfort was framed as the problem — not the harm.</li>
+            <li>Discomfort was framed as the problem, not the harm.</li>
           </ul>
 
           <p class="small">
@@ -4035,7 +4157,7 @@ access: `
 
           <div class="btnrow">
             <button class="btn-green" onclick="window.__cx5_green()">
-              🟢 Yes — I agree that social harmony alone is not a sufficient reason to continue causing harm.
+              🟢 Yes — I agree that social harmony alone is not a sufficient reason to continue causing harm for me personally.
             </button>
           </div>
 
@@ -4076,14 +4198,15 @@ access: `
         setPill("Part 2 — Intro");
 
         $app.innerHTML = `
+        ${renderStepBar()}
           <h1>Transition Screen — Entering Part 2</h1>
           <img src="2Transition.png" alt="Nutrition and health" class="page-img"/>
 
           <p><b>Welcome to Part 2.</b></p>
 
           <p>
-            In Part 1, you determined that harming or killing animals purely for pleasure — when it is unnecessary for survival
-            or optimal wellbeing — is morally unsound for you personally.
+            In Part 1, you determined that harming or killing animals purely for pleasure when it is unnecessary for survival
+            or optimal wellbeing is morally unsound for you personally.
           </p>
 
           <p>
@@ -4104,7 +4227,7 @@ access: `
 
           <p class="small">
             There is no right or wrong answer here. Bodies, resources, cultures, and lives are different.
-            Our goal is simply to understand your situation and explore what is realistically possible — even if that means small changes rather than big ones.
+            Our goal is simply to understand your situation and explore what is realistically possible, even if that means small changes rather than big ones.
           </p>
 
           ${navButtons({ showBack:true, nextLabel:"Continue to Nutrition and Blockers" })}
@@ -4118,6 +4241,7 @@ access: `
         setPill("Part 2 — 2A");
 
         $app.innerHTML = `
+        ${renderStepBar()}
           <h1>Part 2 — Nutrition / Health</h1>
           <img src="2A.png" alt="Nutrition and health" class="page-img"/>
 
@@ -4133,7 +4257,7 @@ access: `
 
           <p>
             Current medical and nutritional research shows that a properly planned plant-based diet can meet all human nutritional requirements,
-            including protein, iron, calcium, omega-3s, and micronutrients — typically with the addition of vitamin B12 and, in some cases,
+            including protein, iron, calcium, omega-3s, and micronutrients, typically with the addition of vitamin B12 and, in some cases,
             iodine or vitamin D supplementation.
           </p>
 
@@ -4252,14 +4376,15 @@ access: `
         setPill("Part 2 — 2B");
 
         $app.innerHTML = `
+        ${renderStepBar()}
           <h1>Part 2 — 2B (Personal case)</h1>
           <img src="blockers1.png" alt="Personal case" class="page-img"/>
           <p>
-            You answered “No” to the general question — meaning: you believe a plant-based diet is <b>not</b> nutritionally adequate in your personal case.
+            You answered “No” to the general question, meaning: you believe a plant-based diet is <b>not</b> nutritionally adequate in your personal case.
           </p>
 
           <p>
-            That might be true for you — and this flowchart is designed to take that seriously.
+            That might be true for you, and this flowchart is designed to take that seriously.
             Next, we’ll explore the most common real-world “personal case” reasons people give (medical conditions, allergies, GI issues,
             pregnancy/lactation, eating disorder history, sensory limitations, access/cost constraints, etc.) so that you can explore 
             which blockers might apply to you one by one.</p>
@@ -4278,7 +4403,7 @@ access: `
           <img src="realization.png" alt="Where this puts you" class="page-img"/>
           <p>
             You selected:
-            <b>“Yes — a properly planned plant-based diet can meet human nutritional needs in my personal case.”</b>
+            <b>“Yes, a properly planned plant-based diet can meet human nutritional needs in my personal case.”</b>
           </p>
 
           <div class="divider"></div>
@@ -4300,7 +4425,7 @@ access: `
 
           <p><b>What happens next?</b></p>
           <p>
-            We’re still going to double check for real blockers (health, cost, access, environment, life context) — because “possible in theory”
+            We’re still going to double check for real blockers (health, cost, access, environment, life context), because “possible in theory”
             is not the same as “realistic in my life," and sometimes harm minimization is the most that an individual will be able to acheive.
           </p>
 
@@ -4316,6 +4441,7 @@ access: `
       const selected = new Set(state.part2.blockersSelected);
 
       $app.innerHTML = `
+      ${renderStepBar()}
         <h1>What’s holding you back? (check all that apply)</h1>
         <img src="blockers2.png" alt="Holding you back" class="page-img"/>
         <p>We’ll go through only the boxes you check, one by one, with info and options.</p>
@@ -4380,7 +4506,7 @@ access: `
       $app.innerHTML = `
         <h1>${current.label}</h1>
 
-        <p class="small">This section helps you reflect on practical constraints. There is no “shame” path here — we’re just mapping reality.</p>
+        <p class="small">This section helps you reflect on practical constraints. There is no “shame” path here. We’re just mapping reality.</p>
 
         <div class="divider"></div>
 
@@ -4394,7 +4520,7 @@ access: `
           </div>
 
           <div class="right">
-            <button class="btn" onclick="window.__stillApplies()">Yes — this still applies to me / I still have concerns</button>
+            <button class="btn" onclick="window.__stillApplies()">Yes, this still applies to me / I still have concerns</button>
             <button class="btn-green" onclick="window.__nextTopic()">🟢 Next topic</button>
           </div>
         </div>
@@ -4411,7 +4537,7 @@ access: `
         }
       }
 
-      // “Yes — still applies”:
+      // “Yes, still applies”:
       // - record that this blocker is still relevant
       // - if it's "medical", show medical disclaimer first (then advance)
       window.__stillApplies = () => {
@@ -4467,12 +4593,13 @@ access: `
         : "The Stakes — approximate animals affected per year (placeholder)";
 
       $app.innerHTML = `
+      ${renderStepBar()}
         <h1>${headline}</h1>
 
         <p class="small">
           This is an approximate visual of the number and types of animals affected each year by a typical U.S. animal-inclusive diet.
           Numbers are based on national consumption averages and production patterns. Actual impact varies by individual and region.
-          This illustration is for scale and reflection — not precise accounting.
+          This illustration is for scale and reflection, not precise accounting.
         </p>
 
         <!-- Farmed animals -->
@@ -4708,15 +4835,16 @@ access: `
       setPill("Transition");
 
       $app.innerHTML = `
+      ${renderStepBar()}
         <h1>🌱 Making the Transition</h1>
         <div class="transition-hero">
           <img src="transition.png" alt="Making the transition" />
         </div>
 
         <p class="small">
-          Changing how you eat is not just a nutritional shift — it’s an emotional, cultural, social, and psychological one.
+          Changing how you eat is not just a nutritional shift. It’s an emotional, cultural, social, and psychological one.
           So if you feel conflicted, scared, resistant, or overwhelmed… that doesn’t mean you’re failing. It means you’re human.
-          This page is here to help you move from ethical clarity (“this matters”) into practical transition (“how do I actually live this?”) — gently, realistically, and without shame.
+          This page is here to help you move from ethical clarity (“this matters”) into practical transition (“how do I actually live this?”), gently, realistically, and without shame.
         </p>
 
         <details class="acc" open>
@@ -4726,7 +4854,7 @@ access: `
 
           <div class="imgbox">
             Someone once said:<br/>
-            “I could never go vegan — I could never give up cheese.”<br/>
+            “I could never go vegan. I could never give up cheese.”<br/>
             And the response was:<br/>
             <b>“Then go vegan except for cheese.”</b><br/>
             <span class="small">That’s not a joke. That’s wisdom.</span>
@@ -4745,7 +4873,7 @@ access: `
           <p class="small">
             From a systems perspective: <b>10 people reducing animal consumption by 50%</b> does more good than <b>1 person being “perfect.”</b><br/>
             Hardline purity pushes people away. Pragmatism pulls people in.<br/>
-            Morality isn’t invalidated by imperfection — it’s strengthened by participation.
+            Morality isn’t invalidated by imperfection. It’s strengthened by participation.
           </p>
         </details>
 
@@ -4755,7 +4883,7 @@ access: `
 
           <p class="small">
             Change can threaten: belonging, identity, emotional regulation, familiar routines, and sources of comfort and pleasure.
-            So resistance is rarely about ignorance or selfishness — it’s often about fear:
+            So resistance is rarely about ignorance or selfishness. It’s often about fear:
           </p>
           <ul>
             <li>fear of loss</li>
@@ -4764,7 +4892,7 @@ access: `
             <li>fear of letting go of something that has soothed you</li>
           </ul>
           <p class="small">
-            Understanding this doesn’t excuse harm — but it does allow us to approach ourselves and others with compassion rather than judgment.
+            Understanding this doesn’t excuse harm, but it does allow us to approach ourselves and others with compassion rather than judgment.
           </p>
         </details>
 
@@ -4792,7 +4920,7 @@ access: `
             <li>people begin craving lighter, fresher foods naturally</li>
           </ul>
           <p class="small">
-            This isn’t mystical detox — it’s neuroadaptation + gut microbiome shifts.
+            This isn’t mystical detox. It’s neuroadaptation + gut microbiome shifts.
             It doesn’t happen for everyone, and that’s okay. A good system allows multiple on-ramps.
           </p>
         </details>
@@ -4864,7 +4992,7 @@ access: `
           <summary>Can you switch overnight?</summary>
           <img src="heal.png" alt="Body adjusting to change" class="summary-img" />
 
-          <p class="small"><b>Yes</b> — but it depends on your body.</p>
+          <p class="small"><b>Yes</b>, but it depends on your body.</p>
           <p class="small">What can happen:</p>
           <ul>
             <li>gas, bloating, loose stools for a week or two</li>
@@ -4903,7 +5031,7 @@ access: `
           <img src="blooming.png" alt="Social change and growth" class="summary-img" />
 
           <p class="small">
-            Speaking your values calmly is good. Social discomfort is not inherently bad — it can open meaningful dialogue.
+            Speaking your values calmly is good. Social discomfort is not inherently bad. It can open meaningful dialogue.
             The goal isn’t to avoid friction at all costs. It’s to avoid shame, judgment, and moral grandstanding.
           </p>
           <p class="small">
@@ -4916,7 +5044,7 @@ access: `
           <p class="small">
             When people react strongly, it’s usually because their identity feels threatened, not because you’re wrong.
             Diet touches masculinity, culture, family, pleasure, belonging.
-            So when you pull one thread, it shakes more than a plate — it shakes “Who am I if this isn’t okay?”
+            So when you pull one thread, it shakes more than a plate. It shakes “Who am I if this isn’t okay?”
           </p>
           <p class="small">
             That fear isn’t yours to carry. You’re allowed to live your values with clarity and compassion.
@@ -4940,7 +5068,7 @@ access: `
           You don’t have to suffer to reduce suffering.<br/>
           You don’t have to abandon joy to live with integrity.<br/>
           <b>You just have to start.</b><br/>
-          <span class="small">And starting — imperfectly — is enough.</span>
+          <span class="small">And starting, imperfectly, is enough.</span>
         </div>
 
         ${navButtons({ showBack:true, showNext:false })}
