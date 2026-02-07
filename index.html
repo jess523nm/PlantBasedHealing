@@ -283,12 +283,17 @@
         border-color: rgba(255,255,255,0.22);
       }
 
+      /* Make the bivalves popup link more prominent */
+      .big-link{
+        font-size: 1.1rem;
+        padding: 0.75rem 1.25rem;
+      }
   </style>
 </head>
 <body>
   <div class="wrap">
     <div class="topbar">
-      <div class="brand">Plant-Based Reflection Tool v. 1.13</div>
+      <div class="brand">Plant-Based Reflection Tool v. 1.14</div>
       <div class="pill" id="progressPill">Step: —</div>
     </div>
 
@@ -436,10 +441,9 @@
   <div class="modalback" id="bivalvesModal" style="display:none;" onclick="closeBivalvesNote()">
     <div class="modal" onclick="event.stopPropagation()">
       <h2>Pop-up: A note about bivalves</h2>
-      
-    <img class="page-img" src="bivalves.png" alt="Bivalves illustration">
 
       <div class="scroll">
+        <img class="page-img" src="bivalves.png" alt="Bivalves illustration">
         <p>
           <b>Where bivalves fit in the necessity discussion:</b>
           Some people consider <b>bivalves</b> (oysters, clams, mussels, scallops) a lower-sentience “bridge” option in situations where a fully plant-based diet is difficult
@@ -483,8 +487,7 @@
           </ul>
 
           <p>
-            This is why some people who follow ethical diets, including a minority of vegans who make an exception for bivalves.
-            If you want literature citations, this flowchart can provide them in a later evidence section.
+            This is why some people who follow ethical diets, including a minority of vegans, make an exception for bivalves.
           </p>
         </details>
 
@@ -495,6 +498,18 @@
           <p>
             During flares, high-fiber foods (legumes, cruciferous vegetables) can trigger symptoms. Many clinicians recommend low-residue (lower-fiber) phases and easily digestible protein.
             Bivalves may function as a temporary bridge because they can provide protein, B12, and iron without fiber.
+          </p>
+
+          <p>
+            <b>New and important nuance (early-stage research):</b>
+            Some preclinical research (lab and animal models, not humans) is exploring bioactive compounds from certain mollusks, including abalone and some mussels, for potential anti-inflammatory effects relevant to IBD pathways.
+            These studies are investigating compounds such as lipid fractions rich in polyunsaturated fatty acids (PUFAs) and specific peptides that may help modulate immune signaling, support gut barrier integrity, and shift the gut microbiome in favorable directions.
+          </p>
+
+          <p>
+            <b>Reality check:</b>
+            This is promising, but it is early-stage science and does <i>not</i> mean eating bivalves is a proven treatment for Crohn’s disease or ulcerative colitis.
+            Human clinical trials would be needed to confirm safety, dosing, and real-world effectiveness. Always make IBD treatment decisions with a gastroenterology team.
           </p>
 
           <p><b>2) Severe food allergies / intolerances</b></p>
@@ -516,28 +531,7 @@
         </details>
 
         <details class="acc">
-          <summary>📌 How to reflect this in your flowchart logic (harm reduction)</summary>
-          <p>
-            If someone needs an animal-derived nutrient source for medical reasons, a harm-reduction note can include:
-          </p>
-          <ul>
-            <li>GI conditions where high fiber is a problem</li>
-            <li>Iron deficiency not responding to plant strategies</li>
-            <li>Protein needs difficult to meet with available plant foods</li>
-            <li>Reduced appetite / chewing issues / elderly needs</li>
-          </ul>
-
-          <p>
-            Possible wording:
-            <i>
-              “If you need an animal-derived nutrient source for medical reasons, lower-sentience options (e.g., bivalves) may be considered with your clinician’s guidance.
-              You don’t have to force all-or-nothing.”
-            </i>
-          </p>
-        </details>
-
-        <details class="acc">
-          <summary>⚖️ Ethical framing (fits the flowchart’s approach)</summary>
+          <summary>Ethical framing</summary>
           <ol class="small">
             <li><b>Capacity to feel harm matters:</b> bivalves have far simpler nervous systems than vertebrates.</li>
             <li><b>Harm reduction is real:</b> choosing bivalves instead of cows/chickens/pigs reduces suffering dramatically.</li>
@@ -869,7 +863,7 @@
         step: STEPS.P1_1CX1,
         title: "1. Purpose-based exemption",
         quote: "“Animals raised for food are different from pets.”",
-        note: "(Moral status depends on human intention.)"
+        note: "(Moral status depends on the intention behind their conception.)"
       },
       {
         id:"1CX2",
@@ -883,7 +877,7 @@
         step: STEPS.P1_1CX3,
         title: "3. Appeal to nature",
         quote: "“Predation is natural, so it’s morally fine.”",
-        note: "(Naturalness overrides suffering.)"
+        note: "(Naturalness overrides causing animals to suffer solely for human pleasure.)"
       },
       {
         id:"1CX4",
@@ -897,17 +891,17 @@
         step: STEPS.P1_1CX5,
         title: "5. Human-centered priority",
         quote: "“Human comfort, convenience, or social harmony outweighs animal suffering.”",
-        note: "(Includes agreeableness / don’t-rock-the-boat — framed as a moral claim.)"
+        note: "(Includes agreeableness / don’t-rock-the-boat, framed as a moral claim.)"
       },
     ];
 
 
     // Part 2 blocker topics (2B — “Other reasons”)
     const BLOCKERS = [
-      { id: "medical", label: "2B1 — Medical / mental health / allergies / GI / pregnancy / sensory (for you or someone you feed)" },
+      { id: "medical", label: "2B1 — Medical / mental health / road blocks (for you or someone you feed)" },
       { id: "kids",    label: "2B2 — Child development / safety concerns (feeding children)" },
       { id: "access",  label: "2B3 — Access / cost / availability constraints" },
-      { id: "env",     label: "2B4 — Environmental context (what’s realistic where you live)" },
+      { id: "env",     label: "2B4 — Environmental context (whether a plant-based diet cause harm to the environment)" },
       { id: "extreme", label: "2B5 — Extreme physical needs / energy demands" },
       { id: "habit",   label: "2B6 — Habit / taste / change concerns" },
       { id: "fear", label: "2B7 — Fear of change/Emotional struggle" }
@@ -917,24 +911,21 @@
     // You can paste your long text into the <details> sections later, one topic at a time.
     const BLOCKER_PAGES = {
    medical: ` 
-      <p><b>Note:</b> I am not a medical professional. This flowchart is not medical advice.
+      <p><i><b>Note:</b> I am not a medical professional. This flowchart is not medical advice.
       Always consult with your physician or a registered dietitian before making changes to your diet, especially if you have medical conditions,
-      take medications, or are responsible for others’ health.</p>
+      take medications, or are responsible for others’ health.</i></p>
 
       <div class="divider"></div>
 
       <h2>2B1 — Medical</h2>
       <img class="page-img" src="medical.png" alt="Medical illustration">
 
-      <p><b>Prompt:</b> Do you have a medical, psychological, or physiological condition for yourself or someone you care for —
-      that makes a fully plant-based diet unsafe, unrealistic, or harmful <i>without</i> professional supervision?</p>
-
       <p>
-        For many chronic conditions including diabetes, heart disease, obesity, and even risks associated with some cancers and hormone-related conditions —
+        For many chronic conditions, including diabetes, heart disease, obesity, and even risks associated with some cancers and hormone-related conditions,
         research shows that well-planned, plant-centered eating patterns are often beneficial compared with typical Western diets. In many cases, shifting toward
-        plants can help reduce risk, support metabolic health, and improve disease markers. This doesn’t mean animal products are universally harmful or that
-        everyone must go strictly vegan, but it does mean prioritizing whole plant foods can be a powerful, evidence-backed part of managing and preventing
-        chronic illness.
+        plants can help reduce risk, support metabolic health, and improve disease markers. While there are a few conditions that can make a plant-based diet more
+        challenging, prioritizing whole plant foods can be a powerful, evidence-backed part of managing and preventing chronic illness for the vast majority of
+        people.
       </p>
 
       <details class="acc">
@@ -942,11 +933,12 @@
 
         <p>These are conditions where evidence suggests that plant-forward eating is often helpful for prevention, management, and sometimes improvement and where avoiding or minimizing animal products is not only safe but often beneficial. This category is distinct from “diet may be possible with planning”; it’s where plant-based patterns have protective/therapeutic evidence.</p>
 
-        <p>These are common beliefs, but mainstream nutrition guidance does not generally treat them as requiring animal products. In many cases, shifting toward a well-planned plant-forward diet is not merely “possible,” but often protective or therapeutic compared with more animal-heavy patterns—especially when it increases whole plant foods and reduces saturated fat/ultra-processed foods.</p>
+        <p>In these cases, shifting toward a well-planned plant-forward diet is not merely “possible,” but often protective or therapeutic compared with more animal-heavy patterns, especially when it increases whole plant foods and reduces saturated fat or ultra-processed foods.</p>
 
-        <p>A key baseline: the Academy of Nutrition and Dietetics’ long-standing position is that appropriately planned vegetarian (including vegan) diets are nutritionally adequate and appropriate for all life stages, including pregnancy, lactation, infancy/childhood/adolescence, older adulthood, and athletes.</p>
+        <p>A key baseline: the Academy of Nutrition and Dietetics’ long-standing position is that appropriately planned vegetarian and vegan diets are nutritionally adequate and appropriate for all life stages, including pregnancy, lactation, infancy/childhood/adolescence, older adulthood, and athletes.</p>
 
-        <p><b>1) Pregnancy &amp; breastfeeding</b></p>
+        <details class="cond">
+        <summary><b>1) Pregnancy &amp; breastfeeding</b></summary>
         <p>Claim: “You need animal products for pregnancy/lactation.”<br>
         Reality: A well-planned plant-based diet can be safe and adequate, and may have some benefits (e.g., healthier gestational weight gain), but it requires intentional supplementation/monitoring.</p>
 
@@ -955,60 +947,93 @@
         • Some recent reviews/meta-analyses find that strict vegan/strict vegetarian pregnancy patterns, especially when poorly supplemented, can be associated with lower birth weight / higher SGA risk—which points to “planning quality,” not “animal foods required.”</p>
 
         <p>Plant-based can be beneficial vs animal-heavy patterns because it tends to:<br>
-        • Increase fiber, potassium, folate, phytochemicals; often reduces saturated fat—supporting cardiometabolic health (relevant because gestational diabetes and hypertensive disorders are major risks). (Mechanism/heart-health dietary pattern framing)</p>
+        • Increase fiber, potassium, folate, phytochemicals; often reduces saturated fat, supporting cardiometabolic health which is relevant because gestational diabetes and hypertensive disorders are major risks during pregnancy.</p>
 
-        <p>Feasibility (without animal products): High, if you treat a few nutrients as “non-negotiables” (typically B12, iodine, DHA/EPA source, iron strategy, vitamin D, calcium, adequate protein/energy). The key is not moral perfection—it’s planning + labs when indicated.</p>
+        <p>Feasibility (without animal products): High, if you treat a few nutrients as “non-negotiables” (typically B12, iodine, DHA/EPA source, iron strategy, vitamin D, calcium, adequate protein/energy). In fact, a plant-based diet can often be nutritionally superior when properly planned.</p>
 
+        </details>
         <p>________________________________________</p>
+        <details class="cond">
+        
+        <summary><b>2) C. Obesity / Weight Management</b></summary>
+        <p>Plant-based diets are consistently associated with lower rates of overweight/obesity, greater spontaneous weight loss, and better weight maintenance over time, largely because whole plant foods tend to be lower in calories and higher in fiber and phytochemicals that help with satiety and metabolic health.</p>
 
-        <p><b>2) C. Obesity / Weight Management</b></p>
-        <p>Plant-based diets are consistently associated with lower rates of overweight/obesity, greater spontaneous weight loss, and better weight maintenance over time, largely because whole plant foods tend to be lower in calories and higher in fiber, helping with satiety and metabolic health.</p>
 
+        </details>
         <p>________________________________________</p>
-
-        <p><b>3) Older age</b></p>
+        <details class="cond">
+        
+        <summary><b>3) Older age</b></summary>
         <p>Claim: “Elderly people need animal protein.”<br>
-        Reality: There’s no inherent requirement for animal products. The real issue is protein adequacy, B12, and sometimes appetite/energy density—things that can be handled plant-based with planning.</p>
+        Reality: There’s no inherent requirement for animal products. The real issue is protein adequacy, B12, and sometimes appetite/energy density, things that can be handled plant-based with planning.</p>
 
-        <p>Plant-based can be beneficial vs animal-heavy patterns because:<br>
-        • Heart-healthy guidance consistently emphasizes patterns built mostly from plants to reduce cardiovascular risk—highly relevant because CVD risk rises with age.</p>
+        <p>Plant-based diets can in fact be beneficial when compared to animal-heavy patterns because:<br>
+        • Heart-healthy guidance consistently emphasizes patterns built mostly from plants to reduce cardiovascular risk. This is highly relevant as CVD risk rises with age.</p>
 
         <p>Feasibility (without animal products): High, with the practical focus on:<br>
         • Protein distribution across meals, energy density, resistance exercise when possible, and B12 reliability.</p>
 
+
+        </details>
         <p>________________________________________</p>
+        <details class="cond">
 
-        <p><b>4) Iron deficiency</b></p>
-        <p>Claim: “Iron deficiency means you must eat red meat.”<br>
-        Reality: Iron deficiency is often manageable on a plant-based diet, but you must understand non-heme iron absorption and use absorption strategies (and sometimes supplements). Non-heme iron is absorbed less efficiently on average, so the “strategy” part matters.</p>
+        <summary><b>4) Iron deficiency</b></summary>
+        
+        <p><b>Claim:</b> “Iron deficiency means you must eat red meat.”<br>
+        <b>Reality:</b> Iron deficiency is common across many diets and does not automatically require animal products. It is often manageable on a plant-based diet, but understanding iron type and absorption strategies matters.</p>
+        
+        <p><b>Heme vs non-heme iron:</b><br>
+        Iron comes in two forms. Heme iron (found in meat) is highly bioavailable and absorbed through a pathway that is less tightly regulated. Non-heme iron (found in plant foods) is absorbed more selectively and is strongly influenced by the body’s current iron needs.</p>
+        
+        <p>Non-heme iron absorption increases when iron stores are low or needs are higher (for example during growth, menstruation, or pregnancy), and decreases when stores are adequate. This adaptive regulation is mediated by mechanisms such as hepcidin signaling, iron transporters, and ferritin feedback.</p>
+        
+        <p>Heme iron is efficient, but because it is less down-regulated when iron stores are already high, higher habitual intake has been associated in population studies with elevated ferritin levels, increased oxidative stress, and higher risk of certain cardiometabolic conditions in iron-replete individuals. Current consensus is that heme iron is not inherently harmful, but excess intake may be a concern for some people.</p>
+        
+        <p><b>Absorption inhibitors and enhancers:</b><br>
+        Eggs and dairy can significantly reduce non-heme iron absorption. Calcium interferes with absorption, milk proteins (casein and whey) inhibit uptake, and egg proteins (such as phosvitin) are strong inhibitors.</p>
+        
+        <p>A fully plant-based diet avoids these inhibitors entirely and often includes natural enhancers of iron absorption, such as vitamin C and organic acids from fruits and vegetables. For this reason, non-heme iron absorption can be comparable or sometimes better on a well-planned vegan diet than on a mixed diet containing eggs and dairy.</p>
+        
+        <p><b>Feasibility (without animal products):</b> Moderate-to-high, depending on severity and cause.<br>
+        • Many people do well with iron-rich plant foods paired with vitamin C, attention to timing around inhibitors, and supplementation when prescribed.<br>
+        • Persistent deficiency (for example due to heavy bleeding, gastrointestinal conditions, or malabsorption) is a medical evaluation issue, not a requirement to eat animal products.</p>
+        
+        <p>Plant-based eating can remain beneficial overall by treating iron as a targeted, manageable nutrient concern while preserving broader cardiometabolic and long-term health advantages.</p>
 
-        <p>Plant-based can still be beneficial overall because you can treat iron as a targeted issue while keeping the broader cardiometabolic benefits of plant-forward eating.</p>
 
-        <p>Feasibility (without animal products): Moderate-to-high, depending on severity and cause.<br>
-        • Many people do fine with: iron-rich plant foods + vitamin C pairing + avoiding inhibitors around iron doses + supplementation when prescribed.<br>
-        • If someone has persistent deficiency (heavy bleeding, malabsorption, etc.), this becomes a medical workup issue—not an “eat animals” issue.</p>
-
+        </details>
         <p>________________________________________</p>
+        <details class="cond">
 
-        <p><b>5) Osteoporosis / bone health</b></p>
-        <p>Claim: “You need dairy (or animal foods) for bones.”<br>
-        Reality: Bone health is about a package: calcium, vitamin D, adequate protein, resistance/impact activity, and overall nutrition status. Some meta-analyses show vegans may have lower BMD/higher fracture risk on average, especially if calcium/protein/vitamin D are low—again: planning quality.</p>
+        <summary><b>5) Osteoporosis/b></summary>
+        <p><b>Claim:</b> “You need dairy (or animal foods) for bones.”<br>
+        <b>Reality:</b> Bone health depends on a package of factors: adequate calcium, vitamin D, sufficient protein, resistance and impact activity, and overall nutrition quality. Some meta-analyses show vegans may have lower bone mineral density or higher fracture risk on average, particularly when calcium, protein, or vitamin D intake is low. This reflects planning quality, not an inherent requirement for animal foods.</p>
+        
+        <p>Dietary patterns high in animal protein have been associated in some populations with increased urinary calcium excretion, higher fracture risk, and lower bone density when not balanced with sufficient fruits and vegetables. Earlier explanations focused on dietary acid load, but current evidence indicates that blood pH is tightly regulated and bone is not used as a primary buffering system.</p>
+        
+        <p>More likely contributors to poorer bone outcomes in animal-heavy, low-plant diets include increased renal calcium loss related to sulfur-containing amino acids, lower potassium and magnesium intake, reduced vitamin K intake, lower phytonutrient intake, and inflammation-related effects. In contrast, plant-rich diets tend to provide potassium, magnesium, vitamin K, and bioactive compounds that support bone metabolism, provided calcium and vitamin D needs are met.</p>
+        
+        <p>Plant-based eating can support bone health while offering cardiometabolic benefits, as long as key bone nutrients are intentionally addressed. Bones do not require dairy specifically; they require nutrients.</p>
+        
+        <p><b>Feasibility (without animal products):</b> Moderate-to-high with explicit planning:<br>
+        • Meet calcium and vitamin D targets (fortified foods, calcium-set tofu, supplements when needed).<br>
+        • Ensure adequate protein intake.<br>
+        • Include vitamin K–rich foods (such as leafy greens) and maintain regular weight-bearing and resistance activity.<br>
+        • Use clinician-guided supplementation when appropriate.</p>
 
-        <p>Plant-based can be beneficial vs animal-heavy patterns because it can improve cardiometabolic health while still meeting bone nutrients (fortified foods, calcium-set tofu, beans/greens where appropriate, supplements when needed). The point is: bones don’t require dairy; they require nutrients.</p>
-
-        <p>Feasibility (without animal products): Moderate-to-high with explicit planning:<br>
-        • Hit calcium + vitamin D targets, ensure protein adequacy, consider vitamin K sources, and use clinician-guided supplementation when needed.</p>
-
+        </details>
         <p>________________________________________</p>
+        <details class="cond">
 
-        <p><b>6) Diabetes (especially type 2)</b></p>
+        <summary><b>6) Diabetes (especially type 2)</b></summary>
         <p><b>Type 2 Diabetes</b><br>
         Plant-based and whole-food plant-forward dietary patterns are consistently shown to improve glycemic control, insulin sensitivity, and body weight, and reduce risk of developing type 2 diabetes compared with typical omnivorous patterns. This includes evidence in major diabetes guidance acknowledging plant-forward eating as a valid therapeutic option.</p>
 
         <p>Claim: “Diabetes makes plant-based eating dangerous or unrealistic.”<br>
         Reality: For type 2 diabetes, plant-based patterns are often therapeutic—improving insulin sensitivity and cardiometabolic risk factors, and sometimes producing large clinical improvements (especially when weight loss and reduced liver/muscle fat occur). Randomized trials show low-fat vegan/plant-based interventions can improve glycemic control and cardiometabolic markers, sometimes more than conventional comparison diets.</p>
 
-        <p>Mainstream guidance backing (important for your “consensus” framing):<br>
+        <p>Mainstream guidance backing:<br>
         • ADA materials explicitly include vegetarian/vegan patterns as valid options for improving A1C, weight, and lipids.<br>
         • Reviews note major diabetes organizations include vegetarian/vegan patterns among those shown to improve glycemic control and cardiovascular risk factors.</p>
 
@@ -1016,73 +1041,209 @@
         1. Medication adjustments may be needed as glucose improves (clinical supervision).<br>
         2. Quality matters: “plant-based” built on refined carbs/sugary foods is not the same as whole-food plant-forward eating.</p>
 
+        </details>
         <p>________________________________________</p>
+        <details class="cond">
+        
+        <summary><b>7) Heart disease / cardiometabolic risk</b></summary>
+        
+        <p>Numerous lines of evidence associate diets higher in whole plant foods and lower in animal foods with improved cardiovascular risk factors, including lower LDL cholesterol, lower blood pressure, improved insulin sensitivity, and reduced overall risk of heart disease compared with typical animal-heavy Western patterns.</p>
+        
+        <p><b>Claim:</b> “Heart disease requires animal foods for protein or strength.”<br>
+        <b>Reality:</b> Heart-healthy dietary guidance consistently emphasizes plant-centered patterns. Adequate protein is readily achievable from plant sources, and cardiovascular outcomes are driven primarily by fat type, fiber intake, inflammation, metabolic health, and lipid levels rather than protein source alone.</p>
+        
+        <p><b>Dietary fats and primary prevention:</b><br>
+        For most people without advanced coronary artery disease, heart protection does not require a very low-fat diet. Evidence strongly supports replacing animal-derived saturated fats with unsaturated plant fats while emphasizing whole, minimally processed foods.</p>
+        
+        <p>Protective patterns typically include regular use of olive oil, nuts, seeds, and avocados, while limiting animal-derived saturated fats and avoiding trans fats from hydrogenated oils. Excess intake of refined oils of any type may also blunt benefits compared with whole-food fat sources.</p>
+        
+        <p><b>Why plant-centered diets protect cardiovascular health:</b></p>
+        
+        <p><b>1. Lower LDL cholesterol</b><br>
+        Saturated fat and dietary cholesterol raise LDL cholesterol, a primary causal driver of atherosclerotic heart disease. Plant-based patterns naturally lower saturated fat intake and eliminate dietary cholesterol, leading to meaningful reductions in LDL and downstream cardiovascular risk.</p>
+        
+        <p><b>2. Improved endothelial function</b><br>
+        The endothelium (the inner lining of blood vessels) plays a key role in vascular health. Plant foods improve nitric oxide availability, supporting better vasodilation, improved blood flow, and lower blood pressure.</p>
+        
+        <p><b>3. Reduced inflammation</b><br>
+        High intake of dietary fiber, polyphenols, and antioxidants is associated with lower inflammatory markers and reduced vascular inflammation. Chronic inflammation contributes to plaque instability and cardiovascular events.</p>
+        
+        <p><b>4. Improved insulin sensitivity</b><br>
+        Fiber-rich plant foods slow glucose absorption and reduce intramyocellular fat accumulation, improving insulin sensitivity. Better glucose control reduces glycation, endothelial damage, and cardiometabolic risk.</p>
+        
+        <p><b>5. Gut microbiome effects</b><br>
+        Plant fibers promote gut microbial patterns associated with lower cardiovascular risk. Diets high in animal foods increase production of metabolites such as TMAO, which are linked to higher rates of cardiovascular disease.</p>
+        
+        <p><b>6. Lower oxidative stress</b><br>
+        Plant-based patterns reduce exposure to heme iron and increase antioxidant intake, lowering oxidative stress and LDL oxidation, both of which contribute to atherosclerosis.</p>
+        
+        <p><b>About disease progression and “reversal”:</b><br>
+        Atherosclerotic plaque is dynamic and influenced by lipid levels, inflammation, endothelial health, and metabolic factors. In highly adherent individuals, aggressive lifestyle changes that include plant-forward dietary patterns have been shown to halt progression and, in some cases, reduce plaque burden and improve coronary blood flow.</p>
+        
+        <p>Results vary, sustained adherence is required, and outcomes should be framed as a demonstrated possibility rather than a guarantee.</p>
+        
+        <p><b>Feasibility (without animal products):</b> High for most people. Plant-centered diets often make it easier to meet cardiovascular targets such as higher fiber intake, lower saturated fat, improved lipid profiles, and better metabolic health.</p>
 
-        <p><b>7) Heart disease</b></p>
-        <p><b>Heart Disease / Cardiometabolic Risk</b><br>
-        Numerous studies associate diets higher in plant foods and lower in animal foods with reduced cardiovascular risk factors like lower LDL cholesterol, lower blood pressure, and lower overall risk of heart disease versus typical animal-heavy Western patterns. Some clinical trials suggest plant-based whole-food patterns may even halt or regress coronary artery disease. Claim: “Heart disease requires animal foods for protein/strength.”</p>
-
-        <p>Reality: Heart-healthy dietary guidance strongly emphasizes patterns centered on plants, and multiple lines of evidence associate plant-forward diets with lower cardiovascular morbidity/mortality.</p>
-
-        <p>About ‘reversal’ (be precise in the app):<br>
-        • Intensive lifestyle programs that include very low-fat vegetarian/plant-forward dietary patterns have shown regression of coronary atherosclerosis in clinical trials.<br>
-        • A larger, real-world counseling cohort reported CAD event outcomes consistent with arrest/reversal in adherent participants, though it’s not an RCT (so phrase as “evidence suggests,” not a guarantee).</p>
-
-        <p>Feasibility (without animal products): High for most people—often easier to meet heart targets (lower saturated fat, higher fiber) with a plant-centered pattern.</p>
-
+        </details>
         <p>________________________________________</p>
+        <details class="cond">
 
-        <p><b>8) Certain Types of Cancer Risk (especially colorectal, breast)</b></p>
+        <summary><b>8) Certain Types of Cancer Risk (especially colorectal, breast)</b></summary>
         <p>Dietary patterns high in whole plant foods rich in fiber, antioxidants, and phytochemicals are associated in epidemiologic studies with lower risk of several cancers (particularly colorectal cancer). A major Europe-wide cohort (EPIC) and other research suggest that dietary patterns higher in fiber and plant foods correlate with reduced bowel cancer risk, though no diet alone guarantees prevention.</p>
 
         <p>Why it fits here:<br>
-        • High-fiber, plant-rich eating is linked with lower inflammation, healthier gut microbiota, and lower circulating growth-promoting factors, all mechanisms plausibly protective.<br>
+        • High-fiber, plant-rich eating is linked with lower inflammation, healthier gut microbiota, and lower circulating growth-promoting factors, all mechanisms that are protective.<br>
         • While diet alone doesn’t “cure” cancer, strong plant emphasis is one component of evidence-based cancer risk reduction guidance.</p>
 
+        </details>
         <p>________________________________________</p>
+        <details class="cond">
+        
+        <summary><b>9) Infertility / Hormone-Related Conditions (e.g., PCOS)</b></summary>
+        
+        <p>Infertility and subfertility are influenced by many factors, including age, genetics, underlying medical conditions, environmental exposures, and lifestyle. However, a growing body of research indicates that dietary patterns—particularly protein source, fat quality, inflammation, and metabolic health—play an important role in reproductive function for both women and men.</p>
 
-        <p><b>9) Infertility / Hormone-Related Conditions (e.g., PCOS)</b></p>
-        <p>There is emerging evidence that plant-based and plant-emphasized diets can improve fertility-related metabolic markers (e.g., insulin resistance, weight balance) particularly in conditions like PCOS. While individual fertility problems have many causes beyond diet, improvements in metabolic health and inflammation are plausibly beneficial for ovulatory and hormonal balance.</p>
+        <p><b>Claim:</b> “Fertility problems are unrelated to diet, or require animal products for hormonal balance.”<br>
+        <b>Reality:</b> Evidence increasingly links plant-forward dietary patterns with improved fertility-related outcomes, especially where infertility is connected to insulin resistance, inflammation, oxidative stress, or excess body weight.</p>
+        
+        <p><b>Protein source and ovulatory fertility:</b><br>
+        Research published in 2023 by :contentReference[oaicite:0]{index=0}, :contentReference[oaicite:1]{index=1}, and :contentReference[oaicite:2]{index=2} found that replacing even a small proportion of animal protein with plant protein was associated with a markedly lower risk of anovulatory infertility. Specifically, consuming approximately 5% of total energy from plant protein instead of animal protein was associated with over a 50% reduction in risk.</p>
+        
+        <p>Earlier cohort data similarly suggest that higher plant protein intake, and lower animal protein intake, are associated with improved ovulatory function, while higher intake of certain animal proteins is linked to increased infertility risk. These effects are thought to be mediated through insulin signaling, inflammation, and hormonal regulation rather than total protein intake itself.</p>
+        
+        <p><b>Hormonal and metabolic pathways:</b><br>
+        Plant-centered diets are consistently associated with improved insulin sensitivity, lower circulating insulin levels, and reduced chronic inflammation. This is particularly relevant for conditions such as polycystic ovary syndrome (PCOS), where insulin resistance plays a central role in disrupted ovulation and androgen excess.</p>
+        
+        <p>By emphasizing high-fiber foods, unsaturated fats, and plant proteins, plant-forward diets can support more stable glucose regulation, improved body composition, and healthier reproductive hormone signaling.</p>
+        
+        <p><b>Iron source and fertility:</b><br>
+        Observational research has found that higher intake of non-heme iron (from plant sources) is associated with higher fertility rates, while higher intake of heme iron (from animal sources) is associated with increased risk of ovulatory infertility. Differences in absorption regulation, oxidative stress, and iron-related inflammation are plausible contributing mechanisms.</p>
+        
+        <p><b>Male fertility and sperm health:</b><br>
+        Fertility is not solely a female issue. Diets rich in fruits, vegetables, whole grains, nuts, and seeds are associated with improved semen parameters, including sperm concentration, motility, and morphology. These benefits are thought to arise from lower oxidative stress and higher intake of antioxidants and phytonutrients.</p>
+        
+        <p>Recent research in Iran (Ghiasvad et al.) has reported associations between certain types of meat consumption and lower sperm count, supporting broader evidence that animal-heavy dietary patterns may adversely affect male reproductive health in some populations.</p>
+        
+        <p><b>Why plant-forward diets may support fertility:</b><br>
+        • Reduced oxidative stress, which protects egg and sperm DNA<br>
+        • Lower systemic inflammation, improving reproductive tissue function<br>
+        • Improved insulin sensitivity and metabolic health<br>
+        • Higher intake of antioxidants, polyphenols, and micronutrients critical for gamete quality<br>
+        • Healthier body weight regulation, reducing obesity-related infertility risk</p>
+        
+        <p><b>Important context:</b><br>
+        Diet alone does not determine fertility outcomes, and plant-based eating is not a universal requirement. However, evidence supports plant-forward dietary patterns as a beneficial strategy for addressing metabolic and inflammatory contributors to infertility in many individuals.</p>
+        
+        <p><b>Feasibility (without animal products):</b> Moderate-to-high with appropriate planning. Emphasizing whole plant foods, adequate protein, iron-rich foods, healthy fats, and overall energy balance can support reproductive health for many people, alongside medical evaluation when needed.</p>
 
-        <p>Why it fits here:<br>
-        • Diets emphasizing whole plant foods may indirectly support fertility by improving body composition, insulin sensitivity, and systemic inflammation, all factors in reproductive endocrinology.<br>
-        • This is not a universal requirement to avoid animal foods, but evidence supports plant-forward eating as beneficial for metabolic contributors to infertility in many cases.</p>
-
+        </details>
         <p>________________________________________</p>
+        <details class="cond">
 
-        <p><b>10) Uterine Fibroids and Estrogen-Sensitive Conditions</b></p>
-        <p>Some observational evidence suggests diets rich in fiber, fruits, and vegetables are associated with lower risk of fibroids and may influence estrogen metabolism beneficially. Obesity increases estrogen via aromatization in adipose tissue, which in turn can promote fibroid growth; plant-forward diets often support healthier body weight and fat distribution, reducing that risk factor.</p>
+        <summary><b>10) Uterine Fibroids and Estrogen-Sensitive Conditions (e.g., Fibroids, Polyps, PCOS, Endometriosis)</b></summary>
+        
+        <p>Several gynecologic conditions—including uterine fibroids, uterine polyps, polycystic ovary syndrome (PCOS), and endometriosis—are influenced by estrogen signaling, insulin resistance, inflammation, and body fat distribution. While diet is not the sole cause or cure, growing evidence suggests that dietary patterns meaningfully affect the hormonal and metabolic environment in which these conditions develop and progress.</p>
+        
+        <p><b>Claim:</b> “These conditions are unrelated to diet or require animal foods for hormonal balance.”<br>
+        <b>Reality:</b> Diet does not replace medical care, but plant-forward eating patterns are consistently associated with more favorable estrogen metabolism, improved insulin sensitivity, reduced inflammation, and healthier body weight—all relevant to estrogen-sensitive and proliferative conditions.</p>
+        
+        <p><b>Estrogen regulation and fiber:</b><br>
+        Fiber plays a central role in hormone balance. High-fiber diets increase the excretion of excess estrogen through the gut and reduce reabsorption via enterohepatic circulation. Diets rich in whole grains, fruits, vegetables, and legumes are associated with lower circulating estrogen levels and higher levels of sex hormone–binding globulin (SHBG), which binds estrogen and reduces its biologically active form.</p>
+        
+        <p><b>Cruciferous vegetables and estrogen metabolism:</b><br>
+        Cruciferous vegetables such as broccoli, kale, cabbage, cauliflower, and Brussels sprouts contain compounds that support healthy estrogen metabolism in the liver. These compounds promote conversion of estrogen into less proliferative metabolites, which may help reduce estrogen-driven tissue growth.</p>
+        
+        <p><b>Uterine fibroids and polyps:</b><br>
+        Fibroids and uterine polyps are benign growths of uterine tissue that are often estrogen-responsive. Observational studies associate higher intake of fruits, vegetables, and fiber with lower fibroid risk, while higher intake of red meat, processed meat, high-fat dairy, refined sugars, and alcohol is associated with increased risk.</p>
+        
+        <p>Plant-forward dietary patterns may reduce fibroid and polyp risk by lowering excess estrogen exposure, reducing inflammation, and supporting healthy body weight. While these diets are not a universal clinical prescription, they may help shift the hormonal environment in a less proliferative direction.</p>
+        
+        <p><b>PCOS (Polycystic Ovary Syndrome):</b><br>
+        PCOS is commonly driven by insulin resistance, excess androgens, and chronic low-grade inflammation. Dietary patterns that improve insulin sensitivity are a cornerstone of symptom management.</p>
+        
+        <p>Plant-based diets emphasizing low-glycemic, fiber-rich whole foods—such as legumes, whole grains, vegetables, fruits, nuts, and seeds—are associated with improved insulin signaling, weight regulation, and hormonal balance. Reducing intake of refined carbohydrates, added sugars, and highly processed foods is particularly important for stabilizing blood glucose and reducing symptom severity.</p>
+        
+        <p><b>Endometriosis:</b><br>
+        Endometriosis is an inflammatory, estrogen-dependent condition characterized by ectopic endometrial tissue growth and chronic pain. Diets high in fiber and antioxidants are associated with lower inflammation and reduced estrogen bioavailability.</p>
+        
+        <p>Plant-forward eating patterns may support symptom management by increasing estrogen clearance, reducing inflammatory markers, and improving gut health. Some individuals report reductions in pelvic pain, fatigue, and bloating after adopting high-fiber, low–animal-fat dietary patterns, though responses vary.</p>
+        
+        <p><b>Shared mechanisms across estrogen-sensitive conditions:</b><br>
+        • Improved estrogen metabolism and clearance via fiber intake<br>
+        • Increased SHBG, reducing active estrogen levels<br>
+        • Reduced insulin resistance and androgen excess<br>
+        • Lower systemic and local inflammation<br>
+        • Healthier body weight and fat distribution<br>
+        • Higher intake of antioxidants and phytonutrients supporting tissue health</p>
+        
+        <p><b>Important context:</b><br>
+        These conditions are multifactorial and may require medical, surgical, or hormonal treatment. Plant-forward diets should be viewed as a supportive strategy that may reduce risk or symptom burden in some individuals, not as a replacement for clinical care.</p>
+        
+        <p><b>Feasibility (without animal products):</b> Moderate-to-high with intentional planning. Emphasizing fiber-rich whole foods, cruciferous vegetables, stable blood sugar patterns, and overall nutrient adequacy can support hormonal and metabolic health alongside appropriate medical management.</p>
 
-        <p>Why it fits here:<br>
-        • While not a universal clinical prescription, eating plants instead of excess animal fat/refined foods may reduce estrogen-driven proliferative risks.</p>
-
+        </details>
         <p>________________________________________</p>
+        <details class="cond">
 
-        <p><b>11) Multimorbidity Risk (aggregate chronic disease burden)</b></p>
-        <p>Large observational research finds that higher quality plant-based dietary patterns are associated with a reduced risk of developing multiple chronic diseases simultaneously, e.g., combinations of heart disease, diabetes, and some cancers compared with lower plant quality diets.</p>
+        <summary><b>11) “Mystery” or Diagnosis-of-Exclusion Conditions (e.g., Fibromyalgia, IBS, Lupus)</b></summary>
+        
+        <p>Some chronic conditions—such as fibromyalgia, irritable bowel syndrome (IBS), and certain autoimmune or inflammatory disorders—are often diagnosed by exclusion, meaning no single biomarker or imaging test fully explains symptoms. These conditions frequently involve overlapping features such as chronic pain, fatigue, gastrointestinal dysfunction, immune activation, and heightened sensitivity to stressors.</p>
+        
+        <p><b>Claim:</b> “If doctors can’t clearly explain it, diet probably doesn’t matter.”<br>
+        <b>Reality:</b> While diet is not a cure and does not replace medical care, emerging evidence suggests that dietary patterns strongly influence shared pathways involved in these conditions, including inflammation, oxidative stress, gut microbiome balance, immune signaling, and metabolic health.</p>
+        
+        <p><b>Fibromyalgia:</b><br>
+        Fibromyalgia is characterized by widespread pain, fatigue, sleep disturbance, and cognitive symptoms. Interventional studies examining vegetarian, vegan, and raw plant-based diets have reported meaningful improvements in pain, stiffness, fatigue, sleep quality, and overall function.</p>
+        
+        <p>Several studies have documented large reductions in symptom severity scores, including one long-term intervention reporting nearly a 50% reduction in fibromyalgia impact measures. Improvements are often observed within weeks to months, though study sizes are small and methodologies vary.</p>
+        
+        <p>Proposed mechanisms include reduced systemic inflammation, improved antioxidant status, decreased oxidative stress, weight reduction, and favorable changes in cardiovascular and metabolic markers. These factors align with current understanding of fibromyalgia as involving immune activation, altered pain processing, and gut–brain interactions.</p>
+        
+        <p><b>Irritable Bowel Syndrome (IBS):</b><br>
+        IBS is strongly linked to gut microbiome imbalance, low-grade inflammation, altered gut motility, and heightened gut–brain sensitivity. Plant-based dietary patterns support microbiome diversity by supplying fermentable fibers and phytonutrients that feed beneficial bacteria.</p>
+        
+        <p>Long-term, plant-forward diets are associated with improved bowel regularity, reduced inflammation, and lower rates of inflammatory bowel conditions. However, some high-fiber or high-FODMAP plant foods may initially trigger symptoms, making gradual transitions and individualized food choices important.</p>
+        
+        <p><b>Lupus and autoimmune inflammatory conditions:</b><br>
+        Autoimmune diseases such as systemic lupus erythematosus (SLE) involve chronic immune activation, oxidative stress, and inflammation. Diets rich in fruits, vegetables, whole grains, legumes, nuts, and seeds provide antioxidants and anti-inflammatory compounds that may help modulate immune responses.</p>
+        
+        <p>Small clinical studies and case series suggest that whole-food, plant-based diets—particularly those minimizing processed foods and saturated fat—may reduce symptom severity, flare frequency, joint pain, and fatigue in some individuals. Observational data also suggest lower odds of lupus diagnosis among those consuming predominantly plant-based diets.</p>
+        
+        <p>These dietary patterns may also be especially relevant for lupus due to their cardiovascular benefits, as people with lupus face substantially elevated risks of heart disease.</p>
+        
+        <p><b>Shared mechanisms across these conditions:</b><br>
+        • Reduced oxidative stress through high antioxidant intake<br>
+        • Lower systemic inflammation and immune activation<br>
+        • Improved gut microbiome diversity and gut–brain signaling<br>
+        • Better metabolic health and insulin sensitivity<br>
+        • Healthier body weight and reduced mechanical stress<br>
+        • Improved nutrient density without inflammatory food triggers</p>
+        
+        <p><b>Important context:</b><br>
+        Evidence in this area is promising but not definitive. Many studies are small, heterogeneous, and vary in dietary composition. These conditions are complex and require individualized medical care. Dietary change should be viewed as a supportive strategy that may reduce symptom burden or improve quality of life for some individuals, not as a guaranteed treatment.</p>
+        
+        <p><b>Feasibility (without animal products):</b> Moderate. Many people report benefits from plant-forward eating, but transitions may need to be gradual and personalized, especially for gastrointestinal symptoms. Attention to nutrient adequacy, symptom tracking, and medical guidance is recommended.</p>
 
-        <p>Why it fits here:<br>
-        • This reinforces that plant-forward patterns act on shared pathways (inflammation, insulin resistance, adiposity) that underlie many chronic conditions.</p>
-
+        </details>
         <p>________________________________________</p>
+        <details class="cond">
 
-        <p><b>12) Metabolic Syndrome and Inflammation-Related Conditions</b></p>
+        <summary><b>12) Metabolic Syndrome and Inflammation-Related Conditions</b></summary>
         <p>Plant-centered diets are shown in cohort and intervention studies to reduce markers of systemic inflammation and improve components of metabolic syndrome (central obesity, high triglycerides, low HDL, high blood pressure, high fasting glucose).</p>
 
         <p>Why it fits here:<br>
         • Metabolic syndrome is a cluster of risk states that precede type 2 diabetes and heart disease; shifting toward plants tends to improve all the components.</p>
+        </details>
       </details>
 
       <details class="acc">
         <summary>Category 2 — “Some pros, some cons, plant-based eating can be possible but may require personalization &amp; support”</summary>
 
-        <p>These are conditions where a well-planned plant-based diet is often possible, and sometimes beneficial, but it may require specialized planning, symptom-trigger awareness, and clinical support. In some cases, plant foods themselves can be challenging due to symptoms, nutrient needs, or individual differences.</p>
-
-        <p>“In some situations, from gut disorders to sensory aversions to high recovery needs, plant-based eating can still be possible and beneficial, but it often requires extra planning, personalization, and sometimes professional support. For some people, animal foods may be pragmatically helpful during flares or recovery phases, and that’s okay. The goal is nourishment, not perfection.”</p>
+        <p>These are conditions where a well-planned plant-based diet is often still possible, and sometimes beneficial, but it may require specialized planning, symptom-trigger awareness, and clinical support. In some cases, plant foods themselves can be challenging due to symptoms, nutrient needs, or individual differences.</p>
 
         <p>________________________________________</p>
-
-        <p><b>1) Gastrointestinal (GI) Disorders (IBD, IBS, Gastroparesis)</b></p>
+        <details class="cond">
+        <summary><b>1) Gastrointestinal (GI) Disorders (IBD, Crohn's, Gastroparesis)</b></summary>
         <p><b>What’s going on:</b><br>
         Some GI conditions change how your digestive tract handles fiber, sugars, and complex plant structures. That doesn’t mean plant-based eating is impossible, but it may need careful adaptation.</p>
 
@@ -1108,9 +1269,11 @@
 
         <p>(Note: FODMAP = fermentable oligo-, di-, mono-saccharides and polyols; these are common carbohydrate triggers in IBS management models.)</p>
 
+        </details>
         <p>________________________________________</p>
+        <details class="cond">
 
-        <p><b>2) Severe Food Allergies / Sensitivities</b></p>
+        <summary><b>2) Severe Food Allergies / Sensitivities</b></summary>
         <p><b>Why this matters:</b><br>
         Some people have multiple allergies that cut out major plant food families that are normally core to a plant-based diet:</p>
 
@@ -1121,33 +1284,68 @@
 
         <p><b>Pros:</b><br>
         • You can tailor a plant pattern around tolerated foods (rice/quinoa, non-legume seeds like pumpkin/sunflower, tolerated vegetables + fruits)<br>
-        • In this cases, and if you don’t also have a shellfish allergy, bivalves can often be an alternative solution to a harm-reduction strategy. (See pop-up note at bottom)</p>
+        • In some cases, and if you don’t also have a shellfish allergy, bivalves can often be an alternative solution to a harm-reduction strategy. (See pop-up note at bottom)</p>
 
         <p><b>Cons / Challenges:</b><br>
         • It becomes harder to hit calorie, protein, and micronutrient goals with a large allergy burden.<br>
         • May require supplementation (B12, D, omega-3, iron, zinc) sooner rather than later, and close monitoring.</p>
 
         <p><b>Research context:</b><br>
-        Allergy management revolves around avoidance and nutrient adequacy. There’s no evidence that animal foods are strictly necessary. It’s about building alternative sources around comfort and tolerance.</p>
+        Allergy management revolves around avoidance and nutrient adequacy. There’s no evidence that animal foods are strictly necessary. Some individuals may still be able to build alternative sources around comfort and tolerance.</p>
+
+        </details>
+        <p>________________________________________</p>
+        <details class="cond">
+          <summary><b>3) Eating Disorders or Severe Sensory Restriction (including autistic sensory profiles)</b></summary>
+
+          <p><b>Core idea:</b><br>
+          For some people, how a diet feels matters just as much as what’s in it. A plant-based diet can be supportive for certain individuals and harmful for others, depending on the role food restriction plays in the disorder and the person’s treatment goals.</p>
+
+          <p><b>Important nuance:</b><br>
+          • The same dietary pattern can be healing for one person and triggering for another.<br>
+          • The key variable is not the diet label. It is the person’s relationship to food, flexibility, psychological safety, and the ability to maintain adequate nourishment.</p>
+
+          <p><b>Potential benefits (why plant-based can help in some cases):</b><br>
+          Research and clinical observations suggest several ways a plant-forward approach may support recovery for some people, particularly when it is implemented with flexibility and adequate energy intake:</p>
+
+          <p>• <b>Gateway to recovery for some individuals:</b> A shift toward plant-based eating can help some people rebuild a more positive relationship with food by focusing on nourishment, values, and health-supporting habits rather than calorie control.</p>
+
+          <p>• <b>Reduced food anxiety through gentler exposure:</b> For individuals who fear large portions or high-density foods, plant foods can sometimes allow gradual increases in intake and variety with less distress, as long as the plan still meets energy and nutrient needs.</p>
+
+          <p>• <b>Ethical or values alignment:</b> For some people, choosing plant-based eating for ethical or environmental reasons can increase self-esteem and provide a sense of purpose that is not centered on body control. This can be supportive when it does not become a rigid rule-set.</p>
+
+          <p><b>Potential risks (why plant-based can worsen or maintain an eating disorder):</b><br>
+          The same features that make plant-based eating appealing can also make it easier to hide restriction. This is why clinicians often treat vegan or highly “clean” dietary rules as a possible risk flag during assessment.</p>
+
+          <p>• <b>Mask for restriction:</b> Plant-based eating is sometimes used to justify avoidance of entire food groups, reduce energy intake, or maintain calorie restriction under a socially acceptable reason.</p>
+
+          <p>• <b>Orthorexia risk:</b> There is a strong association between highly rigid “clean eating” patterns and orthorexia-like symptoms (obsessive focus on purity, fear of “bad” foods, escalating rules). A plant-based diet can unintentionally amplify this if it becomes rule-driven rather than nourishment-driven.</p>
+
+          <p><b>Clinical guidance (non-negotiable):</b><br>
+          Mental health stabilization and medical nutrition therapy must sometimes take priority over dietary ideals. Any major dietary pattern change should be coordinated with the individual’s treatment team. If plant-based eating is used, the safer version is typically flexible, adequacy-focused, and explicitly designed to prevent restriction.</p>
+
+          <p><b>Practical safety signals (what “adequacy-focused” usually means):</b><br>
+          • Clear minimum targets for calories and protein<br>
+          • Planned energy-dense options (not only high-volume, low-calorie foods)<br>
+          • “Permission foods” included by design, not only “safe” foods<br>
+          • Regular monitoring of labs and symptoms when indicated</p>
+
+          <p><b>Severe sensory restriction and autistic sensory profiles:</b><br>
+          Some autistic individuals and others with sensory-driven restriction have very limited food variety due to texture, smell, taste, or predictability needs. In these cases, diet changes must prioritize nutritional adequacy and distress tolerance, not dietary ideals.</p>
+
+          <p>Plant-forward or whole-food approaches may support gut health, reduce constipation or GI discomfort, and increase micronutrient density in some individuals. Some studies suggest improvements in GI symptoms, sleep, mood, or behavior when ultra-processed foods and additives are reduced and more nutrient-dense foods are introduced. This is not a cure, and responses vary.</p>
+
+          <p><b>Key risk:</b><br>
+          If sensory restriction already limits variety, moving fully plant-based can increase deficiency risk unless carefully planned. Nutrients that often require deliberate attention include vitamin B12, iron, calcium, vitamin D, iodine, zinc, and omega-3 fats (for example from flax, chia, walnuts, or algal oil).</p>
+
+          <p><b>Research context:</b><br>
+          There is no single diet universally recommended in eating disorders or sensory-based restriction because symptom drivers vary widely. A plant-based diet can be either supportive or destabilizing. The decision should be individualized and guided by a qualified medical and mental health team.</p>
+        </details>
 
         <p>________________________________________</p>
+        <details class="cond">
 
-        <p><b>3) Eating Disorders, ARFID, Severe Sensory Restriction (including autistic sensory profiles)</b></p>
-        <p><b>Core idea:</b><br>
-        For some people, how a diet feels matters just as much as what’s in it.</p>
-
-        <p><b>Important nuance:</b><br>
-        • The same diet can be healing for one person and triggering for another. The key isn’t the diet itself. It’s relationship to food, psychological safety, and nourishment.</p>
-
-        <p><b>Clinical guidance:</b><br>
-        Mental health stabilization and medical nutrition therapy take priority over any dietary ideal. Collaborating with clinicians who understand both mental health and nutrition is critical.</p>
-
-        <p><b>Research context:</b><br>
-        There is no one diet universally recommended in eating disorders because symptom drivers vary widely.</p>
-
-        <p>________________________________________</p>
-
-        <p><b>4) High Metabolic or Recovery Demands</b></p>
+        <summary><b>4) High Metabolic or Recovery Demands</b></summary>
         <p><b>Examples:</b><br>
         • Post-surgical recovery where appetite is low but protein needs are high<br>
         • Chronic underweight where energy density matters for weight gain</p>
@@ -1161,9 +1359,11 @@
         <p><b>Research context:</b><br>
         Studies of plant-based athletes show performance parity when needs are met, but they underscore the importance of deliberate planning.</p>
 
+        </details>
         <p>________________________________________</p>
+        <details class="cond">
 
-        <p><b>Shared Practical Reality in Category 2</b></p>
+        <summary><b>Shared Practical Reality in Category 2</b></summary>
         <p>These are all places where a plant-based diet can be possible and even beneficial, but it’s not necessarily easy or straightforward.</p>
 
         <p>What helps in these cases is:</p>
@@ -1171,6 +1371,7 @@
         • Symptom-guided flexibility<br>
         • Food engineering (smoothies, purees, low-FODMAP swaps, energy-dense meals)<br>
         • Monitoring (labs, symptom diaries, appetite tracking)</p>
+        </details>
       </details>
 
       <details class="acc">
@@ -1182,8 +1383,8 @@
         </p>
 
         <div class="divider"></div>
-
-        <p><b>1) Severe Malabsorption Syndromes</b></p>
+        <details class="cond">
+        <summary><b>1) Severe Malabsorption Syndromes</b></summary>
 
         <p><b>Examples include:</b></p>
         <ul>
@@ -1209,12 +1410,15 @@
         <p><b>In summary:</b><br>
           When your body simply can’t absorb enough nutrients from food, animal or plant, sometimes the most digestible and absorbable sources are needed.
           This isn’t a failure. It’s a therapeutic adaptation.
-          Even in these situations, decreased the overall amount of animal products with the guidance of a physician and/or nutritionist can sometimes be possible if this is a path you choose to follow.
+          Even in these situations, decreasing the overall amount of animal products with the guidance of a physician and/or nutritionist can sometimes be possible if this is a path you choose to follow.
         </p>
 
-        <div class="divider"></div>
 
-        <p><b>2) Severe Cachexia or End-Stage Illness</b></p>
+        </details>
+        <p>________________________________________</p>
+        <details class="cond">
+
+        <summary><b>2) Severe Cachexia or End-Stage Illness</b></summary>
 
         <p><b>Examples:</b></p>
         <ul>
@@ -1241,9 +1445,11 @@
           This may mean temporarily using the most digestible, energy-dense foods available, whether plant or animal, to preserve strength and quality of life.”
         </p>
 
-        <div class="divider"></div>
+        </details>
+        <p>________________________________________</p>
+        <details class="cond">
 
-        <p><b>3) Certain Rare Inherited Metabolic Disorders</b></p>
+        <summary><b>3) Certain Rare Inherited Metabolic Disorders</b></summary>
 
         <p><b>Examples include:</b></p>
         <ul>
@@ -1263,6 +1469,7 @@
           “For some rare, genetically defined metabolic conditions, dietary needs are highly specific and best managed by medical specialists and metabolic dietitians.
           Plant-based patterns may still be used, but only under expert guidance.”
         </p>
+        </details>
       </details>
 
 
@@ -1363,7 +1570,7 @@ kids: `
   <p><b>Prompt:</b> Are you concerned that feeding children plant-based could be unsafe or sub-optimal for growth or development?</p>
 
   <details class="acc">
-    <summary>The worry parents have (real + common)</summary>
+    <summary>The worry parents have:</summary>
     <p>
       “I feed kids, and I’m worried a plant-based diet isn’t healthy for growth.”
       <br>Most parents’ fears cluster around:
@@ -1390,7 +1597,7 @@ kids: `
     </p>
     <p>
       <b>What that actually means:</b> It’s not “kids can eat fries and fruit snacks and be fine.”
-      It means: with <b>adequate calories + key nutrients</b>, growth can be normal.
+      It means: with <b>adequate calories + key nutrients</b>, growth can be normal, and in fact sometimes even healthier than an animal-centric eating pattern.
     </p>
 
     <div class="divider"></div>
@@ -1398,8 +1605,8 @@ kids: `
     <p><b>Claim 2:</b> “A vegan child will be protein-deficient.”</p>
     <p>
       <b>Reality:</b> The main concern is usually not “plant protein is inferior.” It’s that some vegetarian/vegan patterns can be
-      <b>too low in total calories and protein if not planned</b> (especially with picky eating). Pediatric guidance highlights the need to plan for
-      <b>adequate energy + protein</b>, plus nutrients like iron, zinc, calcium, vitamin D, and B12. 
+      <b>too low in total calories and protein if not planned</b> (especially with picky eating). The same can be true for a diet that includes animal products. Pediatric guidance highlights the need to plan for
+      <b>adequate energy + protein</b>, plus nutrients like iron, zinc, calcium, vitamin D, and B12, regardless of diet type.
       <a href="https://www.healthychildren.org/English/healthy-living/nutrition/Pages/Plant-Based-Diets.aspx" target="_blank" rel="noopener">[2]</a>
       <a href="https://publications.aap.org/pediatricsinreview/article/30/1/e1/33409/Vegetarian-Diets-in-Children-and-Adolescents" target="_blank" rel="noopener">[3]</a>
     </p>
@@ -1410,24 +1617,7 @@ kids: `
 
     <div class="divider"></div>
 
-    <p><b>Claim 3:</b> “B12 deficiency is proof veganism is unsafe.”</p>
-    <p>
-      <b>Reality:</b> <b>B12 is the non-negotiable for vegan kids.</b> The American Academy of Pediatrics’ parent guidance explicitly includes B12 planning
-      (fortified foods and/or supplements). <a href="https://www.healthychildren.org/English/healthy-living/nutrition/Pages/Plant-Based-Diets.aspx" target="_blank" rel="noopener">[2]</a>
-      Pediatric review guidance also emphasizes reliable B12 sources (fortified foods and supplements). <a href="https://publications.aap.org/pediatricsinreview/article/30/1/e1/33409/Vegetarian-Diets-in-Children-and-Adolescents" target="_blank" rel="noopener">[3]</a>
-    </p>
-    <p><b>The real truth:</b> When vegan kids are harmed, it’s overwhelmingly due to:</p>
-    <ul>
-      <li>B12 not provided (or inconsistent)</li>
-      <li>Calorie insufficiency</li>
-      <li>Iron deficiency</li>
-      <li>Extreme dietary restriction / unsafe diets (orthorexia by proxy)</li>
-    </ul>
-    <p>Not from “veganism itself.” It’s almost always <b>planning + adequacy</b>.</p>
-
-    <div class="divider"></div>
-
-    <p><b>Claim 4:</b> “Iron from plants doesn’t work.”</p>
+    <p><b>Claim 3:</b> “Iron from plants doesn’t work.”</p>
     <p>
       <b>Reality:</b> Plant iron (non-heme) is real iron, but <b>absorption strategy matters</b>. Pediatric guidance flags iron as a nutrient needing attention in vegetarian patterns.
       <a href="https://publications.aap.org/pediatricsinreview/article/30/1/e1/33409/Vegetarian-Diets-in-Children-and-Adolescents" target="_blank" rel="noopener">[3]</a>
@@ -1440,24 +1630,60 @@ kids: `
 
     <div class="divider"></div>
 
-    <p><b>Claim 5:</b> “Vegan kids can’t get DHA for brain development.”</p>
+    <p><b>Claim 4:</b> “Low B12 (and needing supplements like DHA) proves veganism is unsafe for kids.”</p>
+
     <p>
-      <b>Reality:</b> DHA is a reasonable planning concern. Some pediatric guidance emphasizes attention to nutrients like
-      B12, vitamin D, iron, calcium, and omega-3s in plant-based children. 
+      <b>Reality:</b> A well-planned vegan diet can support normal growth in children, and it can offer meaningful health advantages compared with typical animal-heavy patterns.
+      The “unsafe” outcomes you hear about are overwhelmingly cases of <b>inadequate planning</b>, not “veganism itself.”
+      Pediatric guidance is clear that vegan kids must have reliable sources of <b>vitamin B12</b> (fortified foods and/or supplements). 
       <a href="https://www.healthychildren.org/English/healthy-living/nutrition/Pages/Plant-Based-Diets.aspx" target="_blank" rel="noopener">[2]</a>
+      <a href="https://publications.aap.org/pediatricsinreview/article/30/1/e1/33409/Vegetarian-Diets-in-Children-and-Adolescents" target="_blank" rel="noopener">[3]</a>
     </p>
+
+    <p><b>Important perspective:</b> “Needing supplements” is not unique to vegan diets.</p>
+    <ul>
+      <li><b>Iodine</b> was added to salt to prevent goiter and iodine deficiency (a major public health success).</li>
+      <li><b>Enriched grains</b> have long been fortified with B vitamins (and often iron) to prevent deficiency diseases and improve population nutrition.</li>
+      <li>In other words, modern diets already rely on a mix of whole foods + public health fortification. Vegan nutrition simply makes one piece (B12) explicit and non-negotiable.</li>
+    </ul>
+
+    <p><b>What vegan kids can do better (potential benefits):</b></p>
+    <ul>
+      <li><b>More favorable heart risk markers:</b> Children eating vegan patterns often show lower total and LDL cholesterol than omnivorous peers.</li>
+      <li><b>Higher fiber and vitamin C intake:</b> Whole plant diets are naturally higher in fiber, folate, and vitamin C, which support gut health and long-term cardiometabolic health.</li>
+      <li><b>Healthy weight patterns:</b> Plant-forward eating is often linked with lower BMI/body fat on average, which can reduce obesity risk over time.</li>
+    </ul>
+
+    <p><b>What requires planning (honest list):</b> vegan kids thrive when caregivers treat these as “design requirements,” not optional.</p>
+    <ul>
+      <li><b>B12:</b> reliable supplement or fortified foods (non-negotiable).</li>
+      <li><b>Vitamin D:</b> often needed depending on sun exposure and latitude.</li>
+      <li><b>Iron:</b> build an iron strategy (iron-rich plants + vitamin C, manage inhibitors).</li>
+      <li><b>Calcium:</b> fortified plant milks, calcium-set tofu, greens where appropriate, or supplements if needed.</li>
+      <li><b>Omega-3 fats:</b> ALA sources (flax/chia/walnuts) and consider algae-based DHA for some children, especially with low fish intake overall.</li>
+      <li><b>Calories and protein:</b> ensure enough total energy and include protein-rich staples (beans, lentils, tofu/tempeh, soy milk, peanut butter, etc.).</li>
+    </ul>
+
+    <p><b>The real truth:</b> When vegan kids are harmed, it is most often due to:</p>
+    <ul>
+      <li>B12 not provided (or inconsistent)</li>
+      <li>Calorie insufficiency (not enough total food)</li>
+      <li>Iron deficiency not addressed</li>
+      <li>Extreme restriction or unsafe “fad” versions of vegan eating (orthorexia by proxy)</li>
+    </ul>
+    <p>The same can be said for non-vegan diets that are not well-planned.</p>
     <p>
-      <b>Parent-friendly framing:</b> This is not an argument for meat. It’s an argument for <b>intentional omega-3 planning</b>
-      (often via an algae-based DHA supplement, especially if fish is not used).
+      The takeaway is not “veganism is unsafe.” The takeaway is: <b>veganism is a valid option for kids when planned well</b>, and it may improve some early cardiovascular risk markers as well as risk of childhood obesity compared with diets high in saturated fat and low in fiber.
     </p>
+
 
     <div class="divider"></div>
 
-    <p><b>Claim 6:</b> “Cow’s milk is biologically required.”</p>
+    <p><b>Claim 5:</b> “Cow’s milk is biologically required.”</p>
     <p>
-      <b>Reality:</b> Humans do not universally tolerate cow’s milk. A large global analysis estimates lactose malabsorption prevalence around
-      <b>~68% worldwide</b> (varies widely by region). <a href="https://pubmed.ncbi.nlm.nih.gov/28690131/" target="_blank" rel="noopener">[4]</a>
-      So “dairy is required” is not biologically universal. It’s often cultural and practical.
+      <b>Reality:</b> Cow's milk is "biologically intended" for baby <b>cows</b>, not for baby humans. Humans do not universally tolerate cow’s milk as adults, and many babies and children have a natural allergy to the substance from birth. A large global analysis estimates lactose malabsorption prevalence around
+      <b>~70% worldwide</b> (varies widely by region with as high as 80% to 100% of the population being lactose intolerant in some parts of Asia and South America). <a href="https://pubmed.ncbi.nlm.nih.gov/28690131/" target="_blank" rel="noopener">[4]</a>
+      So “dairy is required” is not biologically universal, and in fact, the ability to digest cow's milk was a mutation that mainly allowed people of European descent to consume these products. Dairy consumption is often cultural and inextricably tied to a history of colonization, globalization, and ethnocentrism.
     </p>
 
   </details>
@@ -1465,7 +1691,7 @@ kids: `
   <details class="acc">
     <summary>What kids actually need (plant-based or not)</summary>
     <p>
-      Pediatric guidance emphasizes that vegetarian/vegan eating for kids needs to be planned for adequacy, especially for energy and a few key nutrients.
+      Pediatric guidance emphasizes that vegetarian/vegan eating for kids needs to be planned for adequacy, especially for energy and a few key nutrients, just like it does for omnivorous diets.
       <a href="https://www.healthychildren.org/English/healthy-living/nutrition/Pages/Plant-Based-Diets.aspx" target="_blank" rel="noopener">[2]</a>
       <a href="https://publications.aap.org/pediatricsinreview/article/30/1/e1/33409/Vegetarian-Diets-in-Children-and-Adolescents" target="_blank" rel="noopener">[3]</a>
     </p>
@@ -1477,18 +1703,18 @@ kids: `
       <li><b>Iodine</b></li>
       <li><b>Calcium</b></li>
       <li><b>Vitamin D</b></li>
-      <li><b>Vitamin B12</b> (non-negotiable for vegan kids)</li>
-      <li><i>Optional but commonly wise:</i> DHA via algae-based supplement if fish is not used</li>
+      <li><b>Vitamin B12</b> (non-negotiable supplementation is needed for vegan kids)</li>
+      <li><i>Optional but commonly wise:</i> DHA via algae-based supplement if fish is not used can help optimize brain development</li>
     </ul>
 
     <p>
       <b>The risk is not “no animal products.”</b><br>
-      <b>The risk is poor planning, especially low calories and missing B12.</b>
+      <b>The risk is poor planning, just like with an omnivorous diet.</b>
     </p>
   </details>
 
   <details class="acc">
-    <summary>A short “calm the parent down” checklist</summary>
+    <summary>A short recentering checklist</summary>
     <p>If a child is:</p>
     <ul>
       <li>growing steadily on their growth curve,</li>
@@ -1502,7 +1728,7 @@ kids: `
   </details>
 
   <details class="acc">
-    <summary>Sources (clickable)</summary>
+    <summary>Sources</summary>
     <ol class="small">
       <li>
         Academy of Nutrition and Dietetics position paper (2016): “appropriately planned vegetarian, including vegan, diets… appropriate for all stages of the life cycle.”
@@ -1530,12 +1756,40 @@ access: `
         <img class="page-img" src="access.png" alt="Access illustration">
         <p><b>Prompt:</b> Are access, affordability, transportation, time, disability, caregiving load, or local availability limiting what you can realistically eat?</p>
 
+        <p><b>Myth:</b> “A plant-based or vegan diet is too expensive for my budget.”</p>
+
+        <p>
+          <b>Reality:</b> Large reviews and modeling studies consistently find that plant-based dietary patterns are
+          <b>not more expensive</b> than omnivorous diets and are often <b>less expensive</b>,
+          with estimated food cost reductions commonly ranging from <b>16% to 30%</b>.
+          Cost savings are most pronounced when diets rely on staple foods rather than specialty products.
+        </p>
+
+        <p><b>Why plant-based eating is often cheaper:</b></p>
+        <ul>
+          <li><b>Affordable staples:</b> The foundation of most plant-based diets—rice, dried beans, lentils, oats, potatoes, pasta, and seasonal produce—are among the lowest-cost foods per calorie and per gram of protein in most food systems.</li>
+          <li><b>Reduced meat and dairy spending:</b> Eliminating or reducing animal products (often the most expensive items in a grocery budget) typically results in net savings, even with higher produce purchases.</li>
+          <li><b>Relative inflation resistance:</b> In recent years, meat, fish, eggs, and dairy prices have risen faster than many staple plant foods, while grains, legumes, and seasonal produce have remained comparatively stable in cost.</li>
+        </ul>
+
+        <p><b>Why people think it’s expensive:</b></p>
+        <ul>
+          <li><b>Processed alternatives:</b> Branded vegan cheeses, mock meats, and frozen convenience foods are often priced higher and can distort perceptions of cost.</li>
+          <li><b>Trendy or boutique foods:</b> High-priced “superfoods” and influencer-driven vegan products are optional, not foundational.</li>
+          <li><b>Upfront transition costs:</b> Buying new pantry staples all at once can feel expensive initially, even though those foods last weeks to months and reduce ongoing grocery costs.</li>
+        </ul>
+
+        <p>
+          <b>Bottom line:</b> When basic plant staples are accessible—through grocery stores, bulk sections, food assistance programs,
+          discount retailers, or online ordering (including large platforms like Amazon)—plant-based eating is typically
+          <b>financially accessible and often cost-saving</b>.
+        </p>
+
         <details class="acc" data-card="lowcost-staples">
           <summary>Low-cost plant-based staples (if accessible)</summary>
 
           <p>
             When available, these foods tend to be among the lowest-cost <b>calorie</b>, <b>protein</b>, and <b>nutrient</b> sources in many food systems.
-            Not “cheap” in a demeaning way, “low-cost” or “accessible” is a more respectful frame.
             <a href="https://www.fns.usda.gov/research/cnpp/usda-food-plans" target="_blank" rel="noopener">[1]</a>
             <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC7970354/" target="_blank" rel="noopener">[2]</a>
             <a href="https://www.worldbank.org/en/programs/icp/brief/foodpricesfornutrition" target="_blank" rel="noopener">[3]</a>
@@ -1554,7 +1808,6 @@ access: `
           </ul>
 
           <p>
-            <b>Why these show up in “budget food” lists so often:</b>
             Pantry staples like beans, lentils, rice, oats, and frozen vegetables can deliver calories, fiber, and protein at a low price point,
             especially when bought in bulk or shelf-stable form. Research comparing retail food prices finds that <b>starchy staples tend to have the lowest cost per calorie</b>
             compared with many other food groups, while animal-sourced foods are often among the most expensive groups in healthy-diet baskets.
@@ -1568,9 +1821,6 @@ access: `
             <a href="https://www.fns.usda.gov/research/cnpp/usda-food-plans" target="_blank" rel="noopener">[1]</a>
           </p>
 
-          <p>
-            <i>Implementation note:</i> You can choose to only show this section if the user answered “Yes” or “Somewhat,” or show it but visually de-emphasize it if “No.”
-          </p>
         </details>
 
         <details class="acc">
@@ -1597,7 +1847,7 @@ access: `
             If this is you, your current food pattern may reflect what’s available, not what you value.
           </p>
 
-          <p><b>You cannot choose what you cannot access.</b></p>
+          <p><b>You cannot choose what you cannot access, but there may still be ways you can make a positive impact in the lives of animals even by cutting back on animal products when you can.</b></p>
         </details>
 
         <details class="acc">
@@ -1622,7 +1872,7 @@ access: `
           <p><b>None of these are requirements.</b> They are options, not obligations.</p>
 
           <div class="btnrow" style="margin-top:.5rem;">
-            <button class="btn ghost" onclick="openBivalvesNote()">
+            <button class="btn ghost big-link" onclick="openBivalvesNote()">
               Pop-up: A note about bivalves (optional harm-reduction bridge)
             </button>
           </div>
@@ -1709,10 +1959,10 @@ access: `
       env: `
         <h2>2B4 — Environmental context</h2>
         <img class="page-img" src="env.png" alt="Env illustration">
-        <p><b>Prompt:</b> Are there environmental or geographic realities that affect what’s possible for you personally?</p>
+        <p><b>Myth:</b> Some people worry that a plant-based diet may have a harmful impact on the environment.</p>
 
         <details class="acc">
-          <summary>🌱 Why a Plant-Based Diet Has a Lower Environmental Impact</summary>
+          <summary><b>Reality:</b> Why a Plant-Based Diet Has a Lower Environmental Impact</summary>
 
           <p><b>1) Land use and habitat destruction</b></p>
           <p>
@@ -2555,13 +2805,25 @@ access: `
       ${renderStepBar()}
         <h1>Part 1 — 1B</h1>
 
-        <p><b>The reason I believe it is morally wrong to abuse, torture, or kill cats or dogs for pleasure is because cats and dogs are sentient beings. They can feel pain, suffer, form emotional bonds, and have subjective experiences, which makes their unnecessary suffering morally wrong.</b></p>
+        <p><b>In the previous question, you agreed that it is morally wrong to abuse, torture, or kill cats or dogs for pleasure. Do you also agree that cats and dogs are sentient beings who can feel pain, suffer, form emotional bonds, and have subjective experiences, which makes their unnecessary suffering morally wrong.</b></p>
+
+        <p class="small">
+          <b>What “sentience” means:</b>
+          <br>
+          <i>Sentience</i> refers to the capacity to have subjective experiences — especially the ability to
+          <b>feel sensations and emotions such as pain, pleasure, fear, comfort, hunger, or distress</b>.
+          A sentient being is not merely alive or reactive, but has an internal, felt experience of what
+          happens to them. This concept is commonly distinguished from higher cognition or intelligence and
+          is widely used in science and ethics as the minimum threshold for the capacity to suffer.
+          <br>
+          <span class="small">(Synthesized from Merriam-Webster, Cambridge Dictionary, and ScienceDirect.)</span>
+        </p>
 
         <p><b>Do you agree with this statement?</b></p>
 
         <div class="btnrow">
           <button class="btn-green" onclick="__p1bYes()">🟢 Yes, I agree</button>
-          <button class="btn-red" onclick="__p1bNo()">🔴 No, I don’t agree</button>
+          <button class="btn-red" onclick="__p1bNo()">🔴 No, I don’t agree that cats and dogs are sentient</button>
           <button class="btn-yellow" onclick="__p1bYellow()">🟡 This question is flawed / incomplete</button>
         </div>
 
@@ -2701,7 +2963,7 @@ access: `
         </div>
 
         <div class="btnrow" style="margin-top:.75rem;">
-          <button class="btn-yellow" onclick="__p1bxFlawed()">🟡 This question / the evidence summary is flawed or incomplete. Or, there's another reason why killing them is wrong that's unrelated to their sentience or ability to suffer that I'd like to explain by e-mail.</button>
+          <button class="btn-yellow" onclick="__p1bxFlawed()">🟡 This question / the evidence summary is flawed or incomplete.</button>
         </div>
 
         ${navButtons({ showBack:true, showNext:false })}
@@ -2860,7 +3122,7 @@ access: `
               <tbody>
                 <tr>
                   <td style="padding:8px;">
-                    <img src="animals/humans.png" alt="Humans" style="width:58px; height:58px; object-fit:cover; border-radius:10px; vertical-align:middle; margin-right:10px; border:1px solid rgba(255,255,255,0.12);" />
+                    <img src="animals/humans.png" alt="Humans (Baseline)" style="width:58px; height:58px; object-fit:cover; border-radius:10px; vertical-align:middle; margin-right:10px; border:1px solid rgba(255,255,255,0.12);" />
                     Humans
                   </td>
                   <td style="padding:8px; text-align:center;">10.0</td>
@@ -3012,7 +3274,7 @@ access: `
             </i>
           </p>
 
-          <p>These reflect capability under enriched, nurturing conditions.</p>
+          <p>These approximate scores reflect capability under enriched, nurturing conditions.</p>
         </details>
 
         <details class="drop">
@@ -3031,7 +3293,7 @@ access: `
 
         <div class="divider"></div>
 
-        <p><b>Therefore:</b> Do you agree that causing unnecessary suffering to animals such as cows and pigs is also morally unacceptable?</p>
+        <p><b>Therefore:</b> Do you agree that causing unnecessary suffering to commonly farmed animals such as cows and pigs is also morally unacceptable?</p>
         <p>(We will address what counts as “necessary” in the next section.)</p>
 
         <div class="btnrow">
@@ -3191,7 +3453,7 @@ access: `
 
           <h3>Parallel A — Dog fighting</h3>
           <p>
-            Dogs are bred for fighting. They are created with the intent that they will be harmed and cause harm.
+            Dogs are sometimes bred for fighting. These dogs are created with the intent that they will be harmed and cause harm.
             Yet we still say harming them is morally wrong regardless of the intent behind their conception.
           </p>
           <img src="1CX1A.png" alt="1CX1 Part A" class="page-img"/>
@@ -3208,17 +3470,14 @@ access: `
           <h3 style="margin-top:1rem;">Parallel C — Cats or kittens used as live feed</h3>
           <p>
             In rare but documented cases, cats or kittens are bred or acquired to be used as live feed
-            for snakes or other exotic pets. The animals are obtained with the foreknowledge that they
+            for snakes or other exotic pets. The animals are often bred with the sole intent that they
             will be harmed and killed.
           </p>
           <p>
             Public reaction to these cases is one of strong revulsion. In many states, this practice is
             illegal or prosecuted under animal cruelty laws.
           </p>
-          <p>
-            Notably, even reptile keepers who support live feeding for rodents often draw a firm moral
-            line at cats and dogs.
-          </p>
+
           <img src="1CX1C.png" alt="1CX1 Part C" class="page-img"/>
           <p><b>This shows:</b> Being bred or obtained for a harmful purpose does not make that harm morally acceptable.</p>
 
@@ -3250,7 +3509,7 @@ access: `
 
           <div class="btnrow" style="margin-top:.75rem;">
             <button class="btn-red" onclick="__cx1_red()">
-              🔴 Yes — Animals (and even humans) who were created for subservience deserve to be abused and/or killed.
+              🔴 Yes — Animals (or humans) who were created for subservience deserve to be abused and/or killed.
             </button>
           </div>
 
@@ -3295,16 +3554,20 @@ access: `
         };
 
         window.__cx2_red_continue = () => {
-          const boxes = Array.from(document.querySelectorAll('input[name="cx2_rel"]:checked')).map(b => b.value);
-          if(boxes.length === 0){
-            alert("Please check at least one tradition to continue.");
+          const selected = document.querySelector('input[name="cx2_rel"]:checked');
+          if(!selected){
+            alert("Please select one tradition to continue.");
             return;
           }
-          state.part1.cx2Religions = boxes;
+        
+          // Keep your existing flow intact by storing as a one-item array
+          state.part1.cx2Religions = [selected.value];
           state.part1.cx2RelIndex = 0;
+        
           // pop-up “I understand” before moving into religions
           openReligiousTransition();
         };
+
 
         $app.innerHTML = `
         ${renderStepBar()}
@@ -3318,30 +3581,30 @@ access: `
 
           <div class="divider"></div>
 
-          <p><b>From what you understand, does your religion require, endorse as morally superior, or forbid avoiding eating animals?</b></p>
+          <p><b>From what you understand, does your religion endorse or approve of meat consumption as morally acceptable, or specifically endorse killing of animals solely for pleasure?</b></p>
 
           <div class="btnrow">
             <button class="btn-green" onclick="__cx2_green()">
-              🟢 No — my religion does not require me to eat animal products and thus does not negate any previous logical conditions.
+              🟢 No — my religion does not require me to eat animal products, does not explicitly approve of consuming animals solely for pleasure, and thus does not negate any previous logical conditions.
             </button>
           </div>
 
           <div class="btnrow" style="margin-top:.75rem;">
             <button class="btn-red" onclick="document.getElementById('cx2RedPanel').style.display='block';">
-              🔴 Yes — my religion teaches that I must eat animals, that avoiding meat is morally inferior, or that God commands animal consumption.
+              🔴 Yes — my religion teaches that killing animals solely for pleasure is explicitly permitted, that avoiding meat is morally inferior, or that God commands animal consumption.
             </button>
           </div>
 
           <div id="cx2RedPanel" style="display:none; margin-top:1rem;">
-            <p><b>Check one or more of the following boxes to continue:</b></p>
+            <p><b>Select one of the following traditions to continue:</b></p>
 
             <div class="checklist">
-              <label class="chk"><input type="checkbox" name="cx2_rel" value="christian"/> <span><b>Christianity</b></span></label>
-              <label class="chk"><input type="checkbox" name="cx2_rel" value="muslim"/> <span><b>Islam</b></span></label>
-              <label class="chk"><input type="checkbox" name="cx2_rel" value="jewish"/> <span><b>Judaism</b></span></label>
-              <label class="chk"><input type="checkbox" name="cx2_rel" value="hindu"/> <span><b>Hinduism</b></span></label>
-              <label class="chk"><input type="checkbox" name="cx2_rel" value="buddhist"/> <span><b>Buddhism</b></span></label>
-              <label class="chk"><input type="checkbox" name="cx2_rel" value="sikh"/> <span><b>Sikhism</b></span></label>
+              <label class="chk"><input type="radio" name="cx2_rel" value="christian"/> <span><b>Christianity</b></span></label>
+              <label class="chk"><input type="radio" name="cx2_rel" value="muslim"/> <span><b>Islam</b></span></label>
+              <label class="chk"><input type="radio" name="cx2_rel" value="jewish"/> <span><b>Judaism</b></span></label>
+              <label class="chk"><input type="radio" name="cx2_rel" value="hindu"/> <span><b>Hinduism</b></span></label>
+              <label class="chk"><input type="radio" name="cx2_rel" value="buddhist"/> <span><b>Buddhism</b></span></label>
+              <label class="chk"><input type="radio" name="cx2_rel" value="sikh"/> <span><b>Sikhism</b></span></label>
             </div>
 
             <div class="btnrow" style="margin-top:.75rem;">
@@ -3371,10 +3634,10 @@ access: `
           <img src="1CX2transition.png" alt="Religious transition" class="page-img"/>
 
           <p>Thank you for reflecting on this from a moral and spiritual perspective.</p>
-          <p>Many traditions permit eating animals without requiring it.</p>
+          <p>Many traditions permit eating animals in certain cases without requiring it.</p>
           <p><b>That means the remaining question is not whether you are allowed, but whether animal consumption is necessary for you personally.</b></p>
-          <p>In the next section, we’ll look at whether animal products are necessary for your health, nutrition, finances, access, or environmental context, not for everyone in the world, just for you.</p>
-          <p>You don’t need to worry about exceptions or edge cases right now, only your own situation.</p>
+          <p>In Section 2, we’ll also consider whether animal products are necessary for your health, nutrition, finances, access, or environmental context, not for everyone in the world, just for you.</p>
+          <p>First however, let's delve into what your religious tradition actually says (or doesn't say) regarding the morality of unnecessary harm to animals.</p>
 
           ${navButtons({ showBack:true, nextLabel:"Continue" })}
         `;
@@ -3512,8 +3775,8 @@ access: `
           img: "1CX2Christian.png",
           storageKey: "cx2_christian",
           bodyHtml: `
-            <p><b>Framing line for the user</b><br/>
-            Some Christians believe the Bible teaches that eating animals is morally required or spiritually superior. Below are the most common passages people cite for that view, and what those passages are actually saying in context.</p>
+            <p><b>Framing line</b><br/>
+            Some Christians believe the Bible teaches that eating animals is morally required, spiritually superior, or explicitly allowed solely for pleasure. Below are the most common passages people cite for that view, and what those passages are actually saying in context.</p>
 
             <div class="divider"></div>
 
@@ -3522,48 +3785,153 @@ access: `
             <details class="drop">
               <summary><b>Claim 1 — “God gave humans dominion over animals, so we are meant to use and eat them.”</b></summary>
               <p><b>Passage cited:</b> Genesis 1:26</p>
-              <p><b>What people mean by this:</b> Dominion = ownership = moral permission = intended use.</p>
-              <p><b>Context:</b> The Hebrew word often translated as “dominion” (<i>radah</i>) is commonly understood by many Christians as stewardship and responsibility, not exploitation.</p>
-              <p>This passage does not command killing or eating animals. Just three verses later, plants are described as food for humans and animals (Genesis 1:29).</p>
+              <p>“Let us make mankind in our image… and let them have dominion over every living thing…”</p>
+              <p><b>What people mean by this:</b><br>
+              Dominion = ownership = moral permission = intended use.</p>
+              <p><b>Refutation:</b><br>
+              The Hebrew word for “dominion” (<i>radah</i>) means stewardship, care, and responsibility — not exploitation.</p>
+              <p>This passage does not command killing or eating animals.</p>
+              <p>In fact, just three verses later, God gives plants as food for both humans and animals (Genesis 1:29).</p>
+              <p><b>So dominion establishes responsibility, not obligation to consume.</b></p>
             </details>
-
+            
             <details class="drop">
               <summary><b>Claim 2 — “God preferred Abel’s animal offering over Cain’s plants, so animal use is spiritually superior.”</b></summary>
               <p><b>Passage cited:</b> Genesis 4 (Cain and Abel)</p>
-              <p><b>What people mean:</b> God favored Abel because he offered animals, therefore animal sacrifice (and by extension animal use) is morally better.</p>
-              <p><b>Context:</b> The text does not explicitly say God preferred animals as a category; many interpretations emphasize Abel’s heart/intention.</p>
-              <p>Several prophetic passages criticize sacrifice as inherently pleasing to God (for example Hosea 6:6; Isaiah 1:11).</p>
+              <p><b>What people mean:</b><br>
+              God favored Abel because he offered animals, therefore animal sacrifice (and by extension animal use) is morally better.</p>
+              <p><b>Refutation:</b><br>
+              The text does not say God preferred animals — it says God favored Abel’s heart and intention.</p>
+              <p>Throughout the Bible, God repeatedly says He does not desire sacrifice for its own sake:</p>
+              <ul>
+                <li>“I desire mercy, not sacrifice.” (Hosea 6:6)</li>
+                <li>“I take no pleasure in the blood of bulls and goats.” (Isaiah 1:11)</li>
+              </ul>
+              <p>Animal sacrifice was a ritual system for a specific historical context — not a moral endorsement of killing animals.</p>
+              <p><b>Parallel:</b><br>
+              God once asked Abraham to sacrifice his son — that does not mean child sacrifice is morally good.</p>
+              <p><b>A story involving a practice does not make that practice ethically ideal.</b></p>
             </details>
-
+            
             <details class="drop">
               <summary><b>Claim 3 — “God explicitly permits eating animals after the Flood, so it must be good or intended.”</b></summary>
               <p><b>Passage cited:</b> Genesis 9:3</p>
-              <p>This is often read as permission, not a command. It occurs in a post-Flood survival context and does not state that avoiding meat is sinful or spiritually inferior.</p>
-              <p><b>Key distinction:</b> Permission ≠ requirement.</p>
+              <p>“Every moving thing that lives shall be food for you…”</p>
+              <p><b>Refutation:</b><br>
+              This is permission, not command.</p>
+              <p>It occurs in a post-Flood survival context — not as a moral ideal.</p>
+              <p>Nothing in this passage says:</p>
+              <ul>
+                <li>You must eat animals</li>
+                <li>Avoiding meat is sinful</li>
+                <li>Meat is spiritually superior</li>
+              </ul>
+              <p><b>Permission ≠ requirement.</b></p>
             </details>
-
+            
             <details class="drop">
               <summary><b>Claim 4 — “Jesus fed people fish and ate fish, so Christians should eat animals.”</b></summary>
-              <p><b>Passages cited:</b> feeding narratives (bread/fish), post-resurrection fish breakfast, Passover context</p>
-              <p>These are descriptive narratives of a 1st-century subsistence culture. They do not function as universal commands that Christians must consume animals.</p>
+              <p><b>Passages cited:</b><br>
+              Feeding of the 5,000, post-resurrection fish breakfast, Passover lamb</p>
+              <p><b>Refutation:</b><br>
+              These passages are descriptive, not prescriptive.</p>
+              <p>They show what Jesus did in a 1st-century subsistence culture — not what all Christians must do.</p>
+              <p>Jesus also lived without electricity, antibiotics, or democracy — that does not make those morally wrong to use or avoid.</p>
+              <p>Jesus never commands animal consumption, nor teaches that abstaining from it is sinful.</p>
             </details>
-
+            
             <details class="drop">
               <summary><b>Claim 5 — “Paul says vegetarians are weak in faith.”</b></summary>
               <p><b>Passage cited:</b> Romans 14:2</p>
-              <p>This passage is commonly understood as addressing disputes over ritual practice (including kosher questions and meat associated with idol sacrifice), and the main thrust is “stop judging each other over food.”</p>
+              <p>“One person believes he may eat anything, while the weak eat only vegetables.”</p>
+              <p><b>Refutation:</b><br>
+              Paul is not discussing the ethics of killing animals.</p>
+              <p>He is addressing disputes over kosher laws, idol-sacrificed meat, and ritual purity.</p>
+              <p>His actual point is: stop judging each other over food.</p>
+              <ul>
+                <li>Don’t judge those who eat</li>
+                <li>Don’t judge those who abstain</li>
+                <li>Food does not determine righteousness</li>
+              </ul>
+              <p><b>Paul is condemning food-based spiritual hierarchy — not vegetarianism.</b></p>
             </details>
-
+            
             <div class="divider"></div>
-
+            
             <details class="drop">
               <summary><b>Bonus — Biblical supports sometimes cited for a plant-based lifestyle</b></summary>
+            
+              <p><b>1. Genesis 1:29 — God’s original dietary ideal</b></p>
+              <p>“Then God said, ‘Behold, I have given you every plant yielding seed that is on the face of all the earth, and every tree with seed in its fruit. You shall have them for food.’”</p>
+              <p><b>Why it’s cited:</b></p>
               <ul>
-                <li><b>Genesis 1:29</b> — plants as the first dietary instruction</li>
-                <li><b>Isaiah 11:6–9</b> — “peaceable kingdom” imagery of non-violence</li>
-                <li><b>Hosea 6:6 / Matthew 9:13</b> — “mercy, not sacrifice”</li>
-                <li><b>Romans 14:21</b> — abstaining from meat can be good</li>
-                <li><b>Proverbs 12:10</b> — righteous care for animals</li>
+                <li>This is the first dietary instruction in the Bible.</li>
+                <li>Humans and animals are both given plants for food.</li>
+                <li>No animals are eaten in the creation ideal.</li>
+              </ul>
+              <p><b>Vegetarian interpretation:</b><br>
+                This represents God’s original, peaceful design for creation before violence entered the world.</p>
+              <p><b>Christian vegetarians argue:</b><br>
+                Meat-eating is a later concession to a fallen world, not the moral ideal.</p>
+            
+              <hr>
+            
+              <p><b>2. Isaiah 11:6–9 — The messianic peaceable kingdom</b></p>
+              <p>“The wolf shall live with the lamb… They shall not hurt or destroy on all my holy mountain.”</p>
+              <p><b>Why it’s cited:</b></p>
+              <ul>
+                <li>This is a prophecy about God’s redeemed future.</li>
+                <li>It explicitly describes a world without predation or violence.</li>
+              </ul>
+              <p><b>Vegetarian interpretation:</b><br>
+                God’s ultimate kingdom is non-violent — including toward animals.</p>
+              <p>So Christians are called to anticipate that kingdom through their lives now.</p>
+            
+              <hr>
+            
+              <p><b>3. Hosea 6:6 / Matthew 9:13 — “I desire mercy, not sacrifice.”</b></p>
+              <p>“For I desire mercy, not sacrifice, and acknowledgment of God rather than burnt offerings.”</p>
+              <p>Jesus directly quotes this.</p>
+              <p><b>Why it’s cited:</b></p>
+              <ul>
+                <li>God explicitly de-prioritizes ritual animal sacrifice.</li>
+                <li>Moral character matters more than ritual killing.</li>
+              </ul>
+              <p><b>Vegetarian interpretation:</b><br>
+                Killing animals for religious or habitual reasons is not spiritually valuable. Compassion is.</p>
+            
+              <hr>
+            
+              <p><b>4. Romans 14:21 — Paul affirms abstaining from meat</b></p>
+              <p>“It is good not to eat meat or drink wine or do anything that causes another to stumble.”</p>
+              <p><b>Why it’s cited:</b></p>
+              <ul>
+                <li>Paul explicitly says abstaining from meat can be morally good.</li>
+                <li>This directly contradicts the idea that Christianity requires meat.</li>
+              </ul>
+              <p><b>Vegetarian interpretation:</b><br>
+                Choosing not to eat animals out of compassion or conscience is fully legitimate within Christianity.</p>
+            
+              <hr>
+            
+              <p><b>5. Proverbs 12:10 — The righteous care for animals</b></p>
+              <p>“The righteous care for the needs of their animals, but the kindest acts of the wicked are cruel.”</p>
+              <p><b>Why it’s cited:</b></p>
+              <ul>
+                <li>Righteousness is linked with care, not domination.</li>
+                <li>Cruelty toward animals is morally condemned.</li>
+              </ul>
+              <p><b>Vegetarian interpretation:</b><br>
+                If righteousness is defined by care for animals, unnecessary harm is incompatible with righteousness.</p>
+            
+              <hr>
+            
+              <p><b>Honorable mentions</b></p>
+              <ul>
+                <li>Daniel 1:12–16 — Daniel and his companions thrive on a plant-based diet.</li>
+                <li>Colossians 1:20 — God seeks to reconcile all creation, not just humans.</li>
+                <li>Psalm 145:9 — “The Lord is good to all; he has compassion on all he has made.”</li>
+                <li>Ecclesiastes 3:19 — Humans and animals share the same breath of life.</li>
               </ul>
             </details>
 
@@ -3654,117 +4022,211 @@ access: `
         img: "1CX2Jewish.png",
         storageKey: "cx2_jewish",
         bodyHtml: `
-          <p><b>Judaism — “Does my religion require or morally prioritize eating animals?”</b></p>
+          <p><b>Judaism — “Does my religion require or explicitly allow eating animals solely for pleasure?”</b></p>
           <p>Below are the most common Jewish arguments or textual references people cite to support eating animals as religiously required or spiritually preferable, and what those sources actually say.</p>
           <p>(Click each claim to see the explanation.)</p>
 
           <div class="divider"></div>
 
-          <details class="drop">
-            <summary><b>Claim 1 — “God explicitly permitted eating meat after the Flood, so meat is part of God’s plan.”</b></summary>
-            <p><b>Text cited:</b> Genesis 9:3 (“Every moving thing that lives shall be food for you…”)</p>
-            <p><b>What people mean:</b> God intentionally expanded the human diet to include animals. Therefore, eating animals is divinely endorsed.</p>
-            <p><b>Clarification:</b> This is permission, not command. It occurs in a post-Flood survival context, after massive destruction, displacement, and scarcity.</p>
-            <p>The text does not say:</p>
-            <ul>
-              <li>You must eat animals</li>
-              <li>Avoiding meat is sinful</li>
-              <li>Meat is spiritually superior</li>
-            </ul>
-            <p>In Jewish interpretation, this is often treated as a concession to human need, not an ethical ideal.</p>
-          </details>
+            <details class="drop">
+              <summary><b>Claim 1 — “God explicitly permitted eating meat after the Flood, so meat is part of God’s plan.”</b></summary>
+            
+              <p><b>Text cited:</b> Genesis 9:3</p>
+              <p>“Every moving thing that lives shall be food for you…”</p>
+            
+              <p><b>What people mean:</b></p>
+              <p>God intentionally expanded the human diet to include animals — therefore eating animals is divinely endorsed.</p>
+            
+              <p><b>Refutation:</b></p>
+              <p>This is permission, not command.</p>
+              <p>It occurs in a post-Flood survival context — after massive destruction, displacement, and scarcity.</p>
+            
+              <p>The text does not say:</p>
+              <ul>
+                <li>You must eat animals</li>
+                <li>Avoiding meat is sinful</li>
+                <li>Meat is spiritually superior</li>
+              </ul>
+            
+              <p>In Jewish interpretation, this is treated as a concession to human need, not an ethical ideal.</p>
+            </details>
+            
+            <details class="drop">
+              <summary><b>Claim 2 — “Animal sacrifice is central to the Torah, so animal use is spiritually significant.”</b></summary>
+            
+              <p><b>Texts cited:</b> Leviticus, Numbers, Temple sacrifice laws</p>
+            
+              <p><b>What people mean:</b></p>
+              <p>Animals were used in worship, therefore animal killing is religiously meaningful or required.</p>
+            
+              <p><b>Refutation:</b></p>
+              <p>Sacrifice in Judaism was a ritual system for a specific time, place, and social structure.</p>
+              <p>Namely, the Temple in Jerusalem.</p>
+            
+              <p>The Hebrew Bible repeatedly emphasizes that God does not desire sacrifice itself:</p>
+              <ul>
+                <li>“I desire mercy, not sacrifice.” (Hosea 6:6)</li>
+                <li>“What need have I of all your sacrifices?” (Isaiah 1:11)</li>
+              </ul>
+            
+              <p>After the destruction of the Temple (70 CE), Judaism explicitly shifted away from animal sacrifice.</p>
+              <p>Prayer, ethics, and study replaced it.</p>
+            
+              <p>Sacrifice was a ritual mechanism, not a moral endorsement of killing animals.</p>
+            </details>
+            
+            <details class="drop">
+              <summary><b>Claim 3 — “Keeping kosher assumes animal consumption, so Judaism is fundamentally meat-based.”</b></summary>
+            
+              <p><b>Texts cited:</b> Leviticus 11 (kosher laws)</p>
+            
+              <p><b>What people mean:</b></p>
+              <p>Kosher law regulates meat, so meat must be morally important or expected.</p>
+            
+              <p><b>Refutation:</b></p>
+              <p>Kashrut regulates meat because people eat meat — not because they must.</p>
+            
+              <p>Jewish law also regulates:</p>
+              <ul>
+                <li>Divorce</li>
+                <li>Slavery (historically)</li>
+                <li>Warfare</li>
+              </ul>
+            
+              <p><b>Regulation ≠ endorsement.</b></p>
+            
+              <p>Kosher law is about minimizing harm, discipline, and ethical awareness.</p>
+              <p>It does not mandate animal use.</p>
+            
+              <p>A Jew can be fully observant and vegetarian or vegan.</p>
+            </details>
+            
+            <details class="drop">
+              <summary><b>Claim 4 — “Eating meat on Shabbat and holidays is a mitzvah (commandment).”</b></summary>
+            
+              <p><b>Texts cited:</b> Talmudic discussions of <i>simchat yom tov</i> (joy on festivals)</p>
+            
+              <p><b>What people mean:</b></p>
+              <p>Joy on festivals was historically associated with meat and wine, therefore eating meat is religiously encouraged.</p>
+            
+              <p><b>Refutation:</b></p>
+              <p>The mitzvah is joy — not meat.</p>
+            
+              <p>In ancient times, meat was rare and associated with celebration.</p>
+              <p>Today, joy can be fulfilled in many ways.</p>
+            
+              <p>Many modern rabbinic authorities state that if meat causes suffering, discomfort, or ethical distress, it does not fulfill the mitzvah of joy.</p>
+            
+              <p>Meat is culturally contingent, not theologically required.</p>
+            </details>
+            
+            <details class="drop">
+              <summary><b>Claim 5 — “Humans are permitted to use animals for their needs, therefore eating them is morally fine.”</b></summary>
+            
+              <p><b>Texts cited:</b> General Torah permissions, dominion language</p>
+            
+              <p><b>What people mean:</b></p>
+              <p>Since animals are not human, human needs override animal interests.</p>
+            
+              <p><b>Refutation:</b></p>
+              <p>Judaism contains one of the strongest animal welfare principles of any religious tradition.</p>
+            
+              <p><b>Tza’ar ba’alei chayim</b> — the prohibition against causing unnecessary suffering to animals.</p>
+            
+              <p>This is a formal halakhic principle.</p>
+              <p>Permission to use animals is bounded by the obligation to avoid unnecessary suffering.</p>
+            
+              <p>If animal use is unnecessary, the permission weakens.</p>
+            </details>
 
-          <details class="drop">
-            <summary><b>Claim 2 — “Animal sacrifice is central to the Torah, so animal use is spiritually significant.”</b></summary>
-            <p><b>Texts cited:</b> Leviticus, Numbers, Temple sacrifice laws</p>
-            <p><b>What people mean:</b> Animals were used in worship, therefore animal killing is religiously meaningful or required.</p>
-            <p><b>Clarification:</b> Sacrifice in Judaism was a ritual system for a specific time, place, and social structure, the Temple in Jerusalem.</p>
-            <p>The Hebrew Bible repeatedly emphasizes that God does not actually desire sacrifice itself:</p>
-            <ul>
-              <li>“I desire mercy, not sacrifice.” (Hosea 6:6)</li>
-              <li>“What need have I of all your sacrifices?” (Isaiah 1:11)</li>
-            </ul>
-            <p>After the destruction of the Temple (70 CE), Judaism explicitly shifted away from animal sacrifice toward prayer, ethics, and study.</p>
-            <p>Sacrifice was a ritual mechanism, not a moral endorsement of killing animals.</p>
-          </details>
 
-          <details class="drop">
-            <summary><b>Claim 3 — “Keeping kosher assumes animal consumption, so Judaism is fundamentally meat-based.”</b></summary>
-            <p><b>Texts cited:</b> Leviticus 11 (kosher laws)</p>
-            <p><b>What people mean:</b> Kosher law regulates meat, so meat must be morally important or expected.</p>
-            <p><b>Clarification:</b> Kashrut regulates meat because people eat meat, not because they must.</p>
-            <p>Jewish law also regulates many areas of life (including historically difficult areas such as divorce, slavery, and warfare).</p>
-            <p><b>Key idea:</b> Regulation ≠ endorsement.</p>
-            <p>Kosher law is often framed as minimizing harm, discipline, and ethical awareness, not mandating animal use.</p>
-            <p>A Jew can be fully observant and vegetarian or vegan.</p>
-          </details>
+            <div class="divider"></div>
 
-          <details class="drop">
-            <summary><b>Claim 4 — “Eating meat on Shabbat and holidays is a mitzvah (commandment).”</b></summary>
-            <p><b>Texts cited:</b> Talmudic discussions of <i>simchat yom tov</i> (joy on festivals)</p>
-            <p><b>What people mean:</b> Joy on festivals was historically associated with meat and wine, therefore eating meat is religiously encouraged.</p>
-            <p><b>Clarification:</b> The mitzvah is joy, not meat.</p>
-            <p>In ancient times, meat was rare and associated with celebration. Today joy can be fulfilled in many ways.</p>
-            <p>Many modern rabbinic authorities state that if meat causes suffering, discomfort, or ethical distress, it does not fulfill the mitzvah of joy.</p>
-            <p>So meat is culturally contingent, not theologically required.</p>
-          </details>
+            <p><b>Bonus: Six supports for a plant-based lifestyle</b></p>
+            <p><b>Judaism — Additional reasons a plant-based diet may be morally preferable</b></p>
+            <p>Many Jewish thinkers and communities interpret Jewish law and ethics as encouraging compassion, restraint, and minimizing harm — which can support a vegetarian or plant-based diet.</p>
+            <p>(Click each point to learn more.)</p>
+            
+            <details class="drop">
+              <summary><b>Reason 1 — Tza’ar ba’alei chayim (Prohibition of animal suffering)</b></summary>
+            
+              <p><b>Source:</b> Talmud (Bava Metzia 32b and elsewhere)</p>
+            
+              <p>It is forbidden to cause unnecessary suffering to animals.</p>
+              <p>This is not a metaphor — it is a binding halakhic principle.</p>
+            
+              <p><b>Jewish ethicists argue:</b></p>
+              <p>If animal products are not necessary, then inflicting suffering to obtain them becomes ethically problematic.</p>
+            
+              <p>This principle alone motivates many Jewish vegetarians.</p>
+            </details>
+            
+            <details class="drop">
+              <summary><b>Reason 2 — Bal Tashchit (Prohibition against waste and destruction)</b></summary>
+            
+              <p><b>Source:</b> Deuteronomy 20:19–20</p>
+              <p>“Do not destroy fruit trees…”</p>
+            
+              <p>Expanded by the rabbis into a general prohibition against unnecessary destruction or waste.</p>
+            
+              <p><b>Animal agriculture is resource-intensive:</b></p>
+              <ul>
+                <li>Uses more land</li>
+                <li>Uses more water</li>
+                <li>Requires more crops than direct human consumption</li>
+              </ul>
+            
+              <p>Therefore, many Jewish thinkers argue that plant-based diets better fulfill the obligation to avoid waste and destruction.</p>
+            </details>
+            
+            <details class="drop">
+              <summary><b>Reason 3 — Pikuach nefesh (Preservation of life overrides other laws)</b></summary>
+            
+              <p><b>Source:</b> Talmud Yoma 85b</p>
+            
+              <p>Preserving human life takes precedence over nearly all commandments.</p>
+            
+              <p><b>Jewish vegan thinkers argue:</b></p>
+              <p>If a diet reduces the risk of disease, environmental collapse, or food scarcity, then it supports the preservation of life and may be ethically preferable.</p>
+            
+              <p>(This is often used in climate and public health arguments.)</p>
+            </details>
+            
+            <details class="drop">
+              <summary><b>Reason 4 — Kiddush Hashem (Sanctifying God’s name through ethical behavior)</b></summary>
+            
+              <p><b>Source:</b> Leviticus 22:32 and rabbinic ethics</p>
+            
+              <p>Jews are commanded to sanctify God’s name through righteous conduct.</p>
+            
+              <p>If society increasingly sees animal cruelty, environmental harm, and exploitation as immoral, then choosing compassion publicly can be an act of Kiddush Hashem.</p>
+            </details>
+            
+            <details class="drop">
+              <summary><b>Reason 5 — The Edenic ideal (Genesis 1:29 revisited)</b></summary>
+            
+              <p>As discussed earlier, the Torah begins with a plant-based diet for all beings.</p>
+            
+              <p>Many Jewish commentators — including Rabbi Abraham Isaac Kook, a major modern Jewish thinker — taught:</p>
+            
+              <p>Meat consumption is a temporary concession to human moral weakness, not the ultimate ethical goal.</p>
+            
+              <p>As humanity morally evolves, we are meant to return toward the Edenic ideal of non-violence.</p>
+            </details>
+            
+            <details class="drop">
+              <summary><b>Reason 6 — Justice and hunger (tzedek and tzedakah)</b></summary>
+            
+              <p>Judaism emphasizes justice and care for the poor.</p>
+            
+              <p>Since animal agriculture consumes vast amounts of grain that could feed humans, many Jewish vegans argue that plant-based diets better align with:</p>
+              <ul>
+                <li>Feeding the hungry</li>
+                <li>Reducing inequality</li>
+                <li>Global justice</li>
+              </ul>
+            </details>
 
-          <details class="drop">
-            <summary><b>Claim 5 — “Humans are permitted to use animals for their needs, therefore eating them is morally fine.”</b></summary>
-            <p><b>Texts cited:</b> General Torah permissions, dominion language</p>
-            <p><b>What people mean:</b> Since animals are not human, human needs override animal interests.</p>
-            <p><b>Clarification:</b> Judaism contains one of the strongest animal welfare principles of any religious tradition:</p>
-            <p><b>Tza’ar ba’alei chayim</b> — the prohibition against causing unnecessary suffering to animals.</p>
-            <p>This is a formal halakhic principle, so permission to use animals is bounded by the obligation to avoid unnecessary suffering.</p>
-            <p>If animal use is unnecessary, the permission weakens.</p>
-          </details>
-
-          <div class="divider"></div>
-
-          <p><b>Bonus: Six supports for a plant-based lifestyle</b></p>
-          <p>Many Jewish thinkers and communities interpret Jewish law and ethics as encouraging compassion, restraint, and minimizing harm, which can support a vegetarian or plant-based diet.</p>
-          <p>(Click each point to learn more.)</p>
-
-          <details class="drop">
-            <summary><b>Reason 1 — Tza’ar ba’alei chayim (Prohibition of animal suffering)</b></summary>
-            <p><b>Source:</b> Talmud (Bava Metzia 32b and elsewhere)</p>
-            <p>It is forbidden to cause unnecessary suffering to animals. This is not a metaphor. It is treated as a binding halakhic principle.</p>
-            <p>Many Jewish ethicists argue: if animal products are not necessary, then inflicting suffering to obtain them becomes ethically problematic.</p>
-          </details>
-
-          <details class="drop">
-            <summary><b>Reason 2 — Bal Tashchit (Prohibition against waste and destruction)</b></summary>
-            <p><b>Source:</b> Deuteronomy 20:19–20</p>
-            <p>Expanded by the rabbis into a general prohibition against unnecessary destruction or waste.</p>
-            <p>Animal agriculture is resource-intensive (land, water, and feed crops), so many Jewish thinkers argue plant-based diets better fulfill the obligation to avoid waste and destruction.</p>
-          </details>
-
-          <details class="drop">
-            <summary><b>Reason 3 — Pikuach nefesh (Preservation of life overrides other laws)</b></summary>
-            <p><b>Source:</b> Talmud Yoma 85b</p>
-            <p>Preserving human life takes precedence over nearly all commandments.</p>
-            <p>Some Jewish vegan thinkers argue: if a diet reduces risk of disease, environmental collapse, or food scarcity, it supports preservation of life and may be ethically preferable.</p>
-          </details>
-
-          <details class="drop">
-            <summary><b>Reason 4 — Kiddush Hashem (Sanctifying God’s name through ethical behavior)</b></summary>
-            <p><b>Source:</b> Leviticus 22:32 and rabbinic ethics</p>
-            <p>Jews are commanded to sanctify God’s name through righteous conduct.</p>
-            <p>If society increasingly sees animal cruelty, environmental harm, and exploitation as immoral, choosing compassion publicly can be understood as Kiddush Hashem.</p>
-          </details>
-
-          <details class="drop">
-            <summary><b>Reason 5 — The Edenic ideal (Genesis 1:29 revisited)</b></summary>
-            <p>The Torah begins with a plant-based diet for all beings.</p>
-            <p>Many Jewish commentators (including Rabbi Abraham Isaac Kook) taught meat consumption is a temporary concession to human moral weakness, not the ultimate ethical goal.</p>
-            <p>As humanity morally evolves, we are meant to return toward the Edenic ideal of non-violence.</p>
-          </details>
-
-          <details class="drop">
-            <summary><b>Reason 6 — Justice and hunger (tzedek and tzedakah)</b></summary>
-            <p>Judaism emphasizes justice and care for the poor.</p>
-            <p>Since animal agriculture consumes vast amounts of grain that could feed humans, many Jewish vegans argue plant-based diets better align with feeding the hungry, reducing inequality, and global justice.</p>
-          </details>
 
           <div class="divider"></div>
 
@@ -3781,8 +4243,7 @@ access: `
           storageKey: "cx2_muslim",
           bodyHtml: `
             <p><b>Islam — “Does my religion require or morally prioritize eating animals?”</b></p>
-            <p>Below are common arguments or texts that some people interpret as requiring or elevating meat consumption, and the key distinction this module is testing:</p>
-            <p><b>Permissible (halal) does not automatically mean required.</b></p>
+            <p>Below are common Islamic arguments or texts that people sometimes interpret as requiring or elevating meat consumption and what the key Islamic sources actually say.</b></p>
 
             <div class="divider"></div>
 
@@ -3790,71 +4251,172 @@ access: `
 
             <details class="drop">
               <summary><b>Claim 1 — “The Qur’an says meat is lawful (halal), so eating meat is part of God’s command.”</b></summary>
-              <p><b>What people mean:</b> If the Qur’an lists animals that are lawful to eat, then eating them must be required or morally superior.</p>
-              <p><b>Response:</b> “Lawful / permissible” does not mean “required.” Many Muslims understand halal dietary guidance as allowing meat under certain conditions, not obligating it.</p>
-              <p><b>Conclusion:</b> Permissibility does not equal obligation.</p>
+            
+              <p><b>Passage cited:</b> Qur’an identifies permissible foods, including halal meat.</p>
+            
+              <p><b>What people mean</b><br>
+              Because the Qur’an lists animals that are lawful to eat, that implies eating them is required or morally superior.</p>
+            
+              <p><b>Refutation</b><br>
+              Lawful (halal) means “permissible,” not required.</p>
+            
+              <p>The Qur’an also says GOOD food is halal in general, including plant foods, and allows believers to eat what is lawful and wholesome.</p>
+            
+              <p>Islamic jurists and scholars explicitly state that meat consumption is allowed, not mandatory, and that a believer can choose vegetarian foods without sin.</p>
+            
+              <p><b>Conclusion:</b><br>
+              Permissibility does not equal obligation.</p>
+            </details>
+            
+            <details class="drop">
+              <summary><b>Claim 2 — “Islamic law (Sharia) lists specific permissible animals and slaughter methods, so meat must be morally central.”</b></summary>
+            
+              <p><b>Reference:</b> Traditions about halal slaughter and food classifications under Sharia.</p>
+            
+              <p><b>What people mean</b><br>
+              Because Islam gives detailed rules about how animals must be slaughtered for meat to be halal, eating meat is spiritually meaningful or required.</p>
+            
+              <p><b>Refutation</b><br>
+              These rules regulate how meat can be eaten — they do not make eating meat obligatory.</p>
+            
+              <p>Islamic scholars note that vegetarianism is permitted so long as it is not regarded as forbidden, meaning one can choose a plant-based diet without violating Sharia.</p>
+            
+              <p><b>Conclusion:</b><br>
+              Detailed rules about slaughter do not imply a religious requirement to consume meat.</p>
+            </details>
+            
+            <details class="drop">
+              <summary><b>Claim 3 — “Certain verses imply humans are created for both plants and animals; omnivory reflects God’s design.”</b></summary>
+            
+              <p><b>References:</b> Verses that describe permissible foods but do not prohibit plants.</p>
+            
+              <p><b>What people mean</b><br>
+              Because the Qur’an allows animals and plants, and humans are seen as omnivorous, eating animals fits God’s plan.</p>
+            
+              <p><b>Refutation</b><br>
+              The Qur’an permits a broad range of foods but does not prioritize animal food over plant food. It simply gives legal permission.</p>
+            
+              <p>There is no verse that states meat is preferred or that avoiding it is wrong.</p>
+            
+              <p><b>Conclusion:</b><br>
+              Human dietary flexibility reflects permissibility, not moral superiority.</p>
+            </details>
+            
+            <details class="drop">
+              <summary><b>Claim 4 — “Islamic tradition encourages sharing and using meat in celebrations, so meat is spiritually valuable.”</b></summary>
+            
+              <p><b>Reference:</b> Hadith and practice around feast days and sacrificial traditions (e.g., Eid al-Adha).</p>
+            
+              <p><b>What people mean</b><br>
+              Meat is often part of communal celebrations and charity in Islamic cultures, so it must be morally highlighted.</p>
+            
+              <p><b>Refutation</b><br>
+              While meat may be shared culturally during festivals, this is a cultural expression, not a doctrine that meat is superior.</p>
+            
+              <p>The Qur’an emphasizes moderation, gratitude, and sharing without mandating meat.</p>
+            
+              <p><b>Conclusion:</b><br>
+              Cultural practice does not equate to religious obligation.</p>
+            </details>
+            
+            <details class="drop">
+              <summary><b>Claim 5 — “Islamic teachings about halal meat reflect God’s blessings and are morally prescribed.”</b></summary>
+            
+              <p><b>Reference:</b> Islamic texts about halal food being wholesome and pure.</p>
+            
+              <p><b>What people mean</b><br>
+              Because halal food is described as pure and blessed, meat — when halal — has moral significance.</p>
+            
+              <p><b>Refutation</b><br>
+              The Qur’an describes halal food generally as “lawful and good,” including all plants and meat.</p>
+            
+              <p>Simply being halal does not make meat morally required or superior.</p>
+            
+              <p>Islamic law is clear that all halal foods — including plant foods — are blessed and permissible.</p>
+            
+              <p><b>Conclusion:</b><br>
+              Permissibility and spiritual blessing do not translate into a requirement to eat meat.</p>
             </details>
 
-            <details class="drop">
-              <summary><b>Claim 2 — “Sharia lists permissible animals and slaughter methods, so meat must be morally central.”</b></summary>
-              <p><b>What people mean:</b> Because Islam gives detailed rules for halal slaughter, eating meat must be spiritually required or uniquely important.</p>
-              <p><b>Response:</b> Detailed rules can regulate how meat is eaten <i>if</i> it is eaten, without making meat obligatory. Many Muslims interpret these rules as harm-limitation and ethical boundaries, not a mandate to consume animals.</p>
-              <p><b>Conclusion:</b> Regulation ≠ requirement.</p>
-            </details>
-
-            <details class="drop">
-              <summary><b>Claim 3 — “Islam implies omnivory reflects God’s design, so avoiding meat is wrong.”</b></summary>
-              <p><b>What people mean:</b> Because both plants and animals are permitted, humans are “meant” to eat animals, and avoiding meat could be against divine intention.</p>
-              <p><b>Response:</b> Allowing a food category does not necessarily elevate it above other foods or imply moral superiority. Many Muslims understand dietary flexibility as permission, not preference or obligation.</p>
-              <p><b>Conclusion:</b> Dietary flexibility reflects permissibility, not moral priority.</p>
-            </details>
-
-            <details class="drop">
-              <summary><b>Claim 4 — “Meat is part of Islamic celebrations and charity, so it must be spiritually valuable.”</b></summary>
-              <p><b>What people mean:</b> Because meat is often shared in festivals or charity practices, meat must be morally highlighted in Islam.</p>
-              <p><b>Response:</b> Cultural and communal practices may include meat without making meat mandatory in everyday life. Many Muslims interpret Islamic ethics as emphasizing gratitude, generosity, and moderation, not compulsory animal consumption.</p>
-              <p><b>Conclusion:</b> Cultural practice does not equal religious obligation.</p>
-            </details>
-
-            <details class="drop">
-              <summary><b>Claim 5 — “Halal meat is ‘pure and blessed,’ so it is morally prescribed.”</b></summary>
-              <p><b>What people mean:</b> If halal is described as “lawful and good,” then eating halal meat must be morally preferred.</p>
-              <p><b>Response:</b> “Halal and good” is widely understood to include a broad range of foods, including plant foods. A food being permissible and blessed does not automatically mean it is required.</p>
-              <p><b>Conclusion:</b> Blessing/permissibility ≠ requirement.</p>
-            </details>
 
             <div class="divider"></div>
 
             <p><b>Bonus: Five Islamic themes some Muslims connect to plant-based eating</b></p>
-
+            <p>Below are some Quranic principles, ethical teachings, and contemporary interpretations that Muslims may cite when they personally choose plant-based eating as more consistent with Islamic ethics.</p>
+            
             <details class="drop">
               <summary><b>Reason 1 — Compassion toward animals and minimizing suffering</b></summary>
-              <p><b>Core idea:</b> Islamic ethics emphasizes mercy and forbids cruelty.</p>
-              <p><b>Why some Muslims connect this to plant-based eating:</b> If someone believes modern industrial animal agriculture causes routine suffering and violates mercy-based ethics, they may see plant-based choices as more aligned with compassion.</p>
+            
+              <p><b>Core idea:</b><br>
+              Islamic teachings emphasize kindness and mercy toward all living creatures.</p>
+            
+              <p><b>Basis:</b><br>
+              The Qur’an and Prophetic traditions repeatedly call for humane treatment of animals and forbid cruelty, even in slaughter and work.</p>
+            
+              <p>Animals are described as communities and creatures that praise God in their own way.</p>
+            
+              <p>Islam prohibits baiting animals for entertainment, and the Prophet Muhammad rebuked mistreatment of animals.</p>
+            
+              <p><b>Why some Muslims see this as pointing toward plant-based eating:</b><br>
+              If a Muslim believes that the modern animal agriculture system (factory farming, cramped conditions, routine suffering) violates Islamic principles of mercy, then choosing a plant-based diet can be seen as more aligned with compassion.</p>
             </details>
-
+            
             <details class="drop">
-              <summary><b>Reason 2 — Stewardship of the Earth (khalifah) and avoiding waste</b></summary>
-              <p><b>Core idea:</b> Humans are stewards of creation and accountable for harm and waste.</p>
-              <p><b>Why some Muslims connect this to plant-based eating:</b> If someone views animal agriculture as resource-intensive and environmentally harmful, reducing animal products can feel consistent with stewardship.</p>
+              <summary><b>Reason 2 — Stewardship of the Earth (Khilafah) and avoiding waste</b></summary>
+            
+              <p><b>Core idea:</b><br>
+              Humans are appointed as stewards (khalifah) of the Earth in Islam, tasked with preserving its balance and resources.</p>
+            
+              <p><b>Basis:</b><br>
+              The Qur’an teaches that God appointed humans as stewards over the Earth and warns against waste and imbalance (e.g., “eat and drink, but waste not…”).</p>
+            
+              <p><b>Why this supports plant-based eating for some Muslims:</b><br>
+              Animal agriculture is resource-intensive (land, water, feed) and contributes significantly to environmental harm.</p>
+            
+              <p>Muslims concerned about stewardship can view reducing animal product consumption as fulfilling the duty to protect creation.</p>
             </details>
-
+            
             <details class="drop">
               <summary><b>Reason 3 — Moderation and avoiding excess</b></summary>
-              <p><b>Core idea:</b> Islam repeatedly emphasizes moderation in consumption.</p>
-              <p><b>Why some Muslims connect this to plant-based eating:</b> A plant-centered diet can be framed as restraint, simplicity, and avoiding unnecessary excess.</p>
+            
+              <p><b>Core idea:</b><br>
+              Islam repeatedly emphasizes moderation in all aspects of life, including eating and consumption.</p>
+            
+              <p><b>Basis:</b><br>
+              Verses in the Qur’an urge believers to avoid extravagance or waste (“Eat and drink, but do not waste; Allah does not love the wasteful”).</p>
+            
+              <p><b>Why this supports plant-based eating:</b><br>
+              A diet centered on plants can be a form of moderation — avoiding over-consumption, unnecessary luxury, and the often excess use of animals for food when simpler plant diets suffice.</p>
             </details>
-
+            
             <details class="drop">
-              <summary><b>Reason 4 — Historical practice and restraint with meat</b></summary>
-              <p><b>Core idea:</b> Some people interpret early Muslim practice as relatively low-meat and meat-as-occasional rather than constant.</p>
-              <p><b>Why this matters:</b> Even if not doctrinal, this can support a “meat is permitted but not central” framing.</p>
+              <summary><b>Reason 4 — Historical practice and Sunnah interpretations</b></summary>
+            
+              <p><b>Core idea:</b><br>
+              Some scholars and traditions note that early Muslim diets were often low in meat, and that meat was historically eaten sparingly.</p>
+            
+              <p><b>Basis:</b><br>
+              Some Islamic sources and commentators (e.g., statements attributed to early Muslim teachers and companions) suggest restraint with meat and caution against frequent consumption.</p>
+            
+              <p>Examples include leaders discouraging meat as a regular diet due to health or social concern.</p>
+            
+              <p><b>Why this matters:</b><br>
+              While not doctrinally required, this historical context can influence some Muslims to see plant-based or low-meat eating as closer to prophetic simplicity and moderation.</p>
             </details>
-
+            
             <details class="drop">
-              <summary><b>Reason 5 — Responding to modern ethical and environmental realities</b></summary>
-              <p><b>Core idea:</b> Some contemporary Muslim thinkers argue industrial systems can conflict with mercy, justice, and stewardship.</p>
-              <p><b>Why some Muslims connect this to plant-based eating:</b> They may choose plant-based eating as harm-reduction while still acknowledging that halal animal products are permitted in principle.</p>
+              <summary><b>Reason 5 — Responding to modern ethical and environmental issues</b></summary>
+            
+              <p><b>Core idea:</b><br>
+              Contemporary Muslim environmental and animal-welfare thinkers argue that industrial animal agriculture conflicts with Islamic ethics.</p>
+            
+              <p><b>Basis:</b><br>
+              Much of the modern meat and dairy industry (even nominally halal systems) subjects animals to conditions that contradict traditional Islamic teachings on treatment and dignity.</p>
+            
+              <p>Islam also calls for justice, mercy, and careful environmental stewardship.</p>
+            
+              <p><b>Why this supports plant-based eating:</b><br>
+              Some Muslims conclude that avoiding participation in a system with routine animal suffering and environmental harm is a way of living out Qur’anic ethical principles more fully — even though Islam continues to allow halal animal products in principle.</p>
             </details>
 
             <div class="divider"></div>
@@ -3974,32 +4536,38 @@ access: `
 
           <div class="divider"></div>
 
-          <h2>More detailed examples</h2>
-
-          <h3>1) Infanticide</h3>
-          <p>Some primate species kill offspring under certain conditions (resource scarcity, social dominance changes, etc.).</p>
-          <p><b>Natural?</b> Yes.<br/>
-            <b>Morally acceptable for humans?</b> Obviously no.</p>
-
-          <h3>2) Forced mating (lack of consent)</h3>
-          <p>In many animal species, reproduction is not based on consent as humans define it.</p>
-          <p><b>Natural?</b> Yes.<br/>
-            <b>Morally acceptable for humans?</b> Obviously no.</p>
-
-          <h3>3) Territorial violence</h3>
-          <p>Animals regularly harm or kill others to defend territory, mates, or resources.</p>
-          <p><b>Natural?</b> Yes.<br/>
-            <b>Morally acceptable for humans?</b> Not as a moral justification.</p>
-          <p>We restrict violence even though it evolved.</p>
-
-          <div class="divider"></div>
+            <h2>More detailed examples</h2>
+            
+            <details class="drop">
+              <summary><b>1) Infanticide</b></summary>
+              <p>Some primate species kill offspring under certain conditions (resource scarcity, social dominance changes, etc.).</p>
+              <p><b>Natural?</b> Yes.<br/>
+                <b>Morally acceptable for humans?</b> Obviously no.</p>
+            </details>
+            
+            <details class="drop">
+              <summary><b>2) Forced mating (lack of consent)</b></summary>
+              <p>In many animal species, reproduction is not based on consent as humans define it.</p>
+              <p><b>Natural?</b> Yes.<br/>
+                <b>Morally acceptable for humans?</b> Obviously no.</p>
+            </details>
+            
+            <details class="drop">
+              <summary><b>3) Territorial violence</b></summary>
+              <p>Animals regularly harm or kill others to defend territory, mates, or resources.</p>
+              <p><b>Natural?</b> Yes.<br/>
+                <b>Morally acceptable for humans?</b> Not as a moral justification.</p>
+              <p>We restrict violence even though it evolved.</p>
+            </details>
+            
+            <div class="divider"></div>
 
           <h2>Decision question</h2>
           <p><b>Do you now agree that something being natural does not by itself make it morally acceptable for humans?</b></p>
 
           <div class="btnrow">
             <button class="btn-green" onclick="window.__cx3_green()">
-              🟢 Yes — I agree that something being natural does not make it morally acceptable.
+              🟢 Yes — I agree that something being natural does not automatically make it morally acceptable.
             </button>
           </div>
 
@@ -4126,7 +4694,7 @@ access: `
           <ol>
             <li>
               <b>Abolition of slavery</b><br/>
-              <span class="small">
+              <span>
                 Slavery was once economically normal, culturally normal, religiously defended, and socially enforced.
                 “Not rocking the boat” meant continuing slavery.
               </span>
@@ -4134,7 +4702,7 @@ access: `
 
             <li>
               <b>Civil rights / racial equality</b><br/>
-              <span class="small">
+              <span>
                 Segregation was socially comfortable for the majority. Challenging it created discomfort, conflict, backlash,
                 social exclusion, and family arguments, but avoiding conflict meant perpetuating injustice.
               </span>
@@ -4142,7 +4710,7 @@ access: `
 
             <li>
               <b>Women’s rights</b> (voting, education, bodily autonomy)<br/>
-              <span class="small">
+              <span>
                 Women asking for equality were told not to be dramatic, not to make others uncomfortable, and not to disrupt social order.
                 Progress only happened when people did make others uncomfortable.
               </span>
@@ -4150,15 +4718,15 @@ access: `
 
             <li>
               <b>Child labor reform</b><br/>
-              <span class="small">
+              <span>
                 Children working long hours in dangerous conditions was once normal.
-                Ending it disrupted business interests and economic comfort, but it was still morally necessary.
+                Ending this type of child exploitation disrupted business interests and economic comfort, but it was still morally necessary.
               </span>
             </li>
 
             <li>
               <b>Public recognition of abuse</b> (domestic, sexual, institutional)<br/>
-              <span class="small">
+              <span>
                 For decades, victims were told not to talk about it and not to make trouble.
                 Silence preserved “harmony,” but silence protected harm.
               </span>
@@ -4262,7 +4830,7 @@ access: `
           <div class="divider"></div>
 
           <p>
-            There is no right or wrong answer here. Bodies, resources, cultures, and lives are different.
+            Bodies, resources, cultures, and lives are different.
             Our goal is simply to understand your situation and explore what is realistically possible, even if that means small changes rather than big ones.
           </p>
 
@@ -4283,7 +4851,8 @@ access: `
 
           <p><b>2A — “Plant-based diets are nutritionally incomplete or unnatural.”</b></p>
 
-          <p>This is the general-population concern. Common versions include:</p>
+          <p>This can often be a concern in popular culture.</p>
+          <p><b>Common Myths:</b></p>
           <ul>
             <li>“You need supplements (B12, iron, omega-3s, iodine), so it’s unnatural or unsafe.”</li>
             <li>“You can’t get enough protein on a plant-based diet.”</li>
@@ -4291,6 +4860,7 @@ access: `
             <li>“Humans evolved to eat meat, so plant-based diets are deficient.”</li>
           </ul>
 
+          <p><b>The Reality</b></p>
           <p>
             Current medical and nutritional research shows that a properly planned plant-based diet can meet all human nutritional requirements,
             including protein, iron, calcium, omega-3s, and micronutrients, typically with the addition of vitamin B12 and, in some cases,
@@ -4299,7 +4869,7 @@ access: `
 
           <p>
             Large medical and dietetic organizations agree that well-planned vegetarian and vegan diets are nutritionally adequate for all stages of life.
-            In many studies, they’re also associated with lower risk of heart disease, type 2 diabetes, and some cancers.
+            In many studies, they’re also associated with lower risk of numerous health issues such as heart disease, type 2 diabetes, and some cancers.
             <b>See evidence below.</b>
           </p>
 
@@ -4462,7 +5032,7 @@ access: `
 
           <p><b>What happens next?</b></p>
           <p>
-            We’re still going to double check for real blockers (health, cost, access, environment, life context), because “possible in theory”
+            Before taking your first steps toward a harm-reducing lifestyle, we’re still going to double check for real blockers (health, cost, access, environment, life context), because “possible in theory”
             is not the same as “realistic in my life," and sometimes harm minimization is the most that an individual will be able to acheive.
           </p>
 
